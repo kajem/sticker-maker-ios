@@ -73,9 +73,20 @@
                 padding: 0;
                 margin: 0;
             }
+            div.image{
+                border: 1px solid #efefef;
+                width: 100px;
+                height: 100px;
+                float: left;
+                padding: 5px;
+                margin: 5px;
+            }
             img{
-                margin: 10px 5px;
                 max-width: 100px;
+                max-height: 100px;
+            }
+            .clearfix{
+                clear: both;
             }
         </style>
     </head>
@@ -92,8 +103,11 @@
                        @endphp
                        @if(!empty($stickers))
                             @foreach($stickers as $sticker)
-                                <img src="/storage/sticker-packs/{{$pack->code}}/{{$sticker}}" alt="" />
+                                <div class="image">
+                                    <img src="/storage/sticker-packs/{{$pack->code}}/{{$sticker}}" alt="" />
+                                </div>
                             @endforeach
+                            <div class="clearfix"></div>
                        @endif
                     @else
                         No packs found.
