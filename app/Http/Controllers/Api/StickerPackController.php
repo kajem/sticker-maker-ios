@@ -61,7 +61,7 @@ class StickerPackController extends Controller
         if(!empty($pack)){
             return $this->successOutput([
                 'code' => $code,
-                'url' => 'http://stickermaker.braincraftapps.com/pack/'.$code
+                'url' => url('/').'/pack/'.$code
             ]);
         }
     }
