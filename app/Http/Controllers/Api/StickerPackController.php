@@ -91,4 +91,19 @@ class StickerPackController extends Controller
         
         return $code;
     }
+
+    public function getPack($code){
+        $pack = StickerPack::select('name', 'author', 'code', 'stickers')->where('code', $code)->first();
+        if(empty($pack->id))
+            return $this->errorOutput('No packs found.');
+
+        $data = [
+            'name' => $pack->name,
+            'code' => $pack->code,
+            'stickers_path' => url('/').'/storage/sticker-packs/'.$pack->code.'/',
+            'stickers' => json_decode($pack->stickers),
+        ];
+
+        return $this->successOutput($data);
+    }
 }

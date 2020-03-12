@@ -26,5 +26,6 @@ Route::group(['prefix' => 'item'], function (){
 
 Route::group(['prefix' => 'stickerpack'], function (){
     Route::post('/create', 'Api\StickerPackController@create');
+    Route::get('/get/{code}', 'Api\StickerPackController@getPack');
 });
 
