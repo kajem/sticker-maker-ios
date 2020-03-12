@@ -95,7 +95,7 @@ class StickerPackController extends Controller
     public function getPack($code){
         $pack = StickerPack::select('name', 'author',  'stickers')->where('code', $code)->first();
         if(empty($pack->name))
-            return $this->errorOutput('No packs found.');
+            return $this->errorOutput('Invalid code!');
 
         $data = [
             'name' => $pack->name,
