@@ -38,15 +38,17 @@ class StickerPackController extends Controller
         $code = $this->uniqueCode();
         $count = 1;
         $sticker_names = [];
-        foreach ($stickers as $sticker){
-            $imageName = $count.'.'.$sticker->getClientOriginalExtension();
-            $destination_thumb_path = 'public/sticker-packs/'.$code.'/'.$imageName;
-            $uploaded = Storage::put($destination_thumb_path, file_get_contents($sticker->getRealPath()));
-            if($uploaded){
-                $sticker_names[] = $imageName;
-                $count++;
-            }else{
-                return $this->errorOutput('Something went wrong with sticker images');
+        if(!empty($stickers)){
+            foreach ($stickers as $sticker){
+                $imageName = $count.'.'.$sticker->getClientOriginalExtension();
+                $destination_thumb_path = 'public/sticker-packs/'.$code.'/'.$imageName;
+                $uploaded = Storage::put($destination_thumb_path, file_get_contents($sticker->getRealPath()));
+                if($uploaded){
+                    $sticker_names[] = $imageName;
+                    $count++;
+                }else{
+                    return $this->errorOutput('Something went wrong with sticker images');
+                }
             }
         }
 
