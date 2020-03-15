@@ -25,7 +25,8 @@ class StickerPackController extends Controller
         $validator = Validator::make($request->all(),[
                             'name'=>'required',
                             'author' => 'required',
-                            'stickers' => 'array|required',
+                            //'stickers' => 'array|required',
+                            'stickers' => 'array',
                             'stickers.*' => 'image|mimes:jpeg,png,jpg,gif,bmp,webp'
                         ]);
         if($validator->fails())
