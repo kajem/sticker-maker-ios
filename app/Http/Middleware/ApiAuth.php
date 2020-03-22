@@ -23,8 +23,8 @@ class ApiAuth
         }
         $password = str_replace($today, "", $request->header('Password'));
 
-        $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFsMD6EU6d2uGfgB2qi7'];
-        $passwords = ['54jdKKFG8u9JwACVbLbHk5GyT8h5nckaMGeQEntV8zRdFIRxYHeIO'];
+        $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7'];
+        $passwords = ['54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO'];
         $username_index = array_search($request->header('UserName'), $usernames);
 
         if($username_index === false)
