@@ -20,7 +20,7 @@ Route::get('get-sticker/items/{code}/{name}', 'WelcomeController@getSticker');
 Route::group(['prefix' => 'resource'], function (){
     Route::get('/upload', 'ResourceController@upload')->name('resource.upload');
     Route::get('/upload/new/category', 'ResourceController@uploadNewCategory')->name('resource.upload-new-category');
-    // Route::get('/upload/update/category', 'ResourceController@updateCategory')->name('resource.upload-new-category');
+    Route::get('/create-thumbnails/{width}', 'ResourceController@createNewThumbnails')->name('resource.create-thumbnails');
 });
 Route::group(['prefix' => 'pack'], function (){
     Route::get('/{cdoe}', 'StickerPackController@getPack');

@@ -9,6 +9,7 @@ use App\Category;
 use App\Item;
 use App\ItemSticker;
 use App\Author;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 class ResourceController extends Controller
@@ -175,4 +176,54 @@ class ResourceController extends Controller
 
     //     echo "Script execution completed.";exit;
     // }
+
+    /**
+     * @desc creating new thumbnails of all stickers with specified width
+     * @params $width
+     * @return \Illuminate\Http\Response
+     */
+    public function createNewThumbnails($width){
+
+        $stickers = ItemSticker::select('path')->get()->toArray();
+        $items = Item::select('thumb as path')->where('thumb', '!=', '')->get()->toArray();
+        
+        $stickers = array_merge($stickers, $items);
+
+        if(count($stickers) < 1){
+            return back()->withInput($request->all())->with('error', 'No stickers found to create new thubmnails.');
+        }
+        $successful = $unsuccessful = 0;
+        $root_folder = base_path().'/storage/app/public/items/';
+        foreach($stickers as $sticker){
+            $original_file_path = base_path().'/storage/app/public/'.$sticker['path'];
+        
+            if(file_exists($original_file_path)){
+                $file_path_arr = explode("/", $sticker['path']);
+                $thumb_name = $file_path_arr[1]."/".$width.'__'.$file_path_arr[2];
+
+                //Resize image for desired width
+                if (mime_content_type ( $original_file_path ) == 'image/gif') {
+                    $im = new \Imagick($original_file_path);
+                    $im = $im->coalesceImages();
+
+                    do {
+                        $im->resizeImage($width, null, \Imagick::FILTER_BOX, 1);
+                    } while ($im->nextImage());
+
+                    $im = $im->deconstructImages();
+
+                    $im->writeImages($root_folder.$thumb_name, true);
+                } else {
+                    $thumbnailImage = Image::make($original_file_path)->widen($width, function ($constraint) {
+                        $constraint->upsize();
+                    })->save($root_folder.$thumb_name);
+                }
+                $successful++;
+            }else{
+                $unsuccessful++;
+            }
+        }
+
+        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; exit;
+    }
 }
