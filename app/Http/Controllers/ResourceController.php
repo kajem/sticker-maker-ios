@@ -194,6 +194,7 @@ class ResourceController extends Controller
         }
         $successful = $unsuccessful = 0;
         $root_folder = base_path().'/storage/app/public/items/';
+        $unsuccessful_list = '';
         foreach($stickers as $sticker){
             $original_file_path = base_path().'/storage/app/public/'.$sticker['path'];
         
@@ -221,9 +222,12 @@ class ResourceController extends Controller
                 $successful++;
             }else{
                 $unsuccessful++;
+                $unsuccessful_list .= '<br/>'.$original_file_path;
             }
         }
 
-        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; exit;
+        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
+        if(!empty($unsuccessful_list)) echo $unsuccessful_list;
+        exit;
     }
 }
