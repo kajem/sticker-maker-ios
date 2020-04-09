@@ -25,8 +25,7 @@ class StickerPackController extends Controller
         $validator = Validator::make($request->all(),[
                             'name'=>'required',
                             'author' => 'required',
-                            //'stickers' => 'array|required',
-                            'stickers' => 'array',
+                            'stickers' => 'array|required',
                             'stickers.*' => 'image|mimes:jpeg,png,jpg,gif,bmp,webp'
                         ]);
         if($validator->fails())
@@ -40,7 +39,7 @@ class StickerPackController extends Controller
         $sticker_names = [];
         if(!empty($stickers)){
             foreach ($stickers as $sticker){
-                $imageName = $count.microtime().'.'.$sticker->getClientOriginalExtension();
+                $imageName = (microtime(true)*10000).$count.'.'.$sticker->getClientOriginalExtension();
                 $destination_thumb_path = 'public/sticker-packs/'.$code.'/'.$imageName;
                 $uploaded = Storage::put($destination_thumb_path, file_get_contents($sticker->getRealPath()));
                 if($uploaded){
@@ -94,7 +93,7 @@ class StickerPackController extends Controller
         $sticker_names = [];
         if(!empty($stickers)){
             foreach ($stickers as $sticker){
-                $imageName = $count.microtime().'.'.$sticker->getClientOriginalExtension();
+                $imageName = (microtime(true)*10000).$count.'.'.$sticker->getClientOriginalExtension();
                 $destination_thumb_path = 'public/sticker-packs/'.$code.'/'.$imageName;
                 $uploaded = Storage::put($destination_thumb_path, file_get_contents($sticker->getRealPath()));
                 if($uploaded){
