@@ -99,12 +99,11 @@
                        <h3>By <i>{{$pack->author}}</i></h3>
                        @php 
                         $stickers = json_decode($pack->stickers);
-                        //echo "<pre>"; print_r($stickers);exit;
                        @endphp
                        @if(!empty($stickers))
                             @foreach($stickers as $sticker)
                                 <div class="image">
-                                    <img src="/storage/sticker-packs/{{$pack->code}}/{{$sticker}}" alt="" />
+                                    <img src="/storage/sticker-packs/{{$pack->code}}/256__{{$sticker}}" alt="" />
                                 </div>
                             @endforeach
                             <div class="clearfix"></div>
