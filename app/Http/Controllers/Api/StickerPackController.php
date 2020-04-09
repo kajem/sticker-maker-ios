@@ -40,7 +40,7 @@ class StickerPackController extends Controller
         $sticker_names = [];
         if(!empty($stickers)){
             foreach ($stickers as $sticker){
-                $imageName = $count.'.'.$sticker->getClientOriginalExtension();
+                $imageName = $count.microtime().'.'.$sticker->getClientOriginalExtension();
                 $destination_thumb_path = 'public/sticker-packs/'.$code.'/'.$imageName;
                 $uploaded = Storage::put($destination_thumb_path, file_get_contents($sticker->getRealPath()));
                 if($uploaded){
@@ -60,6 +60,60 @@ class StickerPackController extends Controller
         ];
 
         $pack = StickerPack::create($data);
+
+        if(!empty($pack)){
+            return $this->successOutput([
+                'code' => $code,
+                'url' => url('/').'/pack/'.$code
+            ]);
+        }
+    }
+
+    public function edit(Request $request){
+        $validator = Validator::make($request->all(),[
+                            'code' => 'required',
+                            'stickers' => 'array|required',
+                            'stickers.*' => 'image|mimes:jpeg,png,jpg,gif,bmp,webp'
+                        ]);
+        if($validator->fails())
+        {
+            return $this->errorOutput($validator->errors()->all());
+        }
+
+        $stickers = $request->file('stickers');
+        $code = $request->get('code');
+
+        $pack = StickerPack::where('code', $code)->first();
+        if(empty($pack->id))
+            return $this->errorOutput('Invalid code!');
+
+        //Delete the existing stickers from pack
+        Storage::delete(Storage::files('public/sticker-packs/'.$code));
+
+        $count = 1;
+        $sticker_names = [];
+        if(!empty($stickers)){
+            foreach ($stickers as $sticker){
+                $imageName = $count.microtime().'.'.$sticker->getClientOriginalExtension();
+                $destination_thumb_path = 'public/sticker-packs/'.$code.'/'.$imageName;
+                $uploaded = Storage::put($destination_thumb_path, file_get_contents($sticker->getRealPath()));
+                if($uploaded){
+                    $sticker_names[] = $imageName;
+                    $count++;
+                }else{
+                    return $this->errorOutput('Something went wrong with sticker images');
+                }
+            }
+        }
+
+        $pack->stickers = json_encode($sticker_names);
+
+        if(!empty($request->get('name')))
+            $pack->name = $request->get('name');
+        if(!empty($request->get('author')))
+            $pack->author = $request->get('author');
+
+        $pack->save();
 
         if(!empty($pack)){
             return $this->successOutput([
