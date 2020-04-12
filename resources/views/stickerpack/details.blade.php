@@ -88,6 +88,22 @@
             .clearfix{
                 clear: both;
             }
+            .center{
+                text-align: center;
+            }
+            .mt-20{
+                margin-top: 20px;
+            }
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #16a1e7;
+                margin: 10px;
+                border-radius: 5px;
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+            }
         </style>
     </head>
     <body>
@@ -108,11 +124,22 @@
                             @endforeach
                             <div class="clearfix"></div>
                        @endif
+                       <div class="center mt-20">
+                           <a class="btn" href="javascript:getStickers();"><strong>Get Stickers</strong></a>
+                       </div>
                     @else
                         No packs found.
                     @endif
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function getStickers(){
+                // Deep link URL for existing users with app already installed on their device -->
+                window.location = 'StickerMakerUI://app.com/?screen=NewPackCreatedVC';
+                // Download URL (TUNE link) for new users to download the app -->
+                setTimeout("window.location = 'https://apps.apple.com/app/id1499262674';", 500);
+            }
+        </script>
     </body>
 </html>
