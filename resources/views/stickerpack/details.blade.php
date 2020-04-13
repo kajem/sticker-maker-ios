@@ -125,7 +125,7 @@
                             <div class="clearfix"></div>
                        @endif
                        <div class="center mt-20">
-                            <a  href="{{$ger_sticker_url}}">Get Stickers</a>
+                            <a  href="javascript:getStickers();">Get Stickers</a>
                        </div>
                     @else
                         No packs found.
@@ -135,10 +135,12 @@
         </div>
         <script type="text/javascript">
             function getStickers(){
-                // Deep link URL for existing users with app already installed on their device -->
-                window.location = 'StickerMakerUI://app.com/?screen=NewPackCreatedVC';
-                // Download URL (TUNE link) for new users to download the app -->
-                setTimeout("window.location = 'https://apps.apple.com/app/id1499262674';", 500);
+                var now = new Date().valueOf();
+                setTimeout(function () {
+                    if (new Date().valueOf() - now > 100) return;
+                    window.location = "https://apps.apple.com/app/id1499262674";
+                }, 50);
+                window.location = 'stickermakerui://';
             }
         </script>
     </body>

@@ -44,13 +44,6 @@ class StickerPackController extends Controller
         }
         //END: Generating Thumbnails if not exist
 
-        $app_url = 'stickermakerui://';
-        $url_headers = @get_headers($app_url);
-        $ger_sticker_url = $app_url;
-        if(!$url_headers || $url_headers[0] == 'HTTP/1.1 404 Not Found') {
-            $ger_sticker_url = 'https://apps.apple.com/app/id1499262674';
-        }
-
-        return view('stickerpack.details')->with(['pack' => $pack, 'ger_sticker_url' => $ger_sticker_url]);
+        return view('stickerpack.details')->with(['pack' => $pack]);
     }
 }
