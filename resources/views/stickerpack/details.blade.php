@@ -125,7 +125,7 @@
                             <div class="clearfix"></div>
                        @endif
                        <div class="center mt-20">
-                           <a class="btn" href="javascript:getStickers();"><strong>Get Stickers</strong></a>
+                            <a  href="{{$ger_sticker_url}}">Get Stickers</a>
                        </div>
                     @else
                         No packs found.
