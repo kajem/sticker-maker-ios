@@ -48,6 +48,12 @@ class StickerPackController extends Controller
     }
 
     public function redirectToAppStore($code){
-        return redirect('https://apps.apple.com/app/id1499262674');
+        $useragent = $_SERVER['HTTP_USER_AGENT'];
+        $android = stripos($useragent, "Android");
+        $url = 'https://apps.apple.com/app/id1499262674';
+        if($android){
+            $url = 'https://play.google.com/store/apps';
+        }
+        return redirect($url);
     }
 }
