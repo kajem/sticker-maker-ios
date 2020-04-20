@@ -51,9 +51,9 @@ class StickerPackController extends Controller
         $useragent = $_SERVER['HTTP_USER_AGENT'];
         $android = stripos($useragent, "Android");
         $url = 'https://apps.apple.com/app/id1499262674';
-        if($android){
-            $url = 'https://play.google.com/store/apps';
-        }
+        //if($android){
+        //    $url = 'https://play.google.com/store/apps';
+        //}
         return redirect($url);
     }
 }
