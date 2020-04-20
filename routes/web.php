@@ -25,3 +25,4 @@ Route::group(['prefix' => 'resource'], function (){
 Route::group(['prefix' => 'pack'], function (){
     Route::get('/{cdoe}', 'StickerPackController@getPack');
 });
+Route::get('get-pack/{cdoe}', 'StickerPackController@redirectToAppStore');

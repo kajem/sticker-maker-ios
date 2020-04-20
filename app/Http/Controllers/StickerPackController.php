@@ -46,4 +46,8 @@ class StickerPackController extends Controller
 
         return view('stickerpack.details')->with(['pack' => $pack]);
     }
+
+    public function redirectToAppStore($code){
+        return redirect('https://apps.apple.com/app/id1499262674');
+    }
 }

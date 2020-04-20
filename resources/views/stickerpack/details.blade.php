@@ -125,8 +125,7 @@
                             <div class="clearfix"></div>
                        @endif
                        <div class="center mt-20">
-                            <a  href="javascript:redirect('stickermakerui://');">Get Stickers</a>
-                            <div id="log"></div>
+                            <a  href="/get-pack/{{$pack->code}}">Get Stickers</a>
                        </div>
                     @else
                         No packs found.
@@ -134,41 +133,5 @@
                 </div>
             </div>
         </div>
-        {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script> --}}
-        <script type="text/javascript">
-            var timestamp 			  = new Date().getTime();
-            var timerDelay 				= 5000;
-            var processingBuffer  = 2000;
-            
-            var redirect = function(url) {
-                window.location = url;
-            }
-
-            var isPageHidden = function() {
-                var browserSpecificProps = {hidden:1, mozHidden:1, msHidden:1, webkitHidden:1};
-                for (var p in browserSpecificProps) {
-                    if(typeof document[p] !== "undefined"){
-                        return document[p];
-                    }
-                }
-                return false; // actually inconclusive, assuming not
-            }
-
-            var elapsedMoreTimeThanTimerSet = function(){
-                var elapsed = new Date().getTime() - timestamp;
-                return timerDelay + processingBuffer < elapsed;
-            }
-
-            var redirectToFallbackIfBrowserStillActive = function() {
-                var elapsedMore = elapsedMoreTimeThanTimerSet();
-                if (isPageHidden() || elapsedMore) {
-                    return false;
-                }else{
-                    redirect('https://apps.apple.com/app/id1499262674');
-                }
-            }
-                
-            setTimeout(redirectToFallbackIfBrowserStillActive, timerDelay);
-        </script>
     </body>
 </html>
