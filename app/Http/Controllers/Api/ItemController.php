@@ -110,7 +110,7 @@ class ItemController extends Controller
                 }
                 
                 $stickers_arr = [];
-                if(!$stickers->isEmpty()){
+                if(!empty($stickers)){
                     foreach($stickers as $sticker){
                         if(!empty($sticker->file_name))
                             $stickers_arr[] = $sticker->file_name;
