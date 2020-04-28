@@ -103,7 +103,6 @@ class ItemController extends Controller
                 //START: Get the stickers of an item
                 $key = $key.'&item_id='.$item->id;
                 if(!$this->redis_cache->exists($key)){
-                    echo 'asdf';exit;
                     $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
                     $this->redis_cache->setKey($key, $stickers);
                 }else{
