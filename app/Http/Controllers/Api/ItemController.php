@@ -101,12 +101,12 @@ class ItemController extends Controller
                 $thumb_arr = explode("/",$item->thumb);
 
                 //START: Get the stickers of an item
-                $key = $key.'&item_id='.$item->id;
+                $key2 = $key.'&item_id='.$item->id;
                 if(!$this->redis_cache->exists($key)){
                     $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
-                    $this->redis_cache->setKey($key, $stickers);
+                    $this->redis_cache->setKey($key2, $stickers);
                 }else{
-                    $stickers = $this->redis_cache->getKey($key);
+                    $stickers = $this->redis_cache->getKey($key2);
                 }
                 
                 $stickers_arr = [];
