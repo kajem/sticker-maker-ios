@@ -10,6 +10,7 @@ use App\ItemStickerThumbnail;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Services\RedisCache;
 
 class ItemController extends Controller
 {
@@ -18,12 +19,38 @@ class ItemController extends Controller
      *
      * @return void
      */
+    public $redis_cache;
 
     public function __construct()
     {
         $this->middleware('api_auth');
+        $this->redis_cache = new RedisCache();
     }
     public function getCategoryAndItems(Request $request){
+        $key = url()->full();
+        if(!$this->redis_cache->exists($key)){
+            $this->getCategories($request, $key);
+        }
+
+        $categories = $this->redis_cache->getKey($key);
+        if(empty($categories)){
+            return $this->successOutput(['next_page' => -1], 'No catagories found.');
+        }
+
+        $data = [];
+        $data['next_page'] = !empty($categories->next_page) ? $categories->next_page : -1;
+        foreach($categories as $category){
+            $data['categories'][] = [
+                'id' => $category->id,
+                'name' => $category->name,
+                'items' => $this->getItemsByCategory($request, $category->id, $key)
+            ];
+        }
+
+        return $this->successOutput($data);
+    }
+
+    private function getCategories(Request $request, $key){
         $page = !empty($request->get('page')) ? $request->get('page') : 0;
         if(!is_numeric($page))
             return $this->errorOutput('Page should be numeric.');
@@ -48,41 +75,41 @@ class ItemController extends Controller
             return $this->successOutput(['next_page' => -1], 'No catagories found.');
         }
 
-        $data = [];
         //Get the next page id
-        $data['next_page'] = -1;
+        $categories->next_page = -1;
         if(!empty($category_limit) && is_numeric($category_limit) && Category::count() > ($category_limit*$page+$category_limit)){
-            $data['next_page'] = $page + 1;
+            $categories->next_page = $page + 1;
         }
 
-        foreach($categories as $category){
-            $data['categories'][] = [
-                'id' => $category->id,
-                'name' => $category->name,
-                'items' => $this->getItemsByCategory($request, $category->id)
-            ];
-        }
+        $this->redis_cache->setKey($key, $categories);
 
-        return $this->successOutput($data);
+        return $categories;
     }
 
-    private function getItemsByCategory(Request $request, $category_id){
-        $items = Item::query();
-        $items = $items->select('id', 'name', 'thumb', 'code', 'author_id');
-        $items = $items->where('category_id', $category_id);
-        if(!empty($request->get('item_limit'))){
-            $items = $items->offset(0);
-            $items = $items->limit($request->get('item_limit'));
+    private function getItemsByCategory(Request $request, $category_id, $key){
+        $key = $key.'&category_id='.$category_id;
+
+        if(!$this->redis_cache->exists($key)){
+            $this->getItems($request, $category_id, $key);
         }
-        $items = $items->orderBy('sort', 'asc');
-        $items = $items->get();
+
+        $items = $this->redis_cache->getKey($key);
+
         $item_arr = [];
         if(!$items->isEmpty()){
             foreach($items as $item){
                 $thumb_arr = explode("/",$item->thumb);
 
                 //START: Get the stickers of an item
-                $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
+                $key = $key.'&item_id='.$item->id;
+                if(!$this->redis_cache->exists($key)){
+                    echo 'asdf';exit;
+                    $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
+                    $this->redis_cache->setKey($key, $stickers);
+                }else{
+                    $stickers = $this->redis_cache->getKey($key);
+                }
+                
                 $stickers_arr = [];
                 if(!$stickers->isEmpty()){
                     foreach($stickers as $sticker){
@@ -103,6 +130,22 @@ class ItemController extends Controller
             }
         }
         return $item_arr;
+    }
+
+    private function getItems(Request $request, $category_id, $key){
+        $items = Item::query();
+        $items = $items->select('id', 'name', 'thumb', 'code', 'author_id');
+        $items = $items->where('category_id', $category_id);
+        if(!empty($request->get('item_limit'))){
+            $items = $items->offset(0);
+            $items = $items->limit($request->get('item_limit'));
+        }
+        $items = $items->orderBy('sort', 'asc');
+        $items = $items->get();
+
+        $this->redis_cache->setKey($key, $items);
+
+        return $items;
     }
 
     public function getItemsByCategoryId(Request $request, $category_id){
