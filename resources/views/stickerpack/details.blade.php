@@ -88,6 +88,22 @@
             .clearfix{
                 clear: both;
             }
+            .center{
+                text-align: center;
+            }
+            .mt-20{
+                margin-top: 20px;
+            }
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #16a1e7;
+                margin: 10px;
+                border-radius: 5px;
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+            }
         </style>
     </head>
     <body>
@@ -99,16 +115,18 @@
                        <h3>By <i>{{$pack->author}}</i></h3>
                        @php 
                         $stickers = json_decode($pack->stickers);
-                        //echo "<pre>"; print_r($stickers);exit;
                        @endphp
                        @if(!empty($stickers))
                             @foreach($stickers as $sticker)
                                 <div class="image">
-                                    <img src="/storage/sticker-packs/{{$pack->code}}/{{$sticker}}" alt="" />
+                                    <img src="/storage/sticker-packs/{{$pack->code}}/256__{{$sticker}}" alt="" />
                                 </div>
                             @endforeach
                             <div class="clearfix"></div>
                        @endif
+                       <div class="center mt-20">
+                            <a  href="/get-pack/{{$pack->code}}">Get Stickers</a>
+                       </div>
                     @else
                         No packs found.
                     @endif

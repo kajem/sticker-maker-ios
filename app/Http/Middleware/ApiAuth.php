@@ -23,17 +23,29 @@ class ApiAuth
         }
         $password = str_replace($today, "", $request->header('Password'));
 
-        $project_password = ApiPassword::select('id')->where('username', $request->header('UserName'))
-                            ->where('password', $password)
-                            ->first();
-        
-        if(empty($project_password->id)){
+        $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7'];
+        $passwords = ['54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO'];
+        $username_index = array_search($request->header('UserName'), $usernames);
+
+        if($username_index === false)
             return $this->errorOutput();
-        }
+
+        $cond = $password !== $passwords[0] ? "note matched" : "matched";
+
+        if($password !== $passwords[$username_index])
+            return $this->errorOutput();
+
+        // $project_password = ApiPassword::select('id')->where('username', $request->header('UserName'))
+        //                     ->where('password', $password)
+        //                     ->first();
+        // if(empty($project_password->id)){
+        //     return $this->errorOutput();
+        // }
+
         return $next($request);
     }
 
-    private function errorOutput($code = 401, $message = 'Unauthorized access!'){
+    private function errorOutput($message = 'Unauthorized access!', $code = 401){
         $data = array(
             'status' => $code,
             'message' => $message
