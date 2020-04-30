@@ -24,7 +24,7 @@ class ResourceController extends Controller
         Author::truncate();
         Category::truncate();
         Item::truncate();
-        ItemSticker::truncate(); 
+        //ItemSticker::truncate(); 
 
         $this->processCategories($categories, $root_folder);
 
@@ -88,9 +88,14 @@ class ResourceController extends Controller
             if(!empty($thumb[0])){
                 $thumb_img_arr = explode(".", $thumb[0]);
                 $extension = end($thumb_img_arr);
-                $thumb_path = 'items/'.$code.'/'.$code.'.'.$extension;
+                $thumb_path = 'public/items/'.$code.'/'.$code.'.'.$extension;
                 Storage::copy($thumb[0], $thumb_path);
             }
+
+            $sticker_names = [];
+            $stickers = Storage::files($item."/files"); //Get the sticker files
+            if(!empty($stickers)) 
+                $sticker_names = $this->processStickers2($stickers, $code);
 
             $item_data = [
                 'name' => $item_name,
@@ -99,6 +104,7 @@ class ResourceController extends Controller
                 'sort' => $item_order,
                 'author_id' => $author_id,
                 'thumb' => $thumb_path,
+                'stickers' => serialize($sticker_names),
                 'status' => 1,
                 'created_by' => 1,
                 'created_at' => $date,
@@ -106,10 +112,22 @@ class ResourceController extends Controller
             ];
 
             $item_id = Item::insertGetId($item_data); //Insert Item and get the inserted ID
-            $stickers = Storage::files($item."/files"); //Get the sticker files
-            if(empty($stickers)) continue;
-            $this->processStickers($stickers, $item_id, $code);
+            // $stickers = Storage::files($item."/files"); //Get the sticker files
+            // if(empty($stickers)) continue;
+            // $this->processStickers($stickers, $item_id, $code);
         }
+    }
+
+    private function processStickers2($stickers, $code){
+        $sticker_path = 'public/items/'.$code.'/';
+        $sticker_names = [];
+        foreach($stickers as $sticker){
+            $sticker_path_arr = explode("/", $sticker);
+            $file_name = str_replace(" ", "-", trim(end($sticker_path_arr)));
+            Storage::copy($sticker, $sticker_path.$file_name);
+            $sticker_names[] = $file_name;
+        }
+        return $sticker_names;
     }
 
     private function processStickers($stickers, $item_id, $code){

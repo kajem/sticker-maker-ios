@@ -12,7 +12,7 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'code', 'category_id', 'author_id', 'thumb', 'sort', 'status', 'created_by'
+        'name', 'code', 'category_id', 'author_id', 'thumb', 'stickers', 'sort', 'status', 'created_by'
     ];
 
     public function author(){

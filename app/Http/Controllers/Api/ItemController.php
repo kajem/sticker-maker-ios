@@ -10,7 +10,7 @@ use App\ItemStickerThumbnail;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Services\RedisCache;
+use Illuminate\Support\Facades\Redis;
 
 class ItemController extends Controller
 {
@@ -19,20 +19,20 @@ class ItemController extends Controller
      *
      * @return void
      */
-    public $redis_cache;
+    public $redis_ttl;
 
     public function __construct()
     {
         $this->middleware('api_auth');
-        $this->redis_cache = new RedisCache();
+        $this->redis_ttl = config('services.redis.ttl');
     }
     public function getCategoryAndItems(Request $request){
-        $key = url()->full();
-        if(!$this->redis_cache->exists($key)){
+        $key = urldecode(url()->full());
+        if(!Redis::exists($key)){
             $this->getCategories($request, $key);
         }
 
-        $categories = $this->redis_cache->getKey($key);
+        $categories = unserialize(Redis::get($key));
         if(empty($categories)){
             return $this->successOutput(['next_page' => -1], 'No catagories found.');
         }
@@ -81,7 +81,7 @@ class ItemController extends Controller
             $categories->next_page = $page + 1;
         }
 
-        $this->redis_cache->setKey($key, $categories);
+        Redis::setEx($key, $this->redis_ttl, serialize($categories));
 
         return $categories;
     }
@@ -89,42 +89,25 @@ class ItemController extends Controller
     private function getItemsByCategory(Request $request, $category_id, $key){
         $key = $key.'&category_id='.$category_id;
 
-        if(!$this->redis_cache->exists($key)){
+        if(!Redis::exists($key)){
             $this->getItems($request, $category_id, $key);
         }
 
-        $items = $this->redis_cache->getKey($key);
+        $items = unserialize(Redis::get($key));
 
         $item_arr = [];
         if(!$items->isEmpty()){
             foreach($items as $item){
                 $thumb_arr = explode("/",$item->thumb);
-
-                //START: Get the stickers of an item
-                $key2 = $key.'&item_id='.$item->id;
-                if(!$this->redis_cache->exists($key2)){
-                    $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
-                    $this->redis_cache->setKey($key2, $stickers);
-                }else{
-                    $stickers = $this->redis_cache->getKey($key2);
-                }
-                
-                $stickers_arr = [];
-                if(!$stickers->isEmpty()){
-                    foreach($stickers as $sticker){
-                        if(!empty($sticker->file_name))
-                            $stickers_arr[] = $sticker->file_name;
-                    }
-                }
-                //END: Get the stickers of an item
+                $stickers = unserialize($item->stickers);
 
                 $item_arr[] = [
                     'name' => $item->name,
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
                     'author' => !empty($item->author->name) ? $item->author->name : '',
-                    'total_stickers' => !empty($item->total_stickers[0]->total) ? $item->total_stickers[0]->total : 0,
-                    'stickers' => $stickers_arr
+                    'total_stickers' => count($stickers),
+                    'stickers' => $stickers
                 ];
             }
         }
@@ -133,7 +116,7 @@ class ItemController extends Controller
 
     private function getItems(Request $request, $category_id, $key){
         $items = Item::query();
-        $items = $items->select('id', 'name', 'thumb', 'code', 'author_id');
+        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author_id');
         $items = $items->where('category_id', $category_id);
         if(!empty($request->get('item_limit'))){
             $items = $items->offset(0);
@@ -142,7 +125,7 @@ class ItemController extends Controller
         $items = $items->orderBy('sort', 'asc');
         $items = $items->get();
 
-        $this->redis_cache->setKey($key, $items);
+        Redis::setEx($key, $this->redis_ttl, serialize($items));
 
         return $items;
     }
