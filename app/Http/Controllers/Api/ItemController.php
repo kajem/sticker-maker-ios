@@ -117,57 +117,64 @@ class ItemController extends Controller
 
     public function getItemsByCategoryId(Request $request, $category_id){
         $key = urldecode(url()->full());
-        if(!Redis::exists($key)){
-            if(!is_numeric($category_id)){
-                $category = Category::where('type', $category_id)->first();
-    
-                if(empty($category->id))
-                    return $this->errorOutput('Invalid category ID.');
-    
-                $category_id = $category->id;
-            }
-            
-            $category = Category::find($category_id);
-            if(empty($category))
-                return $this->errorOutput('Category not found.');
+        if(Redis::exists($key)){
+            return $this->successOutput(unserialize(Redis::get($key)));
+        }
 
-            Redis::setEx($key, $this->redis_ttl, serialize($category)); //Writing to radis
-        }else{
-            $category = unserialize(Redis::get($key));
+        if(!is_numeric($category_id)){
+            $category = Category::where('type', $category_id)->first();
+
+            if(empty($category->id))
+                return $this->errorOutput('Invalid category ID.');
+
+            $category_id = $category->id;
         }
         
+        $category = Category::find($category_id);
+        if(empty($category))
+            return $this->errorOutput('Category not found.');
 
         $data = [
             'id'    => $category->id,
             'name'  => $category->name,
-            'items' => $this->getItemsByCategory($request, $category->id, $key)
+            'items' => $this->getItemsByCategory($request, $category->id)
         ];
+
+        Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
 
         return $this->successOutput($data);
     }
 
     public function getStickersByItemId($code){
         $key = urldecode(url()->full());
-        if(!Redis::exists($key)){
-            $item = Item::where('code', $code)->first();
-            if(empty($item->id))
-                return $this->errorOutput('Item not found.');
-
-            Redis::setEx($key, $this->redis_ttl, serialize($item)); //Writing to radis
-        }else{
-            $item = unserialize(Redis::get($key));
+        if(Redis::exists($key)){
+            return $this->successOutput(unserialize(Redis::get($key)));
         }
 
+        $item = Item::where('code', $code)->first();
+        if(empty($item->id))
+            return $this->errorOutput('Item not found.');
+
+        $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
+
+        $stickers_arr = [];
+        if(!$stickers->isEmpty()){
+            foreach($stickers as $sticker){
+                if(!empty($sticker->file_name))
+                    $stickers_arr[] = $sticker->file_name;
+            }
+        }
         $thumb_arr = explode("/",$item->thumb);
-        $stickers = unserialize($item->stickers);
         $data = [
             'name' => $item->name,
             'code' => $item->code,
             'thumb' => end($thumb_arr),
             'author' => !empty($item->author->name) ? $item->author->name : '',
-            'total_stickers' => count($stickers),
-            'stickers' => $stickers
+            'total_stickers' => !empty($item->total_stickers[0]->total) ? $item->total_stickers[0]->total : 0,
+            'stickers' => $stickers_arr
         ];
+
+        Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
 
         return $this->successOutput($data);
     }
