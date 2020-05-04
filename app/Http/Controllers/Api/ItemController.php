@@ -28,29 +28,10 @@ class ItemController extends Controller
     }
     public function getCategoryAndItems(Request $request){
         $key = urldecode(url()->full());
-        if(!Redis::exists($key)){
-            $this->getCategories($request, $key);
+        if(Redis::exists($key)){
+            return $this->successOutput(unserialize(Redis::get($key)));
         }
-
-        $categories = unserialize(Redis::get($key));
-        if(empty($categories)){
-            return $this->successOutput(['next_page' => -1], 'No catagories found.');
-        }
-
-        $data = [];
-        $data['next_page'] = !empty($categories->next_page) ? $categories->next_page : -1;
-        foreach($categories as $category){
-            $data['categories'][] = [
-                'id' => $category->id,
-                'name' => $category->name,
-                'items' => $this->getItemsByCategory($request, $category->id, $key)
-            ];
-        }
-
-        return $this->successOutput($data);
-    }
-
-    private function getCategories(Request $request, $key){
+        
         $page = !empty($request->get('page')) ? $request->get('page') : 0;
         if(!is_numeric($page))
             return $this->errorOutput('Page should be numeric.');
@@ -75,48 +56,29 @@ class ItemController extends Controller
             return $this->successOutput(['next_page' => -1], 'No catagories found.');
         }
 
+        $data = [];
         //Get the next page id
-        $categories->next_page = -1;
+        $data['next_page'] = -1;
         if(!empty($category_limit) && is_numeric($category_limit) && Category::count() > ($category_limit*$page+$category_limit)){
-            $categories->next_page = $page + 1;
+            $data['next_page'] = $page + 1;
         }
 
-        Redis::setEx($key, $this->redis_ttl, serialize($categories));
+        foreach($categories as $category){
+            $data['categories'][] = [
+                'id' => $category->id,
+                'name' => $category->name,
+                'items' => $this->getItemsByCategory($request, $category->id)
+            ];
+        }
 
-        return $categories;
+        Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
+
+        return $this->successOutput($data);
     }
 
-    private function getItemsByCategory(Request $request, $category_id, $key){
-        $key = $key.'&category_id='.$category_id;
-
-        if(!Redis::exists($key)){
-            $this->getItems($request, $category_id, $key);
-        }
-
-        $items = unserialize(Redis::get($key));
-
-        $item_arr = [];
-        if(!$items->isEmpty()){
-            foreach($items as $item){
-                $thumb_arr = explode("/",$item->thumb);
-                $stickers = unserialize($item->stickers);
-
-                $item_arr[] = [
-                    'name' => $item->name,
-                    'code' => $item->code,
-                    'thumb' => end($thumb_arr),
-                    'author' => !empty($item->author->name) ? $item->author->name : '',
-                    'total_stickers' => count($stickers),
-                    'stickers' => $stickers
-                ];
-            }
-        }
-        return $item_arr;
-    }
-
-    private function getItems(Request $request, $category_id, $key){
+    private function getItemsByCategory(Request $request, $category_id){
         $items = Item::query();
-        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author_id');
+        $items = $items->select('id', 'name', 'thumb', 'code', 'author_id');
         $items = $items->where('category_id', $category_id);
         if(!empty($request->get('item_limit'))){
             $items = $items->offset(0);
@@ -124,10 +86,33 @@ class ItemController extends Controller
         }
         $items = $items->orderBy('sort', 'asc');
         $items = $items->get();
+        $item_arr = [];
+        if(!$items->isEmpty()){
+            foreach($items as $item){
+                $thumb_arr = explode("/",$item->thumb);
 
-        Redis::setEx($key, $this->redis_ttl, serialize($items));
+                //START: Get the stickers of an item
+                $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
+                $stickers_arr = [];
+                if(!$stickers->isEmpty()){
+                    foreach($stickers as $sticker){
+                        if(!empty($sticker->file_name))
+                            $stickers_arr[] = $sticker->file_name;
+                    }
+                }
+                //END: Get the stickers of an item
 
-        return $items;
+                $item_arr[] = [
+                    'name' => $item->name,
+                    'code' => $item->code,
+                    'thumb' => end($thumb_arr),
+                    'author' => !empty($item->author->name) ? $item->author->name : '',
+                    'total_stickers' => !empty($item->total_stickers[0]->total) ? $item->total_stickers[0]->total : 0,
+                    'stickers' => $stickers_arr
+                ];
+            }
+        }
+        return $item_arr;
     }
 
     public function getItemsByCategoryId(Request $request, $category_id){
