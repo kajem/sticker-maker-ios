@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('cache-clear', 'WelcomeController@cacheClear');
-Route::get('home', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index');
 Route::get('get-sticker/items/{code}/{name}', 'WelcomeController@getSticker');
 Route::group(['prefix' => 'resource'], function (){
     Route::get('/upload', 'ResourceController@upload')->name('resource.upload');

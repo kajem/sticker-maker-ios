@@ -11,20 +11,22 @@ use App\ItemSticker;
 
 class WelcomeController extends Controller
 {
+
     public function index(){
-        $items = Item::all();
-        $sticker_arr = [];
-        foreach($items as $item){
-            $stickers = ItemSticker::where('item_id', $item->id)->get();
-            foreach($stickers as $sticker){
-                if(!empty($sticker->path))
-                    $sticker_arr[] = $sticker->path;
-            }
-        }
-        $data = [
-            'stickers' => $sticker_arr
-        ];
-        return view('home')->with($data);
+        return view('welcome');
+        // $items = Item::all();
+        // $sticker_arr = [];
+        // foreach($items as $item){
+        //     $stickers = ItemSticker::where('item_id', $item->id)->get();
+        //     foreach($stickers as $sticker){
+        //         if(!empty($sticker->path))
+        //             $sticker_arr[] = $sticker->path;
+        //     }
+        // }
+        // $data = [
+        //     'stickers' => $sticker_arr
+        // ];
+        // return view('home')->with($data);
     }
 
     public function getSticker($code, $name){
