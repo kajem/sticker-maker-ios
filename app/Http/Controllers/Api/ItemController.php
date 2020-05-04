@@ -90,25 +90,15 @@ class ItemController extends Controller
         if(!$items->isEmpty()){
             foreach($items as $item){
                 $thumb_arr = explode("/",$item->thumb);
-
-                //START: Get the stickers of an item
-                $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
-                $stickers_arr = [];
-                if(!$stickers->isEmpty()){
-                    foreach($stickers as $sticker){
-                        if(!empty($sticker->file_name))
-                            $stickers_arr[] = $sticker->file_name;
-                    }
-                }
-                //END: Get the stickers of an item
+                $stickers = unserialize($item->stickers);
 
                 $item_arr[] = [
                     'name' => $item->name,
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
                     'author' => !empty($item->author->name) ? $item->author->name : '',
-                    'total_stickers' => !empty($item->total_stickers[0]->total) ? $item->total_stickers[0]->total : 0,
-                    'stickers' => $stickers_arr
+                    'total_stickers' => count($stickers),
+                    'stickers' => $stickers
                 ];
             }
         }
@@ -155,23 +145,16 @@ class ItemController extends Controller
         if(empty($item->id))
             return $this->errorOutput('Item not found.');
 
-        $stickers = ItemSticker::select('file_name')->where('item_id', $item->id)->get();
-
-        $stickers_arr = [];
-        if(!$stickers->isEmpty()){
-            foreach($stickers as $sticker){
-                if(!empty($sticker->file_name))
-                    $stickers_arr[] = $sticker->file_name;
-            }
-        }
         $thumb_arr = explode("/",$item->thumb);
+        $stickers = unserialize($item->stickers);
+
         $data = [
             'name' => $item->name,
             'code' => $item->code,
             'thumb' => end($thumb_arr),
             'author' => !empty($item->author->name) ? $item->author->name : '',
-            'total_stickers' => !empty($item->total_stickers[0]->total) ? $item->total_stickers[0]->total : 0,
-            'stickers' => $stickers_arr
+            'total_stickers' => count($stickers),
+            'stickers' => $stickers
         ];
 
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
