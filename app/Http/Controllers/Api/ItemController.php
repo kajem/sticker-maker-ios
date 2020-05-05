@@ -78,7 +78,7 @@ class ItemController extends Controller
 
     private function getItemsByCategory(Request $request, $category_id){
         $items = Item::query();
-        $items = $items->select('id', 'name', 'thumb', 'code', 'author_id');
+        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author_id');
         $items = $items->where('category_id', $category_id);
         if(!empty($request->get('item_limit'))){
             $items = $items->offset(0);
