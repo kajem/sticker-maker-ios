@@ -64,8 +64,9 @@
             .content{
                 background: #ffffff;
                 width: 735px;
+                max-width: 90%;
                 margin: 0 auto;
-                margin-top: 30px;
+                margin-top: 10px;
                 min-height: 500px;
                 border-radius: 9px;
                 padding: 10px;
