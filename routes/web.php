@@ -23,6 +23,7 @@ Route::group(['prefix' => 'resource'], function (){
     Route::get('/create-thumbnails/{width}', 'ResourceController@createNewThumbnails')->name('resource.create-thumbnails');
 });
 Route::group(['prefix' => 'pack'], function (){
+    Route::get('braincraft/{cdoe}', 'StickerPackController@getBraincraftPack');
     Route::get('/{cdoe}', 'StickerPackController@getPack');
 });
 Route::get('get-pack/{cdoe}', 'StickerPackController@redirectToAppStore');
