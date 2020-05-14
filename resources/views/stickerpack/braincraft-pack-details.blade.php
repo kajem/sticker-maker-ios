@@ -130,7 +130,7 @@
                             <a  href="/get-pack/{{$pack->code}}">Get Stickers</a>
                        </div>
                     @else
-                        No packs found.
+                        <h2>No packs found.</h2>
                     @endif
                 </div>
             </div>
