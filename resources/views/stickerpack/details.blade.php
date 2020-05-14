@@ -114,7 +114,7 @@
                 <div class="content">
                     @if(!empty($pack->id))
                        <h2>{{$pack->name}}</h2>
-                       <h3>By <i>{{$pack->author}}</i></h3>
+                       <h3>By <i>{{$is_braincraft_pack ? $pack->author->name : $pack->author}}</i></h3>
                        @php 
                        if($is_braincraft_pack)
                             $stickers = unserialize($pack->stickers);
