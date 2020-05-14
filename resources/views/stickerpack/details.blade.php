@@ -116,12 +116,15 @@
                        <h2>{{$pack->name}}</h2>
                        <h3>By <i>{{$pack->author}}</i></h3>
                        @php 
-                        $stickers = json_decode($pack->stickers);
+                       if($is_braincraft_pack)
+                            $stickers = unserialize($pack->stickers);
+                        else
+                            $stickers = json_decode($pack->stickers);
                        @endphp
                        @if(!empty($stickers))
                             @foreach($stickers as $sticker)
                                 <div class="image">
-                                    <img src="/storage/sticker-packs/{{$pack->code}}/256__{{$sticker}}" alt="" />
+                                <img src="/storage/{{$pack_root_folder}}/{{$pack->code}}/{{$sticker}}" alt="" />
                                 </div>
                             @endforeach
                             <div class="clearfix"></div>
