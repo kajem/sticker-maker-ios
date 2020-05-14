@@ -51,8 +51,6 @@ class StickerPackController extends Controller
     public function getBraincraftPack($code){
         $pack = Item::where('code', $code)->first();
 
-       // echo "<pre>"; print_r($pack);exit;
-
         //START: Generating Thumbnails if not exist
         if(!empty($pack->stickers)){
             $root_folder = base_path().'/storage/app/public/items/'.$code.'/';
