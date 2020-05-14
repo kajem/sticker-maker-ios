@@ -63,8 +63,9 @@
             }
             .content{
                 background: #ffffff;
-                width: 400px;
+                width: 735px;
                 margin: 0 auto;
+                margin-top: 30px;
                 min-height: 500px;
                 border-radius: 9px;
                 padding: 10px;
@@ -107,7 +108,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="position-ref full-height">
             <div class="row"> 
                 <div class="content">
                     @if(!empty($pack->id))
