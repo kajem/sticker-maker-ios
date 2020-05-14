@@ -127,7 +127,8 @@
                             <div class="clearfix"></div>
                        @endif
                        <div class="center mt-20">
-                            <a  href="/get-pack/{{$pack->code}}">Get Stickers</a>
+                            {{-- <a  href="/get-pack/{{$pack->code}}">Get Stickers</a> --}}
+                            <a  href="stickermakerui://QP3652">Get Stickers</a>
                        </div>
                     @else
                         <h2>No packs found.</h2>
