@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\StickerPack;
 use App\Item;
-use Intervention\Image\Facades\Image;
+//use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Redis;
 
 class StickerPackController extends Controller
 {
     public function getPack($code){
+        $key = urldecode(url()->full());
+        if(Redis::exists($key)){
+            return view('stickerpack.details')->with(unserialize(Redis::get($key)));
+        }
+
         $pack_root_folder = 'items';
         $is_braincraft_pack = true;
         $param = request()->segment(2);
@@ -27,6 +33,8 @@ class StickerPackController extends Controller
             'pack_root_folder' => $pack_root_folder,
             'is_braincraft_pack' => $is_braincraft_pack
         ];
+
+        Redis::setEx($key, config('services.redis.ttl'), serialize($data)); //Writing to Redis
 
         return view('stickerpack.details')->with($data);
 
