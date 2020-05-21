@@ -248,4 +248,61 @@ class ResourceController extends Controller
         if(!empty($unsuccessful_list)) echo $unsuccessful_list;
         exit;
     }
+
+    /**
+     * @desc creating new thumbnails of all stickers with specified width
+     * @params $width
+     * @return \Illuminate\Http\Response
+     */
+    public function createNewEmojiImageAndThumb($width){
+    
+        $items = Item::select('name', 'code', 'stickers')->where('category_id', 5)->get()->toArray();
+
+        if(count($items) < 1){
+            return back()->withInput($request->all())->with('error', 'No stickers found to create new thubmnails.');
+        }
+        $successful = $unsuccessful = 0;
+        $root_folder = base_path().'/storage/app/public/items/';
+        $destination_root_folder = base_path().'/storage/app/';
+        $unsuccessful_list = '';
+
+        Storage::deleteDirectory('emoji'); //Deleting existing emoji folder
+        Storage::disk('local')->makeDirectory('emoji'); //Creating new emoji folder
+        Storage::disk('local')->makeDirectory('emoji/emoji_thumbs');
+
+        foreach($items as $item){
+            $stickers = unserialize($item['stickers']);
+
+            if(empty($stickers)) continue;
+
+            $main_image_folder = 'emoji/'.$item['name'];
+            $thumb_image_folder = 'emoji/emoji_thumbs/'.$item['name'];
+
+            Storage::disk('local')->makeDirectory($main_image_folder);
+            Storage::disk('local')->makeDirectory($thumb_image_folder);
+
+            foreach($stickers as $sticker){
+                $original_file_path = $root_folder.$item['code'].'/'.$sticker;
+        
+                if(file_exists($original_file_path)){
+                    //Resize image with desired width
+                    Image::make($original_file_path)->widen($width, function ($constraint) {
+                        $constraint->upsize();
+                    })->save($destination_root_folder.$thumb_image_folder.'/'.$sticker);
+
+                    //Copy the original image
+                    Storage::copy('public/items/'.$item['code'].'/'.$sticker, $main_image_folder.'/'.$sticker);
+
+                    $successful++;
+                }else{
+                    $unsuccessful++;
+                    $unsuccessful_list .= '<br/>'.$original_file_path;
+                }
+            }
+        }
+
+        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
+        if(!empty($unsuccessful_list)) echo $unsuccessful_list;
+        exit;
+    }
 }
