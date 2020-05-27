@@ -57,6 +57,7 @@ class ItemController extends Controller
         }
 
         $data = [];
+        $data['asset_base_url'] = config('app.asset_base_url');
         //Get the next page id
         $data['next_page'] = -1;
         if(!empty($category_limit) && is_numeric($category_limit) && Category::count() > ($category_limit*$page+$category_limit)){
@@ -125,6 +126,7 @@ class ItemController extends Controller
             return $this->errorOutput('Category not found.');
 
         $data = [
+            'asset_base_url' => config('app.asset_base_url'),
             'id'    => $category->id,
             'name'  => $category->name,
             'items' => $this->getItemsByCategory($request, $category->id)
@@ -149,6 +151,7 @@ class ItemController extends Controller
         $stickers = unserialize($item->stickers);
 
         $data = [
+            'asset_base_url' => config('app.asset_base_url'),
             'name' => $item->name,
             'code' => $item->code,
             'thumb' => end($thumb_arr),
