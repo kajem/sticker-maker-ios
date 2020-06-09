@@ -224,4 +224,23 @@ class ItemController extends Controller
         header('Content-Length: ' . filesize($path));
         readfile($path);
     }
+
+    public function search(Request $request){
+        $items = Item::where('name','LIKE','%'.$request->q.'%')->get();
+        $data = [];
+        if(!$items->isEmpty()){
+            foreach($items as $item){
+                $thumb_arr = explode("/",$item->thumb);
+                $stickers = unserialize($item->stickers);
+                $data[] = [
+                    'name' => $item->name,
+                    'code' => $item->code,
+                    'thumb' => end($thumb_arr),
+                    'author' => !empty($item->author->name) ? $item->author->name : '',
+                    'total_stickers' => count($stickers)
+                ];
+            }
+        }
+        return $this->successOutput($data);
+    }
 }
