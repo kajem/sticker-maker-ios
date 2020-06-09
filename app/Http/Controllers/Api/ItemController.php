@@ -226,7 +226,7 @@ class ItemController extends Controller
     }
 
     public function search(Request $request){
-        $items = Item::where('name','LIKE','%'.$request->q.'%')->get();
+        $items = Item::where('name','LIKE','%'.$request->q.'%')->where('category_id', '!=', 5)->get();
         $data = [];
         if(!$items->isEmpty()){
             foreach($items as $item){
