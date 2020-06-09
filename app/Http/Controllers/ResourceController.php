@@ -11,6 +11,7 @@ use App\ItemSticker;
 use App\Author;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 
 class ResourceController extends Controller
 {
@@ -201,6 +202,66 @@ class ResourceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function createNewThumbnails($width){
+        $items = Item::get();
+        if($items->isEmpty()){
+            return back()->withInput($request->all())->with('error', 'No stickers found to create new thubmnails.');
+        }
+
+        $successful = $unsuccessful = 0;
+        $root_folder = base_path().'/storage/app/public/items/';
+        $unsuccessful_list = '';
+        foreach($items as $item){
+            $stickers = unserialize($item->stickers);
+            $thumb_arr = explode("/", $item->thumb);
+            if(!empty($thumb_arr[3])){
+                $stickers[] = $thumb_arr[3];
+            }
+
+            $item_root_folder = $root_folder.$item->code."/";
+
+            foreach($stickers as $sticker){
+                $original_file_path = $item_root_folder.$sticker;
+            
+                if(file_exists($original_file_path)){
+                    $thumb_name = $width.'__'.$sticker;
+
+                    //Resize image for desired width
+                    if (mime_content_type ( $original_file_path ) == 'image/gif') {
+                        $im = new \Imagick($original_file_path);
+                        $im = $im->coalesceImages();
+
+                        do {
+                            $im->resizeImage($width, null, \Imagick::FILTER_BOX, 1);
+                        } while ($im->nextImage());
+
+                        $im = $im->deconstructImages();
+
+                        $im->writeImages($item_root_folder.$thumb_name, true);
+                    } else {
+                        $thumbnailImage = Image::make($original_file_path)->widen($width, function ($constraint) {
+                            $constraint->upsize();
+                        })->save($item_root_folder.$thumb_name);
+                    }
+                    
+                    $successful++;
+                }else{
+                    $unsuccessful++;
+                    $unsuccessful_list .= '<br/>'.$original_file_path;
+                }
+            }
+        }
+
+        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
+        if(!empty($unsuccessful_list)) echo $unsuccessful_list;
+        exit;
+    }
+
+    /**
+     * @desc creating new thumbnails of all stickers with specified width
+     * @params $width
+     * @return \Illuminate\Http\Response
+     */
+    public function createNewThumbnailsBkp($width){
 
         $stickers = ItemSticker::select('path')->get()->toArray();
         $items = Item::select('thumb as path')->where('thumb', '!=', '')->get()->toArray();
@@ -246,6 +307,73 @@ class ResourceController extends Controller
 
         echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
         if(!empty($unsuccessful_list)) echo $unsuccessful_list;
+        exit;
+    }
+
+
+    /**
+     * @desc creating new zip files for all sticker packs
+     * @params $width
+     * @return \Illuminate\Http\Response
+     */
+    public function createZipFiles(){
+        $items = Item::get();
+        if($items->isEmpty()){
+            return back()->withInput($request->all())->with('error', 'No stickers found to create new thubmnails.');
+        }
+
+        $successful = $unsuccessful = 0;
+        $storage_path = storage_path().'/app/';
+        $unsuccessful_list = '';
+        foreach($items as $item){
+            $item_path = 'public/items/'.$item->code."/";
+            $item_thumb_path = $item_path."thumb/";
+
+            Storage::deleteDirectory($item_thumb_path); //Deleting current thumb directory
+            Storage::disk('local')->makeDirectory($item_thumb_path);
+
+            $stickers = unserialize($item->stickers);
+
+            //Main zip file
+            $zip = new ZipArchive;
+            $main_zip_file_path = $storage_path.$item_path."main.zip";
+            $zip->open($main_zip_file_path, ZipArchive::CREATE);
+
+            foreach($stickers as $sticker){
+                $original_file_path = $storage_path.$item_path.$sticker;
+            
+                if(file_exists($original_file_path)){
+                    $thumbnailImage = Image::make($original_file_path)->widen(200, function ($constraint) {
+                        $constraint->upsize();
+                    })->save($storage_path.$item_thumb_path."/".$sticker);
+                        
+                    $zip->addFile($storage_path.$item_path.$sticker, $sticker); //Add file to main zip archive
+                }
+            }
+            // All files are added, so close the zip file.
+            $zip->close();
+
+            //START: Creating Thumb zip file
+            $zip = new ZipArchive;
+            $thumb_zip_file_path = $storage_path.$item_path."thumb.zip";
+            if ($zip->open($thumb_zip_file_path, ZipArchive::CREATE) === TRUE)
+            {
+                $stickers = Storage::files($item_thumb_path); //Get the sticker files
+                if(!empty($stickers)){
+                    foreach($stickers as $sticker){
+                        $file_name = explode("/", $sticker);
+                        $new_file_name = array_pop($file_name);
+                        $zip->addFile($storage_path.$sticker, $new_file_name);
+                    }
+                }
+                // All files are added, so close the zip file.
+                $zip->close();
+                $successful++;
+            }
+            //END: Creating Thumb zip file
+        }
+
+        echo 'Successful: '.$successful; 
         exit;
     }
 
