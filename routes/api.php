@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['prefix' => 'item'], function (){
+    Route::get('/get-categories', 'Api\ItemController@getCategories');
     Route::get('/get-category-and-items', 'Api\ItemController@getCategoryAndItems')->name('item.get-category-and-items');
     Route::get('/category/{id}', 'Api\ItemController@getItemsByCategoryId')->name('item.category.id');
     Route::get('/{code}/stickers', 'Api\ItemController@getStickersByItemId')->name('item.id.stickers');

@@ -7,6 +7,7 @@ use App\Category;
 use App\Item;
 use App\ItemSticker;
 use App\ItemStickerThumbnail;
+use App\StaticValue;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -60,6 +61,34 @@ class ItemController extends Controller
         $data['asset_base_url'] = config('app.asset_base_url');
         //Get the next page id
         $data['next_page'] = -1;
+
+        //START: Category List Limt
+        if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
+            $categories = Category::query();
+            $categories = $categories->select('id', 'name', 'text', 'packs', 'stickers');
+            if(!empty($request->get('category_list_limit'))){
+                $categories = $categories->offset(0);
+                $categories = $categories->limit($request->get('category_list_limit'));
+            }
+            $categories = $categories->where('type', 'general');
+            $categories = $categories->orderBy('sort2', 'asc');
+            $categories = $categories->get();
+            if(!$categories->isEmpty()){
+                foreach($categories as $category){
+                    $data['category_list'][] = [
+                        'id' => $category->id,
+                        'name' => $category->name,
+                        'text' => $category->text,
+                        'packs' => $category->packs,
+                        'stickers' => $category->stickers,
+                    ];
+                }
+            }
+            $category_list_position = StaticValue::select('value')->where('name', 'category_list_position')->first();
+            $data['category_list_position'] = $category_list_position['value'];
+        }
+        //END: Category List Limt
+
         if(!empty($category_limit) && is_numeric($category_limit) && Category::count() > ($category_limit*$page+$category_limit)){
             $data['next_page'] = $page + 1;
         }
@@ -241,6 +270,29 @@ class ItemController extends Controller
                 ];
             }
         }
+        return $this->successOutput($data);
+    }
+
+    public function getCategories(){
+        $key = urldecode(url()->full());
+        if(Redis::exists($key)){
+            return $this->successOutput(unserialize(Redis::get($key)));
+        }
+        
+        $categories = Category::select('id', 'name', 'text', 'packs', 'stickers')->where('type', 'general')->orderBy('sort2', 'asc')->get();
+        $data = [];
+        if(!$categories->isEmpty()){
+            foreach($categories as $category){
+                $data[] = [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'text' => $category->text,
+                    'packs' => $category->packs,
+                    'stickers' => $category->stickers,
+                ];
+            }
+        }
+        Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
         return $this->successOutput($data);
     }
 }
