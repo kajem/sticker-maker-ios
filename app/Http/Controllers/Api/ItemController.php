@@ -64,17 +64,17 @@ class ItemController extends Controller
 
         //START: Category List Limt
         if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
-            $categories = Category::query();
-            $categories = $categories->select('id', 'name', 'text', 'packs', 'stickers');
+            $category_lists = Category::query();
+            $category_lists = $category_lists->select('id', 'name', 'text', 'packs', 'stickers');
             if(!empty($request->get('category_list_limit'))){
-                $categories = $categories->offset(0);
-                $categories = $categories->limit($request->get('category_list_limit'));
+                $category_lists = $category_lists->offset(0);
+                $category_lists = $category_lists->limit($request->get('category_list_limit'));
             }
-            $categories = $categories->where('type', 'general');
-            $categories = $categories->orderBy('sort2', 'asc');
-            $categories = $categories->get();
-            if(!$categories->isEmpty()){
-                foreach($categories as $category){
+            $category_lists = $category_lists->where('type', 'general');
+            $category_lists = $category_lists->orderBy('sort2', 'asc');
+            $category_lists = $category_lists->get();
+            if(!$category_lists->isEmpty()){
+                foreach($category_lists as $category){
                     $data['category_list'][] = [
                         'id' => $category->id,
                         'name' => $category->name,
