@@ -21,20 +21,33 @@ class ResourceController extends Controller
         if(empty($categories)){
             echo "No categoires found"; exit;
         }
-        //Truncate the tables
-        Author::truncate();
+        //START: Truncate the tables
+        //Author::truncate();
         Category::truncate();
         Item::truncate();
-        //ItemSticker::truncate(); 
+        //ItemSticker::truncate();
+        //END: Truncate the tables 
+
+        //Re-creating items directory
+        $root_item_folder = 'public/items';
+        Storage::deleteDirectory($root_item_folder); 
+        Storage::disk('local')->makeDirectory($root_item_folder);
+
+        //Re-creating category-thumbs directory
+        $root_category_folder = 'public/category-thumbs';
+        Storage::deleteDirectory($root_category_folder); 
+        Storage::disk('local')->makeDirectory($root_category_folder);
 
         $this->processCategories($categories, $root_folder);
+        
+        Category::where('name', 'Emoji')->update(['type' => 'emoji']);
 
         echo "Script execution completed.";exit;
     }
 
     private function processCategories($categories, $root_folder){
         $date = date('Y-m-d H:i:s');
-
+        $category_sort2 = 5000;
         foreach($categories as $category){
             $category_temp = str_replace($root_folder."/", "", $category);
             $category_arr = explode("__", $category_temp);
@@ -42,24 +55,42 @@ class ResourceController extends Controller
             $category_name = !empty($category_arr[1]) ? $category_arr[1] : $category_arr[0];
             $category_name = implode(" ", explode("--", $category_name));
 
+            $items = Storage::directories($category); //Get the Item directories
+
             $category_data = [
                 'name' => $category_name,
+                'text' => $category_name." text goes here...",
+                'packs' => count($items),
                 'sort' => $category_order,
+                'sort2' => $category_sort2,
                 'status' => 1,
                 'created_by' => 1,
                 'created_at' => $date,
                 'updated_at' => $date,
             ];
+            $category_sort2 -= 100;
             $category_id = Category::insertGetId($category_data); //Insert Category and get the inserted ID
-            $items = Storage::directories($category); //Get the Item directories
+
+            //START: copy category thumb images
+            $category_thumbs = Storage::files($category);
+            if(!empty($category_thumbs)){
+                $root_category_folder = 'public/category-thumbs/';
+                Storage::copy($category_thumbs[0], $root_category_folder.'cat_'.$category_id.'_thumb.png');
+                Storage::copy($category_thumbs[1], $root_category_folder.'cat_'.$category_id.'_v_thumb.png');
+            }
+            //END: copy category thumb images
+            
             if(empty($items)) continue;
 
-            $this->processItems($items, $category, $category_id);
+            $total_stickers = $this->processItems($items, $category, $category_id);
+
+            Category::where('id', $category_id)->update(['stickers' => $total_stickers]);
         }
     }
 
     private function processItems($items, $category, $category_id){
         $date = date('Y-m-d H:i:s');
+        $total_stickers = 0;
         foreach($items as $item){
             $item_temp = str_replace($category."/", "", $item);
 
@@ -71,19 +102,19 @@ class ResourceController extends Controller
             $code = $this->uniqueCode();
 
             $item_author = !empty($item_arr[2]) ? implode(" ", explode("--", $item_arr[2])) : '';
-            $author = Author::select('id')->where('name', $item_author)->first();
-            if(empty($author->id)){
-                $author_data = [
-                    'name' => $item_author,
-                    'status' => 1,
-                    'created_by' => 1,
-                    'created_at' => $date,
-                    'updated_at' => $date,
-                ];
-                $author_id = Author::insertGetId($author_data); //Insert Author and get the inserted ID
-            }else{
-                $author_id = $author->id;
-            }
+            // $author = Author::select('id')->where('name', $item_author)->first();
+            // if(empty($author->id)){
+            //     $author_data = [
+            //         'name' => $item_author,
+            //         'status' => 1,
+            //         'created_by' => 1,
+            //         'created_at' => $date,
+            //         'updated_at' => $date,
+            //     ];
+            //     $author_id = Author::insertGetId($author_data); //Insert Author and get the inserted ID
+            // }else{
+            //     $author_id = $author->id;
+            // }
 
             $thumb_path = '';
             if(!empty($thumb[0])){
@@ -98,14 +129,17 @@ class ResourceController extends Controller
             if(!empty($stickers)) 
                 $sticker_names = $this->processStickers2($stickers, $code);
 
+            $total_stickers += count($sticker_names);
+
             $item_data = [
                 'name' => $item_name,
                 'code' => $code,
                 'category_id' => $category_id,
                 'sort' => $item_order,
-                'author_id' => $author_id,
+                'author' => $item_author,
                 'thumb' => $thumb_path,
                 'stickers' => serialize($sticker_names),
+                'total_sticker' => count($sticker_names),
                 'status' => 1,
                 'created_by' => 1,
                 'created_at' => $date,
@@ -117,6 +151,7 @@ class ResourceController extends Controller
             // if(empty($stickers)) continue;
             // $this->processStickers($stickers, $item_id, $code);
         }
+        return $total_stickers;
     }
 
     private function processStickers2($stickers, $code){
@@ -505,8 +540,7 @@ class ResourceController extends Controller
      * @param $max_quality int - conversion quality, useful values from 60 to 100 (smaller number = smaller file)
      * @return string - content of PNG file after conversion
      */
-    private function compressPNG($path_to_png_file, $max_quality = 30)
-    {
+    private function compressPNG($path_to_png_file, $max_quality = 30){
         if (!file_exists($path_to_png_file)) {
             throw new Exception("File does not exist: $path_to_png_file");
         }

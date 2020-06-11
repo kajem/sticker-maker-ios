@@ -18,9 +18,10 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('code');
             $table->integer('category_id');
-            $table->integer('author_id');
+            $table->string('author');
             $table->string('thumb');
             $table->text('stickers');
+            $table->smallInteger('total_sticker');
             $table->integer('sort');
             $table->boolean('status');
             $table->integer('created_by');

@@ -108,7 +108,7 @@ class ItemController extends Controller
 
     private function getItemsByCategory(Request $request, $category_id){
         $items = Item::query();
-        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author_id');
+        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author');
         $items = $items->where('category_id', $category_id);
         if(!empty($request->get('item_limit'))){
             $items = $items->offset(0);
@@ -126,7 +126,7 @@ class ItemController extends Controller
                     'name' => $item->name,
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
-                    'author' => !empty($item->author->name) ? $item->author->name : '',
+                    'author' => $item->author,
                     'total_stickers' => count($stickers),
                     'stickers' => $stickers
                 ];
@@ -184,7 +184,7 @@ class ItemController extends Controller
             'name' => $item->name,
             'code' => $item->code,
             'thumb' => end($thumb_arr),
-            'author' => !empty($item->author->name) ? $item->author->name : '',
+            'author' => $item->author,
             'total_stickers' => count($stickers),
             'stickers' => $stickers
         ];
@@ -265,7 +265,7 @@ class ItemController extends Controller
                     'name' => $item->name,
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
-                    'author' => !empty($item->author->name) ? $item->author->name : '',
+                    'author' => $item->author,
                     'total_stickers' => count($stickers)
                 ];
             }

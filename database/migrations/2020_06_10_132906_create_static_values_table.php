@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStickerPacksTable extends Migration
+class CreateStaticValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateStickerPacksTable extends Migration
      */
     public function up()
     {
-        Schema::create('sticker_packs', function (Blueprint $table) {
+        Schema::create('static_values', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('author');
-            $table->string('code');
-            $table->text('stickers');
+            $table->text('value')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateStickerPacksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sticker_packs');
+        Schema::dropIfExists('static_values');
     }
 }

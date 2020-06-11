@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableItemStickerThumbnails extends Migration
+class CreateStaticValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTableItemStickerThumbnails extends Migration
      */
     public function up()
     {
-        Schema::create('table_item_sticker_thumbnails', function (Blueprint $table) {
+        Schema::create('static_values', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('item_sticker_id');
-            $table->string('thumb');
+            $table->string('name');
+            $table->text('value')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateTableItemStickerThumbnails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_item_sticker_thumbnails');
+        Schema::dropIfExists('static_values');
     }
 }
