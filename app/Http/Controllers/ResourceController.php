@@ -433,4 +433,96 @@ class ResourceController extends Controller
         if(!empty($unsuccessful_list)) echo $unsuccessful_list;
         exit;
     }
+
+    /**
+     * Read all zip files of a folder and compress with PNGQUANT and export to another folder
+     */
+    public function compressZipWithPngQuant(){
+        $storage_path = storage_path().'/app/';
+        $source_folder = 'public/pngquant/original/';
+        $destination_folder = 'public/pngquant/compressed/';
+        $zip_extract_folder = 'public/pngquant/extract/';
+
+        $zip_files = Storage::files($source_folder); //Get the zip files
+        $successful = 0;
+        if(!empty($zip_files)){
+            //re-creating the directory compressed zip will be saved
+            Storage::deleteDirectory($destination_folder); 
+            Storage::disk('local')->makeDirectory($destination_folder);
+
+            //re-creating the folder where zip files will be extracted
+            Storage::deleteDirectory($zip_extract_folder); 
+            Storage::disk('local')->makeDirectory($zip_extract_folder);
+
+            foreach($zip_files as $zip_file){
+                $zip = new ZipArchive; //creating ZipArchive object for original zip file
+                if ($zip->open($storage_path.$zip_file) === TRUE) {
+                    $extract_folder_name = explode("/", $zip_file);
+                    $extract_folder_name = str_replace(".zip", "", array_pop($extract_folder_name)); //getting zip extraction folder name
+                    $zip->extractTo($storage_path.$zip_extract_folder.$extract_folder_name); //Extracting the zip file
+                    $zip->close();
+
+                    $images = Storage::files($zip_extract_folder.$extract_folder_name); //Get the png image files
+                    if(!empty($images)){
+                        $compressed_zip_path = $storage_path.$destination_folder.$extract_folder_name.".zip";
+
+                        $compressed_zip = new ZipArchive; //creating ZipArchive object for compressed zip file
+                        
+                        if ($compressed_zip->open($compressed_zip_path, ZipArchive::CREATE) === TRUE){
+                            foreach($images as $image){
+                                $file_name = explode("/", $image);
+                                $file_name = array_pop($file_name);
+                                
+
+                                $compressed_png_content = $this->compressPNG($storage_path.$image); //Getting compressed png content
+
+                                $extract_thumb_folder = $zip_extract_folder.$extract_folder_name."/thumb/";
+                                Storage::disk('local')->makeDirectory($extract_thumb_folder); //creating thumb folder
+                                
+                                $compressed_file_path = $extract_thumb_folder.$file_name;
+                                Storage::disk('local')->put($compressed_file_path, $compressed_png_content); //Writing compressed png
+
+                                $compressed_zip->addFile($storage_path.$compressed_file_path, $file_name); //adding compressed png to zip archive
+                            }
+                        }
+                        $successful++;
+                        $compressed_zip->close();
+                    }
+                }
+            }
+        }
+        echo "Total ". $successful. " zip file compressed.";
+        exit;
+    }
+
+    /**
+     * Optimizes PNG file with pngquant 1.8 or later (reduces file size of 24-bit/32-bit PNG images).
+     *
+     * You need to install pngquant 1.8 on the server (ancient version 1.0 won't work).
+     * There's package for Debian/Ubuntu and RPM for other distributions on http://pngquant.org
+     *
+     * @param $path_to_png_file string - path to any PNG file, e.g. $_FILE['file']['tmp_name']
+     * @param $max_quality int - conversion quality, useful values from 60 to 100 (smaller number = smaller file)
+     * @return string - content of PNG file after conversion
+     */
+    private function compressPNG($path_to_png_file, $max_quality = 30)
+    {
+        if (!file_exists($path_to_png_file)) {
+            throw new Exception("File does not exist: $path_to_png_file");
+        }
+
+        // guarantee that quality won't be worse than that.
+        $min_quality = 20;
+
+        // '-' makes it use stdout, required to save to $compressed_png_content variable
+        // '<' makes it read from the given file path
+        // escapeshellarg() makes this safe to use with any path
+        $compressed_png_content = shell_exec("pngquant --quality=$min_quality-$max_quality - < ".escapeshellarg(    $path_to_png_file));
+
+        if (!$compressed_png_content) {
+            throw new Exception("Conversion to compressed PNG failed. Is pngquant 1.8+ installed on the server?");
+        }
+
+        return $compressed_png_content;
+    }
 }
