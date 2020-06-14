@@ -75,8 +75,8 @@ class ResourceController extends Controller
             $category_thumbs = Storage::files($category);
             if(!empty($category_thumbs)){
                 $root_category_folder = 'public/category-thumbs/';
-                Storage::copy($category_thumbs[0], $root_category_folder.'cat_'.$category_id.'_thumb.png');
-                Storage::copy($category_thumbs[1], $root_category_folder.'cat_'.$category_id.'_v_thumb.png');
+                Storage::copy($category_thumbs[0], $root_category_folder.'cat_'.$category_id.'_tmb.png');
+                Storage::copy($category_thumbs[1], $root_category_folder.'cat_'.$category_id.'_v_tmb.png');
             }
             //END: copy category thumb images
             
