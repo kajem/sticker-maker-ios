@@ -94,10 +94,13 @@ class ItemController extends Controller
         }
 
         foreach($categories as $category){
+            $items = $this->getItemsByCategory($request, $category->id);
             $data['categories'][] = [
                 'id' => $category->id,
                 'name' => $category->name,
-                'items' => $this->getItemsByCategory($request, $category->id)
+                'number_of_sticker' => !empty($items['number_of_sticker']) ? $items['number_of_sticker'] : 0,
+                'number_of_item' => !empty($items['items']) ? count($items['items']) : 0,
+                'items' => !empty($items['items']) ? $items['items'] : []
             ];
         }
 
@@ -117,12 +120,13 @@ class ItemController extends Controller
         $items = $items->orderBy('sort', 'asc');
         $items = $items->get();
         $item_arr = [];
+        $number_of_sticker = 0;
         if(!$items->isEmpty()){
             foreach($items as $item){
                 $thumb_arr = explode("/",$item->thumb);
                 $stickers = unserialize($item->stickers);
-
-                $item_arr[] = [
+                $number_of_sticker += count($stickers);
+                $item_arr['items'][] = [
                     'name' => $item->name,
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
@@ -132,6 +136,7 @@ class ItemController extends Controller
                 ];
             }
         }
+        $item_arr['number_of_sticker'] = $number_of_sticker;
         return $item_arr;
     }
 
@@ -159,12 +164,14 @@ class ItemController extends Controller
             return $this->errorOutput('Category not found.');
 
         $items = $this->getItemsByCategory($request, $category->id);
+        
         $data = [
             'id'    => $category->id,
             'name'  => $category->name,
             'version'  => $category->version,
-            'number_of_item' => count($items),
-            'items' => $items,
+            'number_of_sticker' => !empty($items['number_of_sticker']) ? $items['number_of_sticker'] : 0,
+            'number_of_item' => !empty($items['items']) ? count($items['items']) : 0,
+            'items' => !empty($items['items']) ? $items['items'] : [],
         ];
 
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
