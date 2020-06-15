@@ -138,7 +138,11 @@ class ItemController extends Controller
     public function getItemsByCategoryId(Request $request, $category_id){
         $key = urldecode(url()->full());
         if(Redis::exists($key)){
-            return $this->successOutput(unserialize(Redis::get($key)));
+            $redis_data = unserialize(Redis::get($key));
+            if($request->v > 0 && $request->v >= $redis_data['version']){
+                unset($redis_data['items']);
+            }
+            return $this->successOutput($redis_data);
         }
 
         if(!is_numeric($category_id)){
@@ -155,13 +159,17 @@ class ItemController extends Controller
             return $this->errorOutput('Category not found.');
 
         $data = [
-            'asset_base_url' => config('app.asset_base_url'),
             'id'    => $category->id,
             'name'  => $category->name,
+            'version'  => $category->version,
             'items' => $this->getItemsByCategory($request, $category->id)
         ];
 
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
+
+        if($request->v > 0 && $request->v >= $category->version){
+            unset($data['items']);
+        }
 
         return $this->successOutput($data);
     }
@@ -180,7 +188,6 @@ class ItemController extends Controller
         $stickers = unserialize($item->stickers);
 
         $data = [
-            'asset_base_url' => config('app.asset_base_url'),
             'name' => $item->name,
             'code' => $item->code,
             'thumb' => end($thumb_arr),
