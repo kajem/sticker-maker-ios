@@ -98,7 +98,7 @@ class ItemController extends Controller
                 'id' => $category->id,
                 'name' => $category->name,
                 'number_of_sticker' =>  $category->stickers,
-                'number_of_item' => $category->packs,
+                'number_of_item' => $category->items,
                 'items' => $this->getItemsByCategory($request, $category->id)
             ];
         }
