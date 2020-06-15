@@ -158,11 +158,13 @@ class ItemController extends Controller
         if(empty($category))
             return $this->errorOutput('Category not found.');
 
+        $items = $this->getItemsByCategory($request, $category->id);
         $data = [
             'id'    => $category->id,
             'name'  => $category->name,
             'version'  => $category->version,
-            'items' => $this->getItemsByCategory($request, $category->id)
+            'number_of_item' => count($items),
+            'items' => $items,
         ];
 
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
