@@ -22,7 +22,6 @@ Route::group(['prefix' => 'resource'], function (){
     Route::get('/upload/new/category', 'ResourceController@uploadNewCategory')->name('resource.upload-new-category');
     Route::get('/create-thumbnails/{width}', 'ResourceController@createNewThumbnails')->name('resource.create-thumbnails');
     Route::get('/create-emoji-images-and-thumbs/{width}', 'ResourceController@createNewEmojiImageAndThumb')->name('resource.create-emoji-images-and-thumbs');
-    Route::get('/create-zip-files', 'ResourceController@createZipFiles');
     Route::get('/zip-pngquant', 'ResourceController@compressZipWithPngQuant');
 });
 Route::group(['prefix' => 'pack'], function (){

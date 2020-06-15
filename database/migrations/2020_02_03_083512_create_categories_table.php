@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('text')->nullable();
-            $table->smallInteger('packs')->default(0);
+            $table->smallInteger('items')->default(0);
             $table->smallInteger('stickers')->default(0);
             $table->integer('sort');
             $table->integer('sort2')->default(0);

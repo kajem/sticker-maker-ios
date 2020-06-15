@@ -42,7 +42,11 @@ class ResourceController extends Controller
         
         Category::where('name', 'Emoji')->update(['type' => 'emoji']);
 
-        echo "Script execution completed.";exit;
+        echo "Resource upload completed. <br/>Now generating zip files...<br/>";
+
+        $this->createZipFiles();  //Creating thumb.zip and main.zip files for all items/packs
+
+        exit;
     }
 
     private function processCategories($categories, $root_folder){
@@ -60,7 +64,7 @@ class ResourceController extends Controller
             $category_data = [
                 'name' => $category_name,
                 'text' => $category_name." text goes here...",
-                'packs' => count($items),
+                'items' => count($items),
                 'sort' => $category_order,
                 'sort2' => $category_sort2,
                 'status' => 1,
@@ -101,7 +105,7 @@ class ResourceController extends Controller
             $thumb = Storage::files($item);
             $code = $this->uniqueCode();
 
-            $item_author = !empty($item_arr[2]) ? implode(" ", explode("--", $item_arr[2])) : '';
+            $item_author = 'Braincraft';
             // $author = Author::select('id')->where('name', $item_author)->first();
             // if(empty($author->id)){
             //     $author_data = [
@@ -351,7 +355,7 @@ class ResourceController extends Controller
      * @params $width
      * @return \Illuminate\Http\Response
      */
-    public function createZipFiles(){
+    private function createZipFiles(){
         $items = Item::get();
         if($items->isEmpty()){
             return back()->withInput($request->all())->with('error', 'No stickers found to create new thubmnails.');
@@ -481,7 +485,7 @@ class ResourceController extends Controller
         $zip_files = Storage::files($source_folder); //Get the zip files
         $successful = 0;
         if(!empty($zip_files)){
-            //re-creating the directory compressed zip will be saved
+            //re-creating the directory where compressed zip will be saved
             Storage::deleteDirectory($destination_folder); 
             Storage::disk('local')->makeDirectory($destination_folder);
 
@@ -540,13 +544,13 @@ class ResourceController extends Controller
      * @param $max_quality int - conversion quality, useful values from 60 to 100 (smaller number = smaller file)
      * @return string - content of PNG file after conversion
      */
-    private function compressPNG($path_to_png_file, $max_quality = 30){
+    private function compressPNG($path_to_png_file, $max_quality = 90){
         if (!file_exists($path_to_png_file)) {
             throw new Exception("File does not exist: $path_to_png_file");
         }
 
         // guarantee that quality won't be worse than that.
-        $min_quality = 20;
+        $min_quality = 40;
 
         // '-' makes it use stdout, required to save to $compressed_png_content variable
         // '<' makes it read from the given file path

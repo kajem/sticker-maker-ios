@@ -65,7 +65,7 @@ class ItemController extends Controller
         //START: Category List Limt
         if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
             $category_lists = Category::query();
-            $category_lists = $category_lists->select('id', 'name', 'text', 'packs', 'stickers');
+            $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers');
             if(!empty($request->get('category_list_limit'))){
                 $category_lists = $category_lists->offset(0);
                 $category_lists = $category_lists->limit($request->get('category_list_limit'));
@@ -79,8 +79,8 @@ class ItemController extends Controller
                         'id' => $category->id,
                         'name' => $category->name,
                         'text' => $category->text,
-                        'packs' => $category->packs,
-                        'stickers' => $category->stickers,
+                        'number_of_item' => $category->items,
+                        'number_of_sticker' => $category->stickers,
                     ];
                 }
             }
@@ -165,7 +165,7 @@ class ItemController extends Controller
             'name'  => $category->name,
             'version'  => $category->version,
             'number_of_sticker' =>  $category->stickers,
-            'number_of_item' => $category->packs,
+            'number_of_item' => $category->items,
             'items' => $this->getItemsByCategory($request, $category->id)
         ];
 
@@ -290,7 +290,7 @@ class ItemController extends Controller
             return $this->successOutput(unserialize(Redis::get($key)));
         }
         
-        $categories = Category::select('id', 'name', 'text', 'packs', 'stickers')->where('type', 'general')->orderBy('sort2', 'asc')->get();
+        $categories = Category::select('id', 'name', 'text', 'items', 'stickers')->where('type', 'general')->orderBy('sort2', 'asc')->get();
         $data = [];
         if(!$categories->isEmpty()){
             foreach($categories as $category){
@@ -298,8 +298,8 @@ class ItemController extends Controller
                     'id' => $category->id,
                     'name' => $category->name,
                     'text' => $category->text,
-                    'packs' => $category->packs,
-                    'stickers' => $category->stickers,
+                    'number_of_item' => $category->items,
+                    'number_of_sticker' => $category->stickers,
                 ];
             }
         }
