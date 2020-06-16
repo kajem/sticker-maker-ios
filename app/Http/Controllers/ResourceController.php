@@ -384,7 +384,7 @@ class ResourceController extends Controller
                 if(file_exists($original_file_path)){
                     $thumbnailImage = Image::make($original_file_path)->widen(200, function ($constraint) {
                         $constraint->upsize();
-                    })->save($storage_path.$item_thumb_path."/".$sticker);
+                    })->save($storage_path.$item_thumb_path."/".$sticker); //Saving 200*200 thumb image
                         
                     $zip->addFile($storage_path.$item_path.$sticker, $sticker); //Add file to main zip archive
                 }
@@ -400,6 +400,10 @@ class ResourceController extends Controller
                 $stickers = Storage::files($item_thumb_path); //Get the sticker files
                 if(!empty($stickers)){
                     foreach($stickers as $sticker){
+                        $compressed_png_content = $this->compressPNG($storage_path.$sticker); //Getting compressed png content
+                        Storage::disk('local')->put($sticker, $compressed_png_content); //Writing compressed png
+
+
                         $file_name = explode("/", $sticker);
                         $new_file_name = array_pop($file_name);
                         $zip->addFile($storage_path.$sticker, $new_file_name);
