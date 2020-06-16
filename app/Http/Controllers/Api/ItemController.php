@@ -141,7 +141,7 @@ class ItemController extends Controller
         $key = urldecode(url()->full());
         if(Redis::exists($key)){
             $redis_data = unserialize(Redis::get($key));
-            if($request->version > 0 && $request->version >= $redis_data['version']){
+            if($request->version > 0 && $request->version == $redis_data['version']){
                 unset($redis_data['items']);
             }
             return $this->successOutput($redis_data);
@@ -171,7 +171,7 @@ class ItemController extends Controller
 
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
 
-        if($request->version > 0 && $request->version >= $category->version){
+        if($request->version > 0 && $request->version == $category->version){
             unset($data['items']);
         }
 
