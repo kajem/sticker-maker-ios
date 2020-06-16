@@ -59,8 +59,8 @@ class ItemController extends Controller
 
         $data = [];
         $data['asset_base_url'] = config('app.asset_base_url');
-        //Get the next page id
-        $data['next_page'] = -1;
+        $data['next_page'] = -1; //Set the next page id
+        $data['number_of_category'] = Category::where('type', 'general')->count();
 
         //START: Category List Limt
         if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
