@@ -277,7 +277,7 @@ class ItemController extends Controller
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
                     'author' => $item->author,
-                    'total_stickers' => count($stickers)
+                    'number_of_sticker' => count($stickers)
                 ];
             }
         }
