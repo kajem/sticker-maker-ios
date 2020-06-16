@@ -42,9 +42,13 @@ class ResourceController extends Controller
         
         Category::where('name', 'Emoji')->update(['type' => 'emoji']);
 
-        echo "Resource upload completed. <br/>Now generating zip files...<br/>";
+        $category = Category::all();
+
+        echo $category->count()." categories created successfully.<br/>";
 
         $this->createZipFiles();  //Creating thumb.zip and main.zip files for all items/packs
+
+        $this->createEmojiZipFiles();
 
         exit;
     }
@@ -416,8 +420,7 @@ class ResourceController extends Controller
             //END: Creating Thumb zip file
         }
 
-        echo 'Successful: '.$successful; 
-        exit;
+        echo $successful." packs created successfully.<br/>"; 
     }
 
     /**
@@ -425,56 +428,49 @@ class ResourceController extends Controller
      * @params $width
      * @return \Illuminate\Http\Response
      */
-    public function createNewEmojiImageAndThumb($width){
-    
-        $items = Item::select('name', 'code', 'stickers')->where('category_id', 5)->get()->toArray();
+    private function createEmojiZipFiles($width = 200){
+        $category = Category::select('id')->where('type', 'emoji')->first();
+        if(empty($category->id)){
+            return back()->with('error', 'Emoji category not found');
+        }
 
+        $items = Item::select('name', 'code', 'stickers')->where('category_id', $category->id)->get()->toArray();
         if(count($items) < 1){
             return back()->withInput($request->all())->with('error', 'No stickers found to create new thubmnails.');
         }
-        $successful = $unsuccessful = 0;
-        $root_folder = base_path().'/storage/app/public/items/';
-        $destination_root_folder = base_path().'/storage/app/';
-        $unsuccessful_list = '';
 
-        Storage::deleteDirectory('emoji'); //Deleting existing emoji folder
-        Storage::disk('local')->makeDirectory('emoji'); //Creating new emoji folder
-        Storage::disk('local')->makeDirectory('emoji/emoji_thumbs');
+        $storage_path = storage_path().'/app/';
+        $emoji_folder = 'public/emoji/';
+        $emoji_thumb_zip_name = 'emoji_thumbs.zip';
+        Storage::deleteDirectory($emoji_folder); //Deleting current emoji directory
+        Storage::disk('local')->makeDirectory($emoji_folder); //Createing emoji directory
+        Storage::disk('local')->delete($emoji_folder.$emoji_thumb_zip_name);
 
-        foreach($items as $item){
-            $stickers = unserialize($item['stickers']);
+        $zip = new ZipArchive;
+        $emoji_thumbs_zip_file_path = $storage_path.$emoji_folder.$emoji_thumb_zip_name;
+        if ($zip->open($emoji_thumbs_zip_file_path, ZipArchive::CREATE) === TRUE){ //Creating emoji_thumbs.zip file
+            foreach($items as $item){
+                //Creating main zip files
+                $item_path = 'public/items/'.$item['code']."/";
+                $main_zip_path = $item_path.'/main.zip';
+                Storage::copy($main_zip_path, $emoji_folder.$item['name'].'.zip');
 
-            if(empty($stickers)) continue;
-
-            $main_image_folder = 'emoji/'.$item['name'];
-            $thumb_image_folder = 'emoji/emoji_thumbs/'.$item['name'];
-
-            Storage::disk('local')->makeDirectory($main_image_folder);
-            Storage::disk('local')->makeDirectory($thumb_image_folder);
-
-            foreach($stickers as $sticker){
-                $original_file_path = $root_folder.$item['code'].'/'.$sticker;
-        
-                if(file_exists($original_file_path)){
-                    //Resize image with desired width
-                    Image::make($original_file_path)->widen($width, function ($constraint) {
-                        $constraint->upsize();
-                    })->save($destination_root_folder.$thumb_image_folder.'/'.$sticker);
-
-                    //Copy the original image
-                    Storage::copy('public/items/'.$item['code'].'/'.$sticker, $main_image_folder.'/'.$sticker);
-
-                    $successful++;
-                }else{
-                    $unsuccessful++;
-                    $unsuccessful_list .= '<br/>'.$original_file_path;
+                //Creating emoji_thumbs.zip file
+                $item_thumb_path = $item_path."thumb/";
+                $stickers = Storage::files($item_thumb_path); //Get the sticker files
+                if(!empty($stickers)){
+                    foreach($stickers as $sticker){
+                        $file_name = explode("/", $sticker);
+                        $new_file_name = array_pop($file_name);
+                        $zip->addFile($storage_path.$sticker, $item['name'].'/'.$new_file_name);
+                    }
                 }
             }
         }
+        $zip->close();
 
-        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
-        if(!empty($unsuccessful_list)) echo $unsuccessful_list;
-        exit;
+        echo count($items). ' emoji pack\'s main zip files created successfully.<br/>'; 
+        echo ' emoji_thumbs.zip file created successfully.<br/>'; 
     }
 
     /**
