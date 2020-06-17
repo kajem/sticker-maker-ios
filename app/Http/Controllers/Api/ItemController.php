@@ -57,13 +57,19 @@ class ItemController extends Controller
             return $this->successOutput(['next_page' => -1], 'No catagories found.');
         }
 
+        //getting values of category_list_position and search_tags from static_values table
+        $static_values = StaticValue::select('value')->whereIn('name', ['category_list_position', 'search_tags'])->get()->toArray();
+
         $data = [];
         $data['asset_base_url'] = config('app.asset_base_url');
         $data['next_page'] = -1; //Set the next page id
+        $data['search_tags'] = !empty($static_values[1]['value']) ? $static_values[1]['value'] : '';
         $data['number_of_category'] = Category::where('type', 'general')->count();
 
         //START: Category List Limt
         if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
+            $data['category_list_position'] = !empty($static_values[0]['value']) ? $static_values[0]['value'] : 0;
+
             $category_lists = Category::query();
             $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers');
             if(!empty($request->get('category_list_limit'))){
@@ -84,8 +90,6 @@ class ItemController extends Controller
                     ];
                 }
             }
-            $category_list_position = StaticValue::select('value')->where('name', 'category_list_position')->first();
-            $data['category_list_position'] = $category_list_position['value'];
         }
         //END: Category List Limt
 
