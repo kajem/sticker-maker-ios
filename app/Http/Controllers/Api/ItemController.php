@@ -270,7 +270,9 @@ class ItemController extends Controller
     }
 
     public function search(Request $request){
-        $items = Item::where('name','LIKE','%'.$request->q.'%')->where('category_id', '!=', 5)->get();
+        $category = Category::select('id')->where('type', 'emoji')->first();
+        $category_id = !empty($category->id) ? $category->id : 0;
+        $items = Item::where('name','LIKE','%'.$request->q.'%')->where('category_id', '!=', $category_id)->get();
         $data = [];
         if(!$items->isEmpty()){
             foreach($items as $item){
