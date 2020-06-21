@@ -252,46 +252,57 @@ class ResourceController extends Controller
 
         $successful = $unsuccessful = 0;
         $root_folder = base_path().'/storage/app/public/items/';
+        $storage_path = storage_path().'/app/';
         $unsuccessful_list = '';
         foreach($items as $item){
             $stickers = unserialize($item->stickers);
             $thumb_arr = explode("/", $item->thumb);
+            $item_thumb_name = end($thumb_arr);
             if(!empty($thumb_arr[3])){
                 $stickers[] = $thumb_arr[3];
             }
 
             $item_root_folder = $root_folder.$item->code."/";
 
-            foreach($stickers as $sticker){
-                $original_file_path = $item_root_folder.$sticker;
+            $resized_thumb_path = $item_root_folder.$width."__".$item_thumb_name;
+
+            $thumbnailImage = Image::make($storage_path.$item->thumb)->widen($width, function ($constraint) {
+                $constraint->upsize();
+            })->save($resized_thumb_path);
+
+            $compressed_png_content = $this->compressPNG($resized_thumb_path); //Getting compressed png content
+            Storage::disk('local')->put('public/items/'.$item->code."/"."200__".$item_thumb_name, $compressed_png_content); //Writing compressed png
+
+            // foreach($stickers as $sticker){
+            //     $original_file_path = $item_root_folder.$sticker;
             
-                if(file_exists($original_file_path)){
-                    $thumb_name = $width.'__'.$sticker;
+            //     if(file_exists($original_file_path)){
+            //         $thumb_name = $width.'__'.$sticker;
 
-                    //Resize image for desired width
-                    if (mime_content_type ( $original_file_path ) == 'image/gif') {
-                        $im = new \Imagick($original_file_path);
-                        $im = $im->coalesceImages();
+            //         //Resize image for desired width
+            //         if (mime_content_type ( $original_file_path ) == 'image/gif') {
+            //             $im = new \Imagick($original_file_path);
+            //             $im = $im->coalesceImages();
 
-                        do {
-                            $im->resizeImage($width, null, \Imagick::FILTER_BOX, 1);
-                        } while ($im->nextImage());
+            //             do {
+            //                 $im->resizeImage($width, null, \Imagick::FILTER_BOX, 1);
+            //             } while ($im->nextImage());
 
-                        $im = $im->deconstructImages();
+            //             $im = $im->deconstructImages();
 
-                        $im->writeImages($item_root_folder.$thumb_name, true);
-                    } else {
-                        $thumbnailImage = Image::make($original_file_path)->widen($width, function ($constraint) {
-                            $constraint->upsize();
-                        })->save($item_root_folder.$thumb_name);
-                    }
+            //             $im->writeImages($item_root_folder.$thumb_name, true);
+            //         } else {
+            //             $thumbnailImage = Image::make($original_file_path)->widen($width, function ($constraint) {
+            //                 $constraint->upsize();
+            //             })->save($item_root_folder.$thumb_name);
+            //         }
                     
-                    $successful++;
-                }else{
-                    $unsuccessful++;
-                    $unsuccessful_list .= '<br/>'.$original_file_path;
-                }
-            }
+            //         $successful++;
+            //     }else{
+            //         $unsuccessful++;
+            //         $unsuccessful_list .= '<br/>'.$original_file_path;
+            //     }
+            // }
         }
 
         echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
