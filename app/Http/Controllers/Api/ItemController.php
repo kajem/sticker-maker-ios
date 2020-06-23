@@ -270,24 +270,25 @@ class ItemController extends Controller
     }
 
     public function search(Request $request){
-        $category = Category::select('id')->where('type', 'emoji')->first();
-        $category_id = !empty($category->id) ? $category->id : 0;
-        $items = Item::where('name','LIKE','%'.$request->q.'%')->where('category_id', '!=', $category_id)->get();
-        $data = [];
-        if(!$items->isEmpty()){
-            foreach($items as $item){
-                $thumb_arr = explode("/",$item->thumb);
-                $stickers = unserialize($item->stickers);
-                $data[] = [
-                    'name' => $item->name,
-                    'code' => $item->code,
-                    'thumb' => end($thumb_arr),
-                    'author' => $item->author,
-                    'total_stickers' => count($stickers),
-                    'stickers' => $stickers
-                ];
-            }
-        }
+        // $category = Category::select('id')->where('type', 'emoji')->first();
+        // $category_id = !empty($category->id) ? $category->id : 0;
+        // $items = Item::where('name','LIKE','%'.$request->q.'%')->where('category_id', '!=', $category_id)->get();
+        // $data = [];
+        // if(!$items->isEmpty()){
+        //     foreach($items as $item){
+        //         $thumb_arr = explode("/",$item->thumb);
+        //         $stickers = unserialize($item->stickers);
+        //         $data[] = [
+        //             'name' => $item->name,
+        //             'code' => $item->code,
+        //             'thumb' => end($thumb_arr),
+        //             'author' => $item->author,
+        //             'total_stickers' => count($stickers),
+        //             'stickers' => $stickers
+        //         ];
+        //     }
+        // }
+        $data = $request->all();
         return $this->successOutput($data);
     }
 
