@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStaticValuesTable extends Migration
+class CreateSearchKeywordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateStaticValuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('static_values', function (Blueprint $table) {
+        Schema::create('search_keywords', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('value')->nullable();
+            $table->string('name')->default('');
+            $table->integer('count')->default(1);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateStaticValuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('static_values');
+        Schema::dropIfExists('search_keywords');
     }
 }

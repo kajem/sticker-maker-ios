@@ -8,6 +8,7 @@ use App\Item;
 use App\ItemSticker;
 use App\ItemStickerThumbnail;
 use App\StaticValue;
+use App\SearchKeyword;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -288,7 +289,19 @@ class ItemController extends Controller
                 ];
             }
         }
+        //$this->saveSearchKeyword($request->q);
         return $this->successOutput($data);
+    }
+
+    private function saveSearchKeyword($name){
+        $name = strtolower($name);
+        $keyword = SearchKeyword::select('id', 'count')->where('name', $name)->first();
+        if(!empty($keyword->id)){
+            SearchKeyword::where('id', $keyword->id)->update(['count' => $keyword->count + 1]);
+        }else{
+            SearchKeyword::create(['name' => $name]);
+        }
+        return $this->successOutput([]); 
     }
 
     public function getCategories(){
