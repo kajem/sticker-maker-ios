@@ -289,7 +289,7 @@ class ItemController extends Controller
                 ];
             }
         }
-        //$this->saveSearchKeyword($request->q);
+        $this->saveSearchKeyword($request->q);
         return $this->successOutput($data);
     }
 
