@@ -289,19 +289,18 @@ class ItemController extends Controller
                 ];
             }
         }
-        $this->saveSearchKeyword($request->q);
         return $this->successOutput($data);
     }
 
-    private function saveSearchKeyword($name){
-        $name = strtolower($name);
+    public function saveSearchKeyword(Request $request){
+        $name = strtolower($request->q);
         $keyword = SearchKeyword::select('id', 'count')->where('name', $name)->first();
         if(!empty($keyword->id)){
             SearchKeyword::where('id', $keyword->id)->update(['count' => $keyword->count + 1]);
         }else{
             SearchKeyword::create(['name' => $name]);
         }
-        return $this->successOutput([]); 
+        return $this->successOutput(); 
     }
 
     public function getCategories(){
