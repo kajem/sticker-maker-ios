@@ -16,7 +16,7 @@
                 <div class="content">
                     @if(!empty($pack->id))
                        <h2>{{$pack->name}}</h2>
-                       <h3>By <i>{{$is_braincraft_pack ? $pack->author->name : $pack->author}}</i></h3>
+                       <h3>By <i>{{$is_braincraft_pack ? $pack->author : $pack->author}}</i></h3>
                        @php 
                        if($is_braincraft_pack)
                             $stickers = unserialize($pack->stickers);
@@ -26,7 +26,7 @@
                        @if(!empty($stickers))
                             @foreach($stickers as $sticker)
                                 <div class="image">
-                                <img src="/storage/{{$pack_root_folder}}/{{$pack->code}}/{{$sticker}}" alt="" />
+                                <img src="{{$pack_root_folder}}{{$pack->code}}/thumb/{{$sticker}}" alt="" />
                                 </div>
                             @endforeach
                             <div class="clearfix"></div>
