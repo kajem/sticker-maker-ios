@@ -59,13 +59,14 @@ class ItemController extends Controller
         }
 
         //getting values of category_list_position and search_tags from static_values table
-        $static_values = StaticValue::select('value')->whereIn('name', ['category_list_position', 'search_tags'])->get()->toArray();
+        $static_values = StaticValue::select('value')->whereIn('name', ['category_list_position', 'search_tags', 'trial_row_position'])->get()->toArray();
 
         $data = [];
         $data['asset_base_url'] = config('app.asset_base_url');
         $data['next_page'] = -1; //Set the next page id
         $data['search_tags'] = !empty($static_values[1]['value']) ? $static_values[1]['value'] : '';
         $data['number_of_category'] = Category::where('type', 'general')->count();
+        $data['trial_row_position'] = !empty($static_values[2]['value']) ? $static_values[2]['value'] : '';
 
         //START: Category List Limt
         if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
