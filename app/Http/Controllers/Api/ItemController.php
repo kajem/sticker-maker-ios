@@ -38,12 +38,27 @@ class ItemController extends Controller
         if(!is_numeric($page))
             return $this->errorOutput('Page should be numeric.');
 
+        //getting values of category_list_position and search_tags from static_values table
+        $static_values = StaticValue::select('name','value')->whereIn('name', ['category_list_position', 'search_tags', 'trial_row_position', 'category_limit', 'item_limit'])->get()->pluck('value', 'name')->toArray();
+
         if(!empty($request->get('item_limit')) && !is_numeric($request->get('item_limit')))
             return $this->errorOutput('Item Limit should be numeric.');
 
         $category_limit = !empty($request->get('category_limit')) ? $request->get('category_limit') : 0;
         if(!is_numeric($category_limit))
             return $this->errorOutput('Category Limit should be numeric.');
+        
+        if(!isset($_GET['category_limit'])){
+            $category_limit = !empty($static_values['category_limit']) ? $static_values['category_limit'] : 4;
+        }
+
+        $item_limit = !empty($request->get('item_limit')) ? $request->get('item_limit') : 0;
+        if(!is_numeric($item_limit))
+            return $this->errorOutput('Item Limit should be numeric.');
+
+        if(!isset($_GET['item_limit'])){
+            $item_limit = !empty($static_values['item_limit']) ? $static_values['item_limit'] : 4;
+        }
 
         $categories = Category::query();
         if(!empty($category_limit)){
@@ -58,19 +73,16 @@ class ItemController extends Controller
             return $this->successOutput(['next_page' => -1], 'No catagories found.');
         }
 
-        //getting values of category_list_position and search_tags from static_values table
-        $static_values = StaticValue::select('value')->whereIn('name', ['category_list_position', 'search_tags', 'trial_row_position'])->get()->toArray();
-
         $data = [];
         $data['asset_base_url'] = config('app.asset_base_url');
         $data['next_page'] = -1; //Set the next page id
-        $data['search_tags'] = !empty($static_values[1]['value']) ? $static_values[1]['value'] : '';
+        $data['search_tags'] = !empty($static_values['search_tags']) ? $static_values['search_tags'] : '';
         $data['number_of_category'] = Category::where('type', 'general')->count();
-        $data['trial_row_position'] = !empty($static_values[2]['value']) ? $static_values[2]['value'] : '';
+        $data['trial_row_position'] = !empty($static_values['trial_row_position']) ? $static_values['trial_row_position'] : 0;
 
         //START: Category List Limt
         if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
-            $data['category_list_position'] = !empty($static_values[0]['value']) ? $static_values[0]['value'] : 0;
+            $data['category_list_position'] = !empty($static_values['category_list_position']) ? $static_values['category_list_position'] : 0;
 
             $category_lists = Category::query();
             $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers');
@@ -105,7 +117,7 @@ class ItemController extends Controller
                 'name' => $category->name,
                 'number_of_sticker' =>  $category->stickers,
                 'number_of_item' => $category->items,
-                'items' => $this->getItemsByCategory($request, $category->id)
+                'items' => $this->getItemsByCategory($request, $category->id, $item_limit)
             ];
         }
 
@@ -114,13 +126,13 @@ class ItemController extends Controller
         return $this->successOutput($data);
     }
 
-    private function getItemsByCategory(Request $request, $category_id){
+    private function getItemsByCategory(Request $request, $category_id, $item_limit = 0){
         $items = Item::query();
         $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author');
         $items = $items->where('category_id', $category_id);
-        if(!empty($request->get('item_limit'))){
+        if(!empty($item_limit)){
             $items = $items->offset(0);
-            $items = $items->limit($request->get('item_limit'));
+            $items = $items->limit($item_limit);
         }
         $items = $items->orderBy('sort', 'asc');
         $items = $items->get();
