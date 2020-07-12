@@ -128,7 +128,7 @@ class ItemController extends Controller
 
     private function getItemsByCategory(Request $request, $category_id, $item_limit = 0){
         $items = Item::query();
-        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author');
+        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author', 'is_premium');
         $items = $items->where('category_id', $category_id);
         if(!empty($item_limit)){
             $items = $items->offset(0);
@@ -147,6 +147,7 @@ class ItemController extends Controller
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
                     'author' => $item->author,
+                    'is_premium' => $item->is_premium,
                     'total_stickers' => count($stickers),
                     'stickers' => $stickers
                 ];
@@ -286,7 +287,9 @@ class ItemController extends Controller
     public function search(Request $request){
         $category = Category::select('id')->where('type', 'emoji')->first();
         $category_id = !empty($category->id) ? $category->id : 0;
-        $items = Item::where('name','LIKE','%'.$request->q.'%')->where('category_id', '!=', $category_id)->get();
+        $items = Item::select('id', 'name', 'thumb', 'stickers', 'code', 'author', 'is_premium')
+                      ->where('name','LIKE','%'.$request->q.'%')
+                      ->where('category_id', '!=', $category_id)->get();
         $data = [];
         if(!$items->isEmpty()){
             foreach($items as $item){
@@ -297,6 +300,7 @@ class ItemController extends Controller
                     'code' => $item->code,
                     'thumb' => end($thumb_arr),
                     'author' => $item->author,
+                    'is_premium' => $item->is_premium,
                     'total_stickers' => count($stickers),
                     'stickers' => $stickers
                 ];
