@@ -81,13 +81,13 @@ class ItemController extends Controller
         if($page == 0){
             $data['asset_base_url'] = config('app.asset_base_url');
             $data['search_tags'] = !empty($static_values['search_tags']) ? $static_values['search_tags'] : '';
-            $data['number_of_category'] = Category::where('type', 'general')->count();
-            $data['trial_row_position'] = !empty($static_values['trial_row_position']) ? $static_values['trial_row_position'] : 0;
-            $data['app_subs'] = !empty($static_values['app_subs']) ? $static_values['app_subs'] : 0;
-            $data['f_cat'] = !empty($static_values['f_cat']) ? $static_values['f_cat'] : 0;
-            $data['f_item'] = !empty($static_values['f_item']) ? $static_values['f_item'] : 0;
-            $data['landing_subs'] = !empty($static_values['landing_subs']) ? $static_values['landing_subs'] : 0;
-            $data['save'] = !empty($static_values['save']) ? $static_values['save'] : 0;
+            $data['number_of_category'] = (int) Category::where('type', 'general')->count();
+            $data['trial_row_position'] = !empty($static_values['trial_row_position']) ? (int) $static_values['trial_row_position'] : 0;
+            $data['app_subs'] = !empty($static_values['app_subs']) ? (int) $static_values['app_subs'] : 0;
+            $data['f_cat'] = !empty($static_values['f_cat']) ? (int) $static_values['f_cat'] : 0;
+            $data['f_item'] = !empty($static_values['f_item']) ? (int) $static_values['f_item'] : 0;
+            $data['landing_subs'] = !empty($static_values['landing_subs']) ? (int) $static_values['landing_subs'] : 0;
+            $data['save'] = !empty($static_values['save']) ? (int) $static_values['save'] : 0;
 
             $category_list_limit = !empty($request->get('category_list_limit')) ? $request->get('category_list_limit') : 0;
             if(!is_numeric($category_list_limit))
@@ -98,7 +98,7 @@ class ItemController extends Controller
             }
 
             if($category_list_limit >= 0){
-                $data['category_list_position'] = !empty($static_values['category_list_position']) ? $static_values['category_list_position'] : 0;
+                $data['category_list_position'] = !empty($static_values['category_list_position']) ? (int) $static_values['category_list_position'] : 0;
 
                 $category_lists = Category::query();
                 $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers');
