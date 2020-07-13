@@ -38,11 +38,12 @@ class ItemController extends Controller
         if(!is_numeric($page))
             return $this->errorOutput('Page should be numeric.');
 
-        //getting values of category_list_position and search_tags from static_values table
-        $static_values = StaticValue::select('name','value')->whereIn('name', ['category_list_position', 'search_tags', 'trial_row_position', 'category_limit', 'item_limit'])->get()->pluck('value', 'name')->toArray();
-
-        if(!empty($request->get('item_limit')) && !is_numeric($request->get('item_limit')))
-            return $this->errorOutput('Item Limit should be numeric.');
+        //getting values from static_values table
+        if($page == 0){
+            $static_values = StaticValue::select('name','value')->get()->pluck('value', 'name')->toArray();
+        }else{
+            $static_values = StaticValue::select('name','value')->whereIn('name', ['category_limit', 'item_limit'])->get()->pluck('value', 'name')->toArray();
+        }
 
         $category_limit = !empty($request->get('category_limit')) ? $request->get('category_limit') : 0;
         if(!is_numeric($category_limit))
@@ -74,38 +75,54 @@ class ItemController extends Controller
         }
 
         $data = [];
-        $data['asset_base_url'] = config('app.asset_base_url');
         $data['next_page'] = -1; //Set the next page id
-        $data['search_tags'] = !empty($static_values['search_tags']) ? $static_values['search_tags'] : '';
-        $data['number_of_category'] = Category::where('type', 'general')->count();
-        $data['trial_row_position'] = !empty($static_values['trial_row_position']) ? $static_values['trial_row_position'] : 0;
 
-        //START: Category List Limt
-        if(is_numeric($request->get('category_list_limit')) && $request->get('category_list_limit') >= 0){
-            $data['category_list_position'] = !empty($static_values['category_list_position']) ? $static_values['category_list_position'] : 0;
+        //START: Category List Limit and static values
+        if($page == 0){
+            $data['asset_base_url'] = config('app.asset_base_url');
+            $data['search_tags'] = !empty($static_values['search_tags']) ? $static_values['search_tags'] : '';
+            $data['number_of_category'] = Category::where('type', 'general')->count();
+            $data['trial_row_position'] = !empty($static_values['trial_row_position']) ? $static_values['trial_row_position'] : 0;
+            $data['app_subs'] = !empty($static_values['app_subs']) ? $static_values['app_subs'] : 0;
+            $data['f_cat'] = !empty($static_values['f_cat']) ? $static_values['f_cat'] : 0;
+            $data['f_item'] = !empty($static_values['f_item']) ? $static_values['f_item'] : 0;
+            $data['landing_subs'] = !empty($static_values['landing_subs']) ? $static_values['landing_subs'] : 0;
+            $data['save'] = !empty($static_values['save']) ? $static_values['save'] : 0;
 
-            $category_lists = Category::query();
-            $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers');
-            if(!empty($request->get('category_list_limit'))){
-                $category_lists = $category_lists->offset(0);
-                $category_lists = $category_lists->limit($request->get('category_list_limit'));
+            $category_list_limit = !empty($request->get('category_list_limit')) ? $request->get('category_list_limit') : 0;
+            if(!is_numeric($category_list_limit))
+                return $this->errorOutput('Category list limit should be numeric.');
+            
+            if(!isset($_GET['category_list_limit'])){
+                $category_list_limit = !empty($static_values['category_list_limit']) ? $static_values['category_list_limit'] : 4;
             }
-            $category_lists = $category_lists->where('type', 'general');
-            $category_lists = $category_lists->orderBy('sort2', 'asc');
-            $category_lists = $category_lists->get();
-            if(!$category_lists->isEmpty()){
-                foreach($category_lists as $category){
-                    $data['category_list'][] = [
-                        'id' => $category->id,
-                        'name' => $category->name,
-                        'text' => $category->text,
-                        'number_of_item' => $category->items,
-                        'number_of_sticker' => $category->stickers,
-                    ];
+
+            if($category_list_limit >= 0){
+                $data['category_list_position'] = !empty($static_values['category_list_position']) ? $static_values['category_list_position'] : 0;
+
+                $category_lists = Category::query();
+                $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers');
+                if($category_list_limit > 0){
+                    $category_lists = $category_lists->offset(0);
+                    $category_lists = $category_lists->limit($category_list_limit);
+                }
+                $category_lists = $category_lists->where('type', 'general');
+                $category_lists = $category_lists->orderBy('sort2', 'asc');
+                $category_lists = $category_lists->get();
+                if(!$category_lists->isEmpty()){
+                    foreach($category_lists as $category){
+                        $data['category_list'][] = [
+                            'id' => $category->id,
+                            'name' => $category->name,
+                            'text' => $category->text,
+                            'number_of_item' => $category->items,
+                            'number_of_sticker' => $category->stickers,
+                        ];
+                    }
                 }
             }
         }
-        //END: Category List Limt
+        //END: Category List Limit and static values
 
         if(!empty($category_limit) && is_numeric($category_limit) && Category::count() > ($category_limit*$page+$category_limit)){
             $data['next_page'] = $page + 1;
