@@ -81,7 +81,7 @@ class ItemController extends Controller
         if($page == 0){
             $data['asset_base_url'] = config('app.asset_base_url');
             $data['search_tags'] = !empty($static_values['search_tags']) ? $static_values['search_tags'] : '';
-            $data['number_of_category'] = (int) Category::where('type', 'general')->count();
+            $data['number_of_category'] = Category::where('type', 'general')->count();
             $data['trial_row_position'] = !empty($static_values['trial_row_position']) ? (int) $static_values['trial_row_position'] : 0;
             $data['app_subs'] = !empty($static_values['app_subs']) ? (int) $static_values['app_subs'] : 0;
             $data['f_cat'] = !empty($static_values['f_cat']) ? (int) $static_values['f_cat'] : 0;
