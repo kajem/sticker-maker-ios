@@ -128,7 +128,7 @@ class ResourceController extends Controller
             $item_data = [
                 'name' => $item_name,
                 'code' => $code,
-                //'category_id' => $category_id,
+                'category_id' => $category_id,
                 //'sort' => $item_order,
                 'author' => $item_author,
                 'thumb' => $thumb_path,
