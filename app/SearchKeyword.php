@@ -12,6 +12,6 @@ class SearchKeyword extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name', 'is_item_found', 'count'
     ];
 }

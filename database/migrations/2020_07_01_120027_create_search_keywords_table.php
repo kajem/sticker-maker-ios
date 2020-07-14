@@ -17,6 +17,7 @@ class CreateSearchKeywordsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->default('');
             $table->integer('count')->default(1);
+            $table->boolean('is_item_found')->default(1);
             $table->timestamps();
         });
     }

@@ -327,12 +327,26 @@ class ItemController extends Controller
     }
 
     public function saveSearchKeyword(Request $request){
+        $data = [];
         $name = strtolower($request->q);
+
         $keyword = SearchKeyword::select('id', 'count')->where('name', $name)->first();
+
+        $category = Category::select('id')->where('type', 'emoji')->first();
+        $category_id = !empty($category->id) ? $category->id : 0;
+        $item = Item::select('id')
+                      ->where('name','LIKE','%'.$request->q.'%')
+                      ->where('category_id', '!=', $category_id)->first();
+
+        if(empty($item->id))
+            $data['is_item_found'] = 0;
+
         if(!empty($keyword->id)){
-            SearchKeyword::where('id', $keyword->id)->update(['count' => $keyword->count + 1]);
+            $data['count'] = $keyword->count + 1;
+            SearchKeyword::where('id', $keyword->id)->update($data);
         }else{
-            SearchKeyword::create(['name' => $name]);
+            $data['name'] = $name;
+            SearchKeyword::create($data);
         }
         return $this->successOutput(); 
     }
