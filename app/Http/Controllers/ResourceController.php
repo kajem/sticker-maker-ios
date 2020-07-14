@@ -7,8 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
-use App\ItemSticker;
-use App\Author;
+use App\ItemToCategory;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
@@ -25,7 +24,7 @@ class ResourceController extends Controller
         //Author::truncate();
         Category::truncate();
         Item::truncate();
-        //ItemSticker::truncate();
+        ItemToCategory::truncate();
         //END: Truncate the tables 
 
         //Re-creating items directory
@@ -110,19 +109,6 @@ class ResourceController extends Controller
             $code = $this->uniqueCode();
 
             $item_author = 'Braincraft';
-            // $author = Author::select('id')->where('name', $item_author)->first();
-            // if(empty($author->id)){
-            //     $author_data = [
-            //         'name' => $item_author,
-            //         'status' => 1,
-            //         'created_by' => 1,
-            //         'created_at' => $date,
-            //         'updated_at' => $date,
-            //     ];
-            //     $author_id = Author::insertGetId($author_data); //Insert Author and get the inserted ID
-            // }else{
-            //     $author_id = $author->id;
-            // }
 
             $thumb_path = '';
             if(!empty($thumb[0])){
@@ -142,8 +128,8 @@ class ResourceController extends Controller
             $item_data = [
                 'name' => $item_name,
                 'code' => $code,
-                'category_id' => $category_id,
-                'sort' => $item_order,
+                //'category_id' => $category_id,
+                //'sort' => $item_order,
                 'author' => $item_author,
                 'thumb' => $thumb_path,
                 'stickers' => serialize($sticker_names),
@@ -155,6 +141,13 @@ class ResourceController extends Controller
             ];
 
             $item_id = Item::insertGetId($item_data); //Insert Item and get the inserted ID
+            $item_to_cat_data = [
+                'item_id' => $item_id,
+                'category_id' => $category_id,
+                'sort' => $item_order,
+            ];
+            ItemToCategory::create($item_to_cat_data);
+
             // $stickers = Storage::files($item."/files"); //Get the sticker files
             // if(empty($stickers)) continue;
             // $this->processStickers($stickers, $item_id, $code);
@@ -573,5 +566,19 @@ class ResourceController extends Controller
         }
 
         return $compressed_png_content;
+    }
+
+    public function populateItemToCategoriesTableData(){
+        $items =  Item::select('id', 'category_id', 'sort')->get();
+        if(!$items->isEmpty()){
+            foreach($items as $item){
+                $data = [
+                    'item_id' => $item->id,
+                    'category_id' => $item->category_id,
+                    'sort' => $item->sort,
+                ];
+                ItemToCategory::create($data);
+            }
+        }
     }
 }

@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
-use App\ItemSticker;
-use App\ItemStickerThumbnail;
 use App\StaticValue;
 use App\SearchKeyword;
 use App\Http\Controllers\Controller;
@@ -144,14 +142,16 @@ class ItemController extends Controller
     }
 
     private function getItemsByCategory(Request $request, $category_id, $item_limit = 0){
+
         $items = Item::query();
-        $items = $items->select('id', 'name', 'thumb', 'stickers', 'code', 'author', 'is_premium');
-        $items = $items->where('category_id', $category_id);
+        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.stickers', 'items.code', 'items.author', 'items.is_premium');
+        $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
+        $items = $items->where('item_to_categories.category_id', $category_id);
         if(!empty($item_limit)){
             $items = $items->offset(0);
             $items = $items->limit($item_limit);
         }
-        $items = $items->orderBy('sort', 'asc');
+        $items = $items->orderBy('item_to_categories.sort', 'asc');
         $items = $items->get();
         $item_arr = [];
         if(!$items->isEmpty()){

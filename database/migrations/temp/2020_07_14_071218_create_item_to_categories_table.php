@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSearchKeywordsTable extends Migration
+class CreateItemToCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSearchKeywordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('search_keywords', function (Blueprint $table) {
+        Schema::create('item_to_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->default('');
-            $table->integer('count')->default(0);
+            $table->integer('item_id');
+            $table->integer('category_id');
+            $table->integer('sort');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateSearchKeywordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('search_keywords');
+        Schema::dropIfExists('item_to_categories');
     }
 }
