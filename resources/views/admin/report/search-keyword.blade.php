@@ -60,6 +60,9 @@
     let table;
     $(function () {
       table = $('#search-keywords').DataTable({
+        "language":{
+            "emptyTable": "No keywords found."
+        },
         "paging": true,
         "lengthChange": false,
         "searching": true,

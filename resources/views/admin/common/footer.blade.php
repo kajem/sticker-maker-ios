@@ -9,11 +9,6 @@
 <!-- /.control-sidebar -->
 
 <!-- Main Footer -->
-<footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-        Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft Ltd.</a>.</strong> All rights reserved.
+<footer class="main-footer text-center">
+    <strong>Copyright &copy; {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft Ltd</a>.</strong> All rights reserved.
 </footer>
