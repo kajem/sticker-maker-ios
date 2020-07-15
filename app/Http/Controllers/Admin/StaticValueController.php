@@ -20,7 +20,7 @@ class StaticValueController extends Controller
         if(empty($request->input('label'))){
             return $this->errorOutput('Label field required');
         }
-        if(empty($request->input('value'))){
+        if(empty($request->input('value')) && $request->input('value') != 0){
             return $this->errorOutput('Value field required');
         }
         
