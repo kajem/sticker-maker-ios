@@ -14,6 +14,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     static $BASE_URL_API = 'http://sticker.local/api/';
+    static $PAGINATION_LIMIT = 10;
 
     protected function errorOutput($message, $status = 400){
         $data = [

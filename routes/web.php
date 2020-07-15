@@ -41,4 +41,7 @@ Route::get('admin', function () {
 Route::group([ 'middleware' => ['auth'], 'prefix' => 'admin' ], function() {
     Route::get('static-value/list', 'Admin\StaticValueController@index');
     Route::post('static-value/save', 'Admin\StaticValueController@save');
+
+    Route::get('report/search-keyword', 'Admin\ReportController@searchKeywordView');
+    Route::post('report/search-keyword', 'Admin\ReportController@searchKeyword');
 });

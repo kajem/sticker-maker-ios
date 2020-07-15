@@ -15,6 +15,7 @@ class CreateStaticValuesTable extends Migration
     {
         Schema::create('static_values', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('label');
             $table->string('name');
             $table->text('value')->nullable();
             $table->timestamps();
