@@ -162,7 +162,7 @@ class ItemController extends Controller
                 $item_arr[] = [
                     'name' => $item->name,
                     'code' => $item->code,
-                    'thumb' => end($thumb_arr),
+                    'thumb' => '200__'.end($thumb_arr),
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
                     'total_stickers' => count($stickers),
@@ -230,7 +230,7 @@ class ItemController extends Controller
         $data = [
             'name' => $item->name,
             'code' => $item->code,
-            'thumb' => end($thumb_arr),
+            'thumb' => '200__'.end($thumb_arr),
             'author' => $item->author,
             'total_stickers' => count($stickers),
             'stickers' => $stickers
@@ -315,7 +315,7 @@ class ItemController extends Controller
                 $data[] = [
                     'name' => $item->name,
                     'code' => $item->code,
-                    'thumb' => end($thumb_arr),
+                    'thumb' => '200__'.end($thumb_arr),
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
                     'total_stickers' => count($stickers),
