@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                 <th scope="col" width="20%">Label</th>

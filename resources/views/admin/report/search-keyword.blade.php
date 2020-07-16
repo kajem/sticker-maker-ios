@@ -31,16 +31,6 @@
                             <th scope="col">Created at</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @foreach ($keywords as $keyword)
-                                <tr>
-                                    <td>{{$keyword->name}}</td>
-                                    <td>{{$keyword->count}}</td>
-                                    <td>{{$keyword->is_item_found}}</td>
-                                    <td>{{$keyword->created_at}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody> --}}
                     </table>
                 </div>
             </div>
@@ -73,7 +63,7 @@
         "processing": true,
         "serverSide": true,
         "ajax": {
-            'url':"/admin/report/search-keyword",
+            'url':"/report/search-keyword",
             'type': 'POST',
             'headers': {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -108,4 +98,5 @@
     }
 
   </script>
+  <!-- Data Table -->
 @endsection

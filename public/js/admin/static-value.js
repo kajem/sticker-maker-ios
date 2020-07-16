@@ -47,7 +47,7 @@ let save = function(id){
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('#static-value-'+id+' input[name="_token"]').val()},
         type:'POST',
-        url:'/admin/static-value/save',
+        url:'/static-value/save',
         data:{id:id, label:label, value:value},
         success:function(data){
             if(data.status == 200){

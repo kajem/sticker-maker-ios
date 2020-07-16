@@ -8,10 +8,6 @@ use App\SearchKeyword;
 
 class ReportController extends Controller
 {
-    public function searchKeywordView(){
-        return view('admin.report.search-keyword');
-        
-    }
     public function searchKeyword(Request $request){
         $search_keywords = SearchKeyword::query();
         $search_keywords = $search_keywords->select('name', 'count', 'is_item_found', 'created_at');
