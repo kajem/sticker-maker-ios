@@ -11,18 +11,6 @@
 |
 */
 
-// Route::get('admin', function () {
-//     return view('admin.dashboard');
-// })->middleware('auth');
-
-// Route::group([ 'middleware' => ['auth'], 'prefix' => 'admin' ], function() {
-//     Route::get('static-value/list', 'Admin\StaticValueController@index');
-//     Route::post('static-value/save', 'Admin\StaticValueController@save');
-
-//     Route::view('report/search-keyword', 'admin.report.search-keyword');
-//     Route::post('report/search-keyword', 'Admin\ReportController@searchKeyword');
-// });
-
 $domain = '{admin}.' . config('app.url');
 Route::domain($domain)->group(function() {
     
@@ -31,6 +19,9 @@ Route::domain($domain)->group(function() {
 
     Route::group([ 'middleware' => ['auth'] ], function() {
         Route::view('/dashboard', 'admin.dashboard');
+
+        Route::get('category/list', 'Admin\CategoryController@index');
+        Route::post('category/update-order', 'Admin\CategoryController@updateOrder');
         
         Route::get('static-value/list', 'Admin\StaticValueController@index');
         Route::post('static-value/save', 'Admin\StaticValueController@save');

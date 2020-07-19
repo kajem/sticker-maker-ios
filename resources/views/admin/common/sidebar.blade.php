@@ -30,6 +30,23 @@
               </p>
             </a>
           </li>
+          <li class="nav-item has-treeview {{ Request::is('/category/*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link ">
+                <i class="fas fa-object-group"></i>
+              <p>
+                Category
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('/category/list')}}" class="nav-link {{ Request::is('/category/list') ? 'active' : '' }}">
+                  <i class="fas fa-list"></i>
+                  <p>List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="{{url('/static-value/list')}}" class="nav-link {{ Request::is('static-value/list') ? 'active' : '' }}"">
               <i class="fas fa-cogs"></i>
@@ -38,8 +55,6 @@
               </p>
             </a>
           </li>
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview {{ Request::is('/report/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link ">
                 <i class="fas fa-table"></i>
