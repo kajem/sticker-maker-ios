@@ -21,7 +21,9 @@ Route::domain($domain)->group(function() {
         Route::view('/dashboard', 'admin.dashboard');
 
         Route::get('category/list', 'Admin\CategoryController@index');
+        Route::get('category/{id}', 'Admin\CategoryController@details');
         Route::post('category/update-order', 'Admin\CategoryController@updateOrder');
+        Route::post('category/update-item-order', 'Admin\CategoryController@updateItemOrder');
         
         Route::get('static-value/list', 'Admin\StaticValueController@index');
         Route::post('static-value/save', 'Admin\StaticValueController@save');
