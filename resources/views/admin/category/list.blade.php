@@ -8,7 +8,7 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-12">
-        <h1 class="m-0 text-dark">Category List</h1>
+        <h1 class="m-0 text-dark">Category</h1>
         </div><!-- /.col -->
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -21,6 +21,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Category List <small>(You can sort the categories by dragging up and down)</small></h3><br>
+                </div>
                 <div class="card-body">
                     <ul class="sort_category list-group"  id="sortable">
                         @foreach ($categories as $category)

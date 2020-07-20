@@ -11,7 +11,7 @@ use App\ItemToCategory;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::select('id', 'name', 'items', 'stickers')->where('type', 'general')->orderBy('sort', 'asc')->get();
+        $categories = Category::select('id', 'name', 'items', 'stickers', 'sort2')->where('type', 'general')->orderBy('sort', 'asc')->get();
         return view('admin.category.list')->with(['categories' => $categories]);
     }
 
