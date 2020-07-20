@@ -22,7 +22,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Category List <small>(You can sort the categories by dragging up and down)</small></h3><br>
+                    <h3 class="card-title">Category List <small>(You may sort the categories by dragging up and down)</small></h3><br>
                 </div>
                 <div class="card-body">
                     <ul class="sort_category list-group"  id="sortable">
@@ -65,7 +65,7 @@
     	   $.ajax({
               url:'{{url("category/update-order")}}',
               method:'POST',
-              data:{ids: idString, sort_field: '$sort_field'},
+              data:{ids: idString, sort_field: '{{$sort_field}}'},
               success:function(){
               }
            })

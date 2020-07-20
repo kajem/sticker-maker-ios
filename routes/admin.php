@@ -21,6 +21,8 @@ Route::domain($domain)->group(function() {
         Route::get('category/list', 'Admin\CategoryController@index');
         Route::get('category/list/sort2', 'Admin\CategoryController@orderCategoryBySort2Field');
         Route::get('category/{id}', 'Admin\CategoryController@details');
+        Route::get('category/{id}/edit', 'Admin\CategoryController@edit');
+        Route::post('category/save', 'Admin\CategoryController@save');
         Route::post('category/update-order', 'Admin\CategoryController@updateOrder');
         Route::post('category/update-item-order', 'Admin\CategoryController@updateItemOrder');
         

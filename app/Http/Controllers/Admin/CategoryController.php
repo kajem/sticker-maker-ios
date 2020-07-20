@@ -11,7 +11,7 @@ use App\ItemToCategory;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::select('id', 'name', 'items', 'stickers', 'sort2')->where('type', 'general')->orderBy('sort', 'asc')->get();
+        $categories = Category::select('id', 'name', 'items', 'stickers')->where('type', 'general')->orderBy('sort', 'asc')->get();
         $data = [
             'title' => 'Category',
             'categories' => $categories,
@@ -21,7 +21,7 @@ class CategoryController extends Controller
     }
 
     public function orderCategoryBySort2Field(){
-        $categories = Category::select('id', 'name', 'items', 'stickers', 'sort2')->where('type', 'general')->orderBy('sort2', 'asc')->get();
+        $categories = Category::select('id', 'name', 'items', 'stickers')->where('type', 'general')->orderBy('sort2', 'asc')->get();
         $data = [
             'title' => 'Category ordering by Sort2 field',
             'categories' => $categories,
@@ -59,7 +59,7 @@ class CategoryController extends Controller
                     $category->sort = $sortOrder;
                 else
                     $category->sort2 = $sortOrder;
-                    
+
                 $category->save();
             }
             return parent::successOutput([], 'Order updated successfully.');
@@ -75,5 +75,25 @@ class CategoryController extends Controller
             }
             return parent::successOutput([], 'Order updated successfully.');
         }
+    }
+
+    public function edit($id){
+        $category = Category::find($id);
+        $data = [
+            'title' => 'Editing category: '.$category->name,
+            'category' => $category
+        ];
+        return view('admin.category.form')->with($data);
+    }
+
+    public function save(Request $request){
+        $data = $request->all();
+        unset($data['_token']);
+        unset($data['id']);
+        unset($data['q']);
+
+        Category::where('id', $request->input('id'))->update($data);
+
+        return redirect()->back()->with('success', 'Category saved successfully.');
     }
 }

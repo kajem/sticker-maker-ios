@@ -24,64 +24,60 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">General Info</h3>
+                </div>
                 <div class="card-body">
-                    <div class="card-header">
-                        <h3 class="card-title font-weight-bold">General Info</h3><br>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>Name: </td>
-                                    <td>{{$category->name}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Packs: </td>
-                                    <td>{{$category->items}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Stickers: </td>
-                                    <td>{{$category->stickers}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Version: </td>
-                                    <td>{{$category->version}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Description: </td>
-                                    <td>{{$category->text}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Name: </td>
+                                <td>{{$category->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Packs: </td>
+                                <td>{{$category->items}}</td>
+                            </tr>
+                            <tr>
+                                <td>Stickers: </td>
+                                <td>{{$category->stickers}}</td>
+                            </tr>
+                            <tr>
+                                <td>Version: </td>
+                                <td>{{$category->version}}</td>
+                            </tr>
+                            <tr>
+                                <td>Description: </td>
+                                <td>{{$category->text}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Packs <small>(You may sort the packs by dragging up and down)</small></h3>
+                </div>
                 <div class="card-body">
-                    <div class="card-header">
-                        <h3 class="card-title font-weight-bold">Packs <small>(You can sort the packs by dragging up and down)</small></h3><br>
-                    </div>
-                    <div class="card-body">
-                        <ul class="sort_item list-group"  id="sortable">
-                            @if (!empty($items))
-                            <input type="hidden" name="category_id" id="category_id" value="{{$category->id}}"/>
-                            @foreach ($items as $item)
-                            <li class="list-group-item" data-id="{{$item->id}}">
-                                <div class="drag-item d-block">
-                                    <i class="fas fa-sort"></i> &nbsp;&nbsp;
-                                    {{$item->name}} 
-                                    (<small>
-                                        <strong>Code: </strong>{{$item->code}},
-                                        <strong> Stickers: </strong>{{$item->total_sticker}}
-                                    </small>)
-                                </div>
-                            </li>
-                            @endforeach
-                            @endif
-                        </ul>
-                    </div>
+                    <ul class="sort_item list-group"  id="sortable">
+                        @if (!empty($items))
+                        <input type="hidden" name="category_id" id="category_id" value="{{$category->id}}"/>
+                        @foreach ($items as $item)
+                        <li class="list-group-item" data-id="{{$item->id}}">
+                            <div class="drag-item d-block">
+                                <i class="fas fa-sort"></i> &nbsp;&nbsp;
+                                {{$item->name}} 
+                                (<small>
+                                    <strong>Code: </strong>{{$item->code}},
+                                    <strong> Stickers: </strong>{{$item->total_sticker}}
+                                </small>)
+                            </div>
+                        </li>
+                        @endforeach
+                        @endif
+                    </ul>
                 </div>
             </div>
         </div>
