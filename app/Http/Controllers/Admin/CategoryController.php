@@ -12,7 +12,22 @@ class CategoryController extends Controller
 {
     public function index(){
         $categories = Category::select('id', 'name', 'items', 'stickers', 'sort2')->where('type', 'general')->orderBy('sort', 'asc')->get();
-        return view('admin.category.list')->with(['categories' => $categories]);
+        $data = [
+            'title' => 'Category',
+            'categories' => $categories,
+            'order_save_url' => url('category/update-order')
+        ];
+        return view('admin.category.list')->with($data);
+    }
+
+    public function orderCategoryBySort2Field(){
+        $categories = Category::select('id', 'name', 'items', 'stickers', 'sort2')->where('type', 'general')->orderBy('sort2', 'asc')->get();
+        $data = [
+            'title' => 'Category ordering by Sort2 field',
+            'categories' => $categories,
+            'order_save_url' => url('category/update-order-by-sort2')
+        ];
+        return view('admin.category.list')->with($data);
     }
 
     public function details($id){
@@ -40,6 +55,19 @@ class CategoryController extends Controller
             foreach($arr as $sortOrder => $id){
                 $category = Category::find($id);
                 $category->sort = $sortOrder;
+                $category->save();
+            }
+            return parent::successOutput([], 'Order updated successfully.');
+        }
+    }
+
+    public function updateOrderBySort2Field(Request $request){
+        if($request->has('ids')){
+            $arr = explode(',',$request->input('ids'));
+            
+            foreach($arr as $sortOrder => $id){
+                $category = Category::find($id);
+                $category->sort2 = $sortOrder;
                 $category->save();
             }
             return parent::successOutput([], 'Order updated successfully.');

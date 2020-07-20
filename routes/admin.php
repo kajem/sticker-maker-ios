@@ -13,16 +13,16 @@
 
 $domain = '{admin}.' . config('app.url');
 Route::domain($domain)->group(function() {
-    
-
     Route::redirect('/', '/login');
 
     Route::group([ 'middleware' => ['auth'] ], function() {
         Route::view('/dashboard', 'admin.dashboard');
 
         Route::get('category/list', 'Admin\CategoryController@index');
+        Route::get('category/list/sort2', 'Admin\CategoryController@orderCategoryBySort2Field');
         Route::get('category/{id}', 'Admin\CategoryController@details');
         Route::post('category/update-order', 'Admin\CategoryController@updateOrder');
+        Route::post('category/update-order-by-sort2', 'Admin\CategoryController@updateOrderBySort2Field');
         Route::post('category/update-item-order', 'Admin\CategoryController@updateItemOrder');
         
         Route::get('static-value/list', 'Admin\StaticValueController@index');

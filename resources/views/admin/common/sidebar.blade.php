@@ -25,14 +25,12 @@
           <li class="nav-item">
             <a href="{{url('/dashboard')}}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}"">
               <i class="fas fa-th"></i>
-              <p>
-                Dashboard
-              </p>
+              <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item has-treeview {{ Request::is('/category/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link ">
-                <i class="fas fa-object-group"></i>
+              <i class="fas fa-object-group"></i>
               <p>
                 Category
                 <i class="right fas fa-angle-left"></i>
@@ -45,14 +43,18 @@
                   <p>List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('/category/list/sort2')}}" class="nav-link {{ Request::is('/category/list/sort2') ? 'active' : '' }}">
+                  <i class="fas fa-list"></i>
+                  <p>Sort 2</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="{{url('/static-value/list')}}" class="nav-link {{ Request::is('static-value/list') ? 'active' : '' }}"">
               <i class="fas fa-cogs"></i>
-              <p>
-                Static Values
-              </p>
+              <p>Static Values</p>
             </a>
           </li>
           <li class="nav-item has-treeview {{ Request::is('/report/*') ? 'menu-open' : '' }}">

@@ -8,7 +8,7 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-12">
-        <h1 class="m-0 text-dark">Category</h1>
+        <h1 class="m-0 text-dark">{{$title}}</h1>
         </div><!-- /.col -->
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -62,7 +62,7 @@
     	   $.ajaxSetup({ headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'}});
     		
     	   $.ajax({
-              url:'{{url('/category/update-order')}}',
+              url:'{{$order_save_url}}',
               method:'POST',
               data:{ids: idString},
               success:function(){

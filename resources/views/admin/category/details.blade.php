@@ -48,10 +48,6 @@
                                     <td>{{$category->version}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Sort 2: </td>
-                                    <td>{{$category->sort2}}</td>
-                                </tr>
-                                <tr>
                                     <td>Description: </td>
                                     <td>{{$category->text}}</td>
                                 </tr>
