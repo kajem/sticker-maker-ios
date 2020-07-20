@@ -65,6 +65,7 @@ class ItemController extends Controller
             $categories = $categories->limit($category_limit);
         }
         $categories = $categories->where('type', 'general');
+        $categories = $categories->where('status', 1);
         $categories = $categories->orderBy('sort', 'asc');
         $categories = $categories->get();
 
@@ -105,6 +106,7 @@ class ItemController extends Controller
                     $category_lists = $category_lists->limit($category_list_limit);
                 }
                 $category_lists = $category_lists->where('type', 'general');
+                $category_lists = $category_lists->where('status', 1);
                 $category_lists = $category_lists->orderBy('sort2', 'asc');
                 $category_lists = $category_lists->get();
                 if(!$category_lists->isEmpty()){
@@ -147,6 +149,7 @@ class ItemController extends Controller
         $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.stickers', 'items.code', 'items.author', 'items.is_premium');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
         $items = $items->where('item_to_categories.category_id', $category_id);
+        $items = $items->where('items.status', 1);
         if(!empty($item_limit)){
             $items = $items->offset(0);
             $items = $items->limit($item_limit);
@@ -192,7 +195,7 @@ class ItemController extends Controller
             $category_id = $category->id;
         }
         
-        $category = Category::find($category_id);
+        $category = Category::where('status', 1)->find($category_id);
         if(empty($category))
             return $this->errorOutput('Category not found.');
 
@@ -220,7 +223,7 @@ class ItemController extends Controller
             return $this->successOutput(unserialize(Redis::get($key)));
         }
 
-        $item = Item::where('code', $code)->first();
+        $item = Item::where('code', $code)->where('status', 1)->first();
         if(empty($item->id))
             return $this->errorOutput('Item not found.');
 
@@ -306,6 +309,7 @@ class ItemController extends Controller
         $category_id = !empty($category->id) ? $category->id : 0;
         $items = Item::select('id', 'name', 'thumb', 'stickers', 'code', 'author', 'is_premium')
                       ->where('name','LIKE','%'.$request->q.'%')
+                      ->where('status', 1)
                       ->where('category_id', '!=', $category_id)->get();
         $data = [];
         if(!$items->isEmpty()){
@@ -357,7 +361,11 @@ class ItemController extends Controller
             return $this->successOutput(unserialize(Redis::get($key)));
         }
         
-        $categories = Category::select('id', 'name', 'text', 'items', 'stickers')->where('type', 'general')->orderBy('sort2', 'asc')->get();
+        $categories = Category::select('id', 'name', 'text', 'items', 'stickers')
+        ->where('type', 'general')
+        ->where('status', 1)
+        ->orderBy('sort2', 'asc')
+        ->get();
         $data = [];
         if(!$categories->isEmpty()){
             foreach($categories as $category){
