@@ -11,7 +11,7 @@
             <h1 class="m-0 text-dark">Category: {{$category->name}}</h1>
         </div><!-- /.col -->
         <div class="col-sm-6 text-right">
-            <a href="{{url('category/list')}}" class="btn btn-primary">Back to category list</a>
+            <a href="{{url()->previous()}}" class="btn btn-primary">Back to category list</a>
         </div><!-- /.col -->
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->

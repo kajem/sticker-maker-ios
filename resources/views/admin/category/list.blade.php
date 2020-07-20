@@ -36,6 +36,7 @@
                                     <strong> Stickers: </strong>{{$category->stickers}}
                                 </small>)
 
+                                <a href="{{url('category/'.$category->id)}}/edit" class="float-right ml-3" title="Eid"><i class="fas fa-edit"></i></a>
                                 <a href="{{url('category/'.$category->id)}}" class="float-right" title="View Details"><i class="fas fa-eye"></i></a>
                             </div>
                         </li>
@@ -62,9 +63,9 @@
     	   $.ajaxSetup({ headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'}});
     		
     	   $.ajax({
-              url:'{{$order_save_url}}',
+              url:'{{url("category/update-order")}}',
               method:'POST',
-              data:{ids: idString},
+              data:{ids: idString, sort_field: '$sort_field'},
               success:function(){
               }
            })

@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Category',
             'categories' => $categories,
-            'order_save_url' => url('category/update-order')
+            'sort_field' => 'sort'
         ];
         return view('admin.category.list')->with($data);
     }
@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Category ordering by Sort2 field',
             'categories' => $categories,
-            'order_save_url' => url('category/update-order-by-sort2')
+            'sort_field' => 'sort2'
         ];
         return view('admin.category.list')->with($data);
     }
@@ -54,20 +54,12 @@ class CategoryController extends Controller
             
             foreach($arr as $sortOrder => $id){
                 $category = Category::find($id);
-                $category->sort = $sortOrder;
-                $category->save();
-            }
-            return parent::successOutput([], 'Order updated successfully.');
-        }
-    }
 
-    public function updateOrderBySort2Field(Request $request){
-        if($request->has('ids')){
-            $arr = explode(',',$request->input('ids'));
-            
-            foreach($arr as $sortOrder => $id){
-                $category = Category::find($id);
-                $category->sort2 = $sortOrder;
+                if( $request->input('sort_field') == 'sort')
+                    $category->sort = $sortOrder;
+                else
+                    $category->sort2 = $sortOrder;
+                    
                 $category->save();
             }
             return parent::successOutput([], 'Order updated successfully.');
