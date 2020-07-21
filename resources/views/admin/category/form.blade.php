@@ -23,7 +23,7 @@
     <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card card-warning">
+            <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">General Info</h3>
                 </div>
