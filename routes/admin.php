@@ -16,7 +16,7 @@ Route::domain($domain)->group(function() {
     Route::redirect('/', '/login');
 
     Route::group([ 'middleware' => ['auth'] ], function() {
-        Route::view('/dashboard', 'admin.dashboard');
+        Route::get('/dashboard', 'Admin\DashboardController@index');
 
         Route::get('category/list', 'Admin\CategoryController@index');
         Route::get('category/list/sort2', 'Admin\CategoryController@orderCategoryBySort2Field');

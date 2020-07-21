@@ -23,14 +23,14 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{$category_count}}</h3>
   
                   <p>Categories</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{url('category/list')}}" class="small-box-footer">All categories <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -38,7 +38,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{$item_count}}</h3>
   
                   <p>Packs</p>
                 </div>
@@ -53,14 +53,14 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{$search_keyword_count}}</h3>
   
                   <p>Search Keywords</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{url('report/search-keyword')}}" class="small-box-footer">All keywords <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -68,7 +68,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{$emoji_item_count}}</h3>
   
                   <p>Emoji</p>
                 </div>
