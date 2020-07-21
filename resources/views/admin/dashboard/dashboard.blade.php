@@ -70,7 +70,7 @@
                 <div class="inner">
                   <h3>{{$emoji_item_count}}</h3>
   
-                  <p>Emoji</p>
+                  <p>Emoji Packs</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>
