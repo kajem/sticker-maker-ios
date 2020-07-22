@@ -222,6 +222,7 @@ class ItemController extends Controller
         if(empty($category))
             return $this->errorOutput('Category not found.');
 
+
         $data = [
             'id'    => $category->id,
             'name'  => $category->name,
