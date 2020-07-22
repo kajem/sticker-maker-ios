@@ -21,6 +21,7 @@ Route::group(['prefix' => 'item'], function (){
     Route::get('/get-categories', 'Api\ItemController@getCategories');
     Route::get('/get-category-and-items', 'Api\ItemController@getCategoryAndItems')->name('item.get-category-and-items');
     Route::get('/category/{id}', 'Api\ItemController@getItemsByCategoryId')->name('item.category.id');
+    Route::get('/category/emoji', 'Api\ItemController@getEmojiItems');
     Route::get('/{code}/stickers', 'Api\ItemController@getStickersByItemId')->name('item.id.stickers');
     Route::get('{code}/image/{file_name}', 'Api\ItemController@getImage')->name('item.image');
     Route::get('search', 'Api\ItemController@search');
