@@ -24,7 +24,8 @@ class DashboardController extends Controller
             'category_count' => $category_count,
             'emoji_item_count' => $emoji_item_count,
             'item_count' => $item_count,
-            'search_keyword_count' => $search_keyword_count
+            'search_keyword_count' => $search_keyword_count,
+            'emoji_id' => $emoji_id
         ];
         
         return view('admin.dashboard.dashboard')->with($data);

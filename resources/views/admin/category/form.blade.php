@@ -49,13 +49,13 @@
                         <div class="form-group row">
                             <label for="items" class="col-sm-2 col-form-label">Items</label>
                             <div class="col-sm-10">
-                            <input type="number" class="form-control" id="items" name="items" value="{{!empty($category->items) ? $category->items : old('items')}}">
+                            <input type="number" class="form-control" id="items" name="items" value="{{!empty($category->items) ? $category->items : old('items')}}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="stickers" class="col-sm-2 col-form-label">Stickers</label>
                             <div class="col-sm-10">
-                            <input type="number" class="form-control" id="stickers" name="stickers" value="{{!empty($category->stickers) ? $category->stickers : old('stickers')}}">
+                            <input type="number" class="form-control" id="stickers" name="stickers" value="{{!empty($category->stickers) ? $category->stickers : old('stickers')}}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">

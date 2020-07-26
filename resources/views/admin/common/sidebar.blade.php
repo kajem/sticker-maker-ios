@@ -28,7 +28,7 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item has-treeview {{ Request::is('/category/*') ? 'menu-open' : '' }}">
+          <li class="nav-item has-treeview {{ Request::is('category/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link ">
               <i class="fas fa-object-group"></i>
               <p>
@@ -38,15 +38,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('/category/list')}}" class="nav-link {{ Request::is('/category/list') ? 'active' : '' }}">
+                <a href="{{url('/category/list')}}" class="nav-link {{ Request::is('category/list') ? 'active' : '' }}">
                   <i class="fas fa-list"></i>
                   <p>List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('/category/list/sort2')}}" class="nav-link {{ Request::is('/category/list/sort2') ? 'active' : '' }}">
+                <a href="{{url('/category/list/sort2')}}" class="nav-link {{ Request::is('category/list/sort2') ? 'active' : '' }}">
                   <i class="fas fa-list"></i>
                   <p>Sort 2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/category/22')}}" class="nav-link {{ Request::is('category/22') ? 'active' : '' }}">
+                  <i class="fas fa-surprise"></i>
+                  <p>Emoji</p>
                 </a>
               </li>
             </ul>
@@ -57,7 +63,7 @@
               <p>Static Values</p>
             </a>
           </li>
-          <li class="nav-item has-treeview {{ Request::is('/report/*') ? 'menu-open' : '' }}">
+          <li class="nav-item has-treeview {{ Request::is('report/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link ">
                 <i class="fas fa-table"></i>
               <p>

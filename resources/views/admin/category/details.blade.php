@@ -26,6 +26,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">General Info</h3>
+                    <a href="{{url('category/'.$category->id)}}/edit" class="float-right ml-3" title="Eid"><i class="fas fa-edit"></i></a>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">
