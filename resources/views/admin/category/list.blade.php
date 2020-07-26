@@ -36,7 +36,7 @@
                                     <strong> Stickers: </strong>{{$category->stickers}}
                                 </small>)
 
-                                <a href="{{url('category/'.$category->id)}}/edit" class="float-right ml-3" title="Eid"><i class="fas fa-edit"></i></a>
+                                <a href="{{url('category/'.$category->id)}}/edit" class="float-right ml-3" title="Edit"><i class="fas fa-edit"></i></a>
                                 <a href="{{url('category/'.$category->id)}}" class="float-right" title="View Details"><i class="fas fa-eye"></i></a>
                             </div>
                         </li>
