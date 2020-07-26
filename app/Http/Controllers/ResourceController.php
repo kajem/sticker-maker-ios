@@ -39,7 +39,7 @@ class ResourceController extends Controller
 
         $this->processCategories($categories, $root_folder);
         
-        Category::where('name', 'Emoji')->update(['type' => 'emoji']);
+        //Category::where('name', 'Emoji')->update(['type' => 'emoji']);
 
         $category = Category::all();
 
@@ -47,7 +47,7 @@ class ResourceController extends Controller
 
         $this->createZipFiles();  //Creating thumb.zip and main.zip files for all items/packs
 
-        $this->createEmojiZipFiles();
+        //$this->createEmojiZipFiles();
 
         exit;
     }
@@ -80,10 +80,17 @@ class ResourceController extends Controller
 
             //START: copy category thumb images
             $category_thumbs = Storage::files($category);
+            $storage_path = storage_path().'/app/';
             if(!empty($category_thumbs)){
                 $root_category_folder = 'public/category-thumbs/';
-                Storage::copy($category_thumbs[0], $root_category_folder.'cat_'.$category_id.'_tmb.png');
-                Storage::copy($category_thumbs[1], $root_category_folder.'cat_'.$category_id.'_v_tmb.png');
+
+                $cat_thumb_1_path = $root_category_folder.'cat_'.$category_id.'_tmb.png';
+                $compressed_png_content1 = $this->compressPNG( $storage_path.$category_thumbs[0]); //Getting compressed png content
+                Storage::disk('local')->put($cat_thumb_1_path, $compressed_png_content1); //Writing compressed png
+
+                $cat_thumb_2_path = $root_category_folder.'cat_'.$category_id.'_v_tmb.png';
+                $compressed_png_content2 = $this->compressPNG( $storage_path.$category_thumbs[1]); //Getting compressed png content
+                Storage::disk('local')->put($cat_thumb_2_path, $compressed_png_content2); //Writing compressed png
             }
             //END: copy category thumb images
             
@@ -98,6 +105,7 @@ class ResourceController extends Controller
     private function processItems($items, $category, $category_id){
         $date = date('Y-m-d H:i:s');
         $total_stickers = 0;
+        $storage_path = storage_path().'/app/';
         foreach($items as $item){
             $item_temp = str_replace($category."/", "", $item);
 
@@ -115,7 +123,9 @@ class ResourceController extends Controller
                 $thumb_img_arr = explode(".", $thumb[0]);
                 $extension = end($thumb_img_arr);
                 $thumb_path = 'public/items/'.$code.'/'.$code.'.'.$extension;
-                Storage::copy($thumb[0], $thumb_path);
+                echo $storage_path.$thumb[0];exit;
+                $compressed_png_content3 = $this->compressPNG($storage_path.$thumb[0]); //Getting compressed png content
+                Storage::disk('local')->put($thumb_path, $compressed_png_content3); //Writing compressed png
             }
 
             $sticker_names = [];
@@ -158,10 +168,13 @@ class ResourceController extends Controller
     private function processStickers2($stickers, $code){
         $sticker_path = 'public/items/'.$code.'/';
         $sticker_names = [];
+        $storage_path = storage_path().'/app/';
         foreach($stickers as $sticker){
             $sticker_path_arr = explode("/", $sticker);
-            $file_name = str_replace(" ", "-", trim(end($sticker_path_arr)));
-            Storage::copy($sticker, $sticker_path.$file_name);
+            $file_name = str_replace([" ", "(", ")"], ["-", "", ""], trim(end($sticker_path_arr)));
+            //Storage::copy($sticker, $sticker_path.$file_name);
+            $compressed_png_content4 = $this->compressPNG($storage_path.$sticker); //Getting compressed png content
+            Storage::disk('local')->put($sticker_path.$file_name, $compressed_png_content4); //Writing compressed png
             $sticker_names[] = $file_name;
         }
         return $sticker_names;
@@ -248,12 +261,12 @@ class ResourceController extends Controller
         $storage_path = storage_path().'/app/';
         $unsuccessful_list = '';
         foreach($items as $item){
-            $stickers = unserialize($item->stickers);
+            //$stickers = unserialize($item->stickers);
             $thumb_arr = explode("/", $item->thumb);
             $item_thumb_name = end($thumb_arr);
-            if(!empty($thumb_arr[3])){
-                $stickers[] = $thumb_arr[3];
-            }
+            // if(!empty($thumb_arr[3])){
+            //     $stickers[] = $thumb_arr[3];
+            // }
 
             $item_root_folder = $root_folder.$item->code."/";
 
