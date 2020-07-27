@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                    <button type="button" class="close text-white" data-dismiss="alert">×</button>
                     <strong>{{ $message }}</strong>
             </div>
         </div>
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="alert alert-danger alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                    <button type="button" class="close text-white" data-dismiss="alert">×</button>
                     <strong>{{ $message }}</strong>
             </div>
         </div>

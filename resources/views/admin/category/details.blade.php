@@ -31,6 +31,10 @@
                                 <td>{{$category->version}}</td>
                             </tr>
                             <tr>
+                                <td>Type: </td>
+                                <td>{{ucfirst($category->type)}}</td>
+                            </tr>
+                            <tr>
                                 <td>Description: </td>
                                 <td>{{$category->text}}</td>
                             </tr>
@@ -52,7 +56,7 @@
                         <li class="list-group-item" data-id="{{$item->id}}">
                             <div class="drag-item d-block">
                                 <i class="fas fa-sort"></i> &nbsp;&nbsp;
-                                {{$item->name}} 
+                                {{$item->name}}
                                 (<small>
                                     <strong>Code: </strong>{{$item->code}},
                                     <strong> Stickers: </strong>{{$item->total_sticker}}

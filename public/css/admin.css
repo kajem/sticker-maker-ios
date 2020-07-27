@@ -13,3 +13,6 @@
     min-height: 30px;
     list-style-type: none;
 }
+.alert .close{
+    opacity: 1;
+}
