@@ -10,13 +10,14 @@ use App\SearchKeyword;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $category_count = Category::where('type', 'general')->count();
 
         $emoji = Category::select('id')->where('type', 'emoji')->first();
         $emoji_id = !empty($emoji->id) ? $emoji->id : 0;
         $emoji_item_count = Item::where('category_id', '=', $emoji_id)->count();
-        
+
         $item_count = Item::count();
         $search_keyword_count = SearchKeyword::count();
 
@@ -27,7 +28,7 @@ class DashboardController extends Controller
             'search_keyword_count' => $search_keyword_count,
             'emoji_id' => $emoji_id
         ];
-        
+
         return view('admin.dashboard.dashboard')->with($data);
 
     }

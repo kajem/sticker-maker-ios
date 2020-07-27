@@ -10,7 +10,8 @@ use App\ItemToCategory;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $categories = Category::select('id', 'name', 'items', 'stickers')->where('type', 'general')->orderBy('sort', 'asc')->get();
         $data = [
             'title' => 'Category',
@@ -20,7 +21,8 @@ class CategoryController extends Controller
         return view('admin.category.list')->with($data);
     }
 
-    public function orderCategoryBySort2Field(){
+    public function orderCategoryBySort2Field()
+    {
         $categories = Category::select('id', 'name', 'items', 'stickers')->where('type', 'general')->orderBy('sort2', 'asc')->get();
         $data = [
             'title' => 'Category ordering by Sort2 field',
@@ -30,7 +32,8 @@ class CategoryController extends Controller
         return view('admin.category.list')->with($data);
     }
 
-    public function details($id){
+    public function details($id)
+    {
         $category = Category::find($id);
 
         $items = Item::query();
@@ -48,14 +51,15 @@ class CategoryController extends Controller
         return view('admin.category.details')->with($data);
     }
 
-    public function updateOrder(Request $request){
-        if($request->has('ids')){
-            $arr = explode(',',$request->input('ids'));
-            
-            foreach($arr as $sortOrder => $id){
+    public function updateOrder(Request $request)
+    {
+        if ($request->has('ids')) {
+            $arr = explode(',', $request->input('ids'));
+
+            foreach ($arr as $sortOrder => $id) {
                 $category = Category::find($id);
 
-                if( $request->input('sort_field') == 'sort')
+                if ($request->input('sort_field') == 'sort')
                     $category->sort = $sortOrder;
                 else
                     $category->sort2 = $sortOrder;
@@ -65,28 +69,31 @@ class CategoryController extends Controller
             return parent::successOutput([], 'Order updated successfully.');
         }
     }
-    
-    public function updateItemOrder(Request $request){
-        if($request->has('ids')){
-            $arr = explode(',',$request->input('ids'));
-            
-            foreach($arr as $sortOrder => $id){
+
+    public function updateItemOrder(Request $request)
+    {
+        if ($request->has('ids')) {
+            $arr = explode(',', $request->input('ids'));
+
+            foreach ($arr as $sortOrder => $id) {
                 ItemToCategory::where('item_id', $id)->where('category_id', $request->input('category_id'))->update(['sort' => $sortOrder]);
             }
             return parent::successOutput([], 'Order updated successfully.');
         }
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $category = Category::find($id);
         $data = [
-            'title' => 'Editing category: '.$category->name,
+            'title' => 'Editing category: ' . $category->name,
             'category' => $category
         ];
         return view('admin.category.form')->with($data);
     }
 
-    public function save(Request $request){
+    public function save(Request $request)
+    {
         $data = $request->all();
         unset($data['_token']);
         unset($data['id']);

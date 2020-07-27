@@ -13,11 +13,11 @@ class ItemController extends Controller
         $items = Item::query();
         $items = $items->select('items.id', 'items.name', 'items.code', 'items.total_sticker', 'items.author', 'items.is_premium', 'items.status', 'items.category_id', 'items.updated_at', 'categories.name as category_name', 'categories.type as category_type');
 
-        if(!empty($request->get('search')['value'])){
-            $items = $items->where('items.name','LIKE','%'.$request->get('search')['value'].'%');
-            $items = $items->orWhere('items.code','LIKE','%'.$request->get('search')['value'].'%');
-            $items = $items->orWhere('items.author','LIKE','%'.$request->get('search')['value'].'%');
-            $items = $items->orWhere('categories.name','LIKE','%'.$request->get('search')['value'].'%');
+        if (!empty($request->get('search')['value'])) {
+            $items = $items->where('items.name', 'LIKE', '%' . $request->get('search')['value'] . '%');
+            $items = $items->orWhere('items.code', 'LIKE', '%' . $request->get('search')['value'] . '%');
+            $items = $items->orWhere('items.author', 'LIKE', '%' . $request->get('search')['value'] . '%');
+            $items = $items->orWhere('categories.name', 'LIKE', '%' . $request->get('search')['value'] . '%');
         }
 
         $items = $items->join('categories', 'categories.id', '=', 'items.category_id');
@@ -41,9 +41,10 @@ class ItemController extends Controller
     public function editView($id)
     {
         $item = Item::find($id);
-        if(empty($item)){
+        if (empty($item)) {
             return back()->with('error', 'Invalid action!');
         }
-        dd($item);exit;
+        dd($item);
+        exit;
     }
 }

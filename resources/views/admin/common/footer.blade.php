@@ -10,5 +10,6 @@
 
 <!-- Main Footer -->
 <footer class="main-footer text-center">
-    <strong>Copyright &copy; {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft Ltd</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft
+            Ltd</a>.</strong> All rights reserved.
 </footer>

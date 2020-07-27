@@ -8,10 +8,11 @@ use App\SearchKeyword;
 
 class ReportController extends Controller
 {
-    public function searchKeyword(Request $request){
+    public function searchKeyword(Request $request)
+    {
         $search_keywords = SearchKeyword::query();
         $search_keywords = $search_keywords->select('name', 'count', 'is_item_found', 'created_at');
-        $search_keywords = $search_keywords->where('name','LIKE','%'.$request->get('search')['value'].'%');
+        $search_keywords = $search_keywords->where('name', 'LIKE', '%' . $request->get('search')['value'] . '%');
 
         $total = $search_keywords->count();
 

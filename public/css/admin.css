@@ -2,17 +2,21 @@
     border-top-width: 1px;
     margin-bottom: 5px;
 }
-.list-group-item a:hover{
+
+.list-group-item a:hover {
     text-decoration: underline;
 }
-.drag-item{
+
+.drag-item {
     cursor: pointer;
 }
+
 .highlight {
     background: #f7e7d3;
     min-height: 30px;
     list-style-type: none;
 }
-.alert .close{
+
+.alert .close {
     opacity: 1;
 }
