@@ -1,4 +1,4 @@
-@extends('layouts.admin-template', ['pageTitle' => 'All Pack', 'showBackButton' => false])
+@extends('layouts.admin-template', ['pageTitle' => 'All Packs', 'showBackButton' => false])
 
 @section('content')
 <!-- Main content -->
@@ -14,7 +14,7 @@
                             <th scope="col">Name</th>
                             <th scope="col" class="text-center">Code</th>
                             <th scope="col" class="text-center">Total Sticker</th>
-                            <th scope="col">Category</th>
+                            <th scope="col">Category (Type)</th>
                             <th scope="col">Author</th>
                             <th scope="col" class="text-center">Premium</th>
                             <th scope="col" class="text-center">Status</th>
@@ -79,7 +79,7 @@
                 data: null,
                 name: 'categories.name',
                 render: function( data ){
-                    return '<a href="/category/'+data.category_id+'">' + data.category_name + '</a>';
+                    return '<a href="/category/'+data.category_id+'">' + data.category_name + '</a>' + ' (' + data.category_type.charAt(0).toUpperCase() + data.category_type.slice(1) + ')';
                 }
             },
             {
