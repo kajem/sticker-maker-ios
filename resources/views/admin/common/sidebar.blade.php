@@ -62,6 +62,13 @@
                                 <p>Emoji</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{url('/category/add')}}"
+                               class="nav-link {{ Request::is('category/add') ? 'active' : '' }}">
+                                <i class="fas fa-plus"></i>
+                                <p>Add New</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!--Item Menu-->

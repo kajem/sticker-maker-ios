@@ -1,4 +1,4 @@
-@extends('layouts.admin-template', ['pageTitle' => $title, 'showBackButton' => false])
+@extends('layouts.admin-template', ['pageTitle' => $title, 'backButtonText' => '<i class="fas fa-plus"></i> Add new category', 'backButtonURL' => url('category/add'), 'showBackButton' => true])
 
 @section('content')
     <!-- Main content -->

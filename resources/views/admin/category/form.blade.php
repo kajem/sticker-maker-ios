@@ -1,4 +1,4 @@
-@extends('layouts.admin-template', ['pageTitle' => $title, 'backButtonText' => 'Back to category list', 'backButtonURL' => url('category/list'), 'showBackButton' => true])
+@extends('layouts.admin-template', ['pageTitle' => !empty($title) ? $title : 'Add Category', 'backButtonText' => 'Back to category list', 'backButtonURL' => url('category/list'), 'showBackButton' => true])
 
 @section('content')
     <!-- Main content -->
@@ -13,16 +13,19 @@
                         <div class="card-body">
                             <form method="POST" action="{{url('category/save')}}">
                                 @csrf
-                                @if ($category->id)
+                                @if (!empty($category->id))
                                     <input type="hidden" name="id" value="{{$category->id}}">
                                 @endif
 
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                    <label for="name" class="col-sm-2 col-form-label">Name *</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name"
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                                                value="{{!empty($category->name) ? $category->name : old('name')}}"
                                                required>
+                                        @error('name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -33,26 +36,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="items" class="col-sm-2 col-form-label">Items</label>
-                                    <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="items" name="items"
-                                               value="{{!empty($category->items) ? $category->items : old('items')}}"
-                                               readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="stickers" class="col-sm-2 col-form-label">Stickers</label>
-                                    <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="stickers" name="stickers"
-                                               value="{{!empty($category->stickers) ? $category->stickers : old('stickers')}}"
-                                               readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label for="version" class="col-sm-2 col-form-label">Version</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="version" name="version"
+                                        <input type="number" class="form-control @error('version') is-invalid @enderror" id="version" name="version"
                                                value="{{!empty($category->version) ? $category->version : old('version')}}">
+                                        @error('version')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -61,8 +51,7 @@
                                         <select name="status" id="status" class="form-control">
                                             <option value="1" {{!empty($category->status) ? 'selected': ''}}>Active
                                             </option>
-                                            <option value="0" {{empty($category->status) ? 'selected': ''}}>Inctive
-                                            </option>
+                                            <option value="0" {{!empty($categor) && $category->status === 0 ? 'selected': ''}}>Inctive                                            </option>
                                         </select>
                                     </div>
                                 </div>

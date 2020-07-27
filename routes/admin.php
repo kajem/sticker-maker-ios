@@ -22,6 +22,7 @@ Route::domain($domain)->group(function() {
             Route::get('list', 'Admin\CategoryController@index');
             Route::get('list/sort2', 'Admin\CategoryController@orderCategoryBySort2Field');
             Route::get('{id}', 'Admin\CategoryController@details');
+            Route::view('add', 'admin.category.form');
             Route::get('{id}/edit', 'Admin\CategoryController@edit');
             Route::post('save', 'Admin\CategoryController@save');
             Route::post('update-order', 'Admin\CategoryController@updateOrder');
@@ -34,7 +35,7 @@ Route::domain($domain)->group(function() {
             Route::get('edit/{id}', 'Admin\ItemController@editView');
             Route::post('save', 'Admin\ItemController@save');
         });
-        
+
         Route::group(['prefix' => 'static-value'], function (){
             Route::get('list', 'Admin\StaticValueController@index');
             Route::post('save', 'Admin\StaticValueController@save');
@@ -46,7 +47,7 @@ Route::domain($domain)->group(function() {
         });
 
         Route::get('cache-clear', 'WelcomeController@cacheClear');
-        
+
         Route::group(['prefix' => 'resource'], function (){
             Route::get('upload', 'ResourceController@upload')->name('resource.upload');
             Route::get('upload/new/category', 'ResourceController@uploadNewCategory')->name('resource.upload-new-category');
@@ -57,5 +58,5 @@ Route::domain($domain)->group(function() {
 
     });
 
-    
+
 });

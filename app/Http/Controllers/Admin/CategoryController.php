@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Item;
@@ -94,13 +96,30 @@ class CategoryController extends Controller
 
     public function save(Request $request)
     {
+        $rules = ['name' => 'required'];
+        if(!empty($request->input('version')))
+            $rules['version'] = 'numeric';
+        Validator::make($request->all(), $rules)->validate();
+
         $data = $request->all();
         unset($data['_token']);
         unset($data['id']);
         unset($data['q']);
+        if(!empty($request->input('id'))){
+            Category::where('id', $request->input('id'))->update($data);
+            return redirect()->back()->with('success', 'Category has been updated successfully.');
+        }
+        else
+        {
+            $order = Category::max('sort');
+            $data['sort'] = $order + 1;
+            $data['sort2'] = $order + 1;
+            $data['created_by'] = Auth::user()->id;
+            $data['version'] = empty($request->input('version')) ? 1 : $request->input('version');
+            Category::create($data);
+            return redirect(url('category/list'))->with('success', 'Category has been created successfully.');
+        }
 
-        Category::where('id', $request->input('id'))->update($data);
 
-        return redirect()->back()->with('success', 'Category saved successfully.');
     }
 }

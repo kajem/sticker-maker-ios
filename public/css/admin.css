@@ -20,3 +20,11 @@
 .alert .close {
     opacity: 1;
 }
+
+.nav-sidebar .nav-treeview li{
+    padding-left: 10px;
+}
+
+.nav-sidebar .nav-treeview li a{
+    font-size: 15px;
+}

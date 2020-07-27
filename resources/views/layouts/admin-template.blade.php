@@ -38,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div><!-- /.col -->
                     <div class="col-sm-4 text-right">
                         @if($showBackButton)
-                            <a href="{{$backButtonURL}}" class="btn btn-primary">{{$backButtonText}}</a>
+                            <a href="{{$backButtonURL}}" class="btn btn-primary">{!! $backButtonText  !!}</a>
                         @endif
                     </div><!-- /.col -->
                 </div><!-- /.row -->
