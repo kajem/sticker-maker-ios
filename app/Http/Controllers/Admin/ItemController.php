@@ -44,7 +44,10 @@ class ItemController extends Controller
         if (empty($item)) {
             return back()->with('error', 'Invalid action!');
         }
-        dd($item);
-        exit;
+        $data = [
+            'title' => 'Editing item: ' . $item->name,
+            'item' => $item
+        ];
+        return view('admin.item.form')->with($data);
     }
 }
