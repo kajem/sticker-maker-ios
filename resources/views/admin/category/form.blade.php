@@ -1,23 +1,6 @@
-@extends('layouts.admin-template')
+@extends('layouts.admin-template', ['pageTitle' => $title, 'backButtonText' => 'Back to category list', 'backButtonURL' => url('category/list'), 'showBackButton' => true])
 
 @section('content')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-<!-- Content Header (Page header) -->
-<div class="content-header">
-    <div class="container-fluid">
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-0 text-dark">{{$title}}</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6 text-right">
-            <a href="{{url('category/list')}}" class="btn btn-primary">Back to category list</a>
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
-<!-- /.content-header -->
-@include('admin.common.notification')
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">

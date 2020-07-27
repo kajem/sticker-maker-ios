@@ -22,12 +22,14 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!--Dashboard Menu-->
           <li class="nav-item">
             <a href="{{url('/dashboard')}}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}"">
               <i class="fas fa-th"></i>
               <p>Dashboard</p>
             </a>
           </li>
+          <!--Category Menu-->
           <li class="nav-item has-treeview {{ Request::is('category/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link ">
               <i class="fas fa-object-group"></i>
@@ -51,18 +53,38 @@
               </li>
               <li class="nav-item">
                 <a href="{{url('/category/22')}}" class="nav-link {{ Request::is('category/22') ? 'active' : '' }}">
-                  <i class="fas fa-surprise"></i>
+                  <i class="far fa-smile-wink"></i>
                   <p>Emoji</p>
                 </a>
               </li>
             </ul>
           </li>
+          <!--Item Menu-->
+          <li class="nav-item has-treeview {{ Request::is('item/*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link ">
+              <i class="far fa-grimace"></i>
+              <p>
+                Pack
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('item/list')}}" class="nav-link {{ Request::is('item/list') ? 'active' : '' }}">
+                  <i class="fas fa-list"></i>
+                  <p>List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!--Static Value Menu-->
           <li class="nav-item">
             <a href="{{url('/static-value/list')}}" class="nav-link {{ Request::is('static-value/list') ? 'active' : '' }}"">
               <i class="fas fa-cogs"></i>
               <p>Static Values</p>
             </a>
           </li>
+          <!--Report Menu-->
           <li class="nav-item has-treeview {{ Request::is('report/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link ">
                 <i class="fas fa-table"></i>

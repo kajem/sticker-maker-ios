@@ -27,6 +27,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     @include('admin.common.header')
     @include('admin.common.sidebar')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-8">
+                    <h1 class="m-0 text-dark">{{$pageTitle}}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-4 text-right">
+                    @if($showBackButton)
+                    <a href="{{$backButtonURL}}" class="btn btn-primary">{{$backButtonText}}</a>
+                    @endif
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    @include('admin.common.notification')
     @yield('content')
     @include('admin.common.footer')
 
