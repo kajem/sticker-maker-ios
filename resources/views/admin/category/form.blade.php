@@ -11,7 +11,7 @@
                             <h3 class="card-title">General Info</h3>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{url('category/save')}}">
+                            <form method="POST" action="{{url('category/save')}}" enctype="multipart/form-data">
                                 @csrf
                                 @if (!empty($category->id))
                                     <input type="hidden" name="id" value="{{$category->id}}">
@@ -20,11 +20,12 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-2 col-form-label">Name *</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                               id="name" name="name"
                                                value="{{!empty($category->name) ? $category->name : old('name')}}"
                                                required>
                                         @error('name')
-                                        <div class="text-danger">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -36,12 +37,71 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="thumb" class="col-sm-2 col-form-label">Thumb</label>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                @php
+                                                    $thumb = url('/images/no-image-icon.png');
+                                                    if(!empty($category->thumb))
+                                                        $thumb = config('app.asset_base_url').'category-thumbs/'.$category->thumb;
+                                                @endphp
+                                                <img id="imgThumb" class="thumb-photo img-thumbnail" width="100"
+                                                     src="{{$thumb}}"
+                                                     alt="{{!empty($category->name) ? $category->name : ''}}">
+                                            </div>
+                                            <div class="col-sm-11">
+                                                <input type="file"
+                                                       class="form-control @error('thumb') is-invalid @enderror"
+                                                       onchange="readURL(this, '#imgThumb');"
+                                                       id="thumb" name="thumb" accept="image/png">
+                                                <small id="thumbHelpBlock" class="form-text text-muted">
+                                                    Only png image accepted.
+                                                </small>
+                                                @error('thumb')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="thumb" class="col-sm-2 col-form-label">Thumb (Landscape)</label>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                @php
+                                                    $thumb_v = url('/images/no-image-icon.png');
+                                                    if(!empty($category->thumb_v))
+                                                        $thumb_v = config('app.asset_base_url').'category-thumbs/'.$category->thumb_v;
+                                                @endphp
+                                                <img id="imgThumbV" class="thumb-photo img-thumbnail" width="100"
+                                                     src="{{$thumb_v}}"
+                                                     alt="{{!empty($category->name) ? $category->name : ''}}">
+                                            </div>
+                                            <div class="col-sm-11">
+                                                <input type="file"
+                                                       class="form-control @error('thumb_v') is-invalid @enderror"
+                                                       onchange="readURL(this, '#imgThumbV');"
+                                                       id="thumb_v" name="thumb_v" accept="image/png">
+                                                <small id="thumb_vHelpBlock" class="form-text text-muted">
+                                                    Only png image accepted.
+                                                </small>
+                                                @error('thumb_v')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="version" class="col-sm-2 col-form-label">Version</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control @error('version') is-invalid @enderror" id="version" name="version"
+                                        <input type="number" class="form-control @error('version') is-invalid @enderror"
+                                               id="version" name="version"
                                                value="{{!empty($category->version) ? $category->version : old('version')}}">
                                         @error('version')
-                                        <div class="text-danger">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -49,9 +109,8 @@
                                     <label for="status" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="status" id="status" class="form-control">
-                                            <option value="1" {{!empty($category->status) ? 'selected': ''}}>Active
-                                            </option>
-                                            <option value="0" {{!empty($categor) && $category->status === 0 ? 'selected': ''}}>Inctive                                            </option>
+                                            <option value="1" {{!empty($category->status) ? 'selected' : ''}}>Active</option>
+                                            <option value="0" {{!empty($category) && $category->status === 0 ? 'selected': ''}}>Inctive</option>
                                         </select>
                                     </div>
                                 </div>
@@ -71,4 +130,18 @@
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+    <script type="text/javascript">
+        function readURL(input, imgId) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    jQuery(imgId).attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection

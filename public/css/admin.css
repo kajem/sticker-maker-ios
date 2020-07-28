@@ -1,6 +1,7 @@
 #sortable .list-group-item {
     border-top-width: 1px;
     margin-bottom: 5px;
+    padding: 5px 10px;
 }
 
 .list-group-item a:hover {

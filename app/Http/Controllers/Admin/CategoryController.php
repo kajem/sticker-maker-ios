@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,8 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Category',
             'categories' => $categories,
-            'sort_field' => 'sort'
+            'sort_field' => 'sort',
+            'asset_base_url' => config('app.asset_base_url')
         ];
         return view('admin.category.list')->with($data);
     }
@@ -29,7 +31,8 @@ class CategoryController extends Controller
         $data = [
             'title' => 'Category ordering by Sort2 field',
             'categories' => $categories,
-            'sort_field' => 'sort2'
+            'sort_field' => 'sort2',
+            'asset_base_url' => config('app.asset_base_url')
         ];
         return view('admin.category.list')->with($data);
     }
@@ -96,7 +99,11 @@ class CategoryController extends Controller
 
     public function save(Request $request)
     {
-        $rules = ['name' => 'required'];
+        $rules = [
+            'name' => 'required',
+            'thumb' => 'mimes:png',
+            'thumb_v' => 'mimes:png'
+        ];
         if(!empty($request->input('version')))
             $rules['version'] = 'numeric';
         Validator::make($request->all(), $rules)->validate();
@@ -104,10 +111,12 @@ class CategoryController extends Controller
         $data = $request->all();
         unset($data['_token']);
         unset($data['id']);
+        unset($data['thumb']);
         unset($data['q']);
+
         if(!empty($request->input('id'))){
+            $category_id = $request->input('id');
             Category::where('id', $request->input('id'))->update($data);
-            return redirect()->back()->with('success', 'Category has been updated successfully.');
         }
         else
         {
@@ -116,10 +125,26 @@ class CategoryController extends Controller
             $data['sort2'] = $order + 1;
             $data['created_by'] = Auth::user()->id;
             $data['version'] = empty($request->input('version')) ? 1 : $request->input('version');
-            Category::create($data);
-            return redirect(url('category/list'))->with('success', 'Category has been created successfully.');
+            $category_id = Category::insertGetId($data);
         }
 
+        //Uploading thumb image to AWS S3 bucket
+        if(!empty($request->file('thumb'))){
+            $thumb_name = 'cat_'.$category_id.'_tmb.png';
+            $this->uploadFileToS3('category-thumbs/'.$thumb_name, $request->file('thumb'));
+            Category::where('id', $category_id)->update(['thumb' => $thumb_name]);
+        }
+        //Uploading thumb landscape image to AWS S3 bucket
+        if(!empty($request->file('thumb_v'))){
+            $thumb_v_name = 'cat_'.$category_id.'_v_tmb.png';
+            $this->uploadFileToS3('category-thumbs/'.$thumb_v_name, $request->file('thumb_v'));
+            Category::where('id', $category_id)->update(['thumb_v' => $thumb_v_name]);
+        }
 
+        if(!empty($request->input('id'))){
+            return redirect()->back()->with('success', 'Category has been updated successfully.');
+        }else{
+            return redirect(url('category/list'))->with('success', 'Category has been created successfully.');
+        }
     }
 }
