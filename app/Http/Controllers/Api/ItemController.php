@@ -31,7 +31,7 @@ class ItemController extends Controller
         if(Redis::exists($key)){
             return $this->successOutput(unserialize(Redis::get($key)));
         }
-        
+
         $page = !empty($request->get('page')) ? $request->get('page') : 0;
         if(!is_numeric($page))
             return $this->errorOutput('Page should be numeric.');
@@ -46,7 +46,7 @@ class ItemController extends Controller
         $category_limit = !empty($request->get('category_limit')) ? $request->get('category_limit') : 0;
         if(!is_numeric($category_limit))
             return $this->errorOutput('Category Limit should be numeric.');
-        
+
         if(!isset($_GET['category_limit'])){
             $category_limit = !empty($static_values['category_limit']) ? $static_values['category_limit'] : 4;
         }
@@ -91,7 +91,7 @@ class ItemController extends Controller
             $category_list_limit = !empty($request->get('category_list_limit')) ? $request->get('category_list_limit') : 0;
             if(!is_numeric($category_list_limit))
                 return $this->errorOutput('Category list limit should be numeric.');
-            
+
             if(!isset($_GET['category_list_limit'])){
                 $category_list_limit = !empty($static_values['category_list_limit']) ? $static_values['category_list_limit'] : 4;
             }
@@ -100,7 +100,7 @@ class ItemController extends Controller
                 $data['category_list_position'] = !empty($static_values['category_list_position']) ? (int) $static_values['category_list_position'] : 0;
 
                 $category_lists = Category::query();
-                $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers');
+                $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers', 'thumb', 'thumb_v');
                 if($category_list_limit > 0){
                     $category_lists = $category_lists->offset(0);
                     $category_lists = $category_lists->limit($category_list_limit);
@@ -114,6 +114,8 @@ class ItemController extends Controller
                         $data['category_list'][] = [
                             'id' => $category->id,
                             'name' => $category->name,
+                            'thumb' => $category->thumb,
+                            'thumb_v' => $category->thumb_v,
                             'text' => $category->text,
                             'number_of_item' => $category->items,
                             'number_of_sticker' => $category->stickers,
@@ -185,7 +187,7 @@ class ItemController extends Controller
             }
             return $this->successOutput($redis_data);
         }
-        
+
         $category = Category::where('status', 1)->find($category_id);
         if(empty($category))
             return $this->errorOutput('Category not found.');
@@ -207,7 +209,7 @@ class ItemController extends Controller
 
         return $this->successOutput($data);
     }
-    
+
     public function getEmojiItems(Request $request){
         $key = urldecode(url()->full());
         if(Redis::exists($key)){
@@ -217,7 +219,7 @@ class ItemController extends Controller
             }
             return $this->successOutput($redis_data);
         }
-        
+
         $category = Category::where('type', 'emoji')->first();
         if(empty($category))
             return $this->errorOutput('Category not found.');
@@ -275,7 +277,7 @@ class ItemController extends Controller
     public function getImage($code, $file_name){
         $root_path = storage_path().'/app/items/'.$code.'/';
         $path = $root_path.$file_name;
-        
+
         if(!file_exists($path)){
             $name_arr = explode("__", $file_name);
             if(count($name_arr) == 1){
@@ -283,11 +285,11 @@ class ItemController extends Controller
             }
 
             if(count($name_arr) == 2){
-                
+
                 $original_file_path = $root_path.$name_arr[1];
                 if(!file_exists($original_file_path))
                     return $this->errorOutput('Original file not found to create new thumb.');
-                
+
                 //Resize image for desired width
                 $im = new \Imagick($original_file_path);
 
@@ -311,18 +313,18 @@ class ItemController extends Controller
             }
         }
 
-        
+
 
         $storage_path = 'items/'.$code.'/'.$file_name;
         //echo json_encode(base64_encode(Storage::get($storage_path)));exit;
-        
+
         // $data = [
         //     'mime_type' => Storage::mimeType($storage_path),
         //     'image' => base64_encode(Storage::get($storage_path))
         // ];
 
         // return $this->successOutput($data);
-        
+
         header('Content-Type:'.Storage::mimeType($storage_path));
         header('Content-Length: ' . filesize($path));
         readfile($path);
@@ -376,7 +378,7 @@ class ItemController extends Controller
             $data['name'] = $name;
             SearchKeyword::create($data);
         }
-        return $this->successOutput(); 
+        return $this->successOutput();
     }
 
     public function getCategories(){
@@ -384,8 +386,8 @@ class ItemController extends Controller
         if(Redis::exists($key)){
             return $this->successOutput(unserialize(Redis::get($key)));
         }
-        
-        $categories = Category::select('id', 'name', 'text', 'items', 'stickers')
+
+        $categories = Category::select('id', 'name', 'text', 'items', 'stickers', 'thumb', 'thumb_v')
         ->where('type', 'general')
         ->where('status', 1)
         ->orderBy('sort2', 'asc')
@@ -396,6 +398,8 @@ class ItemController extends Controller
                 $data[] = [
                     'id' => $category->id,
                     'name' => $category->name,
+                    'thumb' => $category->thumb,
+                    'thumb_v' => $category->thumb_v,
                     'text' => $category->text,
                     'number_of_item' => $category->items,
                     'number_of_sticker' => $category->stickers,
