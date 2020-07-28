@@ -15,7 +15,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::select('id', 'name', 'items', 'stickers')->where('type', 'general')->orderBy('sort', 'asc')->get();
+        $categories = Category::select('id', 'name', 'items', 'stickers', 'status')->where('type', 'general')->orderBy('sort', 'asc')->get();
         $data = [
             'title' => 'Category',
             'categories' => $categories,

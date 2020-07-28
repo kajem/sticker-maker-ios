@@ -15,7 +15,8 @@
                             <div class="row">
                                 <div class="col-sm-1 font-weight-bold text-center">Thumb</div>
                                 <div class="col-sm-6 font-weight-bold">Name</div>
-                                <div class="col-sm-4 font-weight-bold text-center">Pack / Sticker</div>
+                                <div class="col-sm-2 font-weight-bold text-center">Pack / Sticker</div>
+                                <div class="col-sm-2 font-weight-bold text-center">Status</div>
                                 <div class="col-sm-1 font-weight-bold text-center">Action</div>
                             </div>
                             <ul class="sort_category list-group" id="sortable">
@@ -30,8 +31,11 @@
                                                 <div class="col-sm-6 pt-3">
                                                     <a href="{{url('category/'.$category->id)}}">{{$category->name}}</a>
                                                 </div>
-                                                <div class="col-sm-4 pt-3 text-center">
+                                                <div class="col-sm-2 pt-3 text-center">
                                                     {{$category->items}} / {{$category->stickers}}
+                                                </div>
+                                                <div class="col-sm-2 pt-3 text-center">
+                                                    {{$category->status == 1 ? 'Active' : 'Inactive'}}
                                                 </div>
                                                 <div class="col-sm-1 pt-3 text-center">
                                                     <a href="{{url('category/'.$category->id)}}/edit"
