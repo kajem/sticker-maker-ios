@@ -13,7 +13,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-2 font-weight-bold text-center">Thumb</div>
+                                <div class="col-sm-2 font-weight-bold"><span class="pl-5">Thumb</span></div>
                                 <div class="col-sm-4 font-weight-bold">Name</div>
                                 <div class="col-sm-2 font-weight-bold text-center">Pack / Sticker</div>
                                 <div class="col-sm-2 font-weight-bold text-center">Status</div>
