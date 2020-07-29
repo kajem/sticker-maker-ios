@@ -186,7 +186,7 @@ class CategoryController extends Controller
 
         $this->calculateTotalItemSticker($category_id);
 
-        return $this->successOutput([], 'Item added successfully.');
+        return $this->successOutput([], 'Pack added successfully.');
     }
 
     /**
@@ -218,6 +218,6 @@ class CategoryController extends Controller
 
         $this->calculateTotalItemSticker($request->input('category_id'));
 
-        return $this->successOutput([], 'Item removed successfully.');
+        return $this->successOutput([], 'Pack removed successfully.');
     }
 }

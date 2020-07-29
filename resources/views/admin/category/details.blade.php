@@ -70,7 +70,7 @@
                                                         <div class="col-sm-2 pt-3 text-right">
                                                             <a href="javascript:void(0)" data-item-id="{{$item->id}}"
                                                                title="Add to category" class="pr-3 add-item-to-category"><i class="fas fa-plus-circle"></i></a>
-                                                            <a href="javascript:void(0)" data-item-id="{{$item->id}}"
+                                                            <a href="javascript:void(0)" data-item-id="{{$item->id}}" data-item-name="{{$item->name}}"
                                                                title="Remove" class="d-none remove-item-from-category  text-red"><i class="fas fa-minus-circle"></i></a>
                                                         </div>
                                                     </div>
@@ -118,7 +118,7 @@
                                                         {{$item->total_sticker}}
                                                     </div>
                                                     <div class="col-sm-2 pt-3 text-right">
-                                                        <a href="javascript:void(0)" data-item-id="{{$item->id}}"
+                                                        <a href="javascript:void(0)" data-item-id="{{$item->id}}" data-item-name="{{$item->name}}"
                                                             title="Remove" class="remove-item-from-category text-red"><i class="fas fa-minus-circle"></i></a>
                                                     </div>
                                                 </div>
@@ -174,6 +174,7 @@
             $('.add-item-to-category').on('click', function () {
                 $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'}});
                 let item_id = $(this).attr('data-item-id');
+
                 $.ajax({
                     url: '{{url('category/add-item-to-category')}}',
                     method: 'POST',
@@ -207,9 +208,10 @@
 
             //Remove Item from Category
             $(document).on('click', '.remove-item-from-category', function () {
+                let item_name = $(this).attr('data-item-name');
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You would like to remove this pack!",
+                    text: 'You would like to remove pack - '+item_name+'.',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
