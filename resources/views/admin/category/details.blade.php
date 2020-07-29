@@ -70,7 +70,7 @@
                                                         <div class="col-sm-2 pt-3 text-right">
                                                             <a href="javascript:void(0)" data-item-id="{{$item->id}}"
                                                                title="Add to category" class="pr-3 add-item-to-category"><i class="fas fa-plus-circle"></i></a>
-                                                            <a href="javascript:void(0)" data-item-id="{{$item->id}}
+                                                            <a href="javascript:void(0)" data-item-id="{{$item->id}}"
                                                                title="Remove" class="d-none remove-item-from-category  text-red"><i class="fas fa-minus-circle"></i></a>
                                                         </div>
                                                     </div>
@@ -118,7 +118,7 @@
                                                         {{$item->total_sticker}}
                                                     </div>
                                                     <div class="col-sm-2 pt-3 text-right">
-                                                        <a href="javascript:void(0)" data-item-id="{{$item->id}}
+                                                        <a href="javascript:void(0)" data-item-id="{{$item->id}}"
                                                             title="Remove" class="remove-item-from-category text-red"><i class="fas fa-minus-circle"></i></a>
                                                     </div>
                                                 </div>
@@ -206,7 +206,7 @@
             });
 
             //Remove Item from Category
-            $('.remove-item-from-category').on('click', function () {
+            $(document).on('click', '.remove-item-from-category', function () {
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You would like to remove this pack!",

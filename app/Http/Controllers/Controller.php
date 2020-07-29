@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use GuzzleHttp\Client;
+use Exception;
 
 
 class Controller extends BaseController
@@ -18,8 +19,8 @@ class Controller extends BaseController
     static $PAGINATION_LIMIT = 10;
 
     protected  function uploadFileToS3($file_path, $file){
-        $compressed_png_content = $this->compressPNG($file->getPathName()); //Getting compressed png content
-        Storage::disk('s3')->put($file_path, $compressed_png_content);
+        //$compressed_png_content = $this->compressPNG($file->getPathName()); //Getting compressed png content
+        Storage::disk('s3')->put($file_path, file_get_contents($file));
     }
 
     /**
