@@ -39,6 +39,9 @@ class CategoryController extends Controller
 
     public function details($id)
     {
+        $emoji = Category::select('id')->where('type', 'emoji')->first();
+        $emoji_cat_id = !empty($emoji->id) ? $emoji->id : 0;
+
         $category = Category::find($id);
 
         $items = Item::query();
@@ -48,9 +51,19 @@ class CategoryController extends Controller
         $items = $items->orderBy('item_to_categories.sort', 'asc');
         $items = $items->get();
 
+        $item_ids = [];
+        if(!empty($items)){
+            foreach ($items as $item){
+                $item_ids[] = $item->id;
+            }
+        }
+
+        $all_items = Item::where('category_id', '!=', $emoji_cat_id)->whereNotIn('id', $item_ids)->orderBy('name', 'asc')->get();
+
         $data = [
             'category' => $category,
-            'items' => $items
+            'items' => $items,
+            'all_items' => $all_items
         ];
 
         return view('admin.category.details')->with($data);
@@ -146,5 +159,65 @@ class CategoryController extends Controller
         }else{
             return redirect(url('category/list'))->with('success', 'Category has been created successfully.');
         }
+    }
+
+    public function addItemToCategory(Request $request){
+        $category_id = $request->input('category_id');
+        $category = Category::find($category_id);
+        if(empty($category))
+            return $this->errorOutput('Invalid action. Something went wrong.');
+
+        $item_id = $request->input('item_id');
+        $item = Item::find($item_id);
+        if(empty($item))
+            return $this->errorOutput('Invalid action. Something went wrong.');
+
+        $item_to_category = ItemToCategory::where('category_id', $category_id)->where('item_id', $item_id)->first();
+        if(!empty($item_to_category))
+            return $this->successOutput([], 'Item already in the category.');
+
+        $sort = ItemToCategory::where('category_id', $category_id)->max('sort');
+        $data = [
+            'category_id' => $category_id,
+            'item_id' => $item_id,
+            'sort' => $sort + 1
+        ];
+        ItemToCategory::create($data);
+
+        $this->calculateTotalItemSticker($category_id);
+
+        return $this->successOutput([], 'Item added successfully.');
+    }
+
+    /**
+     * @desc Updating the items and stickers field in Category table
+     * @param $category_id
+     */
+    private  function calculateTotalItemSticker($category_id){
+        $items = Item::query();
+        $items = $items->select('items.total_sticker');
+        $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
+        $items = $items->where('item_to_categories.category_id', $category_id);
+        $items = $items->get();
+
+        $sticker_count = 0;
+        $item_count = 0;
+        if($items->isNotEmpty()){
+            foreach ($items as $item){
+                $sticker_count += $item->total_sticker;
+                $item_count++;
+            }
+        }
+        Category::where('id', $category_id)->update(['items' => $item_count, 'stickers' => $sticker_count]);
+    }
+
+    public function removeItemFromCategory(Request $request){
+        ItemToCategory::where('category_id', $request->input('category_id'))
+            ->where('item_id', $request->input('item_id'))
+            ->delete();
+
+        $this->calculateTotalItemSticker($request->input('category_id'));
+
+        return $this->successOutput([], 'Item removed successfully.');
     }
 }

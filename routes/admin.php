@@ -27,6 +27,8 @@ Route::domain($domain)->group(function() {
             Route::post('save', 'Admin\CategoryController@save');
             Route::post('update-order', 'Admin\CategoryController@updateOrder');
             Route::post('update-item-order', 'Admin\CategoryController@updateItemOrder');
+            Route::post('add-item-to-category', 'Admin\CategoryController@addItemToCategory');
+            Route::post('remove-item-from-category', 'Admin\CategoryController@removeItemFromCategory');
         });
 
         Route::group(['prefix' => 'item'], function (){

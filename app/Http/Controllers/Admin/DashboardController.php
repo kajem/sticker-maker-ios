@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $emoji_id = !empty($emoji->id) ? $emoji->id : 0;
         $emoji_item_count = Item::where('category_id', '=', $emoji_id)->count();
 
-        $item_count = Item::count();
+        $item_count = Item::where('category_id', '!=', $emoji_id)->count();
         $search_keyword_count = SearchKeyword::count();
 
         $data = [

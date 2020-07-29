@@ -55,13 +55,13 @@
                                 <p>Sort 2</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{url('/category/22')}}"
-                               class="nav-link {{ Request::is('category/22') ? 'active' : '' }}">
-                                <i class="far fa-smile-wink"></i>
-                                <p>Emoji</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{url('/category/22')}}"--}}
+{{--                               class="nav-link {{ Request::is('category/22') ? 'active' : '' }}">--}}
+{{--                                <i class="far fa-smile-wink"></i>--}}
+{{--                                <p>Emoji</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="nav-item">
                             <a href="{{url('/category/add')}}"
                                class="nav-link {{ Request::is('category/add') ? 'active' : '' }}">

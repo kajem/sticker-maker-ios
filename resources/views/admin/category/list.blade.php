@@ -26,7 +26,7 @@
                                             <div class="row">
                                                 <div class="col-sm-2">
                                                     <i class="fas fa-sort pt-3 pr-3"></i>
-                                                    <img width="45" src="{{$asset_base_url}}category-thumbs/cat_{{$category->id}}_tmb.png" alt="{{$category->name}}"/>
+                                                    <img width="45" src="{{config('app.asset_base_url')}}category-thumbs/cat_{{$category->id}}_tmb.png" alt="{{$category->name}}"/>
                                                 </div>
                                                 <div class="col-sm-4 pt-3">
                                                     <a href="{{url('category/'.$category->id)}}">{{$category->name}}</a>

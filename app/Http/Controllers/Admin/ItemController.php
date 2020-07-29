@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Item;
@@ -10,6 +11,9 @@ class ItemController extends Controller
 {
     public function list(Request $request)
     {
+        $emoji = Category::select('id')->where('type', 'emoji')->first();
+        $emoji_cat_id = !empty($emoji->id) ? $emoji->id : 0;
+
         $items = Item::query();
         $items = $items->select('items.id', 'items.name', 'items.code', 'items.total_sticker', 'items.author', 'items.is_premium', 'items.status', 'items.category_id', 'items.updated_at', 'categories.name as category_name', 'categories.type as category_type');
 
@@ -21,6 +25,7 @@ class ItemController extends Controller
         }
 
         $items = $items->join('categories', 'categories.id', '=', 'items.category_id');
+        $items = $items->where('items.category_id', '!=', $emoji_cat_id);
 
         $total = $items->count();
 

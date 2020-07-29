@@ -29,3 +29,8 @@
 .nav-sidebar .nav-treeview li a{
     font-size: 15px;
 }
+
+#allItems{
+    max-height: 370px;
+    overflow-y: scroll;
+}
