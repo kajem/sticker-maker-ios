@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <style>
         html, body {
-            background-color: #000080;
+            background-color: #15002e;
             color: #fff;
             font-family: 'Lobster', sans-serif;
             font-weight: 200;
