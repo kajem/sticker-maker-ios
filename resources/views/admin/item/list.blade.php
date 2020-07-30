@@ -10,10 +10,11 @@
                             <table id="item-list" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
+                                    <th scope="col">Thumb</th>
                                     <th scope="col">Name</th>
                                     <th scope="col" class="text-center">Code</th>
                                     <th scope="col" class="text-center">Total Sticker</th>
-                                    <th scope="col">Category (Type)</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Author</th>
                                     <th scope="col" class="text-center">Premium</th>
                                     <th scope="col" class="text-center">Status</th>
@@ -38,6 +39,11 @@
     <script src="{{ asset("/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js") }}"></script>
     <script
         src="{{ asset("/bower_components/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}"></script>
+    <!-- Data Table Responsive-->
+    <link rel="stylesheet"
+          href="{{ asset("/bower_components/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
+    <script
+        src="{{ asset("/bower_components/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script>
         let table;
         $(function () {
@@ -46,10 +52,11 @@
                     "emptyTable": "No packs found."
                 },
                 "paging": true,
+                "responsive": true,
                 "lengthChange": false,
                 "searching": true,
                 "ordering": true,
-                "order": [[0, "asc"]],
+                "order": [[1, "asc"]],
                 "info": true,
                 "autoWidth": false,
                 "processing": true,
@@ -62,6 +69,13 @@
                     }
                 },
                 "columns": [
+                    {
+                        data: null,
+                        orderable: false,
+                        render: function (data) {
+                            return '<img width="45" src="{{config("app.asset_base_url")}}items/' + data.code + '/200__' + data.code + '.png" alt="' + data.name + '"/>';
+                        }
+                    },
                     {
                         data: 'name',
                         name: 'items.name'
@@ -80,7 +94,7 @@
                         data: null,
                         name: 'categories.name',
                         render: function (data) {
-                            return '<a href="/category/' + data.category_id + '">' + data.category_name + '</a>' + ' (' + data.category_type.charAt(0).toUpperCase() + data.category_type.slice(1) + ')';
+                            return '<a href="/category/' + data.category_id + '">' + data.category_name + '</a>';
                         }
                     },
                     {
@@ -100,7 +114,7 @@
                         className: 'text-center',
                         name: 'items.status',
                         render: function (data) {
-                            return data.is_premium == 1 ? 'Yes' : 'No';
+                            return data.status == 1 ? 'Active' : 'Inactive';
                         }
                     },
                     {
@@ -113,7 +127,7 @@
                         orderable: false,
                         render: function (data) {
                             var actionHTML = '';
-                            actionHTML += '<a href="#" title="View Details"><i class="fas fa-eye"></i></a> &nbsp;&nbsp;';
+                            //actionHTML += '<a href="#" title="View Details"><i class="fas fa-eye"></i></a> &nbsp;&nbsp;';
                             actionHTML += '<a href="/item/edit/' + data.id + '" title="Edit"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;';
                             actionHTML += '<a href="/pack/braincraft/' + data.code + '" target="_blank" title="View Stickers"><i class="far fa-grin"></i></a>';
                             return actionHTML;

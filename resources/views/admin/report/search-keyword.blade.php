@@ -34,6 +34,11 @@
     <script src="{{ asset("/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js") }}"></script>
     <script
         src="{{ asset("/bower_components/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}"></script>
+    <!-- Data Table Responsive-->
+    <link rel="stylesheet"
+          href="{{ asset("/bower_components/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css") }}">
+    <script
+        src="{{ asset("/bower_components/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script>
         let table;
         $(function () {
@@ -42,6 +47,7 @@
                     "emptyTable": "No keywords found."
                 },
                 "paging": true,
+                "responsive": true,
                 "lengthChange": false,
                 "searching": true,
                 "ordering": true,
