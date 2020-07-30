@@ -8,16 +8,16 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="/css/pack-details.css" rel="stylesheet">
+        <link href="/css/pack-details.css?30072020" rel="stylesheet">
     </head>
     <body>
         <div class="position-ref full-height">
-            <div class="row"> 
+            <div class="row">
                 <div class="content">
                     @if(!empty($pack->id))
                        <h2>{{$pack->name}}</h2>
                        <h3>By <i>{{$is_braincraft_pack ? $pack->author : $pack->author}}</i></h3>
-                       @php 
+                       @php
                        if($is_braincraft_pack)
                             $stickers = unserialize($pack->stickers);
                         else
