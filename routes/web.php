@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/', 'welcome');
+
+$domain = config('app.url');
+Route::domain($domain)->group(function() {
+    Route::view('/', 'welcome');
+});
 Route::get('get-sticker/items/{code}/{name}', 'WelcomeController@getSticker');
 
 Route::group(['prefix' => 'pack'], function (){

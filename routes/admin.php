@@ -13,7 +13,12 @@
 
 $domain = '{admin}.' . config('app.url');
 Route::domain($domain)->group(function() {
-    Route::redirect('/', '/login');
+    Route::get('/', function (){
+        if(Auth::guest())
+            return redirect('/login');
+        else
+            return redirect('/dashboard');
+    });
 
     Route::group([ 'middleware' => ['auth'] ], function() {
         Route::get('/dashboard', 'Admin\DashboardController@index');
