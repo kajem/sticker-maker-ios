@@ -39,6 +39,7 @@ Route::domain($domain)->group(function() {
         Route::group(['prefix' => 'item'], function (){
             Route::view('list', 'admin.item.list');
             Route::post('list', 'Admin\ItemController@list');
+            Route::view('add', 'admin.item.form');
             Route::get('edit/{id}', 'Admin\ItemController@editView');
             Route::post('save', 'Admin\ItemController@save');
         });

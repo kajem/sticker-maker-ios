@@ -144,13 +144,13 @@ class CategoryController extends Controller
         //Uploading thumb image to AWS S3 bucket
         if(!empty($request->file('thumb'))){
             $thumb_name = 'cat_'.$category_id.'_tmb.png';
-            $this->uploadFileToS3('category-thumbs/'.$thumb_name, $request->file('thumb'));
+            $this->uploadFileToS3('category-thumbs/'.$thumb_name, file_get_contents($request->file('thumb')));
             Category::where('id', $category_id)->update(['thumb' => $thumb_name]);
         }
         //Uploading thumb landscape image to AWS S3 bucket
         if(!empty($request->file('thumb_v'))){
             $thumb_v_name = 'cat_'.$category_id.'_v_tmb.png';
-            $this->uploadFileToS3('category-thumbs/'.$thumb_v_name, $request->file('thumb_v'));
+            $this->uploadFileToS3('category-thumbs/'.$thumb_v_name, file_get_contents($request->file('thumb_v')));
             Category::where('id', $category_id)->update(['thumb_v' => $thumb_v_name]);
         }
 

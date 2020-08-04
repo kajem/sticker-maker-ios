@@ -130,18 +130,5 @@
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
-    <script type="text/javascript">
-        function readURL(input, imgId) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    jQuery(imgId).attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    <script src="{{asset('/js/admin/read-image-url.js')}}"></script>
 @endsection

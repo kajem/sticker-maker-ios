@@ -88,6 +88,13 @@
                                 <p>List</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{url('/item/add')}}"
+                               class="nav-link {{ Request::is('item/add') ? 'active' : '' }}">
+                                <i class="fas fa-plus"></i>
+                                <p>Add New</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!--Static Value Menu-->
