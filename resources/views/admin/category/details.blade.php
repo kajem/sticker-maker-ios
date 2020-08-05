@@ -58,8 +58,11 @@
                                                             <i class="fas fa-sort pt-3 pr-3 d-none arrow-up-down"></i>
                                                             <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
                                                         </div>
-                                                        <div class="col-sm-4 pt-3">
+                                                        <div class="col-sm-4">
                                                             {{$item->name}}
+                                                            @if(!empty($item->categories))
+                                                                <br><small><strong>Cat.:</strong> {!! $item->categories !!}</small>
+                                                            @endif
                                                         </div>
                                                         <div class="col-sm-2 pt-3 text-center">
                                                             {{$item->code}}
@@ -108,8 +111,11 @@
                                                         <i class="fas fa-sort pt-3 pr-3"></i>
                                                         <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
                                                     </div>
-                                                    <div class="col-sm-4 pt-3">
+                                                    <div class="col-sm-4">
                                                         {{$item->name}}
+                                                        @if(!empty($item->categories))
+                                                            <br><small><strong>Cat.:</strong> {!! $item->categories !!}</small>
+                                                        @endif
                                                     </div>
                                                     <div class="col-sm-2 pt-3 text-center">
                                                         {{$item->code}}

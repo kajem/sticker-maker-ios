@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Item;
 use App\ItemToCategory;
-
+use App\Http\Traits\ItemsTrait;
 class CategoryController extends Controller
 {
+    use ItemsTrait;
     public function index()
     {
         $categories = Category::select('id', 'name', 'items', 'stickers', 'status')->where('type', 'general')->orderBy('sort', 'asc')->get();
@@ -50,15 +50,20 @@ class CategoryController extends Controller
         $items = $items->where('item_to_categories.category_id', $id);
         $items = $items->orderBy('item_to_categories.sort', 'asc');
         $items = $items->get();
-
         $item_ids = [];
         if(!empty($items)){
-            foreach ($items as $item){
+            foreach ($items as $index => $item){
+                $items[$index]->categories = $this->getCategoriesOfItem($item->id, $id);
                 $item_ids[] = $item->id;
             }
         }
 
         $all_items = Item::where('category_id', '!=', $emoji_cat_id)->whereNotIn('id', $item_ids)->orderBy('name', 'asc')->get();
+        if(!empty($all_items)){
+            foreach ($all_items as $index => $item){
+                $all_items[$index]->categories = $this->getCategoriesOfItem($item->id, $id);
+            }
+        }
 
         $data = [
             'category' => $category,

@@ -9,16 +9,18 @@ use App\Item;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use App\Http\Traits\ItemsTrait;
 
 class ItemController extends Controller
 {
+    use ItemsTrait;
     public function list(Request $request)
     {
         $emoji = Category::select('id')->where('type', 'emoji')->first();
         $emoji_cat_id = !empty($emoji->id) ? $emoji->id : 0;
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.code', 'items.total_sticker', 'items.author', 'items.is_premium', 'items.status', 'items.category_id', 'items.updated_at', 'categories.name as category_name');
+        $items = $items->select('items.id', 'items.name', 'items.code', 'items.total_sticker', 'items.author', 'items.is_premium', 'items.status', 'items.updated_at');
 
         if (!empty($request->get('search')['value'])) {
             $items = $items->where('items.name', 'LIKE', '%' . $request->get('search')['value'] . '%');
@@ -36,6 +38,12 @@ class ItemController extends Controller
         $items = $items->offset($request->get('start'));
         $items = $items->limit($request->get('length'));
         $items = $items->get();
+
+        if(!empty($items)){
+            foreach ($items as $index => $item){
+                $items[$index]->categories = $this->getCategoriesOfItem($item->id);
+            }
+        }
 
         $data = [];
         $data['draw'] = 1 + ((int)$request->get('draw'));

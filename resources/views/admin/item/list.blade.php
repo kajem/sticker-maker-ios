@@ -94,7 +94,7 @@
                         data: null,
                         name: 'categories.name',
                         render: function (data) {
-                            return '<a href="/category/' + data.category_id + '">' + data.category_name + '</a>';
+                            return data.categories;
                         }
                     },
                     {
