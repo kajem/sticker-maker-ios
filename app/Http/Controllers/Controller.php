@@ -18,9 +18,9 @@ class Controller extends BaseController
     static $BASE_URL_API = 'http://sticker.local/api/';
     static $PAGINATION_LIMIT = 10;
 
-    protected  function uploadFileToS3($file_path, $file){
+    protected  function uploadFileToS3($file_path, $file_content){
         //$compressed_png_content = $this->compressPNG($file->getPathName()); //Getting compressed png content
-        Storage::disk('s3')->put($file_path, $file);
+        Storage::disk('s3')->put($file_path, $file_content);
     }
 
     /**
