@@ -335,8 +335,11 @@ class ItemController extends Controller
         $category_id = !empty($category->id) ? $category->id : 0;
         $items = Item::select('id', 'name', 'thumb', 'stickers', 'code', 'author', 'is_premium')
                       ->where('name','LIKE','%'.$request->q.'%')
+                      ->orWhere('tag','LIKE','%'.$request->q.'%')
                       ->where('status', 1)
-                      ->where('category_id', '!=', $category_id)->get();
+                      ->where('category_id', '!=', $category_id)
+                      ->orderByRaw("SUBSTRING_INDEX(name, '".$request->q."', 1) DESC, tag ASC")
+                      ->get();
         $data = [];
         if(!$items->isEmpty()){
             foreach($items as $item){
