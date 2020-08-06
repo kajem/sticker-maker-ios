@@ -26,7 +26,7 @@
                        @if(!empty($stickers))
                             @foreach($stickers as $sticker)
                                 <div class="image">
-                                <img src="{{$pack_root_folder}}{{$pack->code}}/{{$sticker}}" alt="" />
+                                <img src="{{$pack_root_folder}}{{$pack->code}}/thumb/{{$sticker}}" alt="" />
                                 </div>
                             @endforeach
                             <div class="clearfix"></div>
