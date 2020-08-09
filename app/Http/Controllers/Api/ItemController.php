@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -333,15 +334,19 @@ class ItemController extends Controller
     public function search(Request $request){
         $category = Category::select('id')->where('type', 'emoji')->first();
         $category_id = !empty($category->id) ? $category->id : 0;
-        $items = Item::select('id', 'name', 'thumb', 'stickers', 'code', 'author', 'is_premium')
-                      ->where('name','LIKE','%'.$request->q.'%')
-                      ->orWhere('tag','LIKE','%'.$request->q.'%')
-                      ->where('status', 1)
-                      ->where('category_id', '!=', $category_id)
-                      ->orderByRaw("SUBSTRING_INDEX(name, '".$request->q."', 1) DESC, tag ASC")
-                      ->get();
+        $items = DB::select(
+            "SELECT id, name, thumb, stickers, code, author, is_premium
+                   FROM items
+                   WHERE tag LIKE '%".$request->q."%' AND status = 1 AND category_id != ".$category_id."
+                   ORDER BY
+                    CASE
+                        WHEN name LIKE '".$request->q."' THEN 1
+                        WHEN name LIKE '".$request->q."%' THEN 2
+                        WHEN name LIKE '%".$request->q."' THEN 3
+                    ELSE 4
+                   END");
         $data = [];
-        if(!$items->isEmpty()){
+        if(!empty($items)){
             foreach($items as $item){
                 $thumb_arr = explode("/",$item->thumb);
                 $stickers = unserialize($item->stickers);
