@@ -342,8 +342,9 @@ class ItemController extends Controller
                     CASE
                         WHEN name LIKE '".$request->q."' THEN 1
                         WHEN name LIKE '".$request->q."%' THEN 2
-                        WHEN name LIKE '%".$request->q."' THEN 3
-                    ELSE 4
+                        WHEN name LIKE '%".$request->q."%' THEN 3
+                        WHEN name LIKE '%".$request->q."' THEN 4
+                    ELSE 5
                    END");
         $data = [];
         if(!empty($items)){
