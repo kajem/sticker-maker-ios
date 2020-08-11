@@ -64,6 +64,17 @@
                                         </div>
                                     </div>
                                 </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label for="stickers" class="col-sm-2 col-form-label">Sticker's Zip</label>--}}
+{{--                                    <div class="col-sm-10">--}}
+{{--                                        <input type="file"--}}
+{{--                                               class="form-control @error('stickers') is-invalid @enderror"--}}
+{{--                                               id="stickers" name="stickers" accept="application/zip">--}}
+{{--                                        @error('stickers')--}}
+{{--                                        <div class="invalid-feedback">{{ $message }}</div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-group row">
                                     <label for="author" class="col-sm-2 col-form-label">Author</label>
                                     <div class="col-sm-10">
