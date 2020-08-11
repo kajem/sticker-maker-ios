@@ -56,10 +56,12 @@
                                                     <div class="row">
                                                         <div class="col-sm-2">
                                                             <i class="fas fa-sort pt-3 pr-3 d-none arrow-up-down"></i>
-                                                            <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
+                                                            <a href="/pack/braincraft/{{$item->code}}" target="_blank">
+                                                                <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
+                                                            </a>
                                                         </div>
                                                         <div class="col-sm-4">
-                                                            {{$item->name}}
+                                                            <a href="/pack/braincraft/{{$item->code}}" target="_blank">{{$item->name}}</a>
                                                             @if(!empty($item->categories))
                                                                 <br><small><strong>Cat.:</strong> {!! $item->categories !!}</small>
                                                             @endif
@@ -109,10 +111,12 @@
                                                 <div class="row">
                                                     <div class="col-sm-2">
                                                         <i class="fas fa-sort pt-3 pr-3"></i>
-                                                        <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
+                                                        <a href="/pack/braincraft/{{$item->code}}" target="_blank">
+                                                            <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
+                                                        </a>
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        {{$item->name}}
+                                                        <a href="/pack/braincraft/{{$item->code}}" target="_blank">{{$item->name}}</a>
                                                         @if(!empty($item->categories))
                                                             <br><small><strong>Cat.:</strong> {!! $item->categories !!}</small>
                                                         @endif
