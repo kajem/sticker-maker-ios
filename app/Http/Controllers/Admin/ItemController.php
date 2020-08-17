@@ -26,6 +26,7 @@ class ItemController extends Controller
             $items = $items->where('items.name', 'LIKE', '%' . $request->get('search')['value'] . '%');
             $items = $items->orWhere('items.code', 'LIKE', '%' . $request->get('search')['value'] . '%');
             $items = $items->orWhere('items.author', 'LIKE', '%' . $request->get('search')['value'] . '%');
+            $items = $items->orWhere('items.tag', 'LIKE', '%' . $request->get('search')['value'] . '%');
             $items = $items->orWhere('categories.name', 'LIKE', '%' . $request->get('search')['value'] . '%');
         }
 
