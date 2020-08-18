@@ -20,6 +20,8 @@ class ApiAuth
         if(empty($request->header('UserName')) || empty($request->header('Password'))){
             return $this->errorOutput();
         }
+        $today = date('Ymd');
+        $password = str_replace($today, "", $request->header('Password'));
 
         $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7'];
         $passwords = ['54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO'];
@@ -28,7 +30,7 @@ class ApiAuth
         if($username_index === false)
             return $this->errorOutput();
 
-        if($request->header('Password') !== $passwords[$username_index])
+        if($password !== $passwords[$username_index])
             return $this->errorOutput();
 
         return $next($request);
