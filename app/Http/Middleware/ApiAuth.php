@@ -18,7 +18,7 @@ class ApiAuth
         if(empty($request->header('UserName')) || empty($request->header('Password'))){
             return $this->errorOutput();
         }
-        
+
         $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7'];
         $passwords = ['54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO'];
 
