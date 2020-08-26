@@ -74,7 +74,7 @@
                         data: null,
                         orderable: false,
                         render: function (data) {
-                            return '<img width="45" src="{{config("app.asset_base_url")}}items/' + data.code + '/200__' + data.code + '.png" alt="' + data.name + '"/>';
+                            return '<img width="45" src="{{config("app.asset_base_url")}}items/' + data.code + '/' + data.thumb + '" alt="' + data.name + '"/>';
                         }
                     },
                     {

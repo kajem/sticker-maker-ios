@@ -20,7 +20,7 @@ class ItemController extends Controller
         $emoji_cat_id = !empty($emoji->id) ? $emoji->id : 0;
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.code', 'items.tag', 'items.total_sticker', 'items.author', 'items.is_premium', 'items.status', 'items.updated_at');
+        $items = $items->select('items.id', 'items.name', 'items.code', 'items.thumb', 'items.tag', 'items.total_sticker', 'items.author', 'items.is_premium', 'items.status', 'items.updated_at');
 
         if (!empty($request->get('search')['value'])) {
             $items = $items->where('items.name', 'LIKE', '%' . $request->get('search')['value'] . '%');
@@ -43,6 +43,8 @@ class ItemController extends Controller
         if(!empty($items)){
             foreach ($items as $index => $item){
                 $items[$index]->categories = $this->getCategoriesOfItem($item->id);
+                $thumb = explode("/", $item->thumb);
+                $items[$index]->thumb = "200__".end($thumb);
             }
         }
 
