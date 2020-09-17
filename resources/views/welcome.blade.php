@@ -377,9 +377,6 @@
                                 <li><a href="#">Link 5</a></li>
                             </ul>
                         </div>
-                        <div class="col-sm-3 social-icons">
-
-                        </div>
                     </div>
                 </div>
             </div>
@@ -391,7 +388,7 @@
                         <a target="_blank" href="#"><i class="fab fa-apple"></i></a>
                     </div>
                 </div>
-                <div class="col-sm-4 social-icons">
+                <div class="col-sm-4 social-icons text-right">
                     <a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a>
                     <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
                     <a target="_blank" href="#"><i class="fab fa-instagram"></i></a>
