@@ -13,7 +13,7 @@
 
 $domain = config('app.url');
 Route::domain($domain)->group(function() {
-    Route::view('/', 'welcome');
+    Route::get('/', 'WelcomeController@index');
 });
 Route::get('get-sticker/items/{code}/{name}', 'WelcomeController@getSticker');
 

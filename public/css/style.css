@@ -1,0 +1,196 @@
+body{
+    font-family: Nunito, sans-serif;
+}
+a:hover{
+    text-decoration: none;
+}
+.mt-150{
+    margin-top: 150px;
+}
+.card{
+    width: 171px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.card .image{
+    width: 148px;
+    height: 148px;
+    overflow: hidden;
+}
+.card img:hover {
+    transform: scale(.85); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+a.all-sticker-packs{
+    background: #00b129;
+    padding: 10px 100px;
+    border-radius: 36px;
+    color: #fff;
+    display: inline-block;
+    font-size: 24px;
+}
+a.all-sticker-packs:hover{
+    opacity: 0.7;
+}
+form input[type="submit"]{
+    font-size: 24px;
+}
+#top-bar, #hero-area, #graphics-designer, #awesome-features{
+    background: #00b129;
+}
+.title h2{
+    text-shadow: 2px 4px 3px rgba(0,0,0,.3);
+    margin: 0 15px;
+}
+section#hero-area h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 900;
+    font-size: 2.2rem;
+}
+p.download-now-text {
+    color: #141414;
+    font-size: 2.2rem;
+    line-height: 1.475;
+    cursor: auto;
+    font-weight: 800;
+}
+.download-now.card {
+    border-radius: 1rem;
+    background: #fff;
+    border-width: 0;
+    border-radius: 10px;
+    min-width: 325px;
+}
+.yellow-bg-download .download-now.card{
+    background: #00b129;
+}
+.yellow-bg-download p.download-now-text{
+    color: #fff;
+}
+#how-to-make .number-circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    background: #21bd5c;
+    border: 2px solid #25d366;
+    color: #fff;
+    text-align: center;
+    font: 32px Nunito,sans-serif;
+    line-height: 1.5em;
+    font-weight: 700;;
+}
+#how-to-make .text-block{
+    margin-bottom: 20px;
+    margin-left: 15px;
+    width: 85%;
+}
+#awesome-features{
+    color: #fff;
+}
+#awesome-features h3{
+    color: #efefef;
+}
+h2.title {
+    color: #151515;
+    font-size: 2.2rem;
+    line-height: 1.475;
+    margin-bottom: .3rem;
+    letter-spacing: .4rem;
+    cursor: auto;
+    font-weight: 800;
+}
+#footer{
+    padding-top: 40px;
+    background: #323232;
+    color: #fff;
+    font-size: 16px;
+}
+#footer a{
+    color: #ccc;
+}
+#footer a:hover{
+    color: #fff;
+}
+#footer .social-icons li{
+    display: inline;
+}
+.social-icons a, .app-icon a{
+    font-size: 30px;
+    color: #fff;
+    margin-left: 30px;
+}
+#footer hr{
+    border-top: 1px solid #707070;
+}
+.copyright{
+    font-size: 13px;
+}
+.sticker-bg-1{
+    background: #53e4a0;
+}
+.sticker-bg-2{
+    background: #fbd867;
+}
+.sticker-bg-3{
+    background: #f66c8a;
+}
+.sticker-bg-4{
+    background: #fcfb84;
+}
+.sticker-bg-5{
+    background: #ef8fe3;
+}
+.sticker-bg-6{
+    background: #ffb495;
+}
+.sticker-bg-7{
+    background: #fbcf9c;
+}
+.sticker-bg-1{
+    background: #53e4a0;
+}
+.sticker-bg-8{
+    background: #53e4a0;
+}
+.sticker-bg-9{
+    background: #3bf6e8;
+}
+.sticker-bg-10{
+    background: #c4ec7f;
+}
+.sticker-bg-11{
+    background: #ff96e1;
+}
+.sticker-bg-12{
+    background: #ffcfb9;
+}
+.sticker-bg-13{
+    background: #9ba9f1;
+}
+.sticker-bg-14{
+    background: #79bef4;
+}
+.sticker-bg-15{
+    background: #ff8b8f;
+}
+.sticker-bg-16{
+    background: #ffda71;
+}
+.sticker-bg-17{
+    background: #ffbd70;
+}
+.sticker-bg-18{
+    background: #ffb3fb;
+}
+.sticker-bg-19{
+    background: #50c9c2;
+}
+.sticker-bg-20{
+    background: #60f7b7;
+}
+.sticker-bg-21{
+    background: #b0b4f5;
+}

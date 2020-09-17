@@ -13,20 +13,13 @@ class WelcomeController extends Controller
 {
 
     public function index(){
-        return view('welcome');
-        // $items = Item::all();
-        // $sticker_arr = [];
-        // foreach($items as $item){
-        //     $stickers = ItemSticker::where('item_id', $item->id)->get();
-        //     foreach($stickers as $sticker){
-        //         if(!empty($sticker->path))
-        //             $sticker_arr[] = $sticker->path;
-        //     }
-        // }
-        // $data = [
-        //     'stickers' => $sticker_arr
-        // ];
-        // return view('home')->with($data);
+        $items = Item::select('code', 'name', 'thumb', 'author', 'total_sticker')
+                     ->where('status', 1)->limit(18)->get();
+        $data = [
+            'asset_base_url' => config('app.asset_base_url'),
+            'items' => $items
+        ];
+        return view('welcome')->with($data);
     }
 
     public function getSticker($code, $name){
