@@ -20,10 +20,14 @@ a:hover{
 }
 #sticker-packs .card{
     overflow: hidden;
+    position: relative;
 }
 #sticker-packs .card-body{
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 #sticker-packs .card:hover img {
     transform: scale(.85); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
