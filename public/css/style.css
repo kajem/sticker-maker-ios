@@ -44,11 +44,14 @@ a:hover{
     right: 50px;
     top: 0px;
 }
-form input[type="submit"]{
-    font-size: 24px;
+form input[type="button"]{
+    font-size: 20px;
 }
 #top-bar, #hero-area, #graphics-designer, #awesome-features{
     background: #00b129;
+}
+#top-bar .social-icons{
+    margin-top: 15px;
 }
 #top-bar .social-icons a{
     font-size: 20px;

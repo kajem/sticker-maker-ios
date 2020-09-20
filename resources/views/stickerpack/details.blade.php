@@ -18,7 +18,7 @@
                 @if(!empty($stickers))
                     @foreach($stickers as $sticker)
                         <div class="image">
-                            <img src="{{$pack_root_folder}}{{$pack->code}}/thumb/{{$sticker}}" alt=""/>
+                            <img class="protect-copy" src="{{$pack_root_folder}}{{$pack->code}}/thumb/{{$sticker}}" alt=""/>
                         </div>
                     @endforeach
                     <div class="clear-both"></div>
@@ -33,3 +33,4 @@
         </div>
     </div>
 @endsection
+<script type="text/javascript" src="{{asset('js/protect-right-click-and-drag.js')}}"></script>
