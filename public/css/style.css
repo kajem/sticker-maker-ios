@@ -127,6 +127,14 @@ h2.title {
     float: left;
     padding: 5px;
     margin: 5px;
+    position: relative;
+}
+.water-mark{
+    position: absolute;
+    left: 19px;
+    top: 69px;
+    font-size: 12px;
+    color: #333;
 }
 #pack-details img{
     max-width: 138px;

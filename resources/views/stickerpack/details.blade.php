@@ -19,6 +19,7 @@
                     @foreach($stickers as $sticker)
                         <div class="image">
                             <img class="protect-copy" src="{{$pack_root_folder}}{{$pack->code}}/thumb/{{$sticker}}" alt=""/>
+{{--                            <div class="water-mark">stickermakerpro.com</div>--}}
                         </div>
                     @endforeach
                     <div class="clear-both"></div>
