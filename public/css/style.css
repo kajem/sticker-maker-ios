@@ -38,11 +38,20 @@ a:hover{
 #sticker-packs a:hover{
     color: #555;
 }
+#sticker-packs .badge-warning{
+    background: rgba(255,237,74, 0.6);
+    position: absolute;
+    right: 50px;
+    top: 0px;
+}
 form input[type="submit"]{
     font-size: 24px;
 }
 #top-bar, #hero-area, #graphics-designer, #awesome-features{
     background: #00b129;
+}
+#top-bar .social-icons a{
+    font-size: 20px;
 }
 .title h2{
     text-shadow: 2px 4px 3px rgba(0,0,0,.3);

@@ -9,7 +9,7 @@
                     group chats! Share single stickers or entire sticker packs!</p>
 
                 <div class="mt-5">
-                    @include('front.common.download-app')
+                    @include('frontpage.common.download-app')
                 </div>
             </div>
             <div class="col-sm-4">

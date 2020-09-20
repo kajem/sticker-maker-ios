@@ -51,10 +51,7 @@
                 </div>
             </div>
             <div class="col-sm-4 social-icons text-right">
-                <a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>
-                <a target="_blank" href="#"><i class="fab fa-instagram"></i></a>
-                <a target="_blank" href="#"><i class="fab fa-youtube"></i></a>
+                @include('frontpage.common.social-icons')
             </div>
         </div>
         <hr>

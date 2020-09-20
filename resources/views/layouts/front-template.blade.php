@@ -11,12 +11,16 @@
     <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css") }}">
     <link rel="stylesheet" href="{{asset('css/app.css?asdf')}}">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{{ asset("/bower_components/admin-lte/plugins/jquery/jquery.min.js") }}"></script>
 </head>
 <body>
 <div class="position-ref full-height flex-center">
-    @include('front.common.header')
+    @include('frontpage.common.header')
     @yield('content')
-    @include('front.common.footer')
+    @include('frontpage.common.footer')
 </div>
+<!-- Bootstrap 4 -->
+<script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
 </body>
 </html>

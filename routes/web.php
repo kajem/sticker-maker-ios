@@ -16,12 +16,13 @@ Route::domain($domain)->group(function() {
     Route::get('/', 'WelcomeController@index');
 });
 Route::get('get-sticker/items/{code}/{name}', 'WelcomeController@getSticker');
+Route::post('contact/send-mail', 'ContactMailController@sendMail');
 
 Route::group(['prefix' => 'pack'], function (){
     Route::get('braincraft/{cdoe}', 'StickerPackController@getPack');
     Route::get('/{cdoe}', 'StickerPackController@getPack');
 });
-Route::get('get-pack/{cdoe}', 'StickerPackController@redirectToAppStore');
+Route::get('get-pack/{code}', 'StickerPackController@redirectToAppStore');
 
 Auth::routes(['register' => false]);
 

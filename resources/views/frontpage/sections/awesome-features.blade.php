@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="mt-5 text-center">
-            @include('front.common.download-app')
+            @include('frontpage.common.download-app')
         </div>
     </div>
 </section>

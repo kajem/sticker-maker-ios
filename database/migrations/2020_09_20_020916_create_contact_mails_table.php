@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemToCategoriesTable extends Migration
+class CreateContactMailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateItemToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_to_categories', function (Blueprint $table) {
+        Schema::create('contact_mails', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('item_id');
-            $table->integer('category_id');
-            $table->integer('sort');
+            $table->string('name');
+            $table->string('from_email');
+            $table->string('to_email');
+            $table->string('subject');
+            $table->string('message');
+            $table->boolean('unread')->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateItemToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_to_categories');
+        Schema::dropIfExists('contact_mails');
     }
 }
