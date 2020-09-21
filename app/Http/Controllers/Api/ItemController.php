@@ -149,7 +149,7 @@ class ItemController extends Controller
     private function getItemsByCategory(Request $request, $category_id, $item_limit = 0){
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.stickers', 'items.code', 'items.author', 'items.is_premium');
+        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.stickers', 'items.code', 'items.author', 'items.is_premium', 'items.is_animated');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
         $items = $items->where('item_to_categories.category_id', $category_id);
         $items = $items->where('items.status', 1);
@@ -171,6 +171,7 @@ class ItemController extends Controller
                     'thumb' => '200__'.end($thumb_arr),
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
+                    'is_animated' => $item->is_animated,
                     'total_stickers' => count($stickers),
                     'stickers' => $stickers
                 ];
@@ -262,6 +263,8 @@ class ItemController extends Controller
             'code' => $item->code,
             'thumb' => '200__'.end($thumb_arr),
             'author' => $item->author,
+            'is_premium' => $item->is_premium,
+            'is_animated' => $item->is_animated,
             'total_stickers' => count($stickers),
             'stickers' => $stickers
         ];
@@ -335,7 +338,7 @@ class ItemController extends Controller
         $category = Category::select('id')->where('type', 'emoji')->first();
         $category_id = !empty($category->id) ? $category->id : 0;
         $items = DB::select(
-            "SELECT id, name, thumb, stickers, code, author, is_premium
+            "SELECT id, name, thumb, stickers, code, author, is_premium, is_animated
                    FROM items
                    WHERE tag LIKE '%".$request->q."%' AND status = 1 AND category_id != ".$category_id."
                    ORDER BY
@@ -357,6 +360,7 @@ class ItemController extends Controller
                     'thumb' => '200__'.end($thumb_arr),
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
+                    'is_animated' => $item->is_animated,
                     'total_stickers' => count($stickers),
                     'stickers' => $stickers
                 ];
