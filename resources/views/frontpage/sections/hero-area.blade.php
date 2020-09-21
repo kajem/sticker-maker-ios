@@ -1,8 +1,7 @@
-<section id="hero-area" class="pt-2 pb-5">
+<section id="hero-area" class="pb-5">
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <br/>
                 <h1 class="text-white mt-5">
                     Sticker Maker for Social Apps
                 </h1>

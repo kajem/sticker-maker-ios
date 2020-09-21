@@ -4,22 +4,38 @@
             <div class="col-sm-3">
                 <h5 class="pb-3 font-weight-bold">Product by</h5>
                 <a target="_blank" href="https://braincraftapps.com">
-                    <img width="100" src="{{asset('images/braincraft-logo.png')}}" alt="BrainCraft Limited">
+                    <img width="125" src="{{asset('images/braincraft-logo.png')}}" alt="BrainCraft Limited">
                 </a>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <h5 class="pb-3 font-weight-bold">About</h5>
-                <ul class="p-0 list-unstyled">
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
+                <ul class="p-0 list-unstyled links">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
                 </ul>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <h5 class="pb-3 font-weight-bold">Get the app</h5>
-                <div class="app-icon">
-                    <a target="_blank" href="#"><i class="fab fa-apple"></i></a>
+                <div class="get-app-links">
+                    @include('frontpage.common.download-app-links')
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <h5 class="pb-3 font-weight-bold">Other Apps</h5>
+                <div class="app-links">
+                    <a target="_blank" href="http://braincraftapps.com/our-products/details/48" data-toggle="tooltip" data-placement="top" title="Meme Maker">
+                        <img src="{{asset('images/app-icons/meme.jpg')}}" alt="Meme Maker - Make Photo Memes" />
+                    </a>
+                    <a target="_blank" href="http://braincraftapps.com/our-products/details/54" data-toggle="tooltip" data-placement="top" title="Add Music to Video">
+                        <img src="{{asset('images/app-icons/add-music-to-video.jpg')}}" alt="Add Music to Video Voice Over" />
+                    </a>
+                    <a target="_blank" href="http://braincraftapps.com/our-products/details/60" data-toggle="tooltip" data-placement="top" title="GIF Maker">
+                        <img src="{{asset('images/app-icons/gif-maker.jpg')}}" alt="GIF Maker - Make Video to GIFs" />
+                    </a>
+                    <a target="_blank" href="http://braincraftapps.com/our-products/details/57" data-toggle="tooltip" data-placement="top" title="SlideShow Maker">
+                        <img src="{{asset('images/app-icons/slide-show-maker.jpg')}}" alt="SlideShow Maker with Music Fx" />
+                    </a>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -29,18 +45,6 @@
                 </div>
             </div>
         </div>
-{{--        <hr>--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-sm-4 offset-4">--}}
-{{--                <div class="app-icon">--}}
-{{--                    <span>Get the free app</span>--}}
-{{--                    <a target="_blank" href="#"><i class="fab fa-apple"></i></a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="col-sm-4 social-icons text-right">--}}
-{{--                @include('frontpage.common.social-icons')--}}
-{{--            </div>--}}
-{{--        </div>--}}
         <hr>
         <div class="text-center copyright">
             &copy; Copyright {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft Ltd.</a>

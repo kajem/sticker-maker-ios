@@ -79,19 +79,20 @@ section#hero-area h1 {
     background-size: contain;
     height: 607px;
     width: 300px;
-    margin-top: -46px;
+    margin-top: 14px;
 }
 p.download-now-text {
     color: #101010;
-    font-size: 2.2rem;
+    font-size: 24px;
     line-height: 1.475;
     cursor: auto;
     font-weight: 800;
+    margin-bottom: 5px;
 }
 .download-now.card {
     border-radius: 1rem;
     background: #ffd011;
-    border-width: 0;
+    border: 2px solid #fff;
     border-radius: 10px;
     min-width: 325px;
 }
@@ -176,13 +177,38 @@ h2.title {
 #footer .social-icons li{
     display: inline;
 }
-.social-icons a, .app-icon a{
+.social-icons a{
     font-size: 20px;
     color: #fff;
     margin-right: 20px;
 }
+.get-app-links a img{
+    width: 140px;
+}
+.get-app-links p{
+    color: #ffd011;
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 10px !important;
+}
+.get-app-links p:first-child{
+    margin-top: 0 !important;
+}
+#footer .links a{
+    margin-bottom: 5px;
+    display: inline-block;
+}
 #footer hr{
     border-top: 1px solid #707070;
+}
+.app-links a{
+    display: inline-block;
+    margin-right: 10px;
+}
+.app-links a img{
+    border-radius: 10px;
+    width: 65px;
+    margin-bottom: 10px;
 }
 .copyright{
     font-size: 13px;
