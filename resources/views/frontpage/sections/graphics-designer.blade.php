@@ -8,19 +8,19 @@
 
         <div class="row">
             <div class="col-sm-2 offset-3">
-                <img width="150" src="{{asset('images/graphics-designer-funny-face.png')}}" alt="Funny Face Emoji"/>
+                <img width="150" src="{{asset('images/graphics-cat.png')}}" alt="CAT Emoji"/>
             </div>
             <div class="col-sm-2 offset-1">
-                <img width="150" src="{{asset('images/graphics-designer-profession.png')}}"
-                     alt="An emoji related to profession"/>
+                <img width="150" src="{{asset('images/graphics-hippie-woman.png')}}"
+                     alt="Hippie woman Emoji"/>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-sm-2 offset-3">
-                <img width="150" src="{{asset('images/graphics-designer-puppy.png')}}" alt="Puppy Emoji"/>
+                <img width="150" src="{{asset('images/graphics-king.png')}}" alt="King Emoji"/>
             </div>
             <div class="col-sm-2 offset-1">
-                <img width="150" src="{{asset('images/graphics-designer-women.png')}}" alt="Women Emoji"/>
+                <img width="150" src="{{asset('images/graphics-teddy.png')}}" alt="Teddy Emoji"/>
             </div>
         </div>
         <div class="text-center mt-5">

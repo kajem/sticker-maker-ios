@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <a href="{{url('/')}}" class="logo">
-                    <h2 class="text-white">
+                    <h2 class="text-white font-weight-bold">
                         <img width="64" src="{{asset('images/logo.png')}}" alt="Sticker Maker"/>
                         Sticker Maker
                     </h2>

@@ -8,8 +8,8 @@
 
         <div class="row">
             <div class="col-sm-6 text-center pt-3">
-                <img height="500" src="{{asset('images/crop-face.png')}}"
-                     alt="Cropping a men's face with lesso tool"/>
+                <img height="500" src="{{asset('images/Lasso.png')}}"
+                     alt="Cropping a men's face with lasso tool"/>
             </div>
             <div class="col-sm-5">
                 <h3 class="mt-150 font-weight-bold">Precise and Manual trace</h3>
@@ -32,8 +32,8 @@
                 </p>
             </div>
             <div class="col-sm-6 text-center">
-                <img height="500" src="{{asset('images/remove-background.png')}}"
-                     alt="Removing background from an women's photo"/>
+                <img height="500" src="{{asset('images/Magic.png')}}"
+                     alt="Removing background from photo"/>
             </div>
         </div>
         <div class="mt-5 text-center">
