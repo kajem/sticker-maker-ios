@@ -79,6 +79,7 @@ section#hero-area h1 {
     background-size: contain;
     height: 607px;
     width: 300px;
+    margin-top: -46px;
 }
 p.download-now-text {
     color: #101010;
