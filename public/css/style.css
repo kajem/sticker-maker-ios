@@ -50,6 +50,16 @@ form input[type="button"]{
 #top-bar, #hero-area, #graphics-designer, #awesome-features{
     background: #00b129;
 }
+video {
+    margin-left: 19px;
+    margin-top: 19px;
+    width: 261px;
+    height: 571px;
+    border-radius: 22px;
+}
+video:focus{
+    outline: none;
+}
 #top-bar .social-icons{
     margin-top: 15px;
 }
