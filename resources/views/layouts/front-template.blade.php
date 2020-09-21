@@ -6,6 +6,11 @@
 
     <title>Sticker Maker</title>
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/favicons/favicon-16x16.png')}}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="asset('images/favicons/favicon-32x32.png')}}" />
+    <link rel="icon" type="image/png" sizes="96x96" href="asset('images/favicons/favicon-96x96.png')}}" />
+
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css") }}">

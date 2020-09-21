@@ -12,9 +12,9 @@
                      alt="Cropping a men's face with lasso tool"/>
             </div>
             <div class="col-sm-5">
-                <h3 class="mt-150 font-weight-bold">Precious Crop!</h3>
+                <h3 class="mt-150 font-weight-bold">Precise Crop!</h3>
                 <p>
-                    Need more precious crop!!! Try lasso. It's super handy! Select your area with your finger trip and
+                    Need more precious crop!!! Try lasso. It's super handy! Select your area with your fingertip and
                     adjust with dots to cut your image wherever you want and turn your photo into a sticker.
                 </p>
             </div>
