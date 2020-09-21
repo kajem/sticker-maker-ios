@@ -15,6 +15,9 @@
 
                 <div class="mt-5">
                     @include('frontpage.common.download-app')
+                    <div class="social-icons mt-4">
+                        @include('frontpage.common.social-icons')
+                    </div>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -24,7 +27,6 @@
                         Your browser does not support the video tag.
                     </video>
                 </div>
-{{--                <img src="{{asset('images/hero-1.png')}}" alt="App Image"/>--}}
             </div>
         </div>
     </div>
