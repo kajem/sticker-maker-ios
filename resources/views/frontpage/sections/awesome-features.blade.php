@@ -14,7 +14,7 @@
             <div class="col-sm-5">
                 <h3 class="mt-150 font-weight-bold">Precise Crop!</h3>
                 <p>
-                    Need more precious crop!!! Try lasso. It's super handy! Select your area with your fingertip and
+                    Need more precise crop!!! Try lasso. It's super handy! Select your area with your fingertip and
                     adjust with dots to cut your image wherever you want and turn your photo into a sticker.
                 </p>
             </div>
@@ -24,7 +24,7 @@
             <div class="col-sm-5 offset-1">
                 <h3 class="mt-150 font-weight-bold">Magical Background Remove!</h3>
                 <p>
-                    Did you try Magic? Use the Magic feature and automatically remove the background. You can also select
+                    Do a Magic! Use the Magic feature and automatically remove the background. You can also select
                     the portion you want to keep. Feel a smart experience now.
                 </p>
             </div>
