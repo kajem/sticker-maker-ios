@@ -22,7 +22,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="video-frame float-right">
-                    <video id="hero-video" controls autoplay muted>
+                    <video id="hero-video" controls autoplay muted loop>
                         <source src="{{asset('videos/4x5_1.mp4')}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
