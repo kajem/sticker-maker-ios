@@ -17,7 +17,7 @@
             <div class="col-sm-6">
                 <div class="number-circle float-left">2</div>
                 <div class="float-left text-block">
-                    <h3>Crate Stickers</h3>
+                    <h3>Create Stickers</h3>
                     <p>
                         Choose your photos to make your own customized stickers with handy and cool features like Magic, Lasso, Brush, Shape.
                         Create unlimited packs with a minimum of 1 and max 28 stickers on each pack.
