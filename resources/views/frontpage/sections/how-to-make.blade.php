@@ -2,24 +2,26 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 pt-5 pb-4">
-                <h2 class="title text-center">Make your own stickers!</h2>
+                <h2 class="title text-center">Personalize your Stickers effortlessly</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="number-circle float-left">1</div>
                 <div class="float-left text-block">
-                    <h3>Select name for your pack</h3>
-                    <p>Pick a catchy name for your sticker pack to get started.</p>
+                    <h3>Catchy Name</h3>
+                    <p>Just put the name of your sticker pack and get started.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="col-sm-6">
                 <div class="number-circle float-left">2</div>
                 <div class="float-left text-block">
-                    <h3>Add the stickers to the pack, cut them with your finger</h3>
-                    <p>Add up to 30 stickers from your photos .You can cut the stickers or use transparent PNG files
-                        if you have created the stickers in a photo editing app.</p>
+                    <h3>Crate Stickers</h3>
+                    <p>
+                        Choose your photos to make your own customized stickers with handy and cool features like Magic, Lasso, Brush, Shape.
+                        Create unlimited packs with a minimum of 1 and max 28 stickers on each pack.
+                    </p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -28,17 +30,18 @@
             <div class="col-sm-6">
                 <div class="number-circle float-left">3</div>
                 <div class="float-left text-block">
-                    <h3>Add to WhatsApp</h3>
-                    <p>Add the sticker pack to your WhatsApp, the sticker pack is created just for you.</p>
+                    <h3>Add to iMessage and WhatsApp</h3>
+                    <p>Add your stickers on iMessage and WhatsApp or download as PNG photos.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="col-sm-6">
                 <div class="number-circle float-left">4</div>
                 <div class="float-left text-block">
-                    <h3>ENJOY!</h3>
-                    <p>Send the stickers to your friends in WhatsApp and share them in groups. Your stickers will
-                        start to spread on WhatsApp and live a life of their own.</p>
+                    <h3>Share the Joy</h3>
+                    <p>
+                        Share your sticker in social apps and end the boring chat.
+                    </p>
                 </div>
                 <div class="clearfix"></div>
             </div>

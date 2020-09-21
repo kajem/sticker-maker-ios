@@ -32,6 +32,7 @@
 {{--                @include('frontpage.common.social-icons')--}}
 {{--            </div>--}}
 {{--        </div>--}}
+        <br/>
         <hr>
         <div class="text-center copyright">
             &copy; Copyright {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft Ltd.</a>

@@ -2,7 +2,7 @@
     <div class="container pb-5">
         <div class="row">
             <div class="col-sm-12 pt-5 pb-4">
-                <h2 class="title text-center text-white">Awesome Features</h2>
+                <h2 class="title text-center text-white">Amazing Features</h2>
             </div>
         </div>
 
@@ -12,23 +12,20 @@
                      alt="Cropping a men's face with lasso tool"/>
             </div>
             <div class="col-sm-5">
-                <h3 class="mt-150 font-weight-bold">Precise and Manual trace</h3>
+                <h3 class="mt-150 font-weight-bold">Precious Crop!</h3>
                 <p>
-                    Creating a sticker has never been so easy. You can trace with your finger the part of the image
-                    you want to turn into a sticker. Then as easily as it seems you can adjust this path by moving
-                    the dots that will appear. You can even zoom in to the image to be more precise.
+                    Need more precious crop!!! Try lasso. It's super handy! Select your area with your finger trip and
+                    adjust with dots to cut your image wherever you want and turn your photo into a sticker.
                 </p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-5 offset-1">
-                <h3 class="mt-150 font-weight-bold">Automatic Background Removal</h3>
+                <h3 class="mt-150 font-weight-bold">Magical Background Remove!</h3>
                 <p>
-                    There's a mode in the app that we call 'Magic', and there is a reason for this. As fancy as it
-                    sounds, with this feature you can automatically remove the background of the image you have
-                    selected. You just need to trace with your finger the part you want to keep and the app will
-                    extract it from the background.
+                    Did you try Magic? Use the Magic feature and automatically remove the background. You can also select
+                    the portion you want to keep. Feel a smart experience now.
                 </p>
             </div>
             <div class="col-sm-6 text-center">

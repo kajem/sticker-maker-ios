@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 pt-5 pb-4">
-                    <h2 class="title text-center pb-3">Excellent Sticker Packs</h2>
+                    <h2 class="title text-center pb-3">Cool and Fancy Sticker Gallery</h2>
 
                     @foreach($items as $item)
                         @php
