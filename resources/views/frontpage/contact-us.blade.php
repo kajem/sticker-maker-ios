@@ -2,7 +2,7 @@
     <div class="container pb-5">
         <div class="row">
             <div class="col-sm-12 pt-5 pb-4">
-                <h2 class="title text-center">Contact Us</h2>
+                <h2 class="title text-center text-white">Contact Us</h2>
             </div>
         </div>
         <form id="contact-form" action="{{url('contact/send-mail')}}" method="post">
