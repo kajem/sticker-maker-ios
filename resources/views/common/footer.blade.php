@@ -10,9 +10,9 @@
             <div class="col-sm-2">
                 <h5 class="pb-3 font-weight-bold">About</h5>
                 <ul class="p-0 list-unstyled links">
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="{{url('about-us')}}">About us</a></li>
+                    <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
+                    <li><a href="{{url('terms')}}">Terms of Use</a></li>
                 </ul>
             </div>
             <div class="col-sm-2">

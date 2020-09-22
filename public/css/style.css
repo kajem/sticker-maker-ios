@@ -128,7 +128,7 @@ p.download-now-text {
 h2.title {
     color: #151515;
     font-size: 2.2rem;
-    line-height: 1.475;
+    line-height: 1;
     margin-bottom: .3rem;
     letter-spacing: .4rem;
     cursor: auto;
@@ -197,6 +197,8 @@ h2.title {
 #footer .links a{
     margin-bottom: 5px;
     display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
 }
 #footer hr{
     border-top: 1px solid #707070;
@@ -210,8 +212,9 @@ h2.title {
     width: 65px;
     margin-bottom: 10px;
 }
-.copyright{
-    font-size: 13px;
+.copyright, .copyright a{
+    font-size: 13px !important;
+    text-decoration: none;
 }
 .sticker-bg-1{
     background: #FF4500;
@@ -276,3 +279,48 @@ h2.title {
 .sticker-bg-21{
     background: #b0b4f5;
 }
+/*STRAT: About us section*/
+.new-square-box-holder {
+    width: 100%;
+    padding: 0px 20%;
+    display: flex;
+    justify-content: space-between;
+}
+[data-aos^=fade][data-aos^=fade].aos-animate {
+    opacity: 1;
+    transform: translateZ(0);
+}
+[data-aos][data-aos][data-aos-duration="1200"], body[data-aos-duration="1200"] [data-aos] {
+    transition-duration: 1.2s;
+}
+.new-square-box-holder div.square-columns {
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #681FBB;
+}
+.new-square-box-holder div.new-square {
+    background: linear-gradient( #681FBB, #342dae);
+    width: 70%;
+    padding-top: 70%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 3px;
+}
+.new-square-box-holder .new-square-icon {
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 100%;
+    margin-top: -100%;
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+.new-square-box-holder .new-square-icon.apps-bg{
+    background-image: url('/images/about-us/apps.png');
+}
+/*END: About us section*/
