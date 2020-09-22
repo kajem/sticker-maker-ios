@@ -9,19 +9,20 @@
             <div class="col-sm-3">
                 <img class="amazing-feature" src="{{asset('images/Magic.png')}}"
                      alt="Magical Background Remove!"/>
-                <h5 class="font-weight-bold text-center">Magical Background Remove!</h5>
+                <h5 class="font-weight-bold text-center">Remove Background with Magic Tool!</h5>
                 <p>
-                    Do a Magic! Use the Magic feature and automatically remove the background. You can also select
-                    the portion you want to keep. Feel a smart experience now.
+                    Create Magic! Use the Magic tool and automatically remove the background. Use Restore tool if you want to keep a part of the
+                    background. Smart tools create perfect experiences!
                 </p>
             </div>
             <div class="col-sm-3">
                 <img class="amazing-feature" src="{{asset('images/Lasso.png')}}"
                      alt="Cropping a men's face with lasso tool"/>
-                <h5 class="font-weight-bold text-center">Precise Crop!</h5>
+                <h5 class="font-weight-bold text-center">Crop Precisely!</h5>
                 <p>
-                    Need more precise crop!!! Try lasso. It's super handy! Select your area with your fingertip and
-                    adjust with dots to cut your image wherever you want and turn your photo into a sticker.
+                    Need to Crop more precisely! Do it with Lasso!
+                    It's super handy! Select the area you want to cut, then add verticals to make the cut as precise as possible.
+                    Your perfect Sticker is ready!
                 </p>
             </div>
             <div class="col-sm-3">
@@ -29,18 +30,19 @@
                      alt="Add Text to a sticker"/>
                 <h5 class="font-weight-bold text-center">Add Text</h5>
                 <p>
-                    How about adding text on your stickers from a huge collection of fonts in different backgrounds!
-                    Make your stickers funnier. Just input a text expression, choose a font and color, change the background.
-                    All are set. Try it now!
+                    Make your Sticker speak! We provide you with a huge
+                    collection of fonts, that will make your Sticker 'say it with words'! Adjust the color or change the background
+                    for your text! The fun is up! Change the mood of your chat easily!
                 </p>
             </div>
             <div class="col-sm-3">
                 <img class="amazing-feature" src="{{asset('images/add-sticker-on-a-sticker.png')}}"
                      alt="Add Sticker on a Sticker"/>
-                <h5 class="font-weight-bold text-center">Add Sticker on a Sticker</h5>
+                <h5 class="font-weight-bold text-center">Mix Stickers - Sticker on Sticker</h5>
                 <p>
-                    Wanna change a build-in sticker! Choose and edit a sticker from the sticker pack. Add border, text,
-                    emoji or even you can add a sticker on the sticker.
+                    Getting even more creative? Mix built-in and self made Stickers! Create crazy vibes!
+                    You are all set to create sticker mixes from all the built-in sticker packs, emojis and the stickers
+                    from your collections.
                 </p>
             </div>
 

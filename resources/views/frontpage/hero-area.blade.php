@@ -6,7 +6,7 @@
                     Sticker Maker for Social Apps
                 </h1>
                 <h2 class="text-white">
-                    Choose build in stickers from stickers' gallery or Personalize your own stickers easily
+                    Choose built-in stickers from stickers' gallery or personalize your own stickers easily
                 </h2>
                 <p class="mt-3 lead text-white">
                     Go viral and spice up your chats with unique stickers on Facebook, WhatsApp, Messenger, iMessage, etc.

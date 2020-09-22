@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <h5 class="pb-3 font-weight-bold">Product by</h5>
+                <h5 class="pb-3 font-weight-bold">Made @ Braincraft</h5>
                 <a target="_blank" href="https://braincraftapps.com">
                     <img width="125" src="{{asset('images/braincraft-logo.png')}}" alt="BrainCraft Limited">
                 </a>

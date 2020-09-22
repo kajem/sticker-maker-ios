@@ -26,7 +26,7 @@
                 @endif
                 <div class="text-center mt-3 mb-5">
                     {{-- <a  href="/get-pack/{{$pack->code}}">Get Stickers</a> --}}
-                    <a href="stickermakerui://{{$pack->code}}">Get Stickers</a>
+                    <a target="_blank" href="#">Get Stickers</a>
                 </div>
             @else
                 <h2>No packs found.</h2>
