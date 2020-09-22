@@ -50,6 +50,26 @@ form input[type="button"]{
 #top-bar, #hero-area, #graphics-designer, #awesome-features{
     background: #00b129;
 }
+/*START: Header Nav*/
+.navbar-expand-lg .navbar-collapse{
+    display: block !important;
+}
+.navbar-nav{
+    display: block;
+}
+.navbar ul li.nav-item{
+    display: inline-block;
+}
+.navbar ul li.nav-item a.nav-link{
+    color: #fff;
+}
+.navbar ul li.nav-item a.nav-link:hover{
+    color: #ccc;
+}
+.navbar ul li.nav-item.active a.nav-link{
+    color: #ccc;
+}
+/*END: Header Nav*/
 video {
     margin-left: 19px;
     margin-top: 19px;
