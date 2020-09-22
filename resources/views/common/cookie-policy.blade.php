@@ -9,7 +9,7 @@
                     <strong>here</strong>
                 </a>.
                 By clicking "<strong>OK, I agree</strong>" button or any link on
-                the site, you agree to this use.
+                the site, you agree to use this.
             </div>
             <div class="col-sm-4 text-right pt-3">
                 <input type="button" id="accept-cookie" value="OK, I agree" class="btn btn-info pl-5 pr-5 pt-2 pb-2 text-white font-weight-bold">
