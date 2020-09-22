@@ -51,3 +51,6 @@
         </div>
     </div>
 </section>
+@if(!isset($_COOKIE['cookie_accepted']))
+    @include('common.cookie-policy')
+@endif

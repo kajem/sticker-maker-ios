@@ -44,7 +44,7 @@ a:hover{
     right: 50px;
     top: 0px;
 }
-form input[type="button"]{
+input[type="button"]{
     font-size: 20px;
 }
 #top-bar, #hero-area, #contact-us, #awesome-features{
@@ -60,6 +60,19 @@ form input[type="button"]{
     background-color: #e5bb0f;
 }
 /*END: Contact us*/
+
+/*START: Cookie policy*/
+#cookie-policy{
+    background: #0779BF;
+    position: fixed;
+    width: 100%;
+    color: #fff;
+    bottom: 0;
+    border-radius: 10px 10px 0px 0px;
+    border-top: 1px solid #fff;
+}
+/*END: Cookie policy*/
+
 /*START: Header Nav*/
 .navbar-expand-lg .navbar-collapse{
     display: block !important;
