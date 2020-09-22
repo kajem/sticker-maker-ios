@@ -18,7 +18,7 @@
             <div class="col-sm-2">
                 <h5 class="pb-3 font-weight-bold">Get the app</h5>
                 <div class="get-app-links">
-                    @include('frontpage.common.download-app-links')
+                    @include('common.download-app-links')
                 </div>
             </div>
             <div class="col-sm-2">
@@ -41,7 +41,7 @@
             <div class="col-sm-3">
                 <h5 class="pb-3 font-weight-bold">Stay in touch</h5>
                 <div class="social-icons">
-                    @include('frontpage.common.social-icons')
+                    @include('common.social-icons')
                 </div>
             </div>
         </div>

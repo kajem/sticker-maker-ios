@@ -21,9 +21,9 @@
 </head>
 <body>
 <div class="position-ref full-height flex-center">
-    @include('frontpage.common.header')
+    @include('common.header')
     @yield('content')
-    @include('frontpage.common.footer')
+    @include('common.footer')
 </div>
 <!-- Bootstrap 4 -->
 <script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>

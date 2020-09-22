@@ -13,9 +13,9 @@
                 </p>
 
                 <div class="mt-5">
-                    @include('frontpage.common.download-app')
+                    @include('common.download-app')
                     <div class="social-icons mt-4">
-                        @include('frontpage.common.social-icons')
+                        @include('common.social-icons')
                     </div>
                 </div>
             </div>
