@@ -7,9 +7,9 @@
 
             <div class="main-content">
                 <div class="pb-3">
-                <stron>Your</stron> privacy is important to <strong>Brain Craft Limited</strong>, This Privacy Policy explains how we treat
+                <stron>Your</stron> privacy is important to <strong>Brain Craft Limited</strong>, This Privacy Policy explains, how we treat
                 your information and protects
-                your privacy when you Use the Software and Services and the rights and options available to you regarding your information.
+                your privacy when you use the Software and Services, and the rights and options available to you regarding your information.
                 We believe that you have a right to know our practices regarding the information we may collect and use when you use the
                 Software and Services. IF YOU DO NOT AGREE TO THE TERMS AND CONDITIONS SET FORTH HEREIN, DO NOT USE THE SOFTWARE AND
                 SERVICES.
@@ -34,7 +34,7 @@
 
                 <div class="pb-2">
                 <strong>Online Identifiers</strong>: We, or third parties on our behalf collect information about your use of the app. This information is
-                collected for fixing errors and bugs as well as for research and analytics purposes.For details check section
+                collected for fixing errors and bugs as well as for research and analytical purposes. For details check section
                 “Analytical Data” below.
                 </div>
 
@@ -122,7 +122,7 @@
                 <div class="pb-3">
                     <div class="font-weight-bold">How to Contact Us:</div>
                     For more information about the matters discussed in this Privacy Policy, please contact us at:
-                    <a href="mailto:braincraftltd.info@gmail.com">braincraftltd.info@gmail.com</a>
+                    <a href="mailto:support@braincraftapps.com">support@braincraftapps.com</a>
                 </div>
             </div>
     </div>

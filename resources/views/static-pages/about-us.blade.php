@@ -81,7 +81,7 @@
                             <div class="new-square-icon apps-bg"></div>
                         </div>
                         <div class="content">
-                            <div data-table="blocks" data-column="block_html" data-pk="block_title" data-id="app-count" class="nicEditSubject" id="app-count"><span>20+ Apps</span></div>
+                            <div data-table="blocks" data-column="block_html" data-pk="block_title" data-id="app-count" class="nicEditSubject" id="app-count"><span>28+ Apps</span></div>
                         </div>
                     </div>
                     <div class="square-columns aos-init aos-animate" data-aos="fade-up" data-aos-duration="1500">

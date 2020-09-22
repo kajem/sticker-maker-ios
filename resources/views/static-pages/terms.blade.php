@@ -8,7 +8,7 @@
             <div class="main-content">
                 <div class="pb-3">
                     The following terms and conditions govern your use of the software and service that we offer you.
-                    This term constitutes the authorized binding between an individual and us.<br/>
+                    This term contitute the authorized binding between an individual and us.<br/>
 
                     PLEASE CAREFULLY READ ALL THE TERMS AND CONDITIONS OF THIS APP, WHEN YOU INSTALL OUR APPS,
                     YOU ARE AGREEING WITH ALL THE TERMS AND CONDITIONS OF THE SERVICE. IF YOU DO NOT AGREE WITH THE TERMS,
