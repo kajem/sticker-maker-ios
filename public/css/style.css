@@ -8,14 +8,14 @@ a:hover{
 .mt-150{
     margin-top: 150px;
 }
-.card{
+#sticker-packs .card{
     width: 171px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
 }
-.card .image{
+#sticker-packs .card .image{
     overflow: hidden;
 }
 #sticker-packs .card{
@@ -165,8 +165,16 @@ p.download-now-text {
 #awesome-features{
     color: #fff;
 }
+#awesome-features img.amazing-feature{
+    max-width: 100%;
+    margin-bottom: 20px;
+}
 #awesome-features h3{
     color: #efefef;
+}
+#awesome-features p{
+    padding: 0px 15px;
+    text-align: center;
 }
 h2.title {
     color: #151515;
