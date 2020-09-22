@@ -50,6 +50,16 @@ form input[type="button"]{
 #top-bar, #hero-area, #contact-us, #awesome-features{
     background: #00b129;
 }
+/*START: Contact us*/
+#contact-us .btn-primary {
+    color: #101010;
+    background-color: #ffd011;
+    border-color: #fff;
+}
+#contact-us .btn-primary:hover{
+    background-color: #e5bb0f;
+}
+/*END: Contact us*/
 /*START: Header Nav*/
 .navbar-expand-lg .navbar-collapse{
     display: block !important;
