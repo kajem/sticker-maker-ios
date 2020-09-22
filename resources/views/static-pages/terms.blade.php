@@ -35,7 +35,7 @@
 
                 <div class="pb-3">
                     <div class="font-weight-bold">Premium Services:</div>
-                    We will provide our user Premium Services prior to the purchase process This App's Premium Subscription.
+                    We will provide our user, premium services prior to the purchase process of this app's premium subscription.
                     The user has the right to cancel the premium services described in the Cancellation section of this agreement.
                 </div>
 
