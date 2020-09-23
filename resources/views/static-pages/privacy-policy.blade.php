@@ -73,7 +73,7 @@
                     <div>Please Check: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></div>
                 </div>
 
-                <h3>Data Privacy:</h3>
+                <h3 class="text-center">Data Privacy:</h3>
                 <div class="pb-3">
                     <div class="font-weight-bold">App Generated Data:</div>
                     All other application generated data is stored within the app and not being transferred to the server
@@ -123,6 +123,47 @@
                     <div class="font-weight-bold">How to Contact Us:</div>
                     For more information about the matters discussed in this Privacy Policy, please contact us at:
                     <a href="mailto:support@braincraftapps.com">support@braincraftapps.com</a>
+                </div>
+
+                <h3 class="text-center pt-3">Generic Cookie Policy</h3>
+                Please read this cookie policy (“cookie policy”, "policy") carefully before using stickermakerpro.com website
+                ("website", "service") operated by Brain Craft Limited ("us", 'we", "our").
+
+                <div class="pb-3 pt-3">
+                    <div class="font-weight-bold">What are cookies?</div>
+                    Cookies are simple text files that are stored on your computer or mobile device by a website’s server.
+                    Each cookie is unique to your web browser. It will contain some anonymous information such as a
+                    unique identifier, website’s domain name, and some digits and numbers.
+                </div>
+
+                <div class="pb-3">
+                    <div class="font-weight-bold">What types of cookies do we use?</div>
+                    Cookies are simple text files that are stored on your computer or mobile device by a website’s server.
+                    Each cookie is unique to your web browser. It will contain some anonymous information such as a
+                    unique identifier, website’s domain name, and some digits and numbers.
+
+                    <div class="font-italic pt-3 font-weight-bold">Necessary cookies</div>
+                    Necessary cookies allow us to offer you the best possible experience when accessing and navigating through
+                    our website and using its features. For example, these cookies let us recognize that you have created
+                    an account and have logged into that account.
+                    <div class="font-italic pt-3 font-weight-bold">Functionality cookies</div>
+                    Functionality cookies let us operate the site in accordance with the choices you make. For example, we will recognize your username and remember how you customized the site during future visits.
+                    <div class="font-italic pt-3 font-weight-bold">Analytical cookies</div>
+                    These cookies enable us and third-party services to collect aggregated data for statistical purposes on
+                    how our visitors use the website. These cookies do not contain personal information such as names and email
+                    addresses and are used to help us improve your user experience of the website.
+                </div>
+
+                <div class="pb-3 pt-3">
+                    <div class="font-weight-bold">How to delete cookies?</div>
+                    If you want to restrict or block the cookies that are set by our website, you can do so through your
+                    browser setting. You will find general information about cookies and details on how to delete cookies
+                    from your device.
+                </div>
+
+                <div class="pb-3 pt-3">
+                    <div class="font-weight-bold">Contacting us</div>
+                    If you have any questions about this policy or our use of cookies, please contact us at: <a href="mailto:support@braincraftapps.com">support@braincraftapps.com</a>
                 </div>
             </div>
     </div>

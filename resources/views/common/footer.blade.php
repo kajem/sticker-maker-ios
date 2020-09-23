@@ -36,7 +36,7 @@
                         </li>
                         <li>
                             <a target="_blank" href="http://braincraftapps.com/our-products/details/57">
-                                SlideShow Maker
+                                Slide Show Maker
                             </a>
                         </li>
                     </ul>
