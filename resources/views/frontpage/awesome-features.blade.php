@@ -40,7 +40,7 @@
                      alt="Add Sticker on a Sticker"/>
                 <h5 class="font-weight-bold text-center">Mix Stickers - Sticker on Sticker</h5>
                 <p>
-                    Getting even more creative? Mix built-in and self made Stickers! Create crazy vibes!
+                    Getting even more creative? Mix built-in and self-made Stickers! Create crazy vibes!
                     You are all set to create sticker mixes from all the built-in sticker packs, emojis and the stickers
                     from your collections.
                 </p>
