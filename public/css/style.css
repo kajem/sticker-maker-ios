@@ -380,13 +380,16 @@ h2.title {
 
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
-    #sticker-packs .card{
-        width: 100px;
-    }
 }
 
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
+    #cookie-policy .text-right{
+        text-align: center !important;
+    }
+    #sticker-packs .badge-warning{
+        right: 28px;
+    }
     h2.title{
         line-height: 1.5;
     }
