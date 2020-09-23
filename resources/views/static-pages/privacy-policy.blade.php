@@ -1,6 +1,6 @@
 @extends('layouts.front-template')
 @section('content')
-    <div class="content" id="pack-details">
+    <div class="content" id="privacy-policy">
         <div class="container mb-5">
             <h2 class="title pt-5">Privacy Policy</h2>
             <hr/>
