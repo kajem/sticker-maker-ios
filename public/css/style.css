@@ -435,7 +435,7 @@ h2.title {
         margin-top: 50px;
     }
     #hero-area video{
-        margin-left: -1px;
+        margin-left: 0px;
     }
     .download-now.card {
         min-width: 100%;
