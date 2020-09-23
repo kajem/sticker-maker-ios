@@ -11,8 +11,7 @@ a:hover{
 #sticker-packs .card{
     width: 171px;
     display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin: 0 5px 10px 5px;
     border-radius: 10px;
 }
 #sticker-packs .card .image{
@@ -374,4 +373,106 @@ h2.title {
 .new-square-box-holder .new-square-icon.apps-bg{
     background-image: url('/images/about-us/apps.png');
 }
+.show-on-pade{
+    display: none;
+}
 /*END: About us section*/
+
+/* Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+    #sticker-packs .card{
+        width: 100px;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px)*/
+@media (max-width: 767.98px) {
+    h2.title{
+        line-height: 1.5;
+    }
+    #top-bar h2{
+        text-align: center;
+    }
+    #hero-area{
+        text-align: center;
+    }
+    #hero-area .social-icons{
+        padding-left: 0;
+    }
+    #hero-area .video-frame.float-right {
+        float: none !important;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    #hero-area video{
+        margin-left: -2px;
+    }
+    .download-now.card {
+        min-width: 100%;
+    }
+    #sticker-packs .card{
+        width: 130px;
+    }
+    section#awesome-features img.amazing-feature {
+        margin-top: 31px;
+    }
+    #how-to-make h3{
+        padding-left: 45px;
+    }
+    #how-to-make .number-circle{
+        margin-bottom: -40px;
+    }
+    #how-to-make p{
+        margin-top: 10px;
+        padding-left: 45px;
+    }
+    #contact-us input[name="from_email"]{
+        margin-top: 15px;
+    }
+    #contact-us .text-right{
+        text-align: center !important;
+    }
+    #footer .row .col-sm-3{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    #footer h5{
+        margin-bottom: 0;
+        padding-bottom: 10px !important;
+    }
+    #footer h5.about{
+        margin-top: 25px;
+    }
+    #footer .social-icons a{
+        margin: 0 10px;
+    }
+}
+
+/* Medium devices (tablets, less than 992px)*/
+@media (max-width: 1024px) {
+    .show-on-tablet{
+        display: block;
+    }
+    #hero-area .col-sm-7{
+        padding-right: 40px;
+    }
+    .hide-on-pad{
+        display: none;
+    }
+    #how-to-make h3{
+        padding-left: 45px;
+    }
+    #how-to-make .number-circle{
+        margin-bottom: -40px;
+    }
+    #how-to-make p{
+        margin-top: 10px;
+        padding-left: 45px;
+    }
+}
+
+/* Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199.98px) {
+
+}
+

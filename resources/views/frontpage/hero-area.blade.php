@@ -1,8 +1,15 @@
 <section id="hero-area" class="pb-5">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
+        <div class="row show-on-pad">
+            <div class="col-sm-12">
                 <h1 class="text-white mt-5">
+                    Sticker Maker for Social Apps
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <h1 class="text-white mt-5 hide-on-pad">
                     Sticker Maker for Social Apps
                 </h1>
                 <h2 class="text-white">
@@ -19,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="video-frame float-right">
                     <video id="hero-video" controls autoplay muted loop>
                         <source src="{{asset('videos/4x5_1.mp4')}}" type="video/mp4">

@@ -1,5 +1,5 @@
 @if(!$items->isEmpty())
-    <section id="sticker-packs" class="pb-5">
+    <section id="sticker-packs" class="pb-5 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 pt-5 pb-4">

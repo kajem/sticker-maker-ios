@@ -8,7 +8,7 @@
                 </a>
             </div>
             <div class="col-sm-3">
-                <h5 class="pb-3 font-weight-bold">About</h5>
+                <h5 class="pb-3 font-weight-bold about">About</h5>
                 <ul class="p-0 list-unstyled links">
                     <li><a href="{{url('about-us')}}">About us</a></li>
                     <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
@@ -18,26 +18,30 @@
             <div class="col-sm-3">
                 <h5 class="pb-3 font-weight-bold">Other Apps</h5>
                 <div class="app-links">
-                    <a target="_blank" href="http://braincraftapps.com/our-products/details/48">
-                        Meme Maker
-                    </a><br/>
-                    <a target="_blank" href="http://braincraftapps.com/our-products/details/54">
-                        Add Music to Video
-                    </a><br/>
-                    <a target="_blank" href="http://braincraftapps.com/our-products/details/60">
-                        GIF Maker
-                    </a><br/>
-                    <a target="_blank" href="http://braincraftapps.com/our-products/details/57">
-                        SlideShow Maker
-                    </a>
+                    <ul class="p-0 list-unstyled links">
+                        <li>
+                            <a target="_blank" href="http://braincraftapps.com/our-products/details/48">
+                                Meme Maker
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://braincraftapps.com/our-products/details/54">
+                                Add Music to Video
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://braincraftapps.com/our-products/details/60">
+                                GIF Maker
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://braincraftapps.com/our-products/details/57">
+                                SlideShow Maker
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-{{--            <div class="col-sm-2">--}}
-{{--                <h5 class="pb-3 font-weight-bold">Get the app</h5>--}}
-{{--                <div class="get-app-links">--}}
-{{--                    @include('common.download-app-links')--}}
-{{--                </div>--}}
-{{--            </div>--}}
             <div class="col-sm-3">
                 <h5 class="pb-3 font-weight-bold">Stay in touch</h5>
                 <div class="social-icons">
