@@ -10,7 +10,7 @@
                     Sticker Maker is a product of Brain Craft Limited which is a software development company currently specialising
                 in Mobile applications development in the iOS App Store and the Google Play Store, the two primary areas are currently
                 under active development with more than 28 free downloadable and subscription-based mobile applications. The company
-                has enviable number of top charted apps in the iOS App Store.
+                has an enviable number of top charted apps in the iOS App Store.
                 </div>
 
                 <div class="row">
@@ -53,7 +53,7 @@
                             <div class="col-sm-8">
                                 <h5 class="font-weight-bold">Fully Secured</h5>
                                 <div class="text">
-                                    We shield customer's confidentiality and ensure date protection. We do not disclose our customers'
+                                    We shield customer's confidentiality and ensure data protection. We do not disclose our customers'
                                     data to any third party app
                                 </div>
                             </div>
