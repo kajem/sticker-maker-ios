@@ -376,11 +376,10 @@ h2.title {
 .new-square-box-holder .new-square-icon.apps-bg{
     background-image: url('/images/about-us/apps.png');
 }
+/*END: About us section*/
 .show-on-pad{
     display: none;
 }
-/*END: About us section*/
-
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
 }
@@ -480,8 +479,8 @@ h2.title {
 }
 
 /* Medium devices (tablets, less than 992px)*/
-@media (min-width: 768px and max-width: 1024px) {
-    .show-on-tablet{
+@media (min-width: 768px) and (max-width: 1024px) {
+    .show-on-pad{
         display: block;
     }
     #hero-area .col-sm-7{
