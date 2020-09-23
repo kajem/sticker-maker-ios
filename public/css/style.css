@@ -189,10 +189,13 @@ h2.title {
     border-radius: 10px;
     width: 148px;
     height: 148px;
-    float: left;
+    display: inline-block;
     padding: 5px;
     margin: 5px;
     position: relative;
+}
+#pack-details .container{
+    text-align: center;
 }
 .water-mark{
     position: absolute;
