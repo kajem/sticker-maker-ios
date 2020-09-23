@@ -5,7 +5,7 @@
                 <h3>We use cookies on this site to enhance your user experience</h3>
                 Most browsers allow you to manage your
                 cookies, and you can read more about the cookies
-                <a class="text-white cookie-policy-info" href="{{url('privacy-policy')}}">
+                <a class="text-white cookie-policy-info" href="{{url('privacy-policy#generic-cookie-policy')}}">
                     <strong>here</strong>
                 </a>.
                 By clicking "<strong>OK, I agree</strong>" button or any link on

@@ -125,7 +125,7 @@
                     <a href="mailto:support@braincraftapps.com">support@braincraftapps.com</a>
                 </div>
 
-                <h3 class="text-center pt-3">Generic Cookie Policy</h3>
+                <h3 id="generic-cookie-policy" class="text-center pt-3">Generic Cookie Policy</h3>
                 Please read this cookie policy (“cookie policy”, "policy") carefully before using stickermakerpro.com website
                 ("website", "service") operated by Brain Craft Limited ("us", 'we", "our").
 
