@@ -1,10 +1,12 @@
 <section id="hero-area" class="pb-5">
     <div class="container">
-        <div class="row show-on-pad">
-            <div class="col-sm-12">
-                <h1 class="text-white mt-5">
-                    Sticker Maker for Social Apps
-                </h1>
+        <div class="show-on-pad">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="text-white mt-5">
+                        Sticker Maker for Social Apps
+                    </h1>
+                </div>
             </div>
         </div>
         <div class="row">
