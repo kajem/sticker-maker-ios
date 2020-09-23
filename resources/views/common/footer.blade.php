@@ -20,23 +20,23 @@
                 <div class="app-links">
                     <ul class="p-0 list-unstyled links">
                         <li>
-                            <a target="_blank" href="http://braincraftapps.com/our-products/details/48">
-                                Meme Maker
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://braincraftapps.com/our-products/details/54">
-                                Add Music to Video
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://braincraftapps.com/our-products/details/60">
+                            <a target="_blank" href="https://apps.apple.com/us/app/gif-maker-make-video-to-gifs/id1215606098">
                                 GIF Maker
                             </a>
                         </li>
                         <li>
-                            <a target="_blank" href="http://braincraftapps.com/our-products/details/57">
+                            <a target="_blank" href="https://apps.apple.com/us/app/add-music-to-video-voice-over/id1276523677">
+                                Add Music to Video
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://apps.apple.com/us/app/slideshow-maker-with-music-fx/id1265026847">
                                 Slide Show Maker
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://apps.apple.com/us/app/meme-maker-meme-creator-to-make-photo-memes/id1250756211">
+                                Meme Maker
                             </a>
                         </li>
                     </ul>
