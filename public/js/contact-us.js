@@ -47,9 +47,9 @@ function save(){
 
         $.ajax({
             type:'POST',
+            headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
             url:'/contact/send-mail',
-            data:{ _token: $('#token').val(), name: name, from_email: from_email, subject: subject, message: message},
-            dataType:"json",
+            data:{ name: name, from_email: from_email, subject: subject, message: message},
             success:function(data){
                 if(data.status == 200){
                     $('#contact-us input[type="text"], #contact-us textarea').val('');

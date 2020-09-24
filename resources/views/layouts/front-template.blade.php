@@ -25,7 +25,7 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-TK3ZJCV');</script>
     <!-- End Google Tag Manager -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

@@ -6,7 +6,7 @@
             </div>
         </div>
         <form id="contact-form" action="#" method="post">
-            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+            @csrf
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
@@ -46,4 +46,4 @@
         </form>
     </div>
 </section>
-<script src="{{asset('js/contact-us.js?2414uu34srrbf')}}"></script>
+<script src="{{asset('js/contact-us.js?2414dduussseswwsrrbf')}}"></script>
