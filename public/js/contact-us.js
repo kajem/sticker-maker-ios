@@ -1,8 +1,8 @@
-function save(){
+let save = function(){
     $('#contact-us .alert').remove();
     $('#contact-us .text-danger').addClass('d-none');
     $('#contact-us input[type="text"], #contact-us textarea').css('border', '1px solid #ced4da');
-    var error = 0;
+    let error = 0;
     var name = $.trim($('input[name="name"]').val());
     if(name == ''){
         error = 1;
