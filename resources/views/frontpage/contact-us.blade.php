@@ -91,10 +91,7 @@
             $.ajax({
                 type:'POST',
                 url:'/contact/send-mail',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                data:{name: name, from_email: from_email, subject: subject, message: message},
+                data:{_token: '{{csrf_token()}}', name: name, from_email: from_email, subject: subject, message: message},
                 success:function(data){
                     if(data.status == 200){
                         $('#contact-us input[type="text"], #contact-us textarea').val('');
