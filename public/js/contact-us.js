@@ -49,6 +49,7 @@ function save(){
             type:'POST',
             url:'/contact/send-mail',
             data:{name: name, from_email: from_email, subject: subject, message: message},
+            dataType:"json",
             success:function(data){
                 if(data.status == 200){
                     $('#contact-us input[type="text"], #contact-us textarea').val('');
