@@ -45,4 +45,3 @@
         </form>
     </div>
 </section>
-<script src="{{asset('js/contact-us.js?2414dduussseswwsrrbf')}}"></script>
