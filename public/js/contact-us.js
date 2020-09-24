@@ -59,12 +59,12 @@ function save(){
                     $('#contact-us input[type="button"]').removeAttr('disabled');
 
                     $('#contact-form').before('<div class="alert alert-success alert-block">\n' +
-                        '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
+                        // '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
                         '                    <strong>'+data.message+'</strong>\n' +
                         '                </div>');
                 }else{
                     $('#contact-form').before('<div class="alert alert-danger alert-block">\n' +
-                        '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
+                        // '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
                         '                    <strong>'+data.message+'</strong>\n' +
                         '                </div>');
                 }
