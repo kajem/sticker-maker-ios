@@ -7,7 +7,7 @@
         </div>
         @include('common.notification')
         <form id="contact-form" action="{{url('contact/send-mail#contact-us')}}" method="post">
-            @csrf
+            {{ csrf_field() }} {{ method_field('POST') }}
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
