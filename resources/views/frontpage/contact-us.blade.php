@@ -6,7 +6,6 @@
             </div>
         </div>
         <form id="contact-form" action="{{url('contact/send-mail')}}" method="post">
-            {{csrf_field()}}
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
