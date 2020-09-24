@@ -29,9 +29,18 @@ class ContactMailController extends Controller
         $data['to_email'] = $to_email;
         $result = ContactMail::create($data);
         if($request){
-            return $this->successOutput([], 'Your message has been submitted successfully. We will contact you soon.');
+            $data = [
+                'status' => 200,
+                'message' => 'Your message has been submitted successfully. We will contact you soon.',
+            ];
+
+            return response()->json($data);
         }else{
-            return $this->errorOutput('Failed! Something went wrong!');
+            $data = [
+                'status' => 400,
+                'message' => 'Failed! Something went wrong!'
+            ];
+            return response()->json($data);
         }
     }
 }
