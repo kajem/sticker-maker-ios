@@ -15,7 +15,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css") }}">
     <link rel="stylesheet" href="{{asset('css/app.css?asdf')}}">
-    <link href="{{asset('css/style.css?ys4')}}" rel="stylesheet">
+    <link href="{{asset('css/style.css?eys4')}}" rel="stylesheet">
     <!-- jQuery -->
     <script src="{{ asset("/bower_components/admin-lte/plugins/jquery/jquery.min.js") }}"></script>
     <!-- Google Tag Manager -->

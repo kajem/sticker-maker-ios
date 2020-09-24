@@ -43,7 +43,7 @@ a:hover{
     right: 50px;
     top: 0px;
 }
-input[type="button"]{
+input[type="submit"]{
     font-size: 20px;
 }
 #top-bar, #hero-area, #contact-us, #awesome-features{
