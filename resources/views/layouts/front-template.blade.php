@@ -39,6 +39,6 @@
 </div>
 <!-- Bootstrap 4 -->
 <script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
-<script src="{{ asset("js/common.js?sdf") }}"></script>
+{{--<script src="{{ asset("js/common.js?sdf") }}"></script>--}}
 </body>
 </html>

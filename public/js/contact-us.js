@@ -42,6 +42,7 @@ function save(){
 
         $.ajax({
             type:'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'), '_method': 'patch'},
             url:'/contact/send-mail',
             data:{name: name, from_email: from_email, subject: subject, message: message},
             success:function(data){
