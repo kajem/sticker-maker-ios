@@ -1,8 +1,8 @@
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+// $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
 function save(){
     $('#contact-us .alert').remove();
     $('#contact-us .text-danger').addClass('d-none');
@@ -48,7 +48,7 @@ function save(){
         $.ajax({
             type:'POST',
             url:'/contact/send-mail',
-            data:{name: name, from_email: from_email, subject: subject, message: message},
+            data:{ _token: $('#token').val(), name: name, from_email: from_email, subject: subject, message: message},
             dataType:"json",
             success:function(data){
                 if(data.status == 200){
