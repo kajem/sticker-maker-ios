@@ -17,6 +17,7 @@ Route::domain($domain)->group(function() {
 });
 Route::get('get-sticker/items/{code}/{name}', 'WelcomeController@getSticker');
 Route::post('contact/send-mail', 'ContactMailController@sendMail');
+Route::post('ajax', 'AjaxController@call');
 Route::view('about-us', 'static-pages.about-us');
 Route::view('privacy-policy', 'static-pages.privacy-policy');
 Route::view('terms', 'static-pages.terms');
