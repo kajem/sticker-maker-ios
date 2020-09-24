@@ -25,7 +25,7 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-TK3ZJCV');</script>
     <!-- End Google Tag Manager -->
-{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -38,7 +38,7 @@
     @include('common.footer')
 </div>
 <!-- Bootstrap 4 -->
-{{--<script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>--}}
+<script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
 <script src="{{ asset("resources/js/bootstrap.js") }}"></script>
 {{--<script src="{{ asset("js/common.js?sdf") }}"></script>--}}
 </body>

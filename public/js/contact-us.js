@@ -1,8 +1,8 @@
-// $.ajaxSetup({
-//     headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//     }
-// });
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 function save(){
     $('#contact-us .alert').remove();
     $('#contact-us .text-danger').addClass('d-none');
@@ -47,7 +47,6 @@ function save(){
 
         $.ajax({
             type:'POST',
-            headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
             url:'/contact/send-mail',
             data:{ name: name, from_email: from_email, subject: subject, message: message},
             success:function(data){
@@ -60,12 +59,12 @@ function save(){
                     $('#contact-us input[type="button"]').removeAttr('disabled');
 
                     $('#contact-form').before('<div class="alert alert-success alert-block">\n' +
-                        // '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
+                        '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
                         '                    <strong>'+data.message+'</strong>\n' +
                         '                </div>');
                 }else{
                     $('#contact-form').before('<div class="alert alert-danger alert-block">\n' +
-                        // '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
+                        '                    <button type="button" class="close" data-dismiss="alert">×</button>\n' +
                         '                    <strong>'+data.message+'</strong>\n' +
                         '                </div>');
                 }
