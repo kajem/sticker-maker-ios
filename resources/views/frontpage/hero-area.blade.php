@@ -32,6 +32,7 @@
                 <div class="video-frame float-right">
                     <video id="hero-video" controls autoplay muted loop>
                         <source src="{{asset('videos/hero-video1.mp4')}}" type="video/mp4">
+                        <source src="{{asset('videos/hero-video1.ogg')}}" type="video/ogg">
                         Your browser does not support the video tag.
                     </video>
                 </div>
