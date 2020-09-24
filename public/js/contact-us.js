@@ -41,9 +41,6 @@ function save(){
         $('#contact-us input[type="button"]').attr('disabled', 'true');
 
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             type:'POST',
             url:'/contact/send-mail',
             data:{name: name, from_email: from_email, subject: subject, message: message},

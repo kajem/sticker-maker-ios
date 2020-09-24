@@ -45,4 +45,4 @@
         </form>
     </div>
 </section>
-<script src="{{asset('js/contact-us.js?sqrtf')}}"></script>
+<script src="{{asset('js/contact-us.js?sqrddtf')}}"></script>
