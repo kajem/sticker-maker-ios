@@ -5,59 +5,65 @@
                 <h2 class="title text-center text-white">Contact Us</h2>
             </div>
         </div>
-        @include('common.notification')
-        <form id="contact-form" action="{{url('contact/send-mail#contact-us')}}" method="post">
-            @csrf
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" value="{{!empty(old('name')) ? old('name') : ''}}" name="name" placeholder="Name" required>
+        <div class="text-center text-white">
+            <div class="envelop mt-4"><i class="far fa-envelope"></i></div>
+            <div class="text mt-5">
+                Contact us at: <a href="mailto:support@braincraftapps.com">support@braincraftapps.com</a>
+            </div>
+        </div>
+{{--        @include('common.notification')--}}
+{{--        <form id="contact-form" action="{{url('contact/send-mail#contact-us')}}" method="post">--}}
+{{--            @csrf--}}
+{{--            <div class="form-group">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-sm-6">--}}
+{{--                        <input class="form-control" type="text" value="{{!empty(old('name')) ? old('name') : ''}}" name="name" placeholder="Name" required>--}}
 {{--                        <span class="text-danger d-none">Name is required!</span>--}}
-                        @if ($errors->has('name'))
-                            <span class="text-danger">{{ $errors->first('name') }}</span>
-                        @endif
+{{--                        @if ($errors->has('name'))--}}
+{{--                            <span class="text-danger">{{ $errors->first('name') }}</span>--}}
+{{--                        @endif--}}
 
-                    </div>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="email" name="from_email" value="{{!empty(old('from_email')) ? old('from_email') : ''}}" placeholder="Email" required>
+{{--                    </div>--}}
+{{--                    <div class="col-sm-6">--}}
+{{--                        <input class="form-control" type="email" name="from_email" value="{{!empty(old('from_email')) ? old('from_email') : ''}}" placeholder="Email" required>--}}
 {{--                        <span class="text-danger d-none">Email is required!</span>--}}
-                        @if ($errors->has('from_email'))
-                            <span class="text-danger">{{ $errors->first('from_email') }}</span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input class="form-control" type="text" name="subject" value="{{!empty(old('subject')) ? old('subject') : ''}}" placeholder="Subject" required>
+{{--                        @if ($errors->has('from_email'))--}}
+{{--                            <span class="text-danger">{{ $errors->first('from_email') }}</span>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-sm-12">--}}
+{{--                        <input class="form-control" type="text" name="subject" value="{{!empty(old('subject')) ? old('subject') : ''}}" placeholder="Subject" required>--}}
 {{--                        <span class="text-danger d-none">Subject is required!</span>--}}
-                        @if ($errors->has('subject'))
-                             <span class="text-danger">{{ $errors->first('subject') }}</span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <textarea rows="5" class="form-control" name="message" value="{{!empty(old('message')) ? old('message') : ''}}" placeholder="Message" required></textarea>
+{{--                        @if ($errors->has('subject'))--}}
+{{--                             <span class="text-danger">{{ $errors->first('subject') }}</span>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-sm-12">--}}
+{{--                        <textarea rows="5" class="form-control" name="message" value="{{!empty(old('message')) ? old('message') : ''}}" placeholder="Message" required></textarea>--}}
 {{--                        <span class="text-danger d-none">Message is required!</span>--}}
-                        @if ($errors->has('message'))
-                            <span class="text-danger">{{ $errors->first('message') }}</span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-6 text-right">
-                        <input type="submit" value="Submit" class="btn btn-primary pl-5 pr-5 pt-2 pb-2">
-                    </div>
-                </div>
-            </div>
-        </form>
+{{--                        @if ($errors->has('message'))--}}
+{{--                            <span class="text-danger">{{ $errors->first('message') }}</span>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-sm-6"></div>--}}
+{{--                    <div class="col-sm-6 text-right">--}}
+{{--                        <input type="submit" value="Submit" class="btn btn-primary pl-5 pr-5 pt-2 pb-2">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </form>--}}
     </div>
 </section>
 {{--<script src="{{asset('js/contact-us.js?2414dduussseswwsrrbf')}}"></script>--}}

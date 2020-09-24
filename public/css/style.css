@@ -8,6 +8,10 @@ a:hover{
 .mt-150{
     margin-top: 150px;
 }
+.envelop i{
+    font-size: 200px;
+    color: #fff;
+}
 #sticker-packs .card{
     width: 171px;
     display: inline-block;
@@ -57,6 +61,15 @@ input[type="submit"]{
 }
 #contact-us .btn-primary:hover{
     background-color: #e5bb0f;
+}
+#contact-us .text{
+    font-size: 30px;
+}
+#contact-us .text a{
+    color: #fff;
+}
+#contact-us .text a:hover{
+    text-decoration: underline;
 }
 /*END: Contact us*/
 
