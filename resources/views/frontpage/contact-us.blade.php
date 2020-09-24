@@ -5,7 +5,7 @@
                 <h2 class="title text-center text-white">Contact Us</h2>
             </div>
         </div>
-        <form id="contact-form" action="{{url('contact/send-mail')}}" method="post">
+        <form id="contact-form" action="#" method="post">
             <div class="form-group">
                 <div class="row">
                     <div class="col-sm-6">
@@ -45,4 +45,4 @@
         </form>
     </div>
 </section>
-<script src="{{asset('js/contact-us.js?2f')}}"></script>
+<script src="{{asset('js/contact-us.js?2bf')}}"></script>

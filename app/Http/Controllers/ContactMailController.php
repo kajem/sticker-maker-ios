@@ -17,7 +17,7 @@ class ContactMailController extends Controller
             $to_email = Redis::get($redis_key);
         }else{
             $contact_us_email = StaticValue::select('value')->where('name', 'contact_us_mail')->first();
-            $to_email = !empty($contact_us_email->value) ? $contact_us_email->value : 'contact@braincraftapps.com';
+            $to_email = !empty($contact_us_email->value) ? $contact_us_email->value : 'support@braincraftapps.com';
             $redis_ttl = 31536000; //Will expire after one year
             Redis::setEx($redis_key, $redis_ttl, $to_email); //Writing to Redis
         }
