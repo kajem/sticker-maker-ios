@@ -389,6 +389,15 @@ h2.title {
 .new-square-box-holder .new-square-icon.apps-bg{
     background-image: url('/images/about-us/apps.png');
 }
+.new-square-box-holder .new-square-icon.user{
+    background-image: url('/images/about-us/user.png');
+}
+.new-square-box-holder .new-square-icon.download{
+    background-image: url('/images/about-us/download.png');
+}
+.new-square-box-holder .new-square-icon.topchart{
+    background-image: url('/images/about-us/topchart.png');
+}
 /*END: About us section*/
 .show-on-pad{
     display: none;

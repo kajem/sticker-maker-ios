@@ -86,7 +86,7 @@
                     </div>
                     <div class="square-columns aos-init aos-animate" data-aos="fade-up" data-aos-duration="1500">
                         <div class="new-square">
-                            <div class="new-square-icon" style="background-image: url('http://braincraftapps.com/assets/site/images/user.png')"></div>
+                            <div class="new-square-icon user"></div>
                         </div>
                         <div class="content">
                             <div data-table="blocks" data-column="block_html" data-pk="block_title" data-id="user-count" class="nicEditSubject" id="user-count"><span>20M Users</span></div>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="square-columns aos-init aos-animate" data-aos="fade-up" data-aos-duration="1800">
                         <div class="new-square">
-                            <div class="new-square-icon" style="background-image: url('http://braincraftapps.com/assets/site/images/download.png')"></div>
+                            <div class="new-square-icon download"></div>
                         </div>
                         <div class="content">
                             <div data-table="blocks" data-column="block_html" data-pk="block_title" data-id="download-count" class="nicEditSubject" id="download-count"><span>30M Downloads</span></div>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="square-columns aos-init aos-animate" data-aos="fade-up" data-aos-duration="2100">
                         <div class="new-square">
-                            <div class="new-square-icon" style="background-image: url('http://braincraftapps.com/assets/site/images/topchart.png')"></div>
+                            <div class="new-square-icon topchart"></div>
                         </div>
                         <div class="content">
                             <div data-table="blocks" data-column="block_html" data-pk="block_title" data-id="topchart-count" class="nicEditSubject" id="topchart-count"><span>8 Top Charted</span></div>
