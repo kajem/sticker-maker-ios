@@ -22,23 +22,23 @@ class ResourceController extends Controller
         }
         //START: Truncate the tables
         //Author::truncate();
-        Category::truncate();
-        Item::truncate();
-        ItemToCategory::truncate();
-        //END: Truncate the tables 
+        //Category::truncate();
+        //Item::truncate();
+       // ItemToCategory::truncate();
+        //END: Truncate the tables
 
         //Re-creating items directory
         $root_item_folder = 'public/items';
-        Storage::deleteDirectory($root_item_folder); 
-        Storage::disk('local')->makeDirectory($root_item_folder);
+        //Storage::deleteDirectory($root_item_folder);
+        //Storage::disk('local')->makeDirectory($root_item_folder);
 
         //Re-creating category-thumbs directory
         $root_category_folder = 'public/category-thumbs';
-        Storage::deleteDirectory($root_category_folder); 
-        Storage::disk('local')->makeDirectory($root_category_folder);
+        //Storage::deleteDirectory($root_category_folder);
+        //Storage::disk('local')->makeDirectory($root_category_folder);
 
         $this->processCategories($categories, $root_folder);
-        
+
         //Category::where('name', 'Emoji')->update(['type' => 'emoji']);
 
         $category = Category::all();
@@ -93,7 +93,7 @@ class ResourceController extends Controller
                 Storage::disk('local')->put($cat_thumb_2_path, $compressed_png_content2); //Writing compressed png
             }
             //END: copy category thumb images
-            
+
             if(empty($items)) continue;
 
             $total_stickers = $this->processItems($items, $category, $category_id);
@@ -123,14 +123,14 @@ class ResourceController extends Controller
                 $thumb_img_arr = explode(".", $thumb[0]);
                 $extension = end($thumb_img_arr);
                 $thumb_path = 'public/items/'.$code.'/'.$code.'.'.$extension;
-                echo $storage_path.$thumb[0];exit;
+                //echo $storage_path.$thumb[0];exit;
                 $compressed_png_content3 = $this->compressPNG($storage_path.$thumb[0]); //Getting compressed png content
                 Storage::disk('local')->put($thumb_path, $compressed_png_content3); //Writing compressed png
             }
 
             $sticker_names = [];
             $stickers = Storage::files($item."/files"); //Get the sticker files
-            if(!empty($stickers)) 
+            if(!empty($stickers))
                 $sticker_names = $this->processStickers2($stickers, $code);
 
             $total_stickers += count($sticker_names);
@@ -198,16 +198,16 @@ class ResourceController extends Controller
     private function uniqueCode($size = 6){
         $alpha_key = '';
         $keys = range('A', 'Z');
-        
+
         for ($i = 0; $i < 2; $i++) {
             $alpha_key .= $keys[array_rand($keys)];
         }
-        
+
         $length = $size - 2;
-        
+
         $key = '';
         $keys = range(0, 9);
-        
+
         for ($i = 0; $i < $length; $i++) {
             $key .= $keys[array_rand($keys)];
         }
@@ -217,7 +217,7 @@ class ResourceController extends Controller
         if(!empty(Item::select('id')->where('code', $code)->first()->id)){
             $this->uniqueCode();
         }
-        
+
         return $code;
     }
 
@@ -281,7 +281,7 @@ class ResourceController extends Controller
 
             // foreach($stickers as $sticker){
             //     $original_file_path = $item_root_folder.$sticker;
-            
+
             //     if(file_exists($original_file_path)){
             //         $thumb_name = $width.'__'.$sticker;
 
@@ -302,7 +302,7 @@ class ResourceController extends Controller
             //                 $constraint->upsize();
             //             })->save($item_root_folder.$thumb_name);
             //         }
-                    
+
             //         $successful++;
             //     }else{
             //         $unsuccessful++;
@@ -311,7 +311,7 @@ class ResourceController extends Controller
             // }
         }
 
-        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
+        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful;
         if(!empty($unsuccessful_list)) echo $unsuccessful_list;
         exit;
     }
@@ -325,7 +325,7 @@ class ResourceController extends Controller
 
         $stickers = ItemSticker::select('path')->get()->toArray();
         $items = Item::select('thumb as path')->where('thumb', '!=', '')->get()->toArray();
-        
+
         $stickers = array_merge($stickers, $items);
 
         if(count($stickers) < 1){
@@ -336,7 +336,7 @@ class ResourceController extends Controller
         $unsuccessful_list = '';
         foreach($stickers as $sticker){
             $original_file_path = base_path().'/storage/app/public/'.$sticker['path'];
-        
+
             if(file_exists($original_file_path)){
                 $file_path_arr = explode("/", $sticker['path']);
                 $thumb_name = $file_path_arr[1]."/".$width.'__'.$file_path_arr[2];
@@ -365,7 +365,7 @@ class ResourceController extends Controller
             }
         }
 
-        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful; 
+        echo 'Successful: '.$successful.' Unsuccessful: '.$unsuccessful;
         if(!empty($unsuccessful_list)) echo $unsuccessful_list;
         exit;
     }
@@ -401,12 +401,12 @@ class ResourceController extends Controller
 
             foreach($stickers as $sticker){
                 $original_file_path = $storage_path.$item_path.$sticker;
-            
+
                 if(file_exists($original_file_path)){
                     $thumbnailImage = Image::make($original_file_path)->widen(200, function ($constraint) {
                         $constraint->upsize();
                     })->save($storage_path.$item_thumb_path."/".$sticker); //Saving 200*200 thumb image
-                        
+
                     $zip->addFile($storage_path.$item_path.$sticker, $sticker); //Add file to main zip archive
                 }
             }
@@ -437,7 +437,7 @@ class ResourceController extends Controller
             //END: Creating Thumb zip file
         }
 
-        echo $successful." packs created successfully.<br/>"; 
+        echo $successful." packs created successfully.<br/>";
     }
 
     /**
@@ -486,8 +486,8 @@ class ResourceController extends Controller
         }
         $zip->close();
 
-        echo count($items). ' emoji pack\'s main zip files created successfully.<br/>'; 
-        echo ' emoji_thumbs.zip file created successfully.<br/>'; 
+        echo count($items). ' emoji pack\'s main zip files created successfully.<br/>';
+        echo ' emoji_thumbs.zip file created successfully.<br/>';
     }
 
     /**
@@ -503,11 +503,11 @@ class ResourceController extends Controller
         $successful = 0;
         if(!empty($zip_files)){
             //re-creating the directory where compressed zip will be saved
-            Storage::deleteDirectory($destination_folder); 
+            Storage::deleteDirectory($destination_folder);
             Storage::disk('local')->makeDirectory($destination_folder);
 
             //re-creating the folder where zip files will be extracted
-            Storage::deleteDirectory($zip_extract_folder); 
+            Storage::deleteDirectory($zip_extract_folder);
             Storage::disk('local')->makeDirectory($zip_extract_folder);
 
             foreach($zip_files as $zip_file){
@@ -523,18 +523,18 @@ class ResourceController extends Controller
                         $compressed_zip_path = $storage_path.$destination_folder.$extract_folder_name.".zip";
 
                         $compressed_zip = new ZipArchive; //creating ZipArchive object for compressed zip file
-                        
+
                         if ($compressed_zip->open($compressed_zip_path, ZipArchive::CREATE) === TRUE){
                             foreach($images as $image){
                                 $file_name = explode("/", $image);
                                 $file_name = array_pop($file_name);
-                                
+
 
                                 $compressed_png_content = $this->compressPNG($storage_path.$image); //Getting compressed png content
 
                                 $extract_thumb_folder = $zip_extract_folder.$extract_folder_name."/thumb/";
                                 Storage::disk('local')->makeDirectory($extract_thumb_folder); //creating thumb folder
-                                
+
                                 $compressed_file_path = $extract_thumb_folder.$file_name;
                                 Storage::disk('local')->put($compressed_file_path, $compressed_png_content); //Writing compressed png
 
