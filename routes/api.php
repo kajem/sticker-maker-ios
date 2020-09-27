@@ -26,6 +26,7 @@ Route::group(['prefix' => 'item'], function (){
     Route::get('{code}/image/{file_name}', 'Api\ItemController@getImage')->name('item.image');
     Route::get('search', 'Api\ItemController@search');
     Route::post('save-search-keyword', 'Api\ItemController@saveSearchKeyword');
+    Route::get('/{code}', 'Api\ItemController@getPack');
 });
 
 Route::group(['prefix' => 'stickerpack'], function (){

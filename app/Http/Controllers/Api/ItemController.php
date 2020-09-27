@@ -422,4 +422,20 @@ class ItemController extends Controller
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
         return $this->successOutput($data);
     }
+
+    public function getPack($code){
+        $pack = Item::select('name', 'thumb',  'stickers')->where('code', $code)->first();
+        if(empty($pack->name))
+            return $this->errorOutput('Invalid code!');
+
+        $thumb_arr = explode("/",$pack->thumb);
+        $data = [
+            'pack_base_url' => config('app.asset_base_url').'items/'.$code.'/',
+            'name' => $pack->name,
+            'thumb' => end($thumb_arr),
+            'stickers' => unserialize($pack->stickers),
+        ];
+
+        return $this->successOutput($data);
+    }
 }
