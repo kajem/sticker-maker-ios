@@ -399,6 +399,9 @@ h2.title {
 
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
+    #contact-us .text {
+        font-size: 18px;
+    }
     #hero-area .col-sm-7 {
          padding-right: 15px;
     }
