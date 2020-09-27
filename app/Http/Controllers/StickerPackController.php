@@ -12,11 +12,11 @@ class StickerPackController extends Controller
 {
     public function getPack($code){
         $key = urldecode(url()->full());
-        if(Redis::exists($key)){
-            $data = unserialize(Redis::get($key));
-            //echo "<pre>"; print_r($data['pack']->code);exit;
-            return view('stickerpack.details')->with(unserialize(Redis::get($key)));
-        }
+//        if(Redis::exists($key)){
+//            $data = unserialize(Redis::get($key));
+//            //echo "<pre>"; print_r($data['pack']->code);exit;
+//            return view('stickerpack.details')->with(unserialize(Redis::get($key)));
+//        }
 
         $pack_root_folder = config('app.asset_base_url').'items/';
         $is_braincraft_pack = true;
@@ -25,7 +25,7 @@ class StickerPackController extends Controller
         $pack = Item::where('code', $code)->first();
 
         if($param != 'braincraft'){
-            $pack_root_folder = config('app.asset_base_url').'sticker-packs/';
+            $pack_root_folder = url('/').'/storage/sticker-packs/';
             $is_braincraft_pack = false;
             $pack = StickerPack::where('code', $code)->first();
         }
@@ -55,13 +55,13 @@ class StickerPackController extends Controller
         //             if (mime_content_type ( $original_file_path ) == 'image/gif') {
         //                 $im = new \Imagick($original_file_path);
         //                 $im = $im->coalesceImages();
-        
+
         //                 do {
         //                     $im->resizeImage($width, null, \Imagick::FILTER_BOX, 1);
         //                 } while ($im->nextImage());
-        
+
         //                 $im = $im->deconstructImages();
-        
+
         //                 $im->writeImages($thumb_file_path, true);
         //             } else {
         //                 $thumbnailImage = Image::make($original_file_path)->widen($width, function ($constraint) {
