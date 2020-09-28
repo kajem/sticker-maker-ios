@@ -487,9 +487,12 @@ h2.title {
     #contact-us .text-right{
         text-align: center !important;
     }
-    #footer .row .col-sm-3{
+    #footer .about-links, #footer .other-app-links, #footer .social-links, #footer .made-at-braincraft{
         text-align: center;
         margin-bottom: 30px;
+    }
+    #footer .other-app-links ul.first-part{
+        margin-bottom: 0;
     }
     #footer h5{
         margin-bottom: 0;

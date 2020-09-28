@@ -2,72 +2,78 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <h5 class="pb-3 font-weight-bold">Made @ Braincraft</h5>
-                <a target="_blank" href="https://braincraftapps.com">
-                    <img width="125" src="/images/braincraft-logo.png?test" alt="BrainCraft Limited">
-                </a>
+                <div class="made-at-braincraft">
+                    <h5 class="pb-3 font-weight-bold">Made @ Braincraft</h5>
+                    <a target="_blank" href="https://braincraftapps.com">
+                        <img width="125" src="/images/braincraft-logo.png?test" alt="BrainCraft Limited">
+                    </a>
+                </div>
             </div>
             <div class="col-sm-6">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h5 class="pb-3 font-weight-bold about">About</h5>
-                        <ul class="p-0 list-unstyled links">
-                            <li><a href="{{url('about-us')}}">About us</a></li>
-                            <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
-                            <li><a href="{{url('terms')}}">Terms of Use</a></li>
-                        </ul>
+                        <div class="about-links">
+                            <h5 class="pb-3 font-weight-bold about">About</h5>
+                            <ul class="p-0 list-unstyled links">
+                                <li><a href="{{url('about-us')}}">About us</a></li>
+                                <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
+                                <li><a href="{{url('terms')}}">Terms of Use</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col-sm-8">
-                        <h5 class="pb-3 font-weight-bold">Other Apps</h5>
-                        <div class="app-links">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="p-0 list-unstyled links">
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/gif-maker-make-video-to-gifs/id1215606098">
-                                                GIF Maker
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/add-music-to-video-voice-over/id1276523677">
-                                                Add Music to Video
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/slideshow-maker-with-music-fx/id1265026847">
-                                                Slide Show Maker
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/meme-maker-meme-creator-to-make-photo-memes/id1250756211">
-                                                Meme Maker
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="p-0 list-unstyled links">
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/vpn-for-iphone-proxy-server/id1273734740">
-                                                VPN for iPhone
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/cleaner-clean-duplicate-item/id1287969142">
-                                                Clean Duplicate Item
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/slow-motion-video-fx-editor/id1205232635">
-                                                Slow Motion Video
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="https://apps.apple.com/us/app/language-translator/id1490237567">
-                                                Language Translator
-                                            </a>
-                                        </li>
-                                    </ul>
+                        <div class="other-app-links">
+                            <h5 class="pb-3 font-weight-bold">Other Apps</h5>
+                            <div class="app-links">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="p-0 list-unstyled links first-part">
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/gif-maker-make-video-to-gifs/id1215606098">
+                                                    GIF Maker
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/add-music-to-video-voice-over/id1276523677">
+                                                    Add Music to Video
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/slideshow-maker-with-music-fx/id1265026847">
+                                                    Slide Show Maker
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/meme-maker-meme-creator-to-make-photo-memes/id1250756211">
+                                                    Meme Maker
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="p-0 list-unstyled links">
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/vpn-for-iphone-proxy-server/id1273734740">
+                                                    VPN for iPhone
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/cleaner-clean-duplicate-item/id1287969142">
+                                                    Clean Duplicate Item
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/slow-motion-video-fx-editor/id1205232635">
+                                                    Slow Motion Video
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a target="_blank" href="https://apps.apple.com/us/app/language-translator/id1490237567">
+                                                    Language Translator
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -75,9 +81,11 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <h5 class="pb-3 font-weight-bold">Stay in touch</h5>
-                <div class="social-icons">
-                    @include('common.social-icons')
+                <div class="social-links">
+                    <h5 class="pb-3 font-weight-bold">Stay in touch</h5>
+                    <div class="social-icons">
+                        @include('common.social-icons')
+                    </div>
                 </div>
             </div>
         </div>
