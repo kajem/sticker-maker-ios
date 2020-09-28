@@ -2,26 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <div class="made-at-braincraft">
-                    <h5 class="pb-3 font-weight-bold">Made @ Braincraft</h5>
-                    <a target="_blank" href="https://braincraftapps.com">
-                        <img width="125" src="/images/braincraft-logo.png?test" alt="BrainCraft Limited">
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="about-links">
-                    <h5 class="pb-3 font-weight-bold about">About</h5>
-                    <ul class="p-0 list-unstyled links">
-                        <li><a href="{{url('about-us')}}">About us</a></li>
-                        <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
-                        <li><a href="{{url('terms')}}">Terms of Use</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-3">
                 <div class="other-app-links">
-                    <h5 class="pb-3 font-weight-bold">Other Apps</h5>
+                    <h5 class="pb-3 font-weight-bold">Our Apps</h5>
                     <div class="app-links">
                         <ul class="p-0 list-unstyled links first-part">
                             <li>
@@ -69,11 +51,29 @@
                 </div>
             </div>
             <div class="col-sm-3">
+                <div class="about-links">
+                    <h5 class="pb-3 font-weight-bold about">About</h5>
+                    <ul class="p-0 list-unstyled links">
+                        <li><a href="{{url('about-us')}}">About us</a></li>
+                        <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
+                        <li><a href="{{url('terms')}}">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
                 <div class="social-links">
                     <h5 class="pb-3 font-weight-bold">Stay in touch</h5>
                     <div class="social-icons">
                         @include('common.social-icons')
                     </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="made-at-braincraft">
+                    <h5 class="pb-3 font-weight-bold">Made @ Braincraft</h5>
+                    <a target="_blank" href="https://braincraftapps.com">
+                        <img width="125" src="/images/braincraft-logo.png?test" alt="BrainCraft Limited">
+                    </a>
                 </div>
             </div>
         </div>
