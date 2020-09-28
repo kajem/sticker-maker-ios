@@ -43,4 +43,4 @@
         </div>
     </div>
 @endsection
-<script type="text/javascript" src="{{asset('js/protect-right-click-and-drag.js')}}"></script>
+<script type="text/javascript" src="/js/protect-right-click-and-drag.js"></script>
