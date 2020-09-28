@@ -16,7 +16,7 @@
                 </p>
             </div>
             <div class="col-sm-3">
-                <img class="amazing-feature" src="{{asset('images/Lasso.png')}}"
+                <img class="amazing-feature" src="{{asset('images/Lasso.png')}}?4512"
                      alt="Cropping a men's face with lasso tool"/>
                 <h5 class="font-weight-bold text-center">Crop Precisely!</h5>
                 <p>
