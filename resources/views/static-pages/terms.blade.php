@@ -1,4 +1,9 @@
-@extends('layouts.front-template')
+@extends('layouts.front-template',
+[
+    'page_title' => 'Terms',
+    'meta_title' => 'Terms',
+    'meta_keywords' => 'terms, terms and conditions',
+])
 @section('content')
     <div class="content mb-5" id="terms">
         <div class="container">

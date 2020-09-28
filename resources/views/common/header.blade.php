@@ -4,7 +4,7 @@
             <div class="col-sm-12">
                 <a href="{{url('/')}}" class="logo">
                     <h2 class="text-white font-weight-bold">
-                        <img width="64" src="{{asset('images/logo.png')}}" alt="Sticker Maker"/>
+                        <img width="64" src="/images/logo.png" alt="Sticker Maker"/>
                         Sticker Maker
                     </h2>
                 </a>

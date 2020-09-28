@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <img class="amazing-feature" src="{{asset('images/Magic.png')}}"
+                <img class="amazing-feature" src="/images/Magic.png"
                      alt="Magical Background Remove!"/>
                 <h5 class="font-weight-bold text-center">Remove Background with Magic Tool!</h5>
                 <p>
@@ -16,7 +16,7 @@
                 </p>
             </div>
             <div class="col-sm-3">
-                <img class="amazing-feature" src="{{asset('images/Lasso.png')}}"
+                <img class="amazing-feature" src="images/Lasso.png"
                      alt="Cropping a men's face with lasso tool"/>
                 <h5 class="font-weight-bold text-center">Crop Precisely!</h5>
                 <p>
@@ -26,7 +26,7 @@
                 </p>
             </div>
             <div class="col-sm-3">
-                <img class="amazing-feature" src="{{asset('images/add-text.png')}}"
+                <img class="amazing-feature" src="/images/add-text.png"
                      alt="Add Text to a sticker"/>
                 <h5 class="font-weight-bold text-center">Add Text</h5>
                 <p>
@@ -36,7 +36,7 @@
                 </p>
             </div>
             <div class="col-sm-3">
-                <img class="amazing-feature" src="{{asset('images/add-sticker-on-a-sticker.png')}}"
+                <img class="amazing-feature" src="/images/add-sticker-on-a-sticker.png"
                      alt="Add Sticker on a Sticker"/>
                 <h5 class="font-weight-bold text-center">Mix Stickers - Sticker on Sticker</h5>
                 <p>

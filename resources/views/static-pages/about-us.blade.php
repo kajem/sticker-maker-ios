@@ -1,4 +1,9 @@
-@extends('layouts.front-template')
+@extends('layouts.front-template',
+[
+    'page_title' => 'About Us',
+    'meta_title' => 'About Us',
+    'meta_keywords' => 'about us',
+])
 @section('content')
     <div class="content mb-5" id="about-us">
         <div class="container">
@@ -17,7 +22,7 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 offset-lg-1">
-                                <img class="icon" src="{{asset('images/about-us/exclusive-design.png')}}" alt="Exclusive design" />
+                                <img class="icon" src="/images/about-us/exclusive-design.png" alt="Exclusive design" />
                             </div>
                             <div class="col-sm-8">
                                 <h5 class="font-weight-bold">Exclusive design</h5>
@@ -31,7 +36,7 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 offset-lg-1">
-                                <img class="icon last" src="{{asset('images/about-us/high-quality-copy.png')}}" alt="High Quality" />
+                                <img class="icon last" src="/images/about-us/high-quality-copy.png" alt="High Quality" />
                             </div>
                             <div class="col-sm-8">
                                 <h5 class="font-weight-bold">High Quality</h5>
@@ -48,7 +53,7 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 offset-lg-1">
-                                <img class="icon" src="{{asset('images/about-us/fully-secured.png')}}" alt="Fully Secured" />
+                                <img class="icon" src="/images/about-us/fully-secured.png" alt="Fully Secured" />
                             </div>
                             <div class="col-sm-8">
                                 <h5 class="font-weight-bold">Fully Secured</h5>
@@ -62,7 +67,7 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3 col-lg-2 offset-lg-1">
-                                <img class="icon last" src="{{asset('images/about-us/excellent-support.png')}}" alt="Excellent Support" />
+                                <img class="icon last" src="/images/about-us/excellent-support.png" alt="Excellent Support" />
                             </div>
                             <div class="col-sm-8">
                                 <h5 class="font-weight-bold">Excellent Support</h5>

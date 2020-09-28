@@ -3,21 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" ontent="{{url()->current()}}" />
+    <meta property="og:site_name" content="Sticker Maker for Social Apps" />
+    <meta property="og:title" content="{{ !empty($meta_title) ? $meta_title : 'Sticker Maker for Social Apps' }}" />
+    <meta name="keywords" content="{{!empty($meta_keywords) ? $meta_keywords : ''}}" />
+    <meta property="og:description" content="Create your own personal Sticker packs for WhatsApp, Facebook, Messenger, iMessage! Share your sticker in social apps and end the boring chat! Add your stickers on iMessage and WhatsApp or download as PNG photos! Share single stickers or entire sticker packs!" />
+    <meta name="description" content="Create your own personal Sticker packs for WhatsApp, Facebook, Messenger, iMessage! Share your sticker in social apps and end the boring chat! Add your stickers on iMessage and WhatsApp or download as PNG photos! Share single stickers or entire sticker packs!" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#00b129" />
 
-    <title>Sticker Maker</title>
+    <title>Sticker Maker | {{!empty($page_title) ? $page_title : 'Personalize your own stickers easily!'}}</title>
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/favicons/favicon-16x16.png')}}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('images/favicons/favicon-32x32.png')}}" />
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('images/favicons/favicon-96x96.png')}}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png" />
 
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css") }}">
-    <link rel="stylesheet" href="{{asset('css/app.css?asdf')}}">
-    <link href="{{asset('css/style.css?itsfys4')}}" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css"">
+    <link rel="stylesheet" href="/css/app.css?asdf">
+    <link href="/css/style.css?itsfys4" rel="stylesheet">
     <!-- jQuery -->
-    <script src="{{ asset("/bower_components/admin-lte/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="/bower_components/admin-lte/plugins/jquery/jquery.min.js"></script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -38,7 +47,7 @@
     @include('common.footer')
 </div>
 <!-- Bootstrap 4 -->
-<script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+<script src="/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 {{--<script src="{{ asset("resources/js/bootstrap.js") }}"></script>--}}
 {{--<script src="{{ asset("js/common.js?sdf") }}"></script>--}}
 </body>

@@ -1,4 +1,9 @@
-@extends('layouts.front-template')
+@extends('layouts.front-template',
+[
+    'page_title' => 'Privacy Policy',
+    'meta_title' => 'Privacy Policy',
+    'meta_keywords' => 'privacy policy',
+])
 @section('content')
     <div class="content" id="privacy-policy">
         <div class="container mb-5">

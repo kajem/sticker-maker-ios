@@ -1,4 +1,9 @@
-@extends('layouts.front-template')
+@extends('layouts.front-template',
+[
+    'page_title' => $pack->name,
+    'meta_title' => $pack->name,
+    'meta_keywords' => strtolower($pack->tag),
+])
 @section('content')
     <div class="content" id="pack-details">
         <div class="container">

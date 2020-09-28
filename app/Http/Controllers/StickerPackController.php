@@ -12,17 +12,16 @@ class StickerPackController extends Controller
 {
     public function getPack($code){
         $key = urldecode(url()->full());
-//        if(Redis::exists($key)){
-//            $data = unserialize(Redis::get($key));
-//            //echo "<pre>"; print_r($data['pack']->code);exit;
-//            return view('stickerpack.details')->with(unserialize(Redis::get($key)));
-//        }
+        if(Redis::exists($key)){
+            $data = unserialize(Redis::get($key));
+            return view('stickerpack.details')->with(unserialize(Redis::get($key)));
+        }
 
         $pack_root_folder = config('app.asset_base_url').'items/';
         $is_braincraft_pack = true;
         $param = request()->segment(2);
 
-        $pack = Item::where('code', $code)->first();
+        $pack = Item::select('name', 'code', 'tag', 'author')->where('code', $code)->first();
 
         if($param != 'braincraft'){
             $pack_root_folder = url('/').'/storage/sticker-packs/';
