@@ -28,7 +28,7 @@
 
                 <div class="pb-3">
                     <div class="font-weight-bold">Age Restriction:</div>
-                    You must be 4+ years of age or older in order to use the App.
+                    You must be 12+ years of age or older in order to use the App.
                 </div>
 
                 <div class="pb-3">
