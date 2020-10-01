@@ -11,17 +11,11 @@ use Illuminate\Support\Facades\Redis;
 class StickerPackController extends Controller
 {
     public function getPack($code){
-        $key = urldecode(url()->full());
-        if(Redis::exists($key)){
-            $data = unserialize(Redis::get($key));
-            return view('stickerpack.details')->with(unserialize(Redis::get($key)));
-        }
-
         $pack_root_folder = config('app.asset_base_url').'items/';
         $is_braincraft_pack = true;
         $param = request()->segment(2);
 
-        $pack = Item::select('name', 'code', 'tag', 'author')->where('code', $code)->first();
+        $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers')->where('code', $code)->first();
 
         if($param != 'braincraft'){
             $pack_root_folder = url('/').'/storage/sticker-packs/';
@@ -34,8 +28,6 @@ class StickerPackController extends Controller
             'pack_root_folder' => $pack_root_folder,
             'is_braincraft_pack' => $is_braincraft_pack
         ];
-
-        Redis::setEx($key, config('services.redis.ttl'), serialize($data)); //Writing to Redis
 
         return view('stickerpack.details')->with($data);
 
