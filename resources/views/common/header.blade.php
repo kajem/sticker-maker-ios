@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <a href="{{url('/')}}" class="logo">
+                <a href="/" class="logo">
                     <h2 class="text-white font-weight-bold">
                         <img width="64" src="/images/logo.png" alt="Sticker Maker"/>
                         Sticker Maker

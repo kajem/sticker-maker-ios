@@ -11,7 +11,7 @@
                             $thumb = $asset_base_url.'items/'.$item->code.'/200__'.end($thumb_arr);
 
                         @endphp
-                        <a href="{{url('pack/braincraft/'.$item->code)}}">
+                        <a href="/pack/braincraft/{{$item->code}}">
                             <div class="card sticker-bg-{{$count++}} text-center">
                                 <span class="badge badge-pill badge-warning">{{$item->total_sticker}} Stickers</span>
                                 <div class="image text-center">

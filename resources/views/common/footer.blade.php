@@ -17,16 +17,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://apps.apple.com/us/app/slideshow-maker-with-music-fx/id1265026847">
-                                    Slide Show Maker
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="https://apps.apple.com/us/app/meme-maker-meme-creator-to-make-photo-memes/id1250756211">
-                                    Meme Maker
-                                </a>
-                            </li>
-                            <li>
                                 <a target="_blank" href="https://apps.apple.com/us/app/vpn-for-iphone-proxy-server/id1273734740">
                                     VPN for iPhone
                                 </a>
@@ -46,6 +36,16 @@
                                     Language Translator
                                 </a>
                             </li>
+                            <li>
+                                <a target="_blank" href="https://apps.apple.com/us/app/slideshow-maker-with-music-fx/id1265026847">
+                                    Slide Show Maker
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://apps.apple.com/us/app/meme-maker-meme-creator-to-make-photo-memes/id1250756211">
+                                    Meme Maker
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -54,9 +54,9 @@
                 <div class="about-links">
                     <h5 class="pb-3 font-weight-bold about">About</h5>
                     <ul class="p-0 list-unstyled links">
-                        <li><a href="{{url('about-us')}}">About us</a></li>
-                        <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
-                        <li><a href="{{url('terms')}}">Terms of Use</a></li>
+                        <li><a href="/about-us}">About us</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Use</a></li>
                     </ul>
                 </div>
             </div>
