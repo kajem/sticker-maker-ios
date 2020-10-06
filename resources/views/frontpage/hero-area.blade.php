@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="text-white mt-5">
-                        Sticker Maker for Social Apps
+                        Sticker Maker for Messenger Apps
                     </h1>
                 </div>
             </div>
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-7">
                 <h1 class="text-white mt-5 hide-on-pad">
-                    Sticker Maker for Social Apps
+                    Sticker Maker for Messenger Apps
                 </h1>
                 <h2 class="text-white">
                     Choose built-in stickers from stickers' gallery or personalize your own stickers easily
