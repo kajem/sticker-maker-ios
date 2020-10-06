@@ -12,6 +12,7 @@
                                 <tr>
                                     <th scope="col">Thumb</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Slug</th>
                                     <th scope="col" class="text-center">Code</th>
                                     <th scope="col">Tags</th>
                                     <th scope="col" class="text-center">Total Sticker</th>
@@ -78,6 +79,10 @@
                     {
                         data: 'name',
                         name: 'items.name'
+                    },
+                    {
+                        data: 'slug',
+                        name: 'items.slug'
                     },
                     {
                         data: 'code',
