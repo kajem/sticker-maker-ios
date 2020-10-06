@@ -26,6 +26,9 @@ Route::group(['prefix' => 'pack'], function (){
     Route::get('braincraft/{code}', 'StickerPackController@getPack');
     //Route::get('/{code}', 'StickerPackController@getPack');
 });
+Route::group(['prefix' => 'stickers'], function (){
+    Route::get('/{slug}', 'StickerPackController@getPackBySlug');
+});
 Route::get('get-pack/{code}', 'StickerPackController@redirectToAppStore');
 
 Auth::routes(['register' => false]);
