@@ -39,5 +39,11 @@ return [
         'password' => env('REDIS_PASSWORD', ''),
         'port' => env('REDIS_PORT', '6379'),
         'ttl' => env('REDIS_TTL', '79200'),
-    ]
+    ],
+
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'user_name' => env('TELEGRAM_USER_NAME'),
+        'user_id' => env('TELEGRAM_USER_ID'),
+    ],
 ];

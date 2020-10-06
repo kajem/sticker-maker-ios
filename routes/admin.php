@@ -44,6 +44,10 @@ Route::domain($domain)->group(function() {
             Route::post('save', 'Admin\ItemController@save');
         });
 
+        Route::group(['prefix' => 'telegram'], function (){
+            Route::get('create-new-sticker-set/{code}', 'Admin\TelegramController@createNewStickerSetView');
+        });
+
         Route::group(['prefix' => 'static-value'], function (){
             Route::get('list', 'Admin\StaticValueController@index');
             Route::post('save', 'Admin\StaticValueController@save');

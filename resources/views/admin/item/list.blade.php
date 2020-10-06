@@ -17,8 +17,6 @@
                                     <th scope="col" class="text-center">Total Sticker</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Author</th>
-                                    <th scope="col" class="text-center">Premium</th>
-                                    <th scope="col" class="text-center">Status</th>
                                     <th scope="col">Updated at</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
@@ -107,22 +105,6 @@
                         name: 'items.author'
                     },
                     {
-                        data: null,
-                        className: 'text-center',
-                        name: 'items.is_premium',
-                        render: function (data) {
-                            return data.is_premium == 1 ? 'Yes' : 'No';
-                        }
-                    },
-                    {
-                        data: null,
-                        className: 'text-center',
-                        name: 'items.status',
-                        render: function (data) {
-                            return data.status == 1 ? 'Active' : 'Inactive';
-                        }
-                    },
-                    {
                         data: 'updated_at',
                         name: 'items.updated_at'
                     },
@@ -134,7 +116,10 @@
                             var actionHTML = '';
                             //actionHTML += '<a href="#" title="View Details"><i class="fas fa-eye"></i></a> &nbsp;&nbsp;';
                             actionHTML += '<a href="/item/edit/' + data.id + '" title="Edit"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;';
-                            actionHTML += '<a href="/pack/braincraft/' + data.code + '" target="_blank" title="View Stickers"><i class="far fa-grin"></i></a>';
+                            actionHTML += '<a href="/pack/braincraft/' + data.code + '" target="_blank" title="View Stickers"><i class="far fa-grin"></i></a> &nbsp;&nbsp;';
+                            if(data.is_animated === 0){
+                                actionHTML += '<a href="/telegram/create-new-sticker-set/' + data.id + '" title="Create Telegram Pack"><i class="fab fa-telegram-plane"></i></a>';
+                            }
                             return actionHTML;
                         }
                     }

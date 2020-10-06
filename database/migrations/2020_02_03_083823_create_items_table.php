@@ -24,6 +24,8 @@ class CreateItemsTable extends Migration
             $table->text('stickers');
             $table->smallInteger('total_sticker');
             $table->boolean('is_premium')->default(1);
+            $table->boolean('is_animate')->default(0);
+            $table->string('telegram_name')->nullable();
             $table->integer('sort');
             $table->boolean('status');
             $table->integer('created_by');
