@@ -3,7 +3,7 @@
     'page_title' => $pack->name,
     'meta_title' => $pack->name,
     'meta_keywords' => strtolower($pack->tag),
-    'meta_description' => "Create your own personal Sticker packs for WhatsApp, Facebook, Messenger, iMessage! Share your sticker in social apps and end the boring chat! Add your stickers on iMessage and WhatsApp or download as PNG photos! Share single stickers or entire sticker packs!"
+    'meta_description' => "Create your stickers for WhatsApp, Facebook, Messenger, iMessage! Share the stickers in social apps and end the boring chat! Add your stickers on iMessage and WhatsApp or download as PNG photos! Share single stickers or entire sticker packs!"
 ])
 @section('content')
     <div class="content" id="pack-details">
