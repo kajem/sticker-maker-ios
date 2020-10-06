@@ -77,6 +77,11 @@ class ItemController extends Controller
             'thumb' => 'mimes:png'
         ];
 
+        if(!empty(trim($request->input('slug')))){
+            $id = empty($request->input('id')) ? 0 : $request->input('id');
+            $rules['slug'] = 'unique:items,slug,'.$id;
+        }
+
         Validator::make($request->all(), $rules)->validate();
 
         $data = $request->all();

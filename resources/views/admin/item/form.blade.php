@@ -26,6 +26,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="slug" class="col-sm-2 col-form-label{{ $errors->has('slug') ? ' text-danger' : '' }}">Slug</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control{{ $errors->has('slug') ? ' is-invalid' : '' }}" id="slug" name="slug"
+                                               value="{{!empty($item->slug) ? $item->slug : old('slug')}}">
+                                        @if ($errors->has('slug'))
+                                            <span class="text-danger">{{ $errors->first('slug') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                         <label for="tag" class="col-sm-2 col-form-label">Tag</label>
                                         <div class="col-sm-10">
                                                 <textarea type="text" class="form-control" id="tag"

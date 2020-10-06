@@ -30,41 +30,18 @@ class StickerPackController extends Controller
         ];
 
         return view('stickerpack.details')->with($data);
+    }
 
-        // //START: Generating Thumbnails if not exist
-        // if(!empty($pack->stickers)){
-        //     $root_folder = base_path().'/storage/app/public/sticker-packs/'.$code.'/';
-        //     $width = 256;
-        //     $stickers = json_decode($pack->stickers);
+    public function getPackBySlug($slug){
+        $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers')->where('slug', $slug)->first();
 
-        //     if(!file_exists($root_folder.$width.'__'.$stickers[0])){
-        //         foreach($stickers as $sticker){
-        //             $original_file_path = $root_folder.$sticker;
-        //             $thumb_file_path = $root_folder.$width.'__'.$sticker;
+        $data = [
+            'pack' => $pack,
+            'pack_root_folder' => config('app.asset_base_url').'items/',
+            'is_braincraft_pack' => true
+        ];
 
-        //             //Resize image for desired width
-        //             if (mime_content_type ( $original_file_path ) == 'image/gif') {
-        //                 $im = new \Imagick($original_file_path);
-        //                 $im = $im->coalesceImages();
-
-        //                 do {
-        //                     $im->resizeImage($width, null, \Imagick::FILTER_BOX, 1);
-        //                 } while ($im->nextImage());
-
-        //                 $im = $im->deconstructImages();
-
-        //                 $im->writeImages($thumb_file_path, true);
-        //             } else {
-        //                 $thumbnailImage = Image::make($original_file_path)->widen($width, function ($constraint) {
-        //                     $constraint->upsize();
-        //                 })->save($thumb_file_path);
-        //             }
-        //         }
-        //     }
-        // }
-        // //END: Generating Thumbnails if not exist
-
-        // return view('stickerpack.details')->with(['pack' => $pack]);
+        return view('stickerpack.details')->with($data);
     }
 
     public function redirectToAppStore($code){
