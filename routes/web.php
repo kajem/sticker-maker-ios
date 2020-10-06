@@ -22,8 +22,9 @@ Route::view('about-us', 'static-pages.about-us');
 Route::view('privacy-policy', 'static-pages.privacy-policy');
 Route::view('terms', 'static-pages.terms');
 Route::group(['prefix' => 'pack'], function (){
-    Route::get('braincraft/{cdoe}', 'StickerPackController@getPack');
-    Route::get('/{cdoe}', 'StickerPackController@getPack');
+    Route::get('/{slug}', 'StickerPackController@getPackBySlug');
+    Route::get('braincraft/{code}', 'StickerPackController@getPack');
+    //Route::get('/{code}', 'StickerPackController@getPack');
 });
 Route::get('get-pack/{code}', 'StickerPackController@redirectToAppStore');
 

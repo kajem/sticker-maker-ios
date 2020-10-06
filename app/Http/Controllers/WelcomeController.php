@@ -13,7 +13,7 @@ class WelcomeController extends Controller
 {
 
     public function index(){
-        $items = Item::select('code', 'name', 'thumb', 'author', 'total_sticker')
+        $items = Item::select('name', 'slug', 'code', 'thumb', 'author', 'total_sticker')
                      ->where('status', 1)->limit(18)->get();
         $data = [
             'asset_base_url' => config('app.asset_base_url'),
