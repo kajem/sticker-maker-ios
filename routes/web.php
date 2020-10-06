@@ -31,3 +31,4 @@ Route::get('get-pack/{code}', 'StickerPackController@redirectToAppStore');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/page-not-found', '404');

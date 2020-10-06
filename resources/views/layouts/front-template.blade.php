@@ -8,8 +8,8 @@
     <meta property="og:site_name" content="Sticker Maker for Social Apps" />
     <meta property="og:title" content="{{ !empty($meta_title) ? $meta_title : 'Sticker Maker for Social Apps' }}" />
     <meta name="keywords" content="{{!empty($meta_keywords) ? $meta_keywords : ''}}" />
-    <meta property="og:description" content="Create your own personal Sticker packs for WhatsApp, Facebook, Messenger, iMessage! Share your sticker in social apps and end the boring chat! Add your stickers on iMessage and WhatsApp or download as PNG photos! Share single stickers or entire sticker packs!" />
-    <meta name="description" content="Create your own personal Sticker packs for WhatsApp, Facebook, Messenger, iMessage! Share your sticker in social apps and end the boring chat! Add your stickers on iMessage and WhatsApp or download as PNG photos! Share single stickers or entire sticker packs!" />
+    <meta property="og:description" content="{{!empty($meta_description) ? $meta_description : ''}}" />
+    <meta name="description" content="{{!empty($meta_description) ? $meta_description : ''}}" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="theme-color" content="#00b129" />
 

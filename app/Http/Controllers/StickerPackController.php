@@ -17,6 +17,10 @@ class StickerPackController extends Controller
 
         $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers')->where('code', $code)->first();
 
+        if(!$pack){
+            return abort(404);
+        }
+
         if($param != 'braincraft'){
             $pack_root_folder = url('/').'/storage/sticker-packs/';
             $is_braincraft_pack = false;
@@ -34,6 +38,9 @@ class StickerPackController extends Controller
 
     public function getPackBySlug($slug){
         $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers')->where('slug', $slug)->first();
+        if(!$pack){
+            return abort(404);
+        }
 
         $data = [
             'pack' => $pack,
