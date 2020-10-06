@@ -15,7 +15,7 @@
                     Sticker Maker for Messenger Apps
                 </h1>
                 <h2 class="text-white">
-                    Choose built-in stickers from stickers' gallery or personalize your own stickers easily
+                    Use Sticker Maker for Messenger Apps to create personalized chat stickers or use from the variety of sticker packages and share it with your friends
                 </h2>
                 <p class="mt-3 lead text-white">
                     Go viral and spice up your chats with unique stickers on Facebook, WhatsApp, Messenger, iMessage, etc.
