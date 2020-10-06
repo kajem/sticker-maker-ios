@@ -399,6 +399,26 @@ h2.title {
     background-image: url('/images/about-us/topchart.png');
 }
 /*END: About us section*/
+/*START: 404 page*/
+#page-404{
+    padding: 45px 0 70px 0;
+}
+#page-404 h1{
+    font-size: 150px;
+    color: #ffb334;
+}
+#page-404 h2{
+    color: #777;
+}
+#page-404 img{
+    margin-top: -28px;
+    width: 150px;
+}
+#page-404 a{
+    font-size: 18px;
+    text-transform: uppercase;
+}
+/*END: 404 page*/
 .show-on-pad{
     display: none;
 }
