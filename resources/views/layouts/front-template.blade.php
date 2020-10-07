@@ -12,7 +12,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="theme-color" content="#00b129" />
 
-    <title>Sticker Maker | {{!empty($page_title) ? $page_title : 'Personalize your own stickers easily!'}}</title>
+    <title>{{!empty($page_title) ? $page_title : 'Sticker Maker for Messenger Apps'}} | Sticker.Me</title>
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
