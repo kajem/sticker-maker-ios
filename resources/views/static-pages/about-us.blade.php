@@ -1,8 +1,8 @@
 @extends('layouts.front-template',
 [
     'page_title' => 'About Us',
-    'meta_title' => 'About Us',
-    'meta_keywords' => 'about us',
+    'meta_title' => 'About Us | Sticker Maker | Sticker.Me | Braincarft Ltd',
+    'meta_description' => 'Braincarft Ltd is the largest iOS app development company in Dhaka, Bangladesh.'
 ])
 @section('content')
     <div class="content mb-5" id="about-us">

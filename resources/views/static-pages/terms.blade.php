@@ -1,8 +1,8 @@
 @extends('layouts.front-template',
 [
-    'page_title' => 'Terms',
-    'meta_title' => 'Terms',
-    'meta_keywords' => 'terms, terms and conditions',
+    'page_title' => 'Terms of Use',
+    'meta_title' => 'Terms of Use | Sticker Maker | Sticker.Me',
+    'meta_description' => 'Terms of Use, Age Restriction, Premium Services and Termination Policy for Sticker Maker, Sticker.Me'
 ])
 @section('content')
     <div class="content mb-5" id="terms">

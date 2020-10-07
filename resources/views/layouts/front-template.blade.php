@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website" />
     <meta property="og:url" ontent="{{url()->current()}}" />
-    <meta property="og:site_name" content="Sticker Maker for Social Apps" />
-    <meta property="og:title" content="{{ !empty($meta_title) ? $meta_title : 'Sticker Maker for Social Apps' }}" />
-    <meta name="keywords" content="{{!empty($meta_keywords) ? $meta_keywords : ''}}" />
+    <meta property="og:site_name" content="Sticker Maker for Messenger Apps" />
+    <meta property="og:title" content="{{ !empty($meta_title) ? $meta_title : 'Sticker Maker | Sticker.Me' }}" />
     <meta property="og:description" content="{{!empty($meta_description) ? $meta_description : ''}}" />
     <meta name="description" content="{{!empty($meta_description) ? $meta_description : ''}}" />
     <meta name="format-detection" content="telephone=no" />

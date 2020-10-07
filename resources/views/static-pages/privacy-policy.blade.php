@@ -1,8 +1,8 @@
 @extends('layouts.front-template',
 [
     'page_title' => 'Privacy Policy',
-    'meta_title' => 'Privacy Policy',
-    'meta_keywords' => 'privacy policy',
+    'meta_title' => 'Privacy Policy | Sticker Maker | Sticker.Me',
+    'meta_description' => 'Privacy Policy, Data Privacy, and Generic Cookie Policy for Sticker Maker, Sticker.Me'
 ])
 @section('content')
     <div class="content" id="privacy-policy">
