@@ -21,6 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- jQuery -->
     <script src="{{ asset("/bower_components/admin-lte/plugins/jquery/jquery.min.js") }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -57,5 +58,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset("/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("/bower_components/admin-lte/dist/js/adminlte.min.js") }}"></script>
+    <script src="{{ asset("/js/admin/common.js") }}"></script>
 </body>
 </html>
