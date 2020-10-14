@@ -45,5 +45,6 @@ return [
         'bot_token' => env('TELEGRAM_BOT_TOKEN'),
         'user_name' => env('TELEGRAM_USER_NAME'),
         'user_id' => env('TELEGRAM_USER_ID'),
+        'set_base_url' => env('TELEGRAM_SET_BASE_URL'),
     ],
 ];

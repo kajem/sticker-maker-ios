@@ -26,15 +26,30 @@
                                     <label for="name" class="col-sm-2 col-form-label">Stickers</label>
                                     <div class="col-sm-10">
                                         @php
-                                             $stickers = unserialize($item->stickers);
+                                           $stickers = unserialize($item->stickers);
+                                           $count = 0;
                                         @endphp
                                         @foreach($stickers as $sticker)
-                                            <img class="border mb-1" width="100" data-src="{{$pack_root_folder}}{{$item->code}}/{{$sticker}}" src="{{$pack_root_folder}}{{$item->code}}/thumb/{{$sticker}}" alt=""/>
+                                            <div class="d-inline-block position-relative" id="sticker-{{$count}}">
+                                                <img class="border mb-1" width="100" data-src="{{$pack_root_folder}}{{$item->code}}/{{$sticker}}" src="{{$pack_root_folder}}{{$item->code}}/thumb/{{$sticker}}" alt=""/>
+                                            </div>
+                                            @php $count++; @endphp
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-10 offset-2">
+                                        <div class="progress d-none mb-3">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Please wait... <span>0%</span>completed</div>
+                                        </div>
+                                        <div class="message mb-3 d-none">
+                                            <div class="alert" role="alert">
+                                                <span class="text-msg"></span>
+                                                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Create new sticker set on telegram</button>
                                     </div>
                                 </div>

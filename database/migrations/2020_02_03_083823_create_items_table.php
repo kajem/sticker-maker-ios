@@ -27,6 +27,7 @@ class CreateItemsTable extends Migration
             $table->boolean('is_premium')->default(1);
             $table->boolean('is_animate')->default(0);
             $table->string('telegram_name')->nullable();
+            $table->boolean('is_telegram_set_completed')->default(0);
             $table->integer('sort');
             $table->boolean('status');
             $table->integer('created_by');

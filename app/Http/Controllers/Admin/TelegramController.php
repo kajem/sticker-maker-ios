@@ -11,42 +11,15 @@ class TelegramController extends Controller
 {
     public function telegramPack($id){
         $telegram = new Telegram(config('services.telegram.bot_token'));
-        //Create new Sticker Set
-//        $data = [
-//            'user_id' => config('services.telegram.user_id'),
-//            'name' => 'test_chicken_cj7170_by_brain_2015_bot',
-//            'title' => 'Chicken',
-//            'png_sticker' => 'https://static.stickermakerpro.com/items/CJ7170/ChickenA1.png',
-//            'emojis' => '🙂'
-//        ];
 
-        //$new_sticker_set = $telegram->createNewStickerSet($data);
         //dd($new_sticker_set);
 
-        //Add sticker to set
-//        $data = [
-//            'user_id' => config('services.telegram.user_id'),
-//            'name' => 'test_chicken_cj7170_by_brain_2015_bot',
-//            'png_sticker' => 'https://static.stickermakerpro.com/items/CJ7170/ChickenA10.png',
-//            'emojis' => '🙂'
-//        ];
-//        $add_sticker_to_set = $telegram->addStickerToSet($data);
+
 //        dd($add_sticker_to_set);
 
 
 
-        //get Sticker set
-//        $data = [
-//            'name' => 'test_chicken_cj7170_by_brain_2015_bot',
-//        ];
-//        $get_sticker_set = $telegram->getStickerSet($data);
-//        dd($get_sticker_set);
 
-        //Delete sticker from set
-//        $data = [
-//            'sticker' => 'CAACAgUAAxUAAV99yma6Y116yECI-enCGjtq4rH6AAIpAAPW9w40uZoXRBbdLw8bBA'
-//        ];
-//        $delete_sticker_from_set = $telegram->deleteStickerFromSet($data);
 //        dd($delete_sticker_from_set);
 
         //Set sticker position in set
@@ -79,8 +52,78 @@ class TelegramController extends Controller
         return view('admin.telegram.form')->with($data);
     }
 
+    /*
+     * @desc This method crete a new sticker set.
+     * If sticker set exist with current name then it will delete existing stickers and then again add new stickers to set
+     */
     public function createNewStickerSet(Request $request){
-        echo "<pre>"; print_r($request->all());exit;
+        //Get the item
+        $item = Item::select('name')->where('id', $request->get('id'))->first();
+        if(empty($item->name)){
+            return $this->errorOutput('Invalid Pack!');
+        }
+        $success_msg = '';
+        $success_data = [];
+        $telegram = new Telegram(config('services.telegram.bot_token'));
+
+        if($request->get('is_first_request') == 1){
+            $data = [
+                'name' => $request->get('telegram_name'),
+            ];
+            $sticker_set = $telegram->getStickerSet($data); //get Sticker set
+
+            if(!empty($sticker_set['ok'])){
+                foreach ($sticker_set['result']['stickers'] as $sticker){
+                    $data = [
+                        'sticker' => $sticker['file_id']
+                    ];
+                    $telegram->deleteStickerFromSet($data);  //Deleting sticker from set
+                }
+                $this->addStickerToSet($request->get('telegram_name'), $request->get('png_sticker'));
+            }else{
+                //Create new Sticker Set
+                $data = [
+                    'user_id' => config('services.telegram.user_id'),
+                    'name' => $request->get('telegram_name'),
+                    'title' => $item->name,
+                    'png_sticker' => $request->get('png_sticker'),
+                    'emojis' => '🙂'
+                ];
+                $telegram->createNewStickerSet($data);
+            }
+        }else{
+
+            $success_data = $this->addStickerToSet($request->get('telegram_name'), $request->get('png_sticker'));
+
+            if($request->get('is_last_request') == 1){
+                $data = [
+                    'telegram_name' => $request->get('telegram_name'),
+                    'is_telegram_set_completed' => 1
+                ];
+                Item::where('id', $request->get('id'))->update($data);
+
+                $success_data = [
+                    'telegram_url' => config('services.telegram.set_base_url').$request->get('telegram_name')
+                ];
+                $success_msg = 'Sticker set successfully created on Telegram';
+            }
+        }
+
+        return $this->successOutput($success_data, $success_msg);
+    }
+
+    /*
+     * @desc Telegram: Add sticker to set
+     */
+    private function addStickerToSet($telegram_name, $png_sticker){
+        $telegram = new Telegram(config('services.telegram.bot_token'));
+        $data = [
+            'user_id' => config('services.telegram.user_id'),
+            'name' => $telegram_name,
+            'png_sticker' => $png_sticker,
+            'emojis' => '🙂'
+        ];
+        return $telegram->addStickerToSet($data);
     }
 }
 
