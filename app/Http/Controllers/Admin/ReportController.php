@@ -11,8 +11,14 @@ class ReportController extends Controller
     public function searchKeyword(Request $request)
     {
         $search_keywords = SearchKeyword::query();
-        $search_keywords = $search_keywords->select('name', 'count', 'is_item_found', 'created_at');
+        $search_keywords = $search_keywords->select('name', 'count', 'is_item_found', 'updated_at');
         $search_keywords = $search_keywords->where('name', 'LIKE', '%' . $request->get('search')['value'] . '%');
+        if(!empty($request->get('date_from'))){
+            $search_keywords = $search_keywords->whereDate('updated_at', '>=', $request->get('date_from'));
+        }
+        if(!empty($request->get('date_to'))){
+            $search_keywords = $search_keywords->whereDate('updated_at', '<', $request->get('date_to'));
+        }
 
         $total = $search_keywords->count();
 
