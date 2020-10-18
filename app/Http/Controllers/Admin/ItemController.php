@@ -20,7 +20,7 @@ class ItemController extends Controller
         $emoji_cat_id = !empty($emoji->id) ? $emoji->id : 0;
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.slug', 'items.code', 'items.thumb', 'items.tag', 'items.total_sticker', 'items.author', 'items.is_animated', 'items.updated_at');
+        $items = $items->select('items.id', 'items.name', 'items.slug', 'items.code', 'items.thumb', 'items.tag', 'items.total_sticker', 'items.author', 'items.is_animated', 'items.telegram_name', 'items.is_telegram_set_completed', 'items.updated_at', 'items.status');
 
         if (!empty($request->get('search')['value'])) {
             $items = $items->where('items.name', 'LIKE', '%' . $request->get('search')['value'] . '%');

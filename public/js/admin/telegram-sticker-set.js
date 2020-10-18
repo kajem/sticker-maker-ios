@@ -47,15 +47,18 @@ function createNewStickerSet(images){
         url:'/telegram/create-new-sticker-set',
         data: data,
         success:function(data){
-            if(data.status !== 200 || data.data.ok === false){
+            if(data.status !== 200){
                 $('.progress').addClass('d-none');
                 $('.message').removeClass('d-none');
-                var message = data.data.description !== undefined ? data.data.description : data.message;
-                $('.message .alert').removeClass('alert-success').addClass('alert-danger').find('.text-msg').text(message);
+                $('.message .alert').removeClass('alert-success').addClass('alert-danger').find('.text-msg').text(data.message);
                 return false;
             }
 
-            $('#sticker-'+ajax_request_count).append('<span class="position-absolute text-primary" style="top: 0; right: 3px;"><i class="fas fa-check-circle"></i></span>');
+            if(data.data.ok === false){
+                $('#sticker-'+ajax_request_count).append('<span class="position-absolute text-primary" style="top: 0; right: 3px;"><i class="far fa-times-circle"></i>');
+            }else{
+                $('#sticker-'+ajax_request_count).append('<span class="position-absolute text-primary" style="top: 0; right: 3px;"><i class="fas fa-check-circle"></i></span>');
+            }
             ajax_request_count ++;
 
             //set the percent to progress bar
@@ -66,9 +69,14 @@ function createNewStickerSet(images){
                 createNewStickerSet(images);
             }
             if(is_last_request == 1){
+                let message = data.message;
+                if(data.data.telegram_sticker_set_url !== undefined){
+                    message += ' <strong>Telegram Set URL:</strong> <a target="_blank" href="'+data.data.telegram_sticker_set_url+'">'+data.data.telegram_sticker_set_url+'</a>';
+                }
+
                 $('.progress').addClass('d-none');
                 $('.message').removeClass('d-none');
-                $('.message .alert').removeClass('alert-danger').addClass('alert-success').find('.text-msg').text(data.message);
+                $('.message .alert').removeClass('alert-danger').addClass('alert-success').find('.text-msg').html(message);
             }
         }
     });

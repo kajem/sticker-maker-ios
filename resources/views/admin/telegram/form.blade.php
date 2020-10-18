@@ -14,16 +14,31 @@
                             <form method="POST" id="telegram-pack" action="{{url('telegram/create')}}" enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="{{$item->id}}">
 
+                                @if(!empty($item->telegram_name))
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-2 col-form-label">
+                                        Telegram Set URL
+                                        @if($item->is_telegram_set_completed)
+                                            <i class="fas fa-check-circle text-primary"></i>
+                                        @endif
+                                    </label>
+                                    <div class="col-sm-10 pt-2">
+                                        <a target="_blank" href="{{config('services.telegram.set_base_url').$item->telegram_name}}">
+                                            {{config('services.telegram.set_base_url').$item->telegram_name}}
+                                        </a>
+                                    </div>
+                                </div>
+                                @endif
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-2 col-form-label">Name*</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="telegram_name" name="telegram_name"
                                                value="{{$telegram_name}}"
-                                               required {{!empty($item->telegram_name) ? 'readonly' : ''}}>
+                                               required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-2 col-form-label">Stickers</label>
+                                    <label for="name" class="col-sm-2 col-form-label">Stickers ({{$item->total_sticker}})</label>
                                     <div class="col-sm-10">
                                         @php
                                            $stickers = unserialize($item->stickers);
@@ -50,7 +65,13 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Create new sticker set on telegram</button>
+                                        <button type="submit" class="btn btn-primary">
+                                            @if(!empty($item->telegram_name))
+                                                Recreate sticker set on telegram
+                                            @else
+                                                Create new sticker set on telegram
+                                            @endif
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -63,5 +84,5 @@
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <script src="{{asset('/js/admin/telegram-bot.js')}}"></script>
+    <script src="{{asset('/js/admin/telegram-sticker-set.js')}}"></script>
 @endsection
