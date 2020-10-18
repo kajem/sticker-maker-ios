@@ -14,6 +14,7 @@ $(document).ready(function (){
         });
         //console.log(images);
         if(images.length > 0){
+            $('.position-absolute').remove();
             item_id = $('form#telegram-pack input[name="id"]').val();
             telegram_name = $('input[name="telegram_name"]').val();
             progress_bar_parcentage = 100/images.length;
@@ -55,9 +56,9 @@ function createNewStickerSet(images){
             }
 
             if(data.data.ok === false){
-                $('#sticker-'+ajax_request_count).append('<span class="position-absolute text-primary" style="top: 0; right: 3px;"><i class="far fa-times-circle"></i>');
+                $('#sticker-'+ajax_request_count).append('<span class="position-absolute text-danger"><i title="'+data.data.description+'" class="fas fa-times-circle"></i>');
             }else{
-                $('#sticker-'+ajax_request_count).append('<span class="position-absolute text-primary" style="top: 0; right: 3px;"><i class="fas fa-check-circle"></i></span>');
+                $('#sticker-'+ajax_request_count).append('<span class="position-absolute text-primary"><i class="fas fa-check-circle"></i></span>');
             }
             ajax_request_count ++;
 

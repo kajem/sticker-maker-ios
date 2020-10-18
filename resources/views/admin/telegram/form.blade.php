@@ -30,6 +30,14 @@
                                 </div>
                                 @endif
                                 <div class="form-group row">
+                                    <label for="name" class="col-sm-2 col-form-label">
+                                        Code
+                                    </label>
+                                    <div class="col-sm-10 pt-2">
+                                            {{$item->code}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="name" class="col-sm-2 col-form-label">Name*</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="telegram_name" name="telegram_name"
@@ -46,6 +54,17 @@
                                         @endphp
                                         @foreach($stickers as $sticker)
                                             <div class="d-inline-block position-relative" id="sticker-{{$count}}">
+                                                @if(!empty($telegram_stickers))
+                                                    @foreach ($telegram_stickers as $telegram_sticker)
+                                                        @if($telegram_sticker->sticker === $sticker && !empty($telegram_sticker->error_code))
+                                                        <span class="position-absolute text-danger"><i title="{{$telegram_sticker->description}}" class="fas fa-times-circle"></i></span>
+                                                        @elseif($telegram_sticker->sticker === $sticker && empty($telegram_sticker->error_code))
+                                                        <span class="position-absolute text-primary"><i class="fas fa-check-circle"></i></span>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <span class="position-absolute text-primary" style="top: 0; right: 3px;"><i class="fas fa-check-circle"></i></span>
+                                                @endif
                                                 <img class="border mb-1" width="100" data-src="{{$pack_root_folder}}{{$item->code}}/{{$sticker}}" src="{{$pack_root_folder}}{{$item->code}}/thumb/{{$sticker}}" alt=""/>
                                             </div>
                                             @php $count++; @endphp

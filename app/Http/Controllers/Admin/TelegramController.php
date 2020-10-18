@@ -18,14 +18,20 @@ class TelegramController extends Controller
 
         $name = $item->telegram_name;
         if(empty($item->telegram_name)){
-            $name = strtolower(str_replace([' ', '(', ')'], ['_', '', ''], trim(preg_replace('/[0-9]+/', '', $item->name))).'_'.$item->code.'_by_'.config('services.telegram.user_name'));
+            $name = strtolower(str_replace([' ', '(', ')', '&', '__'], ['_', '', '', '', '_'], trim(preg_replace('/[0-9]+/', '', $item->name))).'_'.$item->code.'_by_'.config('services.telegram.user_name'));
+        }
+
+        $telegram_stickers = [];
+        if(empty($item->is_telegram_set_completed)){
+            $telegram_stickers = TelegramSticker::where('item_id', $id)->get();
         }
 
         $data = [
             'title' => 'Telegram Pack: ' . $item->name,
             'telegram_name' => $name,
             'pack_root_folder' => config('app.asset_base_url').'items/',
-            'item' => $item
+            'item' => $item,
+            'telegram_stickers' => $telegram_stickers
         ];
         return view('admin.telegram.form')->with($data);
     }
@@ -45,6 +51,7 @@ class TelegramController extends Controller
         $telegram = new Telegram(config('services.telegram.bot_token'));
 
         if($request->get('is_first_request') == 1){
+            TelegramSticker::where('item_id', $request->get('id'))->delete(); //Delete all rows form TelegramSticker table
             //Check if telegram set is already created
             $sticker_set = $this->getStickerSet($request->get('telegram_name'));
             if(!empty($sticker_set['ok'])){
@@ -55,7 +62,6 @@ class TelegramController extends Controller
                     $telegram->deleteStickerFromSet($data);  //Deleting sticker from set
                 }
                 $success_data = $this->addStickerToSet($request->get('telegram_name'), $request->get('png_sticker'));
-                TelegramSticker::where('item_id', $request->get('id'))->delete(); //Delete all rows form TelegramSticker table
             }else{
                 //Create new Sticker Set
                 $data = [
@@ -80,15 +86,18 @@ class TelegramController extends Controller
             if($request->get('is_last_request') == 1){
                 //Get the sticker
                 $sticker_set = $this->getStickerSet($request->get('telegram_name'));
-                if(!empty($sticker_set['ok'])) {
-                    //If pack sticker count and telegram sticker set count is same then update item table
-                    if(count($sticker_set['result']['stickers']) === $item->total_sticker){
-                        $data = [
-                            'is_telegram_set_completed' => 1
-                        ];
-                        Item::where('id', $request->get('id'))->update($data);
-                    }
+                //If pack sticker count and telegram sticker set count is same then update item table
+                if(!empty($sticker_set['result']['stickers']) && count($sticker_set['result']['stickers']) === $item->total_sticker){
+                    $data = [
+                        'is_telegram_set_completed' => 1
+                    ];
+                }else{
+                    $data = [
+                        'is_telegram_set_completed' => 0
+                    ];
                 }
+
+                Item::where('id', $request->get('id'))->update($data);
 
                 $success_data ['telegram_sticker_set_url'] = config('services.telegram.set_base_url').$request->get('telegram_name');
                 $success_msg = 'Sticker set successfully created on Telegram.';
@@ -102,6 +111,7 @@ class TelegramController extends Controller
         ];
 
         if($success_data['ok'] === false){
+            $telegram_sticker_data['error_code'] = $success_data['error_code'];
             $telegram_sticker_data['description'] = $success_data['description'];
             $telegram_sticker_data['is_success'] = 0;
         }

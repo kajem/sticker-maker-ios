@@ -17,6 +17,7 @@ class CreateTelegramStickersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('item_id');
             $table->string('sticker');
+            $table->string('error_code')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_success')->default(1);
             $table->timestamps();

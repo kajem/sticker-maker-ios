@@ -149,7 +149,7 @@
                             actionHTML += '<a href="/item/edit/' + data.id + '" title="Edit"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;';
                             actionHTML += '<a href="/pack/braincraft/' + data.code + '" target="_blank" title="View Stickers"><i class="far fa-grin"></i></a> &nbsp;&nbsp;';
                             if(data.is_animated === 0){
-                                actionHTML += '<a href="/telegram/pack/' + data.id + '" title="Telegram Pack"><i class="fab fa-telegram-plane"></i></a>';
+                                actionHTML += '<a href="/telegram/pack/' + data.id + '" title="Telegram Sticker Set"><i class="fab fa-telegram-plane"></i></a>';
                             }
                             return actionHTML;
                         }

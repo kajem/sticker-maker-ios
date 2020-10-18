@@ -12,6 +12,6 @@ class TelegramSticker extends Model
      * @var array
      */
     protected $fillable = [
-        'item_id', 'sticker', 'description', 'is_success'
+        'item_id', 'sticker', 'error_code', 'description', 'is_success'
     ];
 }
