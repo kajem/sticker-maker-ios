@@ -113,6 +113,7 @@
                     },
                     {
                         data: null,
+                        name: 'items.telegram_name',
                         className: 'text-center',
                         render: function (data){
                             var telegram_name = '';
@@ -134,6 +135,7 @@
                     },
                     {
                         data: null,
+                        name: 'items.status',
                         className: 'text-center',
                         render: function (data){
                             return data.status === 1 ? 'Active' : 'Inactive';
