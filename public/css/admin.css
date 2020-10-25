@@ -38,3 +38,20 @@ form#telegram-pack span.position-absolute{
     top: -2px;
     right: 1px;
 }
+#myDropzone .needsclick{
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+}
+.top-0{
+    top: 0;
+}
+.right-0{
+    right: 0
+}
+.dz-preview .card-body{
+    padding: 5px;
+    width: 110px;
+}
+.dz-preview i{
+    cursor: pointer;
+}

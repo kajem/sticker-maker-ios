@@ -74,26 +74,57 @@
                                         </div>
                                     </div>
                                 </div>
-{{--                                <div class="form-group row">--}}
-{{--                                    <label for="stickers" class="col-sm-2 col-form-label">Sticker's Zip</label>--}}
-{{--                                    <div class="col-sm-10">--}}
-{{--                                        <input type="file"--}}
-{{--                                               class="form-control @error('stickers') is-invalid @enderror"--}}
-{{--                                               id="stickers" name="stickers" accept="application/zip">--}}
-{{--                                        @error('stickers')--}}
-{{--                                        <div class="invalid-feedback">{{ $message }}</div>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="form-group row">
-                                    <label for="author" class="col-sm-2 col-form-label">Author</label>
+                                    <label for="stickers" class="col-sm-2 col-form-label">
+                                    Stickers
+                                    @if(!empty($item->total_sticker))
+                                        ({{$item->total_sticker}})
+                                    @endif
+                                    </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="author" name="author"
-                                               value="{{!empty($item->author) ? $item->author : old('author')}}">
+                                        <input type="file"
+                                               class="form-control @error('stickers') is-invalid @enderror"
+                                               id="stickers" name="stickers[]" accept="image/png" multiple>
+                                            @error('stickers')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                            @if(!empty($item->stickers))
+                                            <div class="pt-2">
+                                                @php $stickers = unserialize($item->stickers) @endphp
+                                                @foreach($stickers as $sticker)
+                                                    <img width="50" class="rounded img-thumbnail" src="{{config('app.asset_base_url').'items/'.$item->code.'/thumb/'.$sticker}}" alt=""/>
+                                                @endforeach
+                                            </div>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="is_premium" class="col-sm-2 col-form-label">Premium</label>
+                                    <label for="is_premium" class="col-sm-2 col-form-label">Is Stickers/Thumb animated?</label>
+                                    <div class="col-sm-10">
+                                        <select name="is_animated" id="is_animated" class="form-control">
+                                            <option value="0" {{!empty($item) && $item->is_animated === 0 ? 'selected': ''}}>No</option>
+                                            <option value="1" {{!empty($item->is_animated) ? 'selected' : ''}}>Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-10 offset-2">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" name="compress_with_pngquant" id="compress_with_pngquant">
+                                            <label class="form-check-label" for="compress_with_pngquant">Compress Thumb/Stickers with pngquant</small></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="author" class="col-sm-2 col-form-label">Author*</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="author" name="author"
+                                               value="{{!empty($item->author) ? $item->author : old('author')}}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="is_premium" class="col-sm-2 col-form-label">Is premium?</label>
                                     <div class="col-sm-10">
                                         <select name="is_premium" id="is_premium" class="form-control">
                                             <option value="1" {{!empty($item->is_premium) ? 'selected' : ''}}>Yes</option>
@@ -112,6 +143,9 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-10 offset-2">
+                                        <div class="alert alert-warning d-none mb-2" role="alert" id="submit-alert">
+                                            Please wait. This process may takes few minutes.
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <a href="{{url('item/list')}}" class="btn btn-info">Cancel</a>
                                     </div>
@@ -125,6 +159,6 @@
     </div>
     <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-    <script src="{{asset('/js/admin/read-image-url.js')}}"></script>
+    <script src="/js/admin/read-image-url.js"></script>
+    <script src="/js/admin/item-form.js"></script>
 @endsection

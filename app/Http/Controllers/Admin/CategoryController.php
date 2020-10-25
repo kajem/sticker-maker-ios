@@ -198,7 +198,7 @@ class CategoryController extends Controller
      * @desc Updating the items and stickers field in Category table
      * @param $category_id
      */
-    private  function calculateTotalItemSticker($category_id){
+    public function calculateTotalItemSticker($category_id){
         $items = Item::query();
         $items = $items->select('items.total_sticker');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');

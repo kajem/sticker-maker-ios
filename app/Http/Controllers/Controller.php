@@ -19,7 +19,7 @@ class Controller extends BaseController
 
     protected  function uploadFileToS3($file_path, $file_content){
         //$compressed_png_content = $this->compressPNG($file->getPathName()); //Getting compressed png content
-        Storage::disk('s3')->put($file_path, $file_content);
+        Storage::disk('s3')->put($file_path, $file_content, 'public');
     }
 
     protected function errorOutput($message, $status = 400){
