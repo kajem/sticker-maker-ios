@@ -15,6 +15,13 @@
                                 @csrf
                                 @if (!empty($item->id))
                                     <input type="hidden" name="id" value="{{$item->id}}">
+
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-2 col-form-label">Code</label>
+                                        <div class="col-sm-10 pt-2">
+                                            {{$item->code}}
+                                        </div>
+                                    </div>
                                 @endif
 
                                 <div class="form-group row">
@@ -39,8 +46,23 @@
                                         <label for="tag" class="col-sm-2 col-form-label">Tag</label>
                                         <div class="col-sm-10">
                                                 <textarea type="text" class="form-control" id="tag"
-                                                          name="tag">{{!empty($item->tag) ? $item->tag : old('$item')}}</textarea>
+                                                          name="tag">{{!empty($item->tag) ? $item->tag : old('tag')}}</textarea>
                                         </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="meta_title" class="col-sm-2 col-form-label">Meta Title</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="meta_title" name="meta_title"
+                                               value="{{!empty($item->meta_title) ? $item->meta_title : old('meta_title')}}"
+                                               >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="meta_description" class="col-sm-2 col-form-label">Meta Description</label>
+                                    <div class="col-sm-10">
+                                                <textarea type="text" class="form-control" id="meta_description"
+                                                          name="meta_description">{{!empty($item->meta_description) ? $item->meta_description : old('meta_description')}}</textarea>
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="thumb" class="col-sm-2 col-form-label">Thumb</label>

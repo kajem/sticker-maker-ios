@@ -18,6 +18,8 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->text('tag')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
             $table->string('code');
             $table->integer('category_id');
             $table->string('author');
