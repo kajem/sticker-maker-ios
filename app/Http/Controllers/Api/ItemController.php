@@ -165,6 +165,10 @@ class ItemController extends Controller
                 $thumb_arr = explode("/",$item->thumb);
                 $stickers = unserialize($item->stickers);
 
+                if(count($stickers) > 28){
+                    $stickers = $this->truncateItemStickersToMaxTwentyEight($stickers);
+                }
+
                 $item_arr[] = [
                     'name' => $item->name,
                     'code' => $item->code,
@@ -258,6 +262,10 @@ class ItemController extends Controller
         $thumb_arr = explode("/",$item->thumb);
         $stickers = unserialize($item->stickers);
 
+        if(count($stickers) > 28){
+            $stickers = $this->truncateItemStickersToMaxTwentyEight($stickers);
+        }
+
         $data = [
             'name' => $item->name,
             'code' => $item->code,
@@ -272,6 +280,18 @@ class ItemController extends Controller
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
 
         return $this->successOutput($data);
+    }
+
+    private function truncateItemStickersToMaxTwentyEight($stickers){
+        $stickers_arr = $stickers;
+        $stickers = [];
+        $count = 1;
+        foreach ($stickers_arr as $sticker){
+            $stickers[] = $sticker;
+            $count++;
+            if($count > 28) break;
+        }
+        return $stickers;
     }
 
     /**
