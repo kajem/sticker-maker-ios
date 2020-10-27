@@ -18,8 +18,10 @@
                                     <th scope="col" class="text-center">Total Sticker</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Author</th>
+                                    <th scope="col">Telegram Name</th>
                                     <th scope="col">Updated at</th>
-                                    <th scope="col" class="text-center">Action</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col" class="text-center" width="80">Action</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -110,8 +112,34 @@
                         name: 'items.author'
                     },
                     {
+                        data: null,
+                        name: 'items.telegram_name',
+                        className: 'text-center',
+                        render: function (data){
+                            var telegram_name = '';
+                            if(data.telegram_name != null){
+                                telegram_name = '<a target="_blank" href="{{config('services.telegram.set_base_url')}}'+data.telegram_name+'">';
+                                telegram_name += data.telegram_name.replace('_by_brain_2015_bot', '');
+                                if(data.is_telegram_set_completed){
+                                    telegram_name += '&nbsp;&nbsp; <i class="fas fa-check-circle"></i>';
+                                }
+                                telegram_name += '</a>';
+                            }
+
+                            return telegram_name;
+                        }
+                    },
+                    {
                         data: 'updated_at',
                         name: 'items.updated_at'
+                    },
+                    {
+                        data: null,
+                        name: 'items.status',
+                        className: 'text-center',
+                        render: function (data){
+                            return data.status === 1 ? 'Active' : 'Inactive';
+                        }
                     },
                     {
                         data: null,
@@ -123,7 +151,7 @@
                             actionHTML += '<a href="/item/edit/' + data.id + '" title="Edit"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;';
                             actionHTML += '<a href="/pack/braincraft/' + data.code + '" target="_blank" title="View Stickers"><i class="far fa-grin"></i></a> &nbsp;&nbsp;';
                             if(data.is_animated === 0){
-                                actionHTML += '<a href="/telegram/create-new-sticker-set/' + data.id + '" title="Create Telegram Pack"><i class="fab fa-telegram-plane"></i></a>';
+                                actionHTML += '<a href="/telegram/pack/' + data.id + '" title="Telegram Sticker Set"><i class="fab fa-telegram-plane"></i></a>';
                             }
                             return actionHTML;
                         }

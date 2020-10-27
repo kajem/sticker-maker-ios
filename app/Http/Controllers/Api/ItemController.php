@@ -378,9 +378,10 @@ class ItemController extends Controller
         $category = Category::select('id')->where('type', 'emoji')->first();
         $category_id = !empty($category->id) ? $category->id : 0;
         $item = Item::select('id')
-                      ->where('name','LIKE','%'.$request->q.'%')
+                      ->where('tag','LIKE','%'.$request->q.'%')
                       ->where('category_id', '!=', $category_id)->first();
 
+        $data['is_item_found'] = 1;
         if(empty($item->id))
             $data['is_item_found'] = 0;
 

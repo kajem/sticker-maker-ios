@@ -34,3 +34,7 @@
     max-height: 370px;
     overflow-y: scroll;
 }
+form#telegram-pack span.position-absolute{
+    top: -2px;
+    right: 1px;
+}

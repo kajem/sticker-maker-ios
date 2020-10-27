@@ -45,7 +45,8 @@ Route::domain($domain)->group(function() {
         });
 
         Route::group(['prefix' => 'telegram'], function (){
-            Route::get('create-new-sticker-set/{code}', 'Admin\TelegramController@createNewStickerSetView');
+            Route::get('pack/{id}', 'Admin\TelegramController@telegramPack');
+            Route::post('create-new-sticker-set', 'Admin\TelegramController@createNewStickerSet');
         });
 
         Route::group(['prefix' => 'static-value'], function (){
