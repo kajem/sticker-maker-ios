@@ -439,4 +439,32 @@ class ItemController extends Controller
 
         return $this->successOutput($data);
     }
+
+    public function updateItemViewCount($code){
+        $item = Item::select('id','view_count')->where('code', $code)->first();
+        if(empty($item->id))
+            return $this->errorOutput('Invalid code!');
+
+        $data = [
+            'view_count' => $item->view_count + 1
+        ];
+
+        Item::where('code', $code)->update($data);
+
+        return $this->successOutput();
+    }
+
+    public function updateItemDownloadCount($code){
+        $item = Item::select('id','download_count')->where('code', $code)->first();
+        if(empty($item->id))
+            return $this->errorOutput('Invalid code!');
+
+        $data = [
+            'download_count' => $item->download_count + 1
+        ];
+
+        Item::where('code', $code)->update($data);
+
+        return $this->successOutput();
+    }
 }

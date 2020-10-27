@@ -26,6 +26,8 @@ class CreateItemsTable extends Migration
             $table->string('thumb');
             $table->text('stickers');
             $table->smallInteger('total_sticker');
+            $table->integer('view_count')->default(0);
+            $table->integer('download_count')->default(0);
             $table->boolean('is_premium')->default(1);
             $table->boolean('is_animate')->default(0);
             $table->string('telegram_name')->nullable();
