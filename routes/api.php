@@ -27,6 +27,8 @@ Route::group(['prefix' => 'item'], function (){
     Route::get('search', 'Api\ItemController@search');
     Route::post('save-search-keyword', 'Api\ItemController@saveSearchKeyword');
     Route::get('/{code}', 'Api\ItemController@getPack');
+    Route::get('update-view-count/{code}', 'Api\ItemController@updateItemViewCount');
+    Route::get('update-download-count/{code}', 'Api\ItemController@updateItemDownloadCount');
 });
 
 Route::group(['prefix' => 'stickerpack'], function (){
