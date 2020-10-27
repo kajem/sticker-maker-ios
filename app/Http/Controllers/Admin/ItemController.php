@@ -117,6 +117,8 @@ class ItemController extends Controller
             $data['code'] = $code;
             $data['thumb'] = $thumb_path;
             $data['created_by'] = Auth::user()->id;
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            $data['created_at'] = date('Y-m-d H:i:s');
             $item_id = Item::insertGetId($data);
         }
 

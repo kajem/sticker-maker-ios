@@ -67,6 +67,7 @@ Route::domain($domain)->group(function() {
             Route::get('create-thumbnails/{width}', 'ResourceController@createNewThumbnails')->name('resource.create-thumbnails');
             Route::get('zip-pngquant', 'ResourceController@compressZipWithPngQuant');
             Route::get('populate-item-to-categories-table-data', 'ResourceController@populateItemToCategoriesTableData');
+            Route::get('create-emoji-resources', 'ResourceController@createEmojiZipFiles');
         });
 
     });

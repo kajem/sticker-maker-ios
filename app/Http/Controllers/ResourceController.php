@@ -445,13 +445,16 @@ class ResourceController extends Controller
      * @params $width
      * @return \Illuminate\Http\Response
      */
-    private function createEmojiZipFiles($width = 200){
+    public function createEmojiZipFiles($width = 200){
         $category = Category::select('id')->where('type', 'emoji')->first();
         if(empty($category->id)){
             return back()->with('error', 'Emoji category not found');
         }
 
-        $items = Item::select('name', 'code', 'stickers')->where('category_id', $category->id)->get()->toArray();
+        $item_ids = ItemToCategory::where('category_id', $category->id)->pluck('item_id')->toArray();
+
+        $items = Item::select('name', 'thumb', 'code', 'stickers')->whereIn('id', $item_ids)->get()->toArray();
+
         if(count($items) < 1){
             return back()->withInput($request->all())->with('error', 'No stickers found to create new thubmnails.');
         }
@@ -460,7 +463,7 @@ class ResourceController extends Controller
         $emoji_folder = 'public/emoji/';
         $emoji_thumb_zip_name = 'emoji_thumbs.zip';
         Storage::deleteDirectory($emoji_folder); //Deleting current emoji directory
-        Storage::disk('local')->makeDirectory($emoji_folder); //Createing emoji directory
+        Storage::disk('local')->makeDirectory($emoji_folder); //Creating emoji directory
         Storage::disk('local')->delete($emoji_folder.$emoji_thumb_zip_name);
 
         $zip = new ZipArchive;
@@ -475,6 +478,8 @@ class ResourceController extends Controller
                 //Creating emoji_thumbs.zip file
                 $item_thumb_path = $item_path."thumb/";
                 $stickers = Storage::files($item_thumb_path); //Get the sticker files
+                $thumb_arr = explode("/",$item['thumb']);
+                $zip->addFile($storage_path.$item_path.'200__'.end($thumb_arr), 'all_sticker_thumbs/'.'200__'.end($thumb_arr));
                 if(!empty($stickers)){
                     foreach($stickers as $sticker){
                         $file_name = explode("/", $sticker);

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\Item;
 use App\SearchKeyword;
+use App\ItemToCategory;
 
 class DashboardController extends Controller
 {
@@ -16,7 +17,7 @@ class DashboardController extends Controller
 
         $emoji = Category::select('id')->where('type', 'emoji')->first();
         $emoji_id = !empty($emoji->id) ? $emoji->id : 0;
-        $emoji_item_count = Item::where('category_id', '=', $emoji_id)->count();
+        $emoji_item_count = ItemToCategory::where('category_id', '=', $emoji_id)->count();
 
         $item_count = Item::where('category_id', '!=', $emoji_id)->count();
         $search_keyword_count = SearchKeyword::count();
