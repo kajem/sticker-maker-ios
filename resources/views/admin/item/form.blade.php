@@ -182,5 +182,5 @@
     <!-- /.content -->
     </div>
     <script src="/js/admin/read-image-url.js"></script>
-    <script src="/js/admin/item-form.js"></script>
+    <script src="/js/admin/item-form.js?28102020"></script>
 @endsection
