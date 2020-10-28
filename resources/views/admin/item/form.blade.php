@@ -115,7 +115,7 @@
                                             <div class="pt-2">
                                                 @php $stickers = unserialize($item->stickers) @endphp
                                                 @foreach($stickers as $sticker)
-                                                    <img width="50" class="rounded img-thumbnail" src="{{config('app.asset_base_url').'items/'.$item->code.'/thumb/'.$sticker}}" alt=""/>
+                                                    <img width="85" class="rounded img-thumbnail mb-1" src="{{config('app.asset_base_url').'items/'.$item->code.'/thumb/'.$sticker}}" alt=""/>
                                                 @endforeach
                                             </div>
                                             @endif
