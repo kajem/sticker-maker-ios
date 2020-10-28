@@ -1,4 +1,4 @@
-@extends('layouts.admin-template', ['pageTitle' => 'All Packs', 'backButtonText' => '<i class="fas fa-plus"></i> Add new item', 'backButtonURL' => url('item/add'), 'showBackButton' => true])
+@extends('layouts.admin-template', ['pageTitle' => 'All Packs', 'backButtonText' => '<i class="fas fa-plus"></i> Add new pack', 'backButtonURL' => url('item/add'), 'showBackButton' => true])
 @section('content')
     <!-- Main content -->
     <div class="content">
