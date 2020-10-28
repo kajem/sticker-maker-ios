@@ -5,8 +5,14 @@ $(document).ready(function (){
     })
 
     $('form').on('submit', function (){
-        if($("#stickers").get(0).files.length > 0)
+        if($("#stickers").get(0).files.length > 5)
         {
+            $('input#stickers').parent().find('.text-danger').remove();
+            $('input#stickers').after('<span class="text-danger">You can upload maximum 28 stickers.</span>');
+            return false;
+        }else if($("#stickers").get(0).files.length > 0)
+        {
+            $('input#stickers').parent().find('.text-danger').remove();
             $('#submit-alert').removeClass('d-none');
         }
     })
