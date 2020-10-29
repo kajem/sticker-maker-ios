@@ -1,2 +1,3 @@
 User-agent: *
-Disallow:
+Disallow: /
+Sitemap: https://dev.stickermakerpro.com/sitemap.xml
