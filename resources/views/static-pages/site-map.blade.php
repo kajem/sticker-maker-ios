@@ -1,7 +1,7 @@
 @extends('layouts.front-template',
 [
     'page_title' => 'Site Map',
-    'meta_title' => 'Terms of Use | Sticker Maker',
+    'meta_title' => 'Site Map | Sticker Maker',
     'meta_description' => 'Use the sitemap to find your way around stickermakerpro.com. Learn about and use Sticker Maker to create memes or stickers for Whatsapp, iMessege, other social apps.'
 ])
 @section('content')
