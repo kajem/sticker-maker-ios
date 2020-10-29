@@ -21,6 +21,7 @@ Route::post('contact/send-mail', 'ContactMailController@sendMail');
 Route::view('about-us', 'static-pages.about-us');
 Route::view('privacy-policy', 'static-pages.privacy-policy');
 Route::view('terms', 'static-pages.terms');
+Route::view('sitemap', 'static-pages.site-map');
 Route::group(['prefix' => 'pack'], function (){
     Route::get('/{slug}', 'StickerPackController@getPackBySlug');
     Route::get('braincraft/{code}', 'StickerPackController@getPack');

@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @if(!empty($meta_image))
+    <meta property="og:image" content="{{$meta_image}}"/>
+    @endif
     <meta property="og:type" content="website" />
     <meta property="og:url" ontent="{{url()->current()}}" />
     <meta property="og:site_name" content="Sticker Maker for Messenger Apps" />
@@ -23,7 +26,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css"">
     <link rel="stylesheet" href="/css/app.css?asdf">
-    <link href="/css/style.css?ti20s4" rel="stylesheet">
+    <link href="/css/style.css?29102020" rel="stylesheet">
     <!-- jQuery -->
     <script src="/bower_components/admin-lte/plugins/jquery/jquery.min.js"></script>
     <!-- Google Tag Manager -->
