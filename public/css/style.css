@@ -228,6 +228,14 @@ h2.title {
 .clear-both{
     clear: both;
 }
+/*START: Site Map*/
+#sitemap ul li{
+    line-height: 1.8;
+}
+#sitemap ul li a:hover{
+    text-decoration: underline;
+}
+/*END: Site Map*/
 #footer{
     padding-top: 40px;
     background: #323232;

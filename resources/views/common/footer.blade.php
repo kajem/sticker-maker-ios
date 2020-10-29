@@ -7,6 +7,11 @@
                     <div class="app-links">
                         <ul class="p-0 list-unstyled links first-part">
                             <li>
+                                <a target="_blank" href="https://apps.apple.com/us/app/id1505991796">
+                                    Sticker Maker
+                                </a>
+                            </li>
+                            <li>
                                 <a target="_blank" href="https://apps.apple.com/us/app/gif-maker-make-video-to-gifs/id1215606098">
                                     GIF Maker
                                 </a>
@@ -57,6 +62,7 @@
                         <li><a href="/about-us">About us</a></li>
                         <li><a href="/privacy-policy">Privacy Policy</a></li>
                         <li><a href="/terms">Terms of Use</a></li>
+                        <li><a href="/sitemap">Site Map</a></li>
                     </ul>
                 </div>
             </div>
