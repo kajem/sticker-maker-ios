@@ -1,8 +1,8 @@
 @extends('layouts.front-template',
 [
     'page_title' => $pack->name,
-    'meta_title' => 'Sticker Maker | Sticker.Me',
-    'meta_description' => "Use Sticker Maker to create memes or stickers for Whatsapp, iMessege, other social apps. Get animated stickers and cool stickers from chat sticker packs!",
+    'meta_title' => $pack->meta_title,
+    'meta_description' => $pack->meta_description,
     'meta_image' => config('app.asset_base_url'). 'items/'.$pack->code.'/'.$pack->code.'.png'
 ])
 @section('content')

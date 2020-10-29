@@ -15,7 +15,7 @@ class StickerPackController extends Controller
         $is_braincraft_pack = true;
         $param = request()->segment(2);
 
-        $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers')->where('code', $code)->first();
+        $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers', 'meta_title', 'meta_description')->where('code', $code)->first();
 
         if(!$pack){
             return abort(404);
@@ -37,7 +37,7 @@ class StickerPackController extends Controller
     }
 
     public function getPackBySlug($slug){
-        $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers')->where('slug', $slug)->first();
+        $pack = Item::select('id', 'name', 'code', 'tag', 'author', 'stickers', 'meta_title', 'meta_description')->where('slug', $slug)->first();
         if(!$pack){
             return abort(404);
         }
