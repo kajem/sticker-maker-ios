@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
     public function orderCategoryBySort2Field()
     {
-        $categories = Category::select('id', 'name', 'items', 'stickers')->where('type', 'general')->orderBy('sort2', 'asc')->get();
+        $categories = Category::select('id', 'name', 'items', 'stickers', 'status')->where('type', 'general')->orderBy('sort2', 'asc')->get();
         $data = [
             'title' => 'Category ordering by Sort2 field',
             'categories' => $categories,
