@@ -52,16 +52,25 @@
                                 <div class="form-group row">
                                     <label for="meta_title" class="col-sm-2 col-form-label">Meta Title</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="meta_title" name="meta_title"
+                                        <input type="text" class="form-control" id="meta_title" name="meta_title" maxlength="60"
                                                value="{{!empty($item->meta_title) ? $item->meta_title : old('meta_title')}}"
                                                >
+
+                                        <small class="form-text text-muted">
+                                            Max character length: 60.
+                                            <span id="meta_title_char_count" class="text-danger"></span>
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="meta_description" class="col-sm-2 col-form-label">Meta Description</label>
                                     <div class="col-sm-10">
-                                                <textarea type="text" class="form-control" id="meta_description"
+                                        <textarea type="text" class="form-control" id="meta_description" maxlength="160"
                                                           name="meta_description">{{!empty($item->meta_description) ? $item->meta_description : old('meta_description')}}</textarea>
+                                        <small class="form-text text-muted">
+                                            Max character length: 160.
+                                            <span id="meta_description_char_count" class="text-danger"></span>
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -182,5 +191,5 @@
     <!-- /.content -->
     </div>
     <script src="/js/admin/read-image-url.js"></script>
-    <script src="/js/admin/item-form.js?28102020"></script>
+    <script src="/js/admin/item-form.js?01112020"></script>
 @endsection
