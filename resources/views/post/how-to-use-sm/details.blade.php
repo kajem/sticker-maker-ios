@@ -24,7 +24,7 @@
                     <img class="banner mb-3" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}" alt="{{$post->banner_alt}}">
                     @endif
 
-                    <div class="main-content">
+                    <div class="main-content ck-content">
                         {!! $post->description !!}
                     </div>
 
@@ -55,6 +55,7 @@
     </div>
     <!-- jCarousel -->
     <link href="/jcarousel/jcarousel.responsive.css" rel="stylesheet">
+    <link href="/ckeditor5/src/ckeditor.css" rel="stylesheet">
     <script src="/jcarousel/jquery.jcarousel.min.js"></script>
     <script type="text/javascript">
         (function($) {
