@@ -74,10 +74,9 @@ class PostController extends Controller
                                         WHERE status = 1
                                         GROUP BY year, month
                                         ORDER BY year DESC, month DESC;');
-        $instagram = json_decode(file_get_contents('https://instagram.com/_stickermaker/?__a=1'));
 
+        $instagram = $this->getDataFromURL('https://instagram.com/_stickermaker/?__a=1');
         $instagram = !empty($instagram->graphql->user) ? $instagram->graphql->user : [];
-        //dd($instagram);
         if(!empty($instagram)){
             $instagram = [
                 'profile_pic' => $instagram->profile_pic_url,

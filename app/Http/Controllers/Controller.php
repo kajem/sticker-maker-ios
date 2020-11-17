@@ -58,6 +58,17 @@ class Controller extends BaseController
         return $obj;
     }
 
+    function getDataFromURL($url){
+        $client = new Client(['base_uri' => $url]);
+
+        $res = $client->request('GET', '', [
+            'http_errors' => false
+        ]);
+        $obj = json_decode((string)$res->getBody());
+
+        return $obj;
+    }
+
     function addCheckSum($params){
         if($params && count($params) > 0){
             ksort($params);
