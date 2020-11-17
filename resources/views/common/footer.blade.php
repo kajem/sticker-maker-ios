@@ -59,6 +59,7 @@
                 <div class="about-links">
                     <h5 class="pb-3 font-weight-bold about">About</h5>
                     <ul class="p-0 list-unstyled links">
+                        <li><a href="/how-to-use-sticker-maker">How to use Sticker Maker</a></li>
                         <li><a href="/about-us">About us</a></li>
                         <li><a href="/privacy-policy">Privacy Policy</a></li>
                         <li><a href="/terms">Terms of Use</a></li>

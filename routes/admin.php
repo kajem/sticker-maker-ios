@@ -54,6 +54,14 @@ Route::domain($domain)->group(function() {
             Route::post('save', 'Admin\StaticValueController@save');
         });
 
+        Route::group(['prefix' => 'post'], function (){
+            Route::view('{type}/list', 'admin.post.list', ['type' => 'how-to-use-sm']);
+            Route::post('{type}/list', 'Admin\PostController@list');
+            Route::get('{type}/add', 'Admin\PostController@addView');
+            Route::get('{type}/{id}/edit', 'Admin\PostController@editView');
+            Route::post('{type}/save', 'Admin\PostController@save');
+        });
+
         Route::group(['prefix' => 'report'], function (){
             Route::view('search-keyword', 'admin.report.search-keyword');
             Route::post('search-keyword', 'Admin\ReportController@searchKeyword');

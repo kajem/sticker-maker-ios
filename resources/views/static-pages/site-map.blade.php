@@ -125,6 +125,9 @@
                         <h5 class="pb-2 font-weight-bold about">About</h5>
                         <ul class="p-0 m-0 list-unstyled">
                             <li class="page" typeof="schema:WebPage">
+                                <a property="schema:sameAs"  href="/how-to-use-sticker-maker" title="About Us">How to use Sticker Maker</a>
+                            </li>
+                            <li class="page" typeof="schema:WebPage">
                                 <a property="schema:sameAs"  href="/about-us" title="About Us">About Us</a>
                             </li>
                             <li class="page" typeof="schema:WebPage">

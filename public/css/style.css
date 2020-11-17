@@ -18,6 +18,9 @@ a:hover{
     margin: 0 5px 10px 5px;
     border-radius: 10px;
 }
+.mt--2{
+    margin-top: -2px;
+}
 #sticker-packs .card .image{
     overflow: hidden;
 }
@@ -53,6 +56,20 @@ input[type="submit"]{
 #top-bar, #hero-area, #contact-us, #awesome-features{
     background: #00b129;
 }
+/*START: How to use sticker maker*/
+ul.pagination{
+    display: block;
+}
+ul.pagination li{
+    display: inline-block;
+}
+input.btn-sm{
+    padding: .12rem .5rem;
+}
+.main-content img, img.banner{
+    max-width: 100%;
+}
+/*END: How to use sticker maker*/
 /*START: Contact us*/
 #contact-us .btn-primary {
     color: #101010;
@@ -97,12 +114,13 @@ input[type="submit"]{
 }
 .navbar ul li.nav-item a.nav-link{
     color: #fff;
+    font-weight: bold;
 }
 .navbar ul li.nav-item a.nav-link:hover{
-    color: #ccc;
+    color: #ddd;
 }
 .navbar ul li.nav-item.active a.nav-link{
-    color: #ccc;
+    color: #ddd;
 }
 /*END: Header Nav*/
 video {
@@ -236,6 +254,46 @@ h2.title {
     text-decoration: underline;
 }
 /*END: Site Map*/
+
+/*START: How to use Sticker Maker*/
+ul li a:hover img{
+    opacity: 0.7;
+}
+.font-size-18{
+    font-size: 18px;
+}
+.follow-on-instagram .posts .post-body{
+    position: relative;
+    color: #d6d6d6;
+}
+.follow-on-instagram .hover-info{
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+}
+.follow-on-instagram .hover-info .content{
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    left: 50%;
+    margin-left: -37px;
+
+}
+.follow-on-instagram .posts .post-body:hover .hover-info{
+    display: block;
+}
+.follow-on-instagram .fa-video{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+/*END: How to use Sticker Maker*/
+
 #footer{
     padding-top: 40px;
     background: #323232;
@@ -430,12 +488,67 @@ h2.title {
 .show-on-pad{
     display: none;
 }
+.hide-on-pad{
+    display: block;
+}
+.show-on-desktop{
+    display: block;
+}
+.hide-on-desktop{
+    display: none;
+}
+.mobile-nav-icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.mobile-menu-items ul li.nav-item{
+    border-top: 1px solid #ccc;
+}
+.mobile-menu-items ul li.nav-item:first-child{
+    border-top: 0px solid #ccc;
+}
+.mobile-menu-items ul li.nav-item a.nav-link{
+    font-size: 16px;
+    text-align: center;
+}
+.mobile-nav-icon button:focus{
+    outline: 0;
+}
+.addthis-smartlayers-desktop #at4-share{
+    top: 50% !important;
+    margin-top: -140px;
+}
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
+    .hide-on-desktop{
+        display: block;
+    }
+    .hide-on-pad{
+        display: block;
+    }
 }
 
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
+    .hide-on-pad{
+        display: block;
+    }
+    .show-on-desktop{
+        display: none;
+    }
+    .hide-on-desktop{
+        display: block;
+    }
+    #how-to-use-sm form{
+        text-align: center;
+    }
+    #how-to-use-sm-details{
+        text-align: center;
+    }
+    #how-to-use-sm-details .recent-posts ul li{
+        text-align: left;
+    }
     #sitemap .main-content{
         text-align: center;
     }
@@ -478,9 +591,6 @@ h2.title {
     }
     h2.title{
         line-height: 1.5;
-    }
-    #top-bar h2{
-        text-align: center;
     }
     #hero-area{
         text-align: center;
@@ -542,8 +652,20 @@ h2.title {
 
 /* Medium devices (tablets, less than 992px)*/
 @media (min-width: 768px) and (max-width: 1024px) {
+    .show-on-desktop{
+        display: none;
+    }
+    .hide-on-desktop{
+        display: block;
+    }
+    .hide-on-pad{
+        display: none;
+    }
     .show-on-pad{
         display: block;
+    }
+    #top-bar .navbar ul li.nav-item a.nav-link{
+        padding-left: 8px;
     }
     #hero-area .col-sm-7{
         padding-right: 40px;
@@ -560,6 +682,12 @@ h2.title {
     #how-to-make p{
         margin-top: 10px;
         padding-left: 45px;
+    }
+    .search-box{
+        text-align: center;
+    }
+    .search-box input[type="submit"]{
+        margin-top: 10px;
     }
 }
 

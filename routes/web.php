@@ -22,6 +22,10 @@ Route::view('about-us', 'static-pages.about-us');
 Route::view('privacy-policy', 'static-pages.privacy-policy');
 Route::view('terms', 'static-pages.terms');
 Route::view('sitemap', 'static-pages.site-map');
+Route::group(['prefix' => 'how-to-use-sticker-maker'], function (){
+    Route::get('/', 'PostController@list');
+    Route::get('/{slug}', 'PostController@getPost');
+});
 Route::group(['prefix' => 'pack'], function (){
     Route::get('/{slug}', 'StickerPackController@getPackBySlug');
     Route::get('braincraft/{code}', 'StickerPackController@getPack');

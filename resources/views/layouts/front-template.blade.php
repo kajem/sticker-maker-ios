@@ -52,5 +52,10 @@
 <script src="/bower_components/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 {{--<script src="{{ asset("resources/js/bootstrap.js") }}"></script>--}}
 {{--<script src="{{ asset("js/common.js?sdf") }}"></script>--}}
+
+@if(Request::is('how-to-use-sticker-maker/*'))
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fb26d7495e4a317"></script>
+@endif
 </body>
 </html>

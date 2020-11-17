@@ -97,6 +97,32 @@
                         </li>
                     </ul>
                 </li>
+                <!--Post Menu-->
+                <li class="nav-item has-treeview {{ Request::is('post/how-to-use-sm/*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link ">
+                        <i class="fas fa-blog"></i>
+                        <p>
+                            How to use SM
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{url('post/how-to-use-sm/list')}}"
+                               class="nav-link {{ Request::is('post/how-to-use-sm/list') ? 'active' : '' }}">
+                                <i class="fas fa-list"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/post/how-to-use-sm/add')}}"
+                               class="nav-link {{ Request::is('post/how-to-use-sm/add') ? 'active' : '' }}">
+                                <i class="fas fa-plus"></i>
+                                <p>Add New</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!--Static Value Menu-->
                 <li class="nav-item">
                     <a href="{{url('/static-value/list')}}"
