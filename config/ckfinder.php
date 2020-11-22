@@ -79,28 +79,29 @@ $config['backends']['laravel_logs'] = array(
 
 // Backends
 
-$config['backends']['default'] = array(
-    'name'         => 'default',
-    'adapter'      => 'local',
-    'baseUrl'      => config('app.url').'/userfiles/',
-    'root'         => public_path('/userfiles/'),
-    'chmodFiles'   => 0777,
-    'chmodFolders' => 0755,
-    'filesystemEncoding' => 'UTF-8'
-);
-
 //$config['backends']['default'] = array(
-//    'name'         => 'awss3',
-//    'adapter'      => 's3',
-//    'bucket'       => config('filesystems.disks.s3.bucket'),
-//    'region'       => config('filesystems.disks.s3.region'),
-//    'key'          => config('filesystems.disks.s3.key'),
-//    'secret'       => config('filesystems.disks.s3.secret'),
-//    'visibility'   => 'public',
-//    'baseUrl'      => 'http://s3-'.config('filesystems.disks.s3.region').'.amazonaws.com/'.config('filesystems.disks.s3.bucket').'/userfiles/',
-//    'root'         => 'userfiles'
+//    'name'         => 'default',
+//    'adapter'      => 'local',
+//    'baseUrl'      => config('app.url').'/userfiles/',
+//    'root'         => public_path('/userfiles/'),
+//    'chmodFiles'   => 0777,
+//    'chmodFolders' => 0755,
+//    'filesystemEncoding' => 'UTF-8'
 //);
 
+//dd(config('filesystems'));exit;
+
+$config['backends']['default'] = array(
+    'name'         => 'awss3',
+    'adapter'      => 's3',
+    'bucket'       => env('AWS_BUCKET'),
+    'region'       => env('AWS_DEFAULT_REGION'),
+    'key'          => env('AWS_ACCESS_KEY_ID'),
+    'secret'       => env('AWS_SECRET_ACCESS_KEY'),
+    'visibility'   => 'public',
+    'baseUrl'      => env('ASSET_BASE_URL').'website_resource/ckfinder/',
+    'root'         => 'website_resource/ckfinder'
+);
 /*================================ Resource Types =====================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_resourceTypes
 
@@ -112,7 +113,7 @@ $config['resourceTypes'][] = array(
     'maxSize'           => 0,
     'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip',
     'deniedExtensions'  => '',
-    'backend'           => 'default'
+    'backend'           => 'awss3'
 );
 
 $config['resourceTypes'][] = array(
@@ -121,7 +122,7 @@ $config['resourceTypes'][] = array(
     'maxSize'           => 0,
     'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
     'deniedExtensions'  => '',
-    'backend'           => 'default'
+    'backend'           => 'awss3'
 );
 
 /*================================ Access Control =====================================*/
