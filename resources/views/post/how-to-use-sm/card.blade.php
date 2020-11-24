@@ -10,10 +10,10 @@
             <h3 class="card-subtitle mb-2 text-muted">{{$post->subtitle}}</h3>
         @endif
         <div class="small">
+            {{$post->published_date->diffForHumans()}}
             @if(!empty($post->author))
-                <i> By <b>{{$post->author}}</b></i>  on
+                &nbsp;&nbsp;&nbsp;By <i>  <b>{{$post->author}}</b></i>
             @endif
-            {{date('d F, Y', strtotime($post->published_date))}}
         </div>
         <p class="card-text pt-2">{{$post->short_description}}</p>
         <a href="/how-to-use-sticker-maker/{{$post->slug}}" class="btn btn-primary">Read more</a>

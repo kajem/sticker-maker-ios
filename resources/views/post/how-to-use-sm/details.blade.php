@@ -14,11 +14,12 @@
                         <h2 class="card-subtitle mb-2 text-muted">{{$post->subtitle}}</h2>
                     @endif
                     <div class="small mb-3">
+                        {{$post->published_date->diffForHumans()}}
                         @if(!empty($post->author))
-                            <i> By <b>{{$post->author}}</b></i>  on
+                            &nbsp;&nbsp;&nbsp;By <i>  <b>{{$post->author}}</b></i>
                         @endif
-                        {{date('d F, Y', strtotime($post->published_date))}}
                     </div>
+                    <hr>
 
                     @if(!empty($post->banner))
                     <img class="banner mb-3" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}" alt="{{$post->banner_alt}}">
@@ -30,7 +31,7 @@
 
                     @if(!empty($related_posts))
                     <div id="related-posts" class="mt-5">
-                        <h2>Related posts <span class="text-muted">({{$related_posts->count()}})</span></h2>
+                        <h2>Related posts</h2>
                         <hr>
                         <div class="jcarousel-wrapper">
                             <div class="jcarousel">

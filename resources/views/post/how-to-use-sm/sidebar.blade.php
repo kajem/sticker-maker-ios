@@ -38,7 +38,6 @@
                     <a href="/how-to-use-sticker-maker/?year={{$archive->year}}&month={{$archive->month}}">
                         {{$months[$archive->month - 1]}}, {{$archive->year}}
                     </a>
-                    <span class="text-muted">({{$archive->post_count}})</span>
                 </li>
             @endforeach
         </ul>

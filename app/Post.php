@@ -15,4 +15,8 @@ class Post extends Model
         'title', 'subtitle', 'type', 'slug', 'author', 'tags', 'meta_title', 'meta_description', 'banner', 'banner_alt',
         'short_description', 'description', 'published_date', 'related_posts', 'status', 'created_by'
     ];
+
+    protected $dates = [
+        'created_date', 'published_date'
+    ];
 }
