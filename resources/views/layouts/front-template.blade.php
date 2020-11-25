@@ -26,7 +26,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css"">
     <link rel="stylesheet" href="/css/app.css?asdf">
-    <link href="/css/style.css?25112020" rel="stylesheet">
+    <link href="/css/style.css?251120200" rel="stylesheet">
     <!-- jQuery -->
     <script src="/bower_components/admin-lte/plugins/jquery/jquery.min.js"></script>
     <!-- Google Tag Manager -->
@@ -39,7 +39,7 @@
 {{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
     @if(Request::is('how-to-use-sticker-maker/*'))
         <!-- ShareThis BEGIN -->
-        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5fbdfeaf7eadd60011f096b4&product=sop' async='async'></script>
+            <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=#{property?._id}&product=custom-share-buttons"></script>
         <!-- ShareThis END -->
     @endif
 </head>

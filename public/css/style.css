@@ -515,12 +515,14 @@ ul li a:hover img{
 .mobile-nav-icon button:focus{
     outline: 0;
 }
-#st-2.st-left{
-    top: 50% !important;
-    margin-top: -95px;
-}
 .right-sidebar .about .social-icons a{
     color: #777;
+    border: 1px solid #ccc;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+}
+.right-sidebar .about .social-icons a:hover{
+    color: #000;
 }
 .right-sidebar .widget-title{
     margin-top: -30px;
@@ -530,6 +532,35 @@ ul li a:hover img{
     background-color: #f8fafc;
     display: inline-block;
     padding: 0 20px;
+}
+.post-social-share {
+    position: fixed;
+    top: 50%;
+    margin-left: -100px;
+    z-index: 999;
+    margin-top: -132px;
+}
+.post-social-share div{
+    margin-bottom: 12px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background-color: #fff;
+    --shadow-color: rgba(var(--service-color-rgb, 0,0,0), 0.18);
+    -webkit-box-shadow: -1px -1px 2px 0px rgba(0, 0, 0, 0.05), 1px 3px 4px -1px var(--shadow-color);
+    box-shadow: -1px -1px 2px 0px rgba(0, 0, 0, 0.05), 1px 3px 4px -1px var(--shadow-color);
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    cursor: pointer;
+}
+.post-social-share i{
+    font-size: 18px;
+}
+.post-social-share div:hover i{
+    opacity: 0.8;
 }
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {

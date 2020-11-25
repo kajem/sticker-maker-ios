@@ -7,6 +7,7 @@
 @section('content')
     <div class="content mb-5" id="how-to-use-sm-details">
         <div class="container">
+            @include('common.social-share-buttons')
             <div class="row">
                 <div class="col-sm-8">
                     <h1 class="title pt-5">{!! $post->title !!}</h1>
