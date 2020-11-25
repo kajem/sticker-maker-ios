@@ -515,9 +515,9 @@ ul li a:hover img{
 .mobile-nav-icon button:focus{
     outline: 0;
 }
-.addthis-smartlayers-desktop #at4-share{
+#st-2.st-left{
     top: 50% !important;
-    margin-top: -140px;
+    margin-top: -95px;
 }
 .right-sidebar .about .social-icons a{
     color: #777;
