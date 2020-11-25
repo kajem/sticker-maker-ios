@@ -14,6 +14,7 @@
     </div>
     <div data-network="twitter"
          data-username="StickerMaker5"
+         data-url="{{url()->current()}}"
          class="st-custom-button button share-button twitter-share-button  text-primary"
          data-title="{{$post->title}}"
          @if(!empty($post->banner))
@@ -26,6 +27,7 @@
     <div data-network="pinterest"
          class="st-custom-button button share-button pinterest-share-button  text-primary"
          data-username="socialmedia1972"
+         data-url="{{url()->current()}}"
          data-title="{{$post->title}}"
          @if(!empty($post->banner))
          data-image="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}"
