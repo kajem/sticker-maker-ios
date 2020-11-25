@@ -106,6 +106,24 @@ jQuery(document).ready(function (){
            $('#slug').val(convertToSlug($('#title').val()))
        }
     });
+
+    var meta_title_max_length = 60;
+    $('#meta_title').keyup(function() {
+        var textlen = meta_title_max_length - $(this).val().length;
+        $('#meta_title_char_count').text(' Characters left: ' + textlen);
+    });
+
+    var meta_description_max_length = 160;
+    $('#meta_description').keyup(function() {
+        var textlen = meta_description_max_length - $(this).val().length;
+        $('#meta_description_char_count').text(' Characters left: ' + textlen);
+    });
+
+    var short_description_max_length = 500;
+    $('#short_description').keyup(function() {
+        var textlen = short_description_max_length - $(this).val().length;
+        $('#short_description_char_count').text(' Characters left: ' + textlen);
+    });
 });
 
 function convertToSlug(text)

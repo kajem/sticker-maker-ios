@@ -1,5 +1,19 @@
 <div class="right-sidebar">
-    <div class="search-box">
+    <div class="about mt-3 mb-5 border text-center p-3">
+        <h4 class="widget-title"><span>About</span></h4>
+        Greetings from Sticker.Me! We are happy to welcome you in our Blog section, to inspire and guide you in using Sticker.Me Sticker Maker to create amazing and funny Stickers for Messenger Apps.
+        Sticker.Me is a product of Brain Craft Ltd. one of the top App developers in the App Store.
+        <div class="mt-1 mb-3">
+            <a href="/about-us">Read more</a>
+        </div>
+
+        <div class="social-icons text-center">
+            @include('common.social-icons')
+        </div>
+    </div>
+
+    <div class="search-box mb-5 border text-center p-3">
+        <h4 class="widget-title"><span>Search</span></h4>
         <form method="get" action="/how-to-use-sticker-maker">
             <input type="text" class="form-control w-auto d-inline-block" autocomplete="off" name="keyword" id="keyword" placeholder="Type here..." value="{{ app('request')->input('keyword') }}"/>
             <input type="submit" class="btn btn-dark btn-sm mt--2" value="Search" />
@@ -7,9 +21,8 @@
     </div>
 
     @if(!$recent_posts->isEmpty())
-    <div class="recent-posts">
-        <h4 class="mt-4">Recent Posts</h4>
-        <hr>
+    <div class="recent-posts mb-5 border p-3">
+        <h4 class="widget-title text-center"><span>Recent Posts</span></h4>
         <ul class="list-unstyled">
             @foreach($recent_posts as $post)
                 <li>
@@ -29,9 +42,8 @@
     @endif
 
     @if(!empty($archives))
-    <div class="archives">
-        <h4 class="mt-4">Archives</h4>
-        <hr>
+    <div class="archives mb-5 text-center border p-3">
+        <h4 class="widget-title"><span>Archives</span></h4>
         <ul class="list-unstyled">
             @foreach($archives as $archive)
                 <li class="pb-2">
@@ -45,10 +57,9 @@
     @endif
 
     @if(!empty($instagram))
-    <div class="follow-on-instagram">
-        <h4 class="mt-4">Follow us on instagram</h4>
-        <hr>
-        <div class="header">
+    <div class="follow-on-instagram mb-5 text-center border p-3">
+        <h4 class="widget-title"><span>Follow us on instagram</span></h4>
+        <div class="header mt-3">
             <a target="_blank" href="https://www.instagram.com/_stickermaker/">
                 <img width="40" class="rounded-circle" src="{{$instagram['profile_pic']}}" alt="_stickermaker" />
                 <strong class="pl-2 font-size-18">_stickermaker</strong>

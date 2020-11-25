@@ -125,8 +125,12 @@
                                 <div class="form-group row">
                                     <label for="short_description" class="col-sm-2 col-form-label">Short Description</label>
                                     <div class="col-sm-10">
-                                        <textarea type="text" class="form-control" id="short_description"
+                                        <textarea type="text" class="form-control" id="short_description" rows="3" maxlength="500"
                                                   name="short_description">{{!empty($post->short_description) ? $post->short_description : old('short_description')}}</textarea>
+                                        <small class="form-text text-muted">
+                                            Max character length: 500.
+                                            <span id="short_description_char_count" class="text-danger"></span>
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="form-group row">

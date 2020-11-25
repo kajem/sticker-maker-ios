@@ -10,7 +10,7 @@
             <h1 class="404-text">4<img src="/images/404-emoji.png" alt="0"/>4</h1>
             <h2>PAGE NOT FOUND!</h2>
             <div class="mt-5">
-                <a href="/" title="Home page" class="btn btn-primary">Go back home</a>
+                <a href="/" title="Home page" class="btn btn-primary">BACK TO HOME</a>
             </div>
         </div>
     </div>

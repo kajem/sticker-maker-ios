@@ -37,6 +37,11 @@
         })(window,document,'script','dataLayer','GTM-TK3ZJCV');</script>
     <!-- End Google Tag Manager -->
 {{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
+    @if(Request::is('how-to-use-sticker-maker/*'))
+        <!-- ShareThis BEGIN -->
+            <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5fbdf737b4aee5001239a03d&product=sop' async='async'></script>
+        <!-- ShareThis END -->
+    @endif
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -53,9 +58,5 @@
 {{--<script src="{{ asset("resources/js/bootstrap.js") }}"></script>--}}
 {{--<script src="{{ asset("js/common.js?sdf") }}"></script>--}}
 
-@if(Request::is('how-to-use-sticker-maker/*'))
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fb26d7495e4a317"></script>
-@endif
 </body>
 </html>
