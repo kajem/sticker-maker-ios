@@ -569,6 +569,9 @@ ul li a:hover img{
 .post-social-share div:hover i{
     opacity: 0.8;
 }
+.archives ul li{
+    line-height: 1.8;
+}
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
     .hide-on-desktop{

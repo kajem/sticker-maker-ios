@@ -23,7 +23,7 @@
     @if(!$recent_posts->isEmpty())
     <div class="recent-posts mb-5 border p-3">
         <h4 class="widget-title text-center"><span>Recent Posts</span></h4>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled m-0">
             @foreach($recent_posts as $post)
                 <li>
                     <div class="row">
@@ -44,9 +44,9 @@
     @if(!empty($archives))
     <div class="archives mb-5 text-center border p-3">
         <h4 class="widget-title"><span>Archives</span></h4>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled m-0">
             @foreach($archives as $archive)
-                <li class="pb-2">
+                <li>
                     <a href="/how-to-use-sticker-maker/?year={{$archive->year}}&month={{$archive->month}}">
                         {{$months[$archive->month - 1]}}, {{$archive->year}}
                     </a>
