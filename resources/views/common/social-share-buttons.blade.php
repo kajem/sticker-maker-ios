@@ -25,6 +25,7 @@
     </div>
     <div data-network="pinterest"
          class="st-custom-button button share-button pinterest-share-button  text-primary"
+         data-username="socialmedia1972"
          data-title="{{$post->title}}"
          @if(!empty($post->banner))
          data-image="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}"
