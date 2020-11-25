@@ -39,7 +39,7 @@
 {{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
     @if(Request::is('how-to-use-sticker-maker/*'))
         <!-- ShareThis BEGIN -->
-            <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5fbdf737b4aee5001239a03d&product=sop' async='async'></script>
+        <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5fbdfeaf7eadd60011f096b4&product=sop' async='async'></script>
         <!-- ShareThis END -->
     @endif
 </head>
