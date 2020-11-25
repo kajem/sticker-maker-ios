@@ -5,7 +5,7 @@
     'meta_description' => 'meta description pending...',
 ])
 @section('content')
-    <div class="content mb-5" id="how-to-use-sm">
+    <div class="content" id="how-to-use-sm">
         <div class="container">
             <h2 class="title pt-5 text-center">{{$page_title}}</h2>
             <div class="main-content">

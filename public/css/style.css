@@ -66,6 +66,9 @@ ul.pagination li{
 input.btn-sm{
     padding: .12rem .5rem;
 }
+.main-content{
+    margin-bottom: 40px;
+}
 .main-content img, img.banner{
     max-width: 100%;
 }
