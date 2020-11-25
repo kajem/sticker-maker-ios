@@ -518,8 +518,12 @@ ul li a:hover img{
 .right-sidebar .about .social-icons a{
     color: #777;
     border: 1px solid #ccc;
-    padding: 5px 10px 5px 10px;
+    padding-top: 5px;
     border-radius: 5px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
 }
 .right-sidebar .about .social-icons a:hover{
     color: #000;
@@ -538,7 +542,7 @@ ul li a:hover img{
     top: 50%;
     margin-left: -100px;
     z-index: 999;
-    margin-top: -132px;
+    margin-top: -90px;
 }
 .post-social-share div{
     margin-bottom: 12px;
@@ -574,6 +578,14 @@ ul li a:hover img{
 
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
+    .post-social-share{
+        margin-left: -10px;
+    }
+    .post-social-share span{
+        background-color: #f8fafc;
+        display: inline-block;
+        padding:0 5px;
+    }
     .hide-on-pad{
         display: block;
     }

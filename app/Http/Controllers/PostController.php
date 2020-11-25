@@ -51,7 +51,7 @@ class PostController extends Controller
 
     public function getPost($slug){
         $post = Post::query();
-        $post = $post->select('slug', 'title', 'subtitle', 'banner', 'banner_alt', 'author', 'meta_title', 'meta_description', 'description', 'published_date', 'related_posts');
+        $post = $post->select('slug', 'title', 'subtitle', 'banner', 'banner_alt', 'author', 'meta_title', 'meta_description', 'short_description', 'description', 'published_date', 'related_posts');
         $post = $post->where('slug', $slug);
 
         if(strpos($_SERVER['HTTP_HOST'], 'admin') === false || Auth::guest()){
