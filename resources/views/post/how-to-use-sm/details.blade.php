@@ -1,12 +1,14 @@
 @php
 $meta_title = $post->meta_title;
 $meta_description = $post->meta_description;
+$meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_resource/post_images/'.$post->banner : '';
 @endphp
 @extends('layouts.front-template',
 [
     'page_title' => $post->title,
     'meta_title' => $meta_title,
-    'meta_description' => $meta_description
+    'meta_description' => $meta_description,
+    'meta_image' => $meta_image
 ])
 @section('content')
     <div class="content mb-5" id="how-to-use-sm-details">
