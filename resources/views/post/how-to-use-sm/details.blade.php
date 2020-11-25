@@ -36,6 +36,8 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
                         {!! $post->description !!}
                     </div>
 
+                    <div id="disqus_thread"></div>
+
                     @if(!empty($related_posts))
                     <div id="related-posts" class="mt-5">
                         <h2>Related posts</h2>
@@ -65,55 +67,6 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
     <link href="/jcarousel/jcarousel.responsive.css" rel="stylesheet">
     <link href="/ckeditor5/src/ckeditor.css" rel="stylesheet">
     <script src="/jcarousel/jquery.jcarousel.min.js"></script>
-    <script type="text/javascript">
-        (function($) {
-            $(function() {
-                var jcarousel = $('.jcarousel');
-
-                jcarousel
-                    .on('jcarousel:reload jcarousel:create', function () {
-                        var carousel = $(this),
-                            width = carousel.innerWidth();
-
-                        if (width >= 600) {
-                            width = width / 2;
-                        } else if (width >= 350) {
-                            width = width / 1;
-                        }
-
-                        carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
-                    })
-                    .jcarousel({
-                        wrap: 'circular'
-                    });
-
-                $('.jcarousel-control-prev')
-                    .jcarouselControl({
-                        target: '-=1'
-                    });
-
-                $('.jcarousel-control-next')
-                    .jcarouselControl({
-                        target: '+=1'
-                    });
-
-                $('.jcarousel-pagination')
-                    .on('jcarouselpagination:active', 'a', function() {
-                        $(this).addClass('active');
-                    })
-                    .on('jcarouselpagination:inactive', 'a', function() {
-                        $(this).removeClass('active');
-                    })
-                    .on('click', function(e) {
-                        e.preventDefault();
-                    })
-                    .jcarouselPagination({
-                        perPage: 1,
-                        item: function(page) {
-                            return '<a href="#' + page + '">' + page + '</a>';
-                        }
-                    });
-            });
-        })(jQuery);
-    </script>
+    <script src="/js/post-details.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 @endsection
