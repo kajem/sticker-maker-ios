@@ -3,6 +3,7 @@
     <div data-network="facebook"
          class="st-custom-button button share-button facebook-share-button text-primary"
          data-username="sticker.me.stickermaker"
+         data-url="{{url()->current()}}"
          data-title="{{$post->title}}"
         @if(!empty($post->banner))
             data-image="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}"
