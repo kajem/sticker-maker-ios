@@ -1,8 +1,12 @@
+@php
+$meta_title = $post->meta_title;
+$meta_description = $post->meta_description;
+@endphp
 @extends('layouts.front-template',
 [
     'page_title' => $post->title,
-    'meta_title' => $post->meta_title,
-    'meta_description' => $post->meta_description
+    'meta_title' => $meta_title,
+    'meta_description' => $meta_description
 ])
 @section('content')
     <div class="content mb-5" id="how-to-use-sm-details">
