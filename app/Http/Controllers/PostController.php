@@ -75,7 +75,7 @@ class PostController extends Controller
                                         GROUP BY year, month
                                         ORDER BY year DESC, month DESC;');
 
-        $instagram = $this->getDataFromURL('https://instagram.com/_stickermaker/?__a=1');
+        $instagram = $this->getDataFromURL('https://www.instagram.com/_stickermaker/?__a=1');
         $instagram = !empty($instagram->graphql->user) ? $instagram->graphql->user : [];
         if(!empty($instagram)){
             $instagram = [
