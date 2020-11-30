@@ -26,7 +26,7 @@ class PostController extends Controller
             $posts = $posts->orWhere('author', 'LIKE', '%' . $keyword . '%');
             $posts = $posts->orWhere('short_description', 'LIKE', '%' . $keyword . '%');
             $posts = $posts->orWhere('description', 'LIKE', '%' . $keyword . '%');
-            $subtitle = 'Searched for <i>"'.$request->get('keyword').'"</i>'; 
+            $subtitle = 'Searched for <i>"'.$request->get('keyword').'"</i>';
         }
         if(!empty($request->get('year'))){
             $query_string_arr['year'] =  $request->get('year');
@@ -78,24 +78,11 @@ class PostController extends Controller
                                         GROUP BY year, month
                                         ORDER BY year DESC, month DESC;');
 
-        $instagram = $this->getDataFromURL('https://www.instagram.com/_stickermaker/?__a=1');
-        $instagram = !empty($instagram->graphql->user) ? $instagram->graphql->user : [];
-        if(!empty($instagram)){
-            $instagram = [
-                'profile_pic' => $instagram->profile_pic_url,
-                'following' => $instagram->edge_follow->count,
-                'followers' => $instagram->edge_followed_by->count,
-                'post_count' => $instagram->edge_owner_to_timeline_media->count,
-                'posts' => $instagram->edge_owner_to_timeline_media->edges
-            ];
-        }
-
         $data = [
             'post' => $post,
             'related_posts' => $related_posts,
             'recent_posts' => $recent_posts,
             'archives' => $archives,
-            'instagram' => $instagram,
             'months' => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         ];
 
