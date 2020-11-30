@@ -102,8 +102,16 @@ class PostController extends Controller
         }
 
         if(!empty($request->input('id'))){
+            $post = Post::where('id', $request->input('id'))->first();
+            if(date('Y-m-d', strtotime($post->published_date)) != $data['published_date']){
+                $data['published_date'] = $data['published_date'].' '.date('H:i:s');
+            }else{
+                unset($data['published_date']);
+            }
+
             Post::where('id', $request->input('id'))->update($data);
         }else{
+            $data['published_date'] = $data['published_date'].' '.date('H:i:s');
             $data['created_by'] = Auth::user()->id;
             Post::create($data);
         }
