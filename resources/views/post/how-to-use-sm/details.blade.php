@@ -67,6 +67,6 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
     <link href="/jcarousel/jcarousel.responsive.css" rel="stylesheet">
     <link href="/ckeditor5/src/ckeditor.css" rel="stylesheet">
     <script src="/jcarousel/jquery.jcarousel.min.js"></script>
-    <script src="/js/post-details.js"></script>
+    <script src="/js/post-details.js?30112020"></script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 @endsection
