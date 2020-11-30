@@ -9,11 +9,20 @@
         <div class="container">
             <h2 class="title pt-5 text-center">{{$page_title}}</h2>
             <div class="main-content">
-                <div class="text-right pt-2">
-                    <form method="get" action="">
-                        <input type="text" class="form-control w-auto d-inline-block" autocomplete="off" name="keyword" id="keyword" placeholder="Type here..." value="{{ app('request')->input('keyword') }}"/>
-                        <input type="submit" class="btn btn-dark btn-sm mt--2" value="Search" />
-                    </form>
+                <div class="row">
+                    <div class="col-sm-6  pt-3">
+                        @if(!empty($subtitle))
+                            <h2 class="card-subtitle mb-2 text-muted">{!! $subtitle !!}</h2>
+                        @endif
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-right pt-3">
+                            <form method="get" action="">
+                                <input type="text" class="form-control w-auto d-inline-block" autocomplete="off" name="keyword" id="keyword" placeholder="Type here..." value="{{ app('request')->input('keyword') }}"/>
+                                <input type="submit" class="btn btn-dark btn-sm mt--2" value="Search" />
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 @if(!$posts->isEmpty())
                     @php

@@ -11,6 +11,7 @@ class PostController extends Controller
 {
     public function list(Request $request){
         $page_title = 'How to use Sticker Maker';
+        $subtitle = '';
         $posts = Post::query();
         $posts = $posts->select('slug', 'title', 'subtitle', 'banner', 'banner_alt', 'author', 'short_description', 'published_date');
         $posts = $posts->where('type', 'how-to-use-sm');
@@ -25,6 +26,7 @@ class PostController extends Controller
             $posts = $posts->orWhere('author', 'LIKE', '%' . $keyword . '%');
             $posts = $posts->orWhere('short_description', 'LIKE', '%' . $keyword . '%');
             $posts = $posts->orWhere('description', 'LIKE', '%' . $keyword . '%');
+            $subtitle = 'Searched for <i>"'.$request->get('keyword').'"</i>'; 
         }
         if(!empty($request->get('year'))){
             $query_string_arr['year'] =  $request->get('year');
@@ -34,7 +36,7 @@ class PostController extends Controller
             $query_string_arr['month'] =  $request->get('month');
             $posts = $posts->whereMonth('published_date', $request->get('month'));
             $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            $page_title = 'How to use Sticker Maker - '. $months[$request->get('month') - 1].', '. $request->get('year');
+            $subtitle = 'Archives: <i>'.$months[$request->get('month') - 1].', '. $request->get('year').'</i>';
         }
 
         $posts = $posts->orderBy('published_date', 'desc');
@@ -42,6 +44,7 @@ class PostController extends Controller
 
         $data = [
             'page_title' => $page_title,
+            'subtitle' => $subtitle,
             'posts' => $posts,
             'query_string_arr' =>$query_string_arr
         ];
