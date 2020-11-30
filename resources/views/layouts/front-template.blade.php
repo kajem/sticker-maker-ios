@@ -24,9 +24,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="/bower_components/admin-lte/plugins/fontawesome-free/css/all.min.css"">
+    <link rel="stylesheet" href="/fontawesome-free-5.15.1-web/css/all.min.css">
     <link rel="stylesheet" href="/css/app.css?asdf">
-    <link href="/css/style.css?2511202077oe07" rel="stylesheet">
+    <link href="/css/style.css?30112020" rel="stylesheet">
     <!-- jQuery -->
     <script src="/bower_components/admin-lte/plugins/jquery/jquery.min.js"></script>
     <!-- Google Tag Manager -->
