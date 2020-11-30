@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-sm-6  pt-3">
                         @if(!empty($subtitle))
-                            <h2 class="card-subtitle mb-2 text-muted">{!! $subtitle !!}</h2>
+                            <h4 class="card-subtitle mb-2 text-muted">{!! $subtitle !!}</h4>
                         @endif
                     </div>
                     <div class="col-sm-6">
@@ -48,7 +48,19 @@
                     </div>
                 </div>
                 @else
-                    <div class="text-center mt-5"><h3>No posts found.</h3></div>
+                    <div class="text-center">
+                        <h2 class="mt-5 text-danger">Nothing Found!</h2>
+                        <p class="pt-3">
+                            Apologies, but no results were found for the requested archive. Try using the search with a relevant
+                            phrase to find the post you are looking for.
+                        </p>
+                        <div class="mt-3 mb-3">
+                            or
+                        </div>
+                        <div>
+                            <a href="/" title="Home page" class="btn btn-primary">BACK TO HOME</a>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>
