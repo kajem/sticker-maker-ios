@@ -35,7 +35,7 @@
                                 <div class="col-sm-6 mt-4">
                                     @include('post.how-to-use-sm.card')
                                 </div>
-                        @if($i % 2 == 0 || $i >= $posts->perpage() )
+                        @if($i % 2 == 0 || $i >= ($posts->perpage() - 1) )
                             </div>
                         @endif
                         @php
