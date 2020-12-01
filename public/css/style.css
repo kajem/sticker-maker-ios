@@ -77,6 +77,12 @@ input.btn-sm{
     width: auto;
     max-height: 400px;
 }
+#how-to-use-sm .card{
+    overflow: hidden;
+}
+.card-img-top{
+    border-radius: 0;
+}
 /*END: How to use sticker maker*/
 /*START: Contact us*/
 #contact-us .btn-primary {
