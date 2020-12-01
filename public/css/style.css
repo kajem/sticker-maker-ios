@@ -21,6 +21,9 @@ a:hover{
 .mt--2{
     margin-top: -2px;
 }
+.word-wrap-break{
+    word-wrap: break-word;
+}
 #sticker-packs .card .image{
     overflow: hidden;
 }
@@ -295,6 +298,9 @@ ul li a:hover img{
     right: 5px;
     top: 5px;
 }
+.ck-content iframe{
+    max-width: 100% !important;
+}
 /*END: How to use Sticker Maker*/
 
 #footer{
@@ -528,6 +534,7 @@ ul li a:hover img{
     height: 35px;
     text-align: center;
     margin-right: 10px;
+    margin-top: 10px;
 }
 .right-sidebar .about .social-icons a:hover{
     color: #000;
@@ -725,6 +732,9 @@ ul li a:hover img{
     }
     .show-on-pad{
         display: block;
+    }
+    .search-box input[type="text"]{
+        max-width: 100% !important;
     }
     #top-bar .navbar ul li.nav-item a.nav-link{
         padding-left: 8px;

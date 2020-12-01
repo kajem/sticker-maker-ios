@@ -16,7 +16,7 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
             @include('common.social-share-buttons')
             <div class="row">
                 <div class="col-sm-8">
-                    <h1 class="title pt-5">{!! $post->title !!}</h1>
+                    <h1 class="title pt-5 word-wrap-break">{!! $post->title !!}</h1>
                     @if(!empty($post->subtitle))
                         <h2 class="card-subtitle mb-2 text-muted">{{$post->subtitle}}</h2>
                     @endif

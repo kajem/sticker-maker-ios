@@ -7,15 +7,15 @@
         </a>
     </div>
     <div class="row mt-3 text-center">
-        <div class="col-sm-4">
+        <div class="col-4 col-sm-4 col-md-12 col-lg-4 col-xl-4">
             Posts
             <h3 id="post_count"></h3>
         </div>
-        <div class="col-sm-4">
+        <div class="col-4 col-sm-4 col-md-12 col-lg-4 col-xl-4">
             Followers
             <h3 id="followers_count"></h3>
         </div>
-        <div class="col-sm-4">
+        <div class="col-4 col-sm-4 col-md-12 col-lg-4 col-xl-4">
             Following
             <h3 id="following_count"></h3>
         </div>

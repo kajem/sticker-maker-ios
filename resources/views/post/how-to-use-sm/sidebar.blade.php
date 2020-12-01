@@ -3,11 +3,11 @@
         <h4 class="widget-title"><span>About</span></h4>
         Greetings from Sticker.Me! We are happy to welcome you in our Blog section, to inspire and guide you in using Sticker.Me Sticker Maker to create amazing and funny Stickers for Messenger Apps.
         Sticker.Me is a product of Brain Craft Ltd. one of the top App developers in the App Store.
-        <div class="mt-1 mb-3">
+        <div class="mt-1">
             <a href="/about-us">Read more</a>
         </div>
 
-        <div class="social-icons text-center">
+        <div class="social-icons text-center mt-1">
             @include('common.social-icons')
         </div>
     </div>
@@ -25,13 +25,16 @@
         <h4 class="widget-title text-center"><span>Recent Posts</span></h4>
         <ul class="list-unstyled m-0">
             @foreach($recent_posts as $post)
-                <li>
+                <li class="mt-3">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-3 col-sm-3 pr-0">
                             <a href="/how-to-use-sticker-maker/{{$post->slug}}">
-                                <img class="float-left mr-2 mb-3 img-thumbnail" width="70" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}" alt="{{$post->banner_alt}}">
+                                <img class="img-thumbnail" width="70" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}" alt="{{$post->banner_alt}}">
+                            </a>
+                        </div>
+                        <div class="col-9 col-sm-9">
+                            <a href="/how-to-use-sticker-maker/{{$post->slug}}">
                                 {{ $post->title  }}
-                                <div class="clear-both"></div>
                             </a>
                         </div>
                     </div>
