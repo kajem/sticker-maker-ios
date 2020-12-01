@@ -24,17 +24,19 @@
     <div class="recent-posts mb-5 border p-3">
         <h4 class="widget-title text-center"><span>Recent Posts</span></h4>
         <ul class="list-unstyled m-0">
-            @foreach($recent_posts as $post)
+            @foreach($recent_posts as $recent_post)
                 <li class="mt-3">
                     <div class="row">
                         <div class="col-3 col-sm-3 pr-0">
-                            <a href="/how-to-use-sticker-maker/{{$post->slug}}">
-                                <img class="img-thumbnail" width="70" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}" alt="{{$post->banner_alt}}">
+                            @if(!empty($recent_post->banner))
+                            <a href="/how-to-use-sticker-maker/{{$recent_post->slug}}">
+                                <img class="img-thumbnail" width="70" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$recent_post->banner}}" alt="{{$recent_post->banner_alt}}">
                             </a>
+                            @endif
                         </div>
                         <div class="col-9 col-sm-9 word-wrap-break">
-                            <a href="/how-to-use-sticker-maker/{{$post->slug}}">
-                                {{ $post->title  }}
+                            <a href="/how-to-use-sticker-maker/{{$recent_post->slug}}">
+                                {{ $recent_post->title  }}
                             </a>
                         </div>
                     </div>

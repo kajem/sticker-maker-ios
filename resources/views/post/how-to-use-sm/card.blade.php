@@ -1,7 +1,9 @@
 <div class="card text-center">
+    @if(!empty($card_post->banner))
     <a href="/how-to-use-sticker-maker/{{$card_post->slug}}">
         <img class="card-img-top" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$card_post->banner}}" alt="{{$card_post->banner_alt}}">
     </a>
+    @endif
     <div class="card-body">
         <h2 class="card-title">
             <a class="links" href="/how-to-use-sticker-maker/{{$card_post->slug}}">{{$card_post->title}}</a>
