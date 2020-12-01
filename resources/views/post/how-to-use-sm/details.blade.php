@@ -1,11 +1,12 @@
 @php
+$page_title = $post->title;
 $meta_title = $post->meta_title;
 $meta_description = $post->meta_description;
 $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_resource/post_images/'.$post->banner : '';
 @endphp
 @extends('layouts.front-template',
 [
-    'page_title' => $post->title,
+    'page_title' => $page_title,
     'meta_title' => $meta_title,
     'meta_description' => $meta_description,
     'meta_image' => $meta_image
@@ -45,7 +46,7 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
                         <div class="jcarousel-wrapper">
                             <div class="jcarousel">
                                 <ul>
-                                @foreach($related_posts as $index => $post)
+                                @foreach($related_posts as $index => $card_post)
                                     <li> @include('post.how-to-use-sm.card') </li>
                                 @endforeach
                                 </ul>

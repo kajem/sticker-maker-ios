@@ -28,7 +28,7 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach($posts as $post)
+                    @foreach($posts as $card_post)
                         @if($i == 1 || $i % 2 == 1)
                             <div class="row">
                         @endif
