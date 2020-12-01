@@ -74,6 +74,8 @@ input.btn-sm{
 }
 .main-content img, img.banner{
     max-width: 100%;
+    width: auto;
+    max-height: 400px;
 }
 /*END: How to use sticker maker*/
 /*START: Contact us*/
