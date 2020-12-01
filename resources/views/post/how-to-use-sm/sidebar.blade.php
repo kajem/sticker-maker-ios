@@ -32,7 +32,7 @@
                                 <img class="img-thumbnail" width="70" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}" alt="{{$post->banner_alt}}">
                             </a>
                         </div>
-                        <div class="col-9 col-sm-9">
+                        <div class="col-9 col-sm-9 word-wrap-break">
                             <a href="/how-to-use-sticker-maker/{{$post->slug}}">
                                 {{ $post->title  }}
                             </a>
