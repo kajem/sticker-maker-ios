@@ -79,7 +79,7 @@
     </div>
 <footer class="app-layout-footer pb-3">
     <hr>
-        &copy; Copyright {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft Ltd.</a>
+     Copyright &copy; {{date('Y')}} <a target="_blank" href="https://braincraftapps.com">Braincraft Ltd.</a> All rights reserved.
 </footer>
 </body>
 </html>
