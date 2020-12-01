@@ -7,7 +7,7 @@
             <a class="links" href="/how-to-use-sticker-maker/{{$post->slug}}">{{$post->title}}</a>
         </h2>
         @if(!empty($post->subtitle))
-            <h3 class="card-subtitle mb-2 text-muted">{{$post->subtitle}}</h3>
+            <h4 class="card-subtitle mb-2 text-muted">{{$post->subtitle}}</h4>
         @endif
         <div class="small">
             {{$post->published_date->diffForHumans()}}

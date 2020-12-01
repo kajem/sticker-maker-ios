@@ -18,7 +18,7 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
                 <div class="col-sm-8">
                     <h1 class="title pt-5 word-wrap-break">{!! $post->title !!}</h1>
                     @if(!empty($post->subtitle))
-                        <h2 class="card-subtitle mb-2 text-muted">{{$post->subtitle}}</h2>
+                        <h3 class="card-subtitle mb-2 text-muted">{{$post->subtitle}}</h3>
                     @endif
                     <div class="small mb-3">
                         {{$post->published_date->diffForHumans()}}
