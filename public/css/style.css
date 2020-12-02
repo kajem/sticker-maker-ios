@@ -88,6 +88,9 @@ input.btn-sm{
     width: auto;
     margin: 0 auto;
 }
+figure.image.image_resized.image-style-align-left {
+    margin-right: 35px;
+}
 /*END: How to use sticker maker*/
 /*START: Contact us*/
 #contact-us .btn-primary {
