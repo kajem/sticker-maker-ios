@@ -85,6 +85,8 @@ input.btn-sm{
 }
 .jcarousel img{
     max-height: 250px !important;
+    width: auto;
+    margin: 0 auto;
 }
 /*END: How to use sticker maker*/
 /*START: Contact us*/
