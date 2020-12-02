@@ -769,6 +769,9 @@ and (orientation: landscape) {
     .show-on-pad{
         display: block;
     }
+    .post-social-share{
+        margin-left: -35px;
+    }
     .search-box input[type="text"]{
         max-width: 100% !important;
     }
