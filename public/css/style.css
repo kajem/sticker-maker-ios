@@ -83,6 +83,9 @@ input.btn-sm{
 .card-img-top{
     border-radius: 0;
 }
+.jcarousel img{
+    max-height: 400px !important;
+}
 /*END: How to use sticker maker*/
 /*START: Contact us*/
 #contact-us .btn-primary {
