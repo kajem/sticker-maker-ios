@@ -576,7 +576,7 @@ footer.app-layout-footer{
 .post-social-share {
     position: fixed;
     top: 50%;
-    margin-left: -100px;
+    margin-left: -65px;
     z-index: 999;
     margin-top: -100px;
 }
