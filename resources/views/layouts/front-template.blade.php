@@ -26,7 +26,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/fontawesome-free-5.15.1-web/css/all.min.css">
     <link rel="stylesheet" href="/css/app.css?asdf">
-    <link href="/css/style.css?02122020dsfs" rel="stylesheet">
+    <link href="/css/style.css?02122020dsfssd" rel="stylesheet">
     <!-- jQuery -->
     <script src="/bower_components/admin-lte/plugins/jquery/jquery.min.js"></script>
     <!-- Google Tag Manager -->

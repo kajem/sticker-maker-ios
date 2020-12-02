@@ -609,6 +609,20 @@ footer.app-layout-footer{
     }
 }
 
+@media only screen and (min-device-width: 415px)
+and (max-device-width: 736px)
+and (orientation: landscape) {
+    .follow-on-instagram .col-sm-4.col-md-12.col-lg-4.col-xl-4{
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+    .search-box input[type="text"]{
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+}
+
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
     .post-social-share{
