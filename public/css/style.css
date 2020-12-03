@@ -80,6 +80,9 @@ input.btn-sm{
 #how-to-use-sm .card{
     overflow: hidden;
 }
+#how-to-use-sm .card img:hover{
+    opacity: 0.8;
+}
 #how-to-use-sm .card .card-title a{
     color: #333;
 }
