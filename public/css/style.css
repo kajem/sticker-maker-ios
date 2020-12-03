@@ -88,8 +88,14 @@ input.btn-sm{
 #how-to-use-sm .card img:hover{
     opacity: 0.84;
 }
+#how-to-use-sm .card a.btn.btn-primary{
+    -webkit-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+}
 #how-to-use-sm .card .card-title a{
     color: #333;
+    -webkit-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
 }
 #how-to-use-sm .card .card-title a:hover{
     color: #0082cc;
