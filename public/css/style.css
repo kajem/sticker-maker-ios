@@ -80,6 +80,11 @@ input.btn-sm{
 #how-to-use-sm .card{
     overflow: hidden;
 }
+#how-to-use-sm .card img{
+    will-change: opacity;
+    -webkit-transition: opacity .3s ease-in;
+    transition: opacity .3s ease-in;
+}
 #how-to-use-sm .card img:hover{
     opacity: 0.84;
 }
