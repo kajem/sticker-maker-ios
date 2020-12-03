@@ -632,12 +632,17 @@ and (orientation: landscape) {
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) {
     .post-social-share{
-        margin-left: -10px;
+        position: relative;
+        margin-top: 0;
+        top: 0px;
+        text-align: center;
+        margin-left: 0;
     }
     .post-social-share span{
-        background-color: #f8fafc;
+        display: none !important;
+    }
+    .post-social-share div{
         display: inline-block;
-        padding:0 5px;
     }
     .hide-on-pad{
         display: block;

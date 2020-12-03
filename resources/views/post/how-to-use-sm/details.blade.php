@@ -14,7 +14,6 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
 @section('content')
     <div class="content mb-5" id="how-to-use-sm-details">
         <div class="container">
-            @include('common.social-share-buttons')
             <div class="row">
                 <div class="col-sm-8">
                     <h1 class="title pt-5 word-wrap-break">{!! $post->title !!}</h1>
@@ -32,7 +31,7 @@ $meta_image = !empty($post->banner) ? config('app.asset_base_url').'website_reso
                     @if(!empty($post->banner))
                     <img class="banner mb-3" src="{{config('app.asset_base_url')}}website_resource/post_images/{{$post->banner}}" alt="{{$post->banner_alt}}">
                     @endif
-
+                    @include('common.social-share-buttons')
                     <div class="main-content ck-content">
                         {!! $post->description !!}
                     </div>
