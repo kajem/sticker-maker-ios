@@ -47,6 +47,7 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="subtitle" name="subtitle"
                                                value="{{!empty($post->subtitle) ? $post->subtitle : old('subtitle')}}"
+                                               maxlength="255"
                                                >
                                         @if ($errors->has('subtitle'))
                                             <span class="text-danger">{{ $errors->first('subtitle') }}</span>
