@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
+use App\ItemToCategory;
 use App\StaticValue;
 use App\SearchKeyword;
 use App\Http\Controllers\Controller;
@@ -149,7 +150,7 @@ class ItemController extends Controller
     private function getItemsByCategory(Request $request, $category_id, $item_limit = 0){
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.stickers', 'items.code', 'items.author', 'items.is_premium', 'items.is_animated');
+        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.stickers', 'items.code', 'items.author', 'items.telegram_name', 'items.is_telegram_set_completed', 'items.is_premium', 'items.is_animated');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
         $items = $items->where('item_to_categories.category_id', $category_id);
         $items = $items->where('items.status', 1);
@@ -169,6 +170,8 @@ class ItemController extends Controller
                     $stickers = $this->truncateItemStickersToMaxTwentyEight($stickers);
                 }
 
+                $telegram_url = !empty($item->is_telegram_set_completed) ? config('services.telegram.set_base_url').$item->telegram_name : '';
+
                 $item_arr[] = [
                     'name' => $item->name,
                     'code' => $item->code,
@@ -176,6 +179,7 @@ class ItemController extends Controller
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
                     'is_animated' => $item->is_animated,
+                    'telegram_url' => $telegram_url,
                     'total_stickers' => count($stickers),
                     'stickers' => $stickers
                 ];
@@ -266,6 +270,8 @@ class ItemController extends Controller
             $stickers = $this->truncateItemStickersToMaxTwentyEight($stickers);
         }
 
+        $telegram_url = !empty($item->is_telegram_set_completed) ? config('services.telegram.set_base_url').$item->telegram_name : '';
+
         $data = [
             'name' => $item->name,
             'code' => $item->code,
@@ -273,6 +279,7 @@ class ItemController extends Controller
             'author' => $item->author,
             'is_premium' => $item->is_premium,
             'is_animated' => $item->is_animated,
+            'telegram_url' => $telegram_url,
             'total_stickers' => count($stickers),
             'stickers' => $stickers
         ];
@@ -355,12 +362,18 @@ class ItemController extends Controller
     }
 
     public function search(Request $request){
-        $category = Category::select('id')->where('type', 'emoji')->first();
-        $category_id = !empty($category->id) ? $category->id : 0;
-        $items = DB::select(
-            "SELECT id, name, thumb, stickers, code, author, is_premium, is_animated
+        $emoji_cat = Category::select('id')->where('type', 'emoji')->first();
+        $emoji_cat_id = !empty($emoji_cat->id) ? $emoji_cat->id : 0;
+        $emoji_items = ItemToCategory::where('category_id', $emoji_cat_id)->get();
+        $emoji_item_ids = [];
+        if(!empty($emoji_items)){
+            foreach ($emoji_items as $emoji_item){
+                $emoji_item_ids[] = $emoji_item->item_id;
+            }
+        }
+        $query = "SELECT id, name, thumb, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed
                    FROM items
-                   WHERE tag LIKE '%".$request->q."%' AND status = 1 AND category_id != ".$category_id."
+                   WHERE (name LIKE '%".$request->q."%' OR tag LIKE '%".$request->q."%') AND status = 1 AND id NOT IN ( '" . implode( "', '" , $emoji_item_ids ) . "' )
                    ORDER BY
                     CASE
                         WHEN name LIKE '".$request->q."' THEN 1
@@ -368,12 +381,14 @@ class ItemController extends Controller
                         WHEN name LIKE '%".$request->q."%' THEN 3
                         WHEN name LIKE '%".$request->q."' THEN 4
                     ELSE 5
-                   END");
+                   END";
+        $items = DB::select($query);
         $data = [];
         if(!empty($items)){
             foreach($items as $item){
                 $thumb_arr = explode("/",$item->thumb);
                 $stickers = unserialize($item->stickers);
+                $telegram_url = !empty($item->is_telegram_set_completed) ? config('services.telegram.set_base_url').$item->telegram_name : '';
                 $data[] = [
                     'name' => $item->name,
                     'code' => $item->code,
@@ -381,6 +396,7 @@ class ItemController extends Controller
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
                     'is_animated' => $item->is_animated,
+                    'telegram_url' => $telegram_url,
                     'total_stickers' => count($stickers),
                     'stickers' => $stickers
                 ];
