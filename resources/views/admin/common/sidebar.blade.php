@@ -132,20 +132,20 @@
                     </a>
                 </li>
                 <!--Report Menu-->
-                <li class="nav-item has-treeview {{ Request::is('report/*') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ Request::is('search-keyword/*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link ">
-                        <i class="fas fa-table"></i>
+                        <i class="fab fa-searchengin"></i>
                         <p>
-                            Report
+                            Search Keyword
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{url('/report/search-keyword')}}"
-                               class="nav-link {{ Request::is('report/search-keyword') ? 'active' : '' }}">
-                                <i class="fab fa-searchengin"></i>
-                                <p>Search Keyword</p>
+                            <a href="{{url('/search-keyword/list')}}"
+                               class="nav-link {{ Request::is('search-keyword/list') ? 'active' : '' }}">
+                                <i class="fas fa-list"></i>
+                                <p>List</p>
                             </a>
                         </li>
                     </ul>

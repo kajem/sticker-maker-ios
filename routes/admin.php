@@ -62,9 +62,9 @@ Route::domain($domain)->group(function() {
             Route::post('{type}/save', 'Admin\PostController@save');
         });
 
-        Route::group(['prefix' => 'report'], function (){
-            Route::view('search-keyword', 'admin.report.search-keyword');
-            Route::post('search-keyword', 'Admin\ReportController@searchKeyword');
+        Route::group(['prefix' => 'search-keyword'], function (){
+            Route::view('list', 'admin.search-keyword.list');
+            Route::post('list', 'Admin\SearchKeywordController@list');
         });
 
         Route::get('cache-clear', 'WelcomeController@cacheClear');

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SearchKeyword;
 
-class ReportController extends Controller
+class SearchKeywordController extends Controller
 {
-    public function searchKeyword(Request $request)
+    public function list(Request $request)
     {
         $search_keywords = SearchKeyword::query();
         $search_keywords = $search_keywords->select('name', 'count', 'is_item_found', 'updated_at');

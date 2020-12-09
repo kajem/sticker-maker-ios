@@ -68,7 +68,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    'url': "/report/search-keyword",
+                    'url': "/search-keyword/list",
                     'type': 'POST',
                     'headers': {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
