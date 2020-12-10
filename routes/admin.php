@@ -42,6 +42,12 @@ Route::domain($domain)->group(function() {
             Route::view('add', 'admin.item.form');
             Route::get('edit/{id}', 'Admin\ItemController@editView');
             Route::post('save', 'Admin\ItemController@save');
+
+            Route::group(['prefix' => 'search-keyword'], function (){
+                Route::view('list', 'admin.search-keyword.list');
+                Route::post('list', 'Admin\SearchKeywordController@list');
+                Route::get('download-report', 'Admin\SearchKeywordController@downloadReport');
+            });
         });
 
         Route::group(['prefix' => 'telegram'], function (){
@@ -60,11 +66,6 @@ Route::domain($domain)->group(function() {
             Route::get('{type}/add', 'Admin\PostController@addView');
             Route::get('{type}/{id}/edit', 'Admin\PostController@editView');
             Route::post('{type}/save', 'Admin\PostController@save');
-        });
-
-        Route::group(['prefix' => 'search-keyword'], function (){
-            Route::view('list', 'admin.search-keyword.list');
-            Route::post('list', 'Admin\SearchKeywordController@list');
         });
 
         Route::get('cache-clear', 'WelcomeController@cacheClear');

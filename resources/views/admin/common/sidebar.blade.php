@@ -95,6 +95,13 @@
                                 <p>Add New</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{url('/item/search-keyword/list')}}"
+                               class="nav-link {{ Request::is('search-keyword/list') ? 'active' : '' }}">
+                                <i class="fab fa-searchengin"></i>
+                                <p>Search Keywords</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!--Post Menu-->
@@ -130,25 +137,6 @@
                     <i class="fas fa-cogs"></i>
                     <p>Static Values</p>
                     </a>
-                </li>
-                <!--Report Menu-->
-                <li class="nav-item has-treeview {{ Request::is('search-keyword/*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link ">
-                        <i class="fab fa-searchengin"></i>
-                        <p>
-                            Search Keyword
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('/search-keyword/list')}}"
-                               class="nav-link {{ Request::is('search-keyword/list') ? 'active' : '' }}">
-                                <i class="fas fa-list"></i>
-                                <p>List</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">

@@ -12,6 +12,7 @@
                                 <label class="pl-2">Date From: <input type='text' id='date_from' class="datepicker form-control form-control-sm" autocomplete="off"></label>
                                 <label class="pl-2">Date To: <input type='text' id='date_to' class="datepicker form-control form-control-sm" autocomplete="off"></label>
                                 <button class="btn btn-primary btn-sm ml-2" id="reset_filter">Reset</button>
+                                <button class="btn btn-primary btn-sm ml-2" id="download-report"><i class="fas fa-file-csv"></i> Download CSV</button>
                             </div>
 
                             <table id="search-keywords" class="table table-bordered table-striped">
@@ -68,7 +69,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    'url': "/search-keyword/list",
+                    'url': "/item/search-keyword/list",
                     'type': 'POST',
                     'headers': {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -128,6 +129,16 @@
                 $('#search-keywords_filter input').val('');
                 table.search( this.value ).draw();
             });
+
+            //START: Download Report
+            $('#download-report').on('click', function (){
+                let date_from = $('#date_from').val();
+                let date_to = $('#date_to').val();
+                let search = $('input[type=search]').val();
+                let url = "/search-keyword/download-report/?search="+search+"&date_from="+date_from+"&date_to="+date_to;
+                window.location.href = url;
+            })
+            //END: Download Report
         });
     </script>
     <!-- Data Table -->
