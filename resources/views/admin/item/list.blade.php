@@ -7,6 +7,9 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="download-item-report">
+                                <a href="/item/download-report" class="btn btn-primary btn-sm ml-2 text-white"><i class="fas fa-file-csv"></i> Download CSV</a>
+                            </div>
                             <table id="item-list" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>

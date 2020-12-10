@@ -292,4 +292,37 @@ class ItemController extends Controller
 
         return $code;
     }
+
+    public function downloadReport(Request $request){
+        $filename = 'sticker-packages-'.date('m-d-Y');
+        $items = Item::query();
+        $items = $items->orderBy('view_count', 'desc');
+        $items = $items->get();
+
+        if($items->isEmpty()){
+            return redirect('search-keyword/list')->with('error', 'No keywords`  found to download!');
+        }
+
+        header( 'Content-Type: application/csv' );
+        header( 'Content-Disposition: attachment; filename="' . $filename . '.csv";' );
+
+        $handle = fopen( 'php://output', 'w' );
+
+        $columns = ['name', 'code', 'total_sticker', 'view_count', 'download_count', 'is_premium', 'is_animated',
+            'telegram_name', 'slug', 'tag', 'meta_title', 'meta_description', 'author', 'status'];
+        fputcsv( $handle,  $columns);
+
+        foreach ( $items as $item ) {
+            $value = [];
+            foreach ($columns as $column){
+                $value[] = $item->$column;
+            }
+            fputcsv( $handle, $value, ';');
+        }
+
+        fclose( $handle );
+
+        // use exit to get rid of unexpected output afterward
+        exit();
+    }
 }

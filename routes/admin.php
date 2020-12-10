@@ -42,6 +42,7 @@ Route::domain($domain)->group(function() {
             Route::view('add', 'admin.item.form');
             Route::get('edit/{id}', 'Admin\ItemController@editView');
             Route::post('save', 'Admin\ItemController@save');
+            Route::get('download-report', 'Admin\ItemController@downloadReport');
 
             Route::group(['prefix' => 'search-keyword'], function (){
                 Route::view('list', 'admin.search-keyword.list');
