@@ -135,7 +135,7 @@
                 let date_from = $('#date_from').val();
                 let date_to = $('#date_to').val();
                 let search = $('input[type=search]').val();
-                let url = "/search-keyword/download-report/?search="+search+"&date_from="+date_from+"&date_to="+date_to;
+                let url = "/item/search-keyword/download-report/?search="+search+"&date_from="+date_from+"&date_to="+date_to;
                 window.location.href = url;
             })
             //END: Download Report
