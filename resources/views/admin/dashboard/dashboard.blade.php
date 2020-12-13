@@ -49,7 +49,7 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="{{url('report/search-keyword')}}" class="small-box-footer">All keywords <i
+                        <a href="{{url('item/search-keyword/list')}}" class="small-box-footer">All keywords <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

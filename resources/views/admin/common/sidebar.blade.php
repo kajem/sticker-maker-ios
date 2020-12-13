@@ -97,7 +97,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{url('/item/search-keyword/list')}}"
-                               class="nav-link {{ Request::is('search-keyword/list') ? 'active' : '' }}">
+                               class="nav-link {{ Request::is('item/search-keyword/list') ? 'active' : '' }}">
                                 <i class="fab fa-searchengin"></i>
                                 <p>Search Keywords</p>
                             </a>
