@@ -76,7 +76,7 @@
                     <a href="#" class="nav-link ">
                         <i class="far fa-grimace"></i>
                         <p>
-                            Pack
+                            Sticker Package
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
