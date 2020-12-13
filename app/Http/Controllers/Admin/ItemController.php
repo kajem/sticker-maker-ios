@@ -303,8 +303,13 @@ class ItemController extends Controller
             return redirect('search-keyword/list')->with('error', 'No keywords`  found to download!');
         }
 
-        header( 'Content-Type: application/csv' );
-        header( 'Content-Disposition: attachment; filename="' . $filename . '.csv";' );
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Content-type: octet/stream");
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/download");
+        header("Content-disposition: attachment; filename=" .$filename.".csv");
 
         $handle = fopen( 'php://output', 'w' );
 
@@ -315,7 +320,7 @@ class ItemController extends Controller
         foreach ( $items as $item ) {
             $value = [];
             foreach ($columns as $column){
-                $value[] = '"'.$item->$column.'"';
+                $value[] = $item->$column;
             }
             fputcsv( $handle, $value, ';');
         }
