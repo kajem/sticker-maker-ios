@@ -71,13 +71,13 @@ class SearchKeywordController extends Controller
 
         foreach ( $search_keywords as $search_keyword ) {
             $value = [
-                '"'.$search_keyword->name.'"',
-                '"'.$search_keyword->count.'"',
-                '"'.$search_keyword->is_item_found.'"',
-                '"'.$search_keyword->updated_at.'"',
-                '"'.$search_keyword->created_at.'"',
+                $search_keyword->name,
+                $search_keyword->count,
+                $search_keyword->is_item_found,
+                $search_keyword->updated_at,
+                $search_keyword->created_at,
                 ];
-            fputcsv( $handle, $value, ';');
+            fputcsv( $handle, $value);
         }
 
         fclose( $handle );
