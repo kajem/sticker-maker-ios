@@ -322,7 +322,7 @@ class ItemController extends Controller
             foreach ($columns as $column){
                 $value[] = $item->$column;
             }
-            fputcsv( $handle, $value, ';');
+            fputcsv( $handle, $value);
         }
 
         fclose( $handle );
