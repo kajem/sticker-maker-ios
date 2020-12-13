@@ -371,17 +371,12 @@ class ItemController extends Controller
                 $emoji_item_ids[] = $emoji_item->item_id;
             }
         }
-        $query = "SELECT id, name, thumb, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed
+        $query = "SELECT id, name, thumb, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed,
+                   MATCH(name, tag) AGAINST('+".$request->q."*' IN BOOLEAN MODE) as score
                    FROM items
-                   WHERE (name LIKE '%".$request->q."%' OR tag LIKE '%".$request->q."%') AND status = 1 AND id NOT IN ( '" . implode( "', '" , $emoji_item_ids ) . "' )
-                   ORDER BY
-                    CASE
-                        WHEN name LIKE '".$request->q."' THEN 1
-                        WHEN name LIKE '".$request->q."%' THEN 2
-                        WHEN name LIKE '%".$request->q."%' THEN 3
-                        WHEN name LIKE '%".$request->q."' THEN 4
-                    ELSE 5
-                   END";
+                   WHERE
+                   MATCH(name, tag)
+                   AGAINST('+".$request->q."*' IN BOOLEAN MODE) > 0 ORDER BY score DESC";
         $items = DB::select($query);
         $data = [];
         if(!empty($items)){
