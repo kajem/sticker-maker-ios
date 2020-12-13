@@ -315,7 +315,7 @@ class ItemController extends Controller
         foreach ( $items as $item ) {
             $value = [];
             foreach ($columns as $column){
-                $value[] = $item->$column;
+                $value[] = '"'.$item->$column.'"';
             }
             fputcsv( $handle, $value, ';');
         }
