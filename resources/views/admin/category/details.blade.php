@@ -77,6 +77,8 @@
                                                                title="Add to category" class="pr-3 add-item-to-category"><i class="fas fa-plus-circle"></i></a>
                                                             <a href="javascript:void(0)" data-item-id="{{$item->id}}" data-item-name="{{$item->name}}"
                                                                title="Remove" class="d-none remove-item-from-category  text-red"><i class="fas fa-minus-circle"></i></a>
+                                                            &nbsp;&nbsp;&nbsp;<a target="_blank" href="/item/edit/{{$item->id}}"
+                                                               title="Edit"><i class="fas fa-edit"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -130,6 +132,8 @@
                                                     <div class="col-sm-2 pt-3 text-right">
                                                         <a href="javascript:void(0)" data-item-id="{{$item->id}}" data-item-name="{{$item->name}}"
                                                             title="Remove" class="remove-item-from-category text-red"><i class="fas fa-minus-circle"></i></a>
+                                                        &nbsp;&nbsp;&nbsp;<a target="_blank" href="/item/edit/{{$item->id}}"
+                                                           title="Edit"><i class="fas fa-edit"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
