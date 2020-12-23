@@ -93,12 +93,8 @@ input.btn-sm{
     transition: all .25s ease-in-out;
 }
 #how-to-use-sm .card .card-title a{
-    color: #333;
     -webkit-transition: all .25s ease-in-out;
     transition: all .25s ease-in-out;
-}
-#how-to-use-sm .card .card-title a:hover{
-    color: #0082cc;
 }
 .card-img-top{
     border-radius: 0;
