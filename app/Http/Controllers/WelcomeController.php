@@ -7,14 +7,17 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
 use App\Item;
-use App\ItemSticker;
+use App\StaticValue;
 
 class WelcomeController extends Controller
 {
 
     public function index(){
+        $home_sticker_packages = StaticValue::select('value')->where('name', 'website_home_page_packages')->first();
         $items = Item::select('name', 'slug', 'code', 'thumb', 'author', 'total_sticker')
-                     ->where('status', 1)->limit(18)->get();
+                     ->whereIn('id', explode(",", $home_sticker_packages->value))
+                     ->where('status', 1)->get();
+        //dd($home_sticker_packages->value);
         $data = [
             'asset_base_url' => config('app.asset_base_url'),
             'items' => $items
