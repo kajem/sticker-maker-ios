@@ -29,6 +29,8 @@ Route::group(['prefix' => 'item'], function (){
     Route::get('/{code}', 'Api\ItemController@getPack');
     Route::get('update-view-count/{code}', 'Api\ItemController@updateItemViewCount');
     Route::get('update-download-count/{code}', 'Api\ItemController@updateItemDownloadCount');
+    Route::get('update-view-count/{code}/{platform}', 'Api\ItemController@updateItemViewCount');
+    Route::get('update-download-count/{code}/{platform}', 'Api\ItemController@updateItemDownloadCount');
 });
 
 Route::group(['prefix' => 'stickerpack'], function (){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use http\Params;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
@@ -475,13 +476,19 @@ class ItemController extends Controller
         return $this->successOutput($data);
     }
 
-    public function updateItemViewCount($code){
-        $item = Item::select('id','view_count')->where('code', $code)->first();
+    public function updateItemViewCount($code, $platform = ''){
+        if(!empty($platform) && in_array($platform, ['android', 'web'])){
+            $platform = $platform.'_';
+        }else{
+            $platform = '';
+        }
+        $field_view_count = $platform.'view_count';
+        $item = Item::select('id', $field_view_count)->where('code', $code)->first();
         if(empty($item->id))
             return $this->errorOutput('Invalid code!');
 
         $data = [
-            'view_count' => $item->view_count + 1
+            $field_view_count => $item->$field_view_count + 1
         ];
 
         Item::where('code', $code)->update($data);
@@ -489,13 +496,19 @@ class ItemController extends Controller
         return $this->successOutput();
     }
 
-    public function updateItemDownloadCount($code){
-        $item = Item::select('id','download_count')->where('code', $code)->first();
+    public function updateItemDownloadCount($code, $platform = ''){
+        if(!empty($platform) && in_array($platform, ['android', 'web'])){
+            $platform = $platform.'_';
+        }else{
+            $platform = '';
+        }
+        $field_download_count = $platform.'download_count';
+        $item = Item::select('id', $field_download_count)->where('code', $code)->first();
         if(empty($item->id))
             return $this->errorOutput('Invalid code!');
 
         $data = [
-            'download_count' => $item->download_count + 1
+            $field_download_count => $item->$field_download_count + 1
         ];
 
         Item::where('code', $code)->update($data);
