@@ -17,7 +17,7 @@
                      class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+            <a href="/user/profile" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -31,6 +31,35 @@
                     <p>Dashboard</p>
                     </a>
                 </li>
+                <!--User Maneu-->
+                @if( auth()->user()->id == 1 )
+                <li class="nav-item has-treeview {{ Request::is('user/*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                       class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <p>
+                            Users
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{url('user/list')}}"
+                               class="nav-link {{ Request::is('user/list') ? 'active' : '' }}">
+                                <i class="fas fa-list"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/user/add')}}"
+                               class="nav-link {{ Request::is('user/add') ? 'active' : '' }}">
+                                <i class="fas fa-plus"></i>
+                                <p>Add New</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
                 <!--Category Menu-->
                 <li class="nav-item has-treeview {{ Request::is('category/*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link ">
@@ -131,11 +160,18 @@
                     </ul>
                 </li>
                 <!--Static Value Menu-->
+                @if( auth()->user()->id == 1 )
                 <li class="nav-item">
-                    <a href="{{url('/static-value/list')}}"
-                       class="nav-link {{ Request::is('static-value/list') ? 'active' : '' }}"">
-                    <i class="fas fa-cogs"></i>
-                    <p>Static Values</p>
+                    <a href="{{url('/static-value/list')}}" class="nav-link {{ Request::is('static-value/list') ? 'active' : '' }}">
+                        <i class="fas fa-cogs"></i>
+                        <p>Static Values</p>
+                    </a>
+                </li>
+                @endif
+                <li class="nav-item">
+                    <a href="/user/profile" class="nav-link {{ Request::is('user/profile') ? 'active' : '' }}">
+                       <i class="fas fa-user"></i>
+                        <p>Profile</p>
                     </a>
                 </li>
                 <li class="nav-item">
