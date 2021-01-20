@@ -12,6 +12,7 @@ return [
             'item.list' => 'View list',
             'item.add' => 'Add',
             'item.edit' => 'Edit',
+            'item.website-home-sticker-packages' => 'Manage website home sticker packages',
             'telegram.pack' => 'Create telegram sticker set',
             'item.search-keyword.list' => 'View searched keyword list',
             'item.search-keyword.download-report' => 'Download searched keyword report',

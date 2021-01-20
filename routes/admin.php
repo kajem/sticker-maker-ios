@@ -49,6 +49,10 @@ Route::domain($domain)->group(function() {
                 Route::post('list', 'Admin\SearchKeywordController@list')->name('item.search-keyword.get-list');
                 Route::get('download-report', 'Admin\SearchKeywordController@downloadReport')->name('item.search-keyword.download-report');
             });
+            Route::get('website-home-sticker-packages', 'Admin\ItemController@websiteHomeStickerPackages')->name('item.website-home-sticker-packages');
+            Route::post('add-stickage-package-to-website-home', 'Admin\ItemController@addStickerPackageToWebsiteHome')->name('item.add-stickage-package-to-website-home');
+            Route::post('remove-stickage-package-from-website-home', 'Admin\ItemController@removeStickerPackageFromWebsiteHome')->name('item.remove-stickage-package-from-website-home');
+            Route::post('update-website-home-package-order', 'Admin\ItemController@updateWebsiteHomeStickerPackagesOrder')->name('item.update-website-home-package-order');
         });
 
         Route::group(['prefix' => 'telegram'], function (){

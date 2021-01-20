@@ -131,6 +131,13 @@
                                 <p>Search Keywords</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{url('/item/website-home-sticker-packages')}}"
+                               class="nav-link {{ Request::is('item/website-home-sticker-packages') ? 'active' : '' }}">
+                               <i class="fas fa-surprise"></i>
+                                <p>Website home packages</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!--Post Menu-->

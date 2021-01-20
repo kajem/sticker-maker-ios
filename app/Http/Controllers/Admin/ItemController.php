@@ -8,12 +8,14 @@ use App\Http\Traits\PngQuantTrait;
 use App\ItemToCategory;use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Item;
+use App\StaticValue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use App\Http\Traits\ItemsTrait;
 use ZipArchive;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -325,4 +327,70 @@ class ItemController extends Controller
         // use exit to get rid of unexpected output afterward
         exit();
     }
+
+    public function websiteHomeStickerPackages(){
+        $home_sticker_packages = StaticValue::select('value')->where('name', 'website_home_page_packages')->first();
+
+        $home_sticker_package_ids = explode(",", $home_sticker_packages->value);
+
+        $items = Item::select('id', 'name', 'slug', 'code', 'thumb', 'author', 'total_sticker')
+                     ->whereIn('id', $home_sticker_package_ids)
+                     ->where('status', 1)
+                     ->orderByRaw(DB::raw("FIELD(id, $home_sticker_packages->value)"))
+                     ->get();
+
+        $all_items = Item::select('id', 'name', 'slug', 'code', 'thumb', 'author', 'total_sticker')
+                     ->where('status', 1)
+                     ->whereNotIn('id', $home_sticker_package_ids)
+                     ->orderBy('name', 'asc')->get();
+
+        $data = [
+            'items' => $items,
+            'all_items' => $all_items
+        ];
+
+        return view('admin.item.website-home-sticker-package')->with($data);
+    }
+
+    public function updateWebsiteHomeStickerPackagesOrder(Request $request)
+    {
+        if ($request->has('ids')) {
+            StaticValue::where('name', 'website_home_page_packages')->update(['value' => $request->get('ids')] );
+            return parent::successOutput([], 'Order updated successfully.');
+        }
+    }
+
+    public function addStickerPackageToWebsiteHome(Request $request){
+
+        if(empty($request->get('item_id')))
+            return $this->errorOutput('Invalid action. Something went wrong.');
+
+        $current_home_sticker_packages = StaticValue::select('value')->where('name', 'website_home_page_packages')->first();
+
+        $new_home_sticker_package_ids = explode(",", $current_home_sticker_packages->value);
+        $new_home_sticker_package_ids[] = $request->get('item_id');
+
+        StaticValue::where('name', 'website_home_page_packages')->update(['value' => implode(",", $new_home_sticker_package_ids)] );
+
+        return $this->successOutput([], 'Sticker package added successfully.');
+    }
+
+    public function removeStickerPackageFromWebsiteHome(Request $request){
+
+        if(empty($request->get('item_id')))
+            return $this->errorOutput('Invalid action. Something went wrong.');
+
+        $current_home_sticker_packages = StaticValue::select('value')->where('name', 'website_home_page_packages')->first();
+
+        $current_home_sticker_packages = explode(",", $current_home_sticker_packages->value);
+
+        $item_index = array_search($request->get('item_id'), $current_home_sticker_packages);
+        unset($current_home_sticker_packages[$item_index]);
+
+        StaticValue::where('name', 'website_home_page_packages')->update(['value' => implode(",", $current_home_sticker_packages)] );
+
+        return $this->successOutput([], 'Sticker package removed.');
+    }
+
+
 }

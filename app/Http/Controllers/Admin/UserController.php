@@ -145,6 +145,12 @@ class UserController extends Controller
         if(in_array('item.search-keyword.list', $permissions)){
             $permissions[] = 'item.search-keyword.get-list';
         }
+        //Website home sticker package permission
+        if(in_array('item.website-home-sticker-packages', $permissions)){
+            $permissions[] = 'item.add-stickage-package-to-website-home';
+            $permissions[] = 'item.remove-stickage-package-from-website-home';
+            $permissions[] = 'item.update-website-home-package-order';
+        }
         //Telegram create new sticker set permission
         if(in_array('telegram.pack', $permissions)){
             $permissions[] = 'telegram.create-new-sticker-set';
