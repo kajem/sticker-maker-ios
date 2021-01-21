@@ -103,7 +103,7 @@ class ItemController extends Controller
                 $data['category_list_position'] = !empty($static_values['category_list_position']) ? (int) $static_values['category_list_position'] : 0;
 
                 $category_lists = Category::query();
-                $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers', 'thumb', 'thumb_v');
+                $category_lists = $category_lists->select('id', 'name', 'text', 'items', 'stickers', 'thumb', 'thumb_v', 'thumb_bg_color');
                 if($category_list_limit > 0){
                     $category_lists = $category_lists->offset(0);
                     $category_lists = $category_lists->limit($category_list_limit);
@@ -119,6 +119,7 @@ class ItemController extends Controller
                             'name' => $category->name,
                             'thumb' => $category->thumb,
                             'thumb_v' => $category->thumb_v,
+                            'thumb_bg_color' => $category->thumb_bg_color,
                             'text' => $category->text,
                             'number_of_item' => $category->items,
                             'number_of_sticker' => $category->stickers,
@@ -151,7 +152,7 @@ class ItemController extends Controller
     private function getItemsByCategory(Request $request, $category_id, $item_limit = 0){
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.stickers', 'items.code', 'items.author', 'items.telegram_name', 'items.is_telegram_set_completed', 'items.is_premium', 'items.is_animated');
+        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.thumb_bg_color', 'items.stickers', 'items.code', 'items.author', 'items.telegram_name', 'items.is_telegram_set_completed', 'items.is_premium', 'items.is_animated');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
         $items = $items->where('item_to_categories.category_id', $category_id);
         $items = $items->where('items.status', 1);
@@ -177,6 +178,7 @@ class ItemController extends Controller
                     'name' => $item->name,
                     'code' => $item->code,
                     'thumb' => '200__'.end($thumb_arr),
+                    'thumb_bg_color' => $item->thumb_bg_color,
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
                     'is_animated' => $item->is_animated,
@@ -277,6 +279,7 @@ class ItemController extends Controller
             'name' => $item->name,
             'code' => $item->code,
             'thumb' => '200__'.end($thumb_arr),
+            'thumb_bg_color' => $item->thumb_bg_color,
             'author' => $item->author,
             'is_premium' => $item->is_premium,
             'is_animated' => $item->is_animated,
@@ -372,7 +375,7 @@ class ItemController extends Controller
                 $emoji_item_ids[] = $emoji_item->item_id;
             }
         }
-        $query = "SELECT id, name, thumb, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed,
+        $query = "SELECT id, name, thumb, thumb_bg_color, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed,
                    MATCH(name, tag) AGAINST('+".$request->q."*' IN BOOLEAN MODE) as score
                    FROM items
                    WHERE
@@ -393,6 +396,7 @@ class ItemController extends Controller
                     'name' => $item->name,
                     'code' => $item->code,
                     'thumb' => '200__'.end($thumb_arr),
+                    'thumb_bg_color' => $item->thumb_bg_color,
                     'author' => $item->author,
                     'is_premium' => $item->is_premium,
                     'is_animated' => $item->is_animated,
@@ -437,7 +441,7 @@ class ItemController extends Controller
             return $this->successOutput(unserialize(Redis::get($key)));
         }
 
-        $categories = Category::select('id', 'name', 'text', 'items', 'stickers', 'thumb', 'thumb_v')
+        $categories = Category::select('id', 'name', 'text', 'items', 'stickers', 'thumb', 'thumb_v', 'thumb_bg_color')
         ->where('type', 'general')
         ->where('status', 1)
         ->orderBy('sort2', 'asc')
@@ -450,6 +454,7 @@ class ItemController extends Controller
                     'name' => $category->name,
                     'thumb' => $category->thumb,
                     'thumb_v' => $category->thumb_v,
+                    'thumb_bg_color' => $category->thumb_bg_color,
                     'text' => $category->text,
                     'number_of_item' => $category->items,
                     'number_of_sticker' => $category->stickers,
@@ -461,7 +466,7 @@ class ItemController extends Controller
     }
 
     public function getPack($code){
-        $pack = Item::select('name', 'thumb',  'stickers')->where('code', $code)->first();
+        $pack = Item::select('name', 'thumb', 'thumb_bg_color',  'stickers')->where('code', $code)->first();
         if(empty($pack->name))
             return $this->errorOutput('Invalid code!');
 
@@ -470,6 +475,7 @@ class ItemController extends Controller
             'pack_base_url' => config('app.asset_base_url').'items/'.$code.'/',
             'name' => $pack->name,
             'thumb' => end($thumb_arr),
+            'thumb_bg_color' => $pack->thumb_bg_color,
             'stickers' => unserialize($pack->stickers),
         ];
 

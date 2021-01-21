@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('code');
+            $table->string('thumb_bg_color', 10)->nullable();
             $table->integer('category_id');
             $table->string('author');
             $table->string('thumb');

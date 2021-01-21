@@ -87,7 +87,7 @@
                                                     }
                                                 @endphp
                                                 <img id="imgThumb" class="thumb-photo img-thumbnail" width="100"
-                                                     src="{{$thumb}}"
+                                                     src="{{$thumb}}" style="{{ !empty($item->thumb_bg_color) ? 'background-color:'.$item->thumb_bg_color : '' }}"
                                                      alt="{{!empty($item->name) ? $item->name : ''}}">
                                             </div>
                                             <div class="col-sm-11">
@@ -105,6 +105,16 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label for="thumb_bg_color" class="col-sm-2 col-form-label">Thumb background color</label>
+                                    <div class="col-sm-10">
+                                        <input type="color" style="width: 200px;" class="form-control" id="thumb_bg_color" name="thumb_bg_color"
+                                               value="{{!empty($item->thumb_bg_color) ? $item->thumb_bg_color : old('thumb_bg_color')}}"
+                                               >
+                                    </div>
+                                </div>
+
                                 <div class="form-group row">
                                     <label for="stickers" class="col-sm-2 col-form-label">
                                     Stickers

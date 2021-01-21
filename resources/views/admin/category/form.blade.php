@@ -47,7 +47,7 @@
                                                         $thumb = config('app.asset_base_url').'category-thumbs/'.$category->thumb;
                                                 @endphp
                                                 <img id="imgThumb" class="thumb-photo img-thumbnail" width="100"
-                                                     src="{{$thumb}}"
+                                                     src="{{$thumb}}" style="{{ !empty($category->thumb_bg_color) ? "background-color:".$category->thumb_bg_color : '' }}"
                                                      alt="{{!empty($category->name) ? $category->name : ''}}">
                                             </div>
                                             <div class="col-sm-11">
@@ -76,7 +76,7 @@
                                                         $thumb_v = config('app.asset_base_url').'category-thumbs/'.$category->thumb_v;
                                                 @endphp
                                                 <img id="imgThumbV" class="thumb-photo img-thumbnail" width="100"
-                                                     src="{{$thumb_v}}"
+                                                     src="{{$thumb_v}}" style="{{ !empty($category->thumb_bg_color) ? "background-color:".$category->thumb_bg_color : '' }}"
                                                      alt="{{!empty($category->name) ? $category->name : ''}}">
                                             </div>
                                             <div class="col-sm-11">
@@ -92,6 +92,14 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="thumb_bg_color" class="col-sm-2 col-form-label">Thumb background color</label>
+                                    <div class="col-sm-10">
+                                        <input type="color" style="width: 200px;" class="form-control" id="thumb_bg_color" name="thumb_bg_color"
+                                               value="{{!empty($category->thumb_bg_color) ? $category->thumb_bg_color : old('thumb_bg_color')}}"
+                                               >
                                     </div>
                                 </div>
                                 <div class="form-group row">

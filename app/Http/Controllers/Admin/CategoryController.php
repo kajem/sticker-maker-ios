@@ -15,7 +15,7 @@ class CategoryController extends Controller
     use ItemsTrait;
     public function index()
     {
-        $categories = Category::select('id', 'name', 'items', 'stickers', 'status')->where('type', 'general')->orderBy('sort', 'asc')->get();
+        $categories = Category::select('id', 'name', 'thumb_bg_color', 'items', 'stickers', 'status')->where('type', 'general')->orderBy('sort', 'asc')->get();
         $data = [
             'title' => 'Category',
             'categories' => $categories,
@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
     public function orderCategoryBySort2Field()
     {
-        $categories = Category::select('id', 'name', 'items', 'stickers', 'status')->where('type', 'general')->orderBy('sort2', 'asc')->get();
+        $categories = Category::select('id', 'name', 'thumb_bg_color', 'items', 'stickers', 'status')->where('type', 'general')->orderBy('sort2', 'asc')->get();
         $data = [
             'title' => 'Category ordering by Sort2 field',
             'categories' => $categories,

@@ -78,7 +78,8 @@
                         data: null,
                         orderable: false,
                         render: function (data) {
-                            return '<img width="45" src="{{config("app.asset_base_url")}}items/' + data.code + '/' + data.thumb + '" alt="' + data.name + '"/>';
+                            let bg_color = data.thumb_bg_color.length > 1 ? 'background-color:'+ data.thumb_bg_color : '';
+                            return '<img width="45" style="'+ bg_color + '" src="{{config("app.asset_base_url")}}items/' + data.code + '/' + data.thumb + '" alt="' + data.name + '"/>';
                         }
                     },
                     {
