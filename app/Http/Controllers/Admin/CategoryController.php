@@ -10,6 +10,7 @@ use App\Category;
 use App\Item;
 use App\ItemToCategory;
 use App\Http\Traits\ItemsTrait;
+use App\Notifications\NewCategory;
 class CategoryController extends Controller
 {
     use ItemsTrait;
@@ -162,8 +163,15 @@ class CategoryController extends Controller
         if(!empty($request->input('id'))){
             return redirect()->back()->with('success', 'Category has been updated successfully.');
         }else{
+            $this->sendSlackNotification($request->get('name'));
             return redirect(url('category/list'))->with('success', 'Category has been created successfully.');
         }
+    }
+
+    private function sendSlackNotification($name){
+        $category = new Category();
+        $category->name = $name;
+        $category->notify(new NewCategory($category));
     }
 
     public function addItemToCategory(Request $request){

@@ -16,6 +16,7 @@ use Intervention\Image\Facades\Image;
 use App\Http\Traits\ItemsTrait;
 use ZipArchive;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\NewItem;
 
 class ItemController extends Controller
 {
@@ -139,8 +140,16 @@ class ItemController extends Controller
         if(!empty($request->input('id'))){
             return redirect()->back()->with('success', 'Item has been updated successfully.');
         }else{
+            $this->sendSlackNotification($request->get('name'), $code);
             return redirect(url('item/list'))->with('success', 'Item has been created successfully.');
         }
+    }
+
+    private function sendSlackNotification($name, $code){
+        $item = new Item();
+        $item->name = $name;
+        $item->code = $code;
+        $item->notify(new NewItem($item));
     }
 
     private function processThumb($request, $item_path, $code, $thumb_name, $storage_path){

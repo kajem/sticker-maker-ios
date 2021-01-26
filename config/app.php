@@ -56,6 +56,7 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
     'asset_base_url' => env('ASSET_BASE_URL', null),
+    'slack_hook' => env('SLACK_HOOK', null),
 
     /*
     |--------------------------------------------------------------------------

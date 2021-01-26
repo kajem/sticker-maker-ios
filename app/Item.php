@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Item extends Model
 {
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -14,6 +16,11 @@ class Item extends Model
     protected $fillable = [
         'name', 'slug', 'code', 'category_id', 'meta_title', 'meta_description', 'author', 'thumb', 'thumb_bg_color', 'stickers', 'total_sticker', 'sort', 'status', 'created_by'
     ];
+
+    public function routeNotificationForSlack($notification)
+    {
+        return config('app.slack_hook');
+    }
 
     // public function author(){
     //     return $this->hasOne('App\Author', 'id', 'author_id')->select('name');
