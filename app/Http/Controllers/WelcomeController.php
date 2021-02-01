@@ -15,7 +15,7 @@ class WelcomeController extends Controller
 
     public function index(){
         $home_sticker_packages = StaticValue::select('value')->where('name', 'website_home_page_packages')->first();
-        $items = Item::select('name', 'slug', 'code', 'thumb', 'author', 'total_sticker')
+        $items = Item::select('name', 'slug', 'code', 'thumb', 'thumb_bg_color', 'author', 'total_sticker')
                      ->whereIn('id', explode(",", $home_sticker_packages->value))
                      ->where('status', 1)
                      ->orderByRaw(DB::raw("FIELD(id, $home_sticker_packages->value)"))

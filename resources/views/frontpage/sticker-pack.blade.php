@@ -12,7 +12,7 @@
 
                         @endphp
                         <a href="/stickers/{{$item->slug}}">
-                            <div class="card sticker-bg-{{$count++}} text-center">
+                            <div class="text-center card" style="background-color: {{ !empty($item->thumb_bg_color) ? $item->thumb_bg_color : '#ffffff'  }}">
                                 <span class="badge badge-pill badge-warning">{{$item->total_sticker}} Stickers</span>
                                 <div class="image text-center">
                                     <img class="card-img-top" src="{{$thumb}}" alt="Card image cap">
