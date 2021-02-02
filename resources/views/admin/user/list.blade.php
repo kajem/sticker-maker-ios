@@ -41,8 +41,9 @@
     <script
         src="{{ asset("/bower_components/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}"></script>
     <script>
-        let table;
-        let permissions = {!! json_encode(config('constants.permissions')) !!};
+        var table;
+        var permissions = {!! json_encode(config('constants.permissions')) !!};
+        console.log("permissions");
         console.log(permissions);
         $(function () {
             table = $('#user-list').DataTable({
@@ -76,24 +77,24 @@
                         data: null,
                         orderable: false,
                         render: function (data){
-                            let html = '';
-                            let category_html = '';
-                            let sticker_package_html = '';
-                            let how_to_use_sm_html = '';
+                            var html = '';
+                            var category_html = '';
+                            var sticker_package_html = '';
+                            var how_to_use_sm_html = '';
                             for (const [key, value] of Object.entries(permissions.category_routes)) {
-                                if(data.permissions !== null && data.permissions[key] !== 'undefined'){
+                                if(data.permissions !== null && data.permissions.indexOf(key) !== -1){
                                     category_html += category_html.length > 0 ? ", " + value : value;
                                 }
                             }
 
                             for (const [key, value] of Object.entries(permissions.sticker_package_routes)) {
-                                if(data.permissions !== null && data.permissions[key] !== 'undefined'){
+                                if(data.permissions !== null && data.permissions.indexOf(key) !== -1){
                                     sticker_package_html += sticker_package_html.length > 0 ? ", " + value : value;
                                 }
                             }
 
                             for (const [key, value] of Object.entries(permissions.how_to_use_sm_routes)) {
-                                if(data.permissions !== null && data.permissions[key] !== 'undefined'){
+                                if(data.permissions !== null && data.permissions.indexOf(key) !== -1){
                                     how_to_use_sm_html += how_to_use_sm_html.length > 0 ? ", " + value : value;
                                 }
                             }
