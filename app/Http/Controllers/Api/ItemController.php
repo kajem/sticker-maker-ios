@@ -366,26 +366,7 @@ class ItemController extends Controller
     }
 
     public function search(Request $request){
-        $emoji_cat = Category::select('id')->where('type', 'emoji')->first();
-        $emoji_cat_id = !empty($emoji_cat->id) ? $emoji_cat->id : 0;
-        $emoji_items = ItemToCategory::where('category_id', $emoji_cat_id)->get();
-        $emoji_item_ids = [];
-        if(!empty($emoji_items)){
-            foreach ($emoji_items as $emoji_item){
-                $emoji_item_ids[] = $emoji_item->item_id;
-            }
-        }
-        $query = "SELECT id, name, thumb, thumb_bg_color, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed,
-                   MATCH(name, tag) AGAINST('+".$request->q."*' IN BOOLEAN MODE) as score
-                   FROM items
-                   WHERE
-                   status = 1
-                   AND
-                   id NOT IN ( '" . implode( "','" , $emoji_item_ids ) . "' )
-                   AND
-                   MATCH(name, tag)
-                   AGAINST('+".$request->q."*' IN BOOLEAN MODE) > 0 ORDER BY score DESC";
-        $items = DB::select($query);
+        $items = $this->getSearchItems($request);
         $data = [];
         if(!empty($items)){
             foreach($items as $item){
@@ -409,21 +390,43 @@ class ItemController extends Controller
         return $this->successOutput($data);
     }
 
+    private function getSearchItems(Request $request){
+        $emoji_cat = Category::select('id')->where('type', 'emoji')->first();
+        $emoji_cat_id = !empty($emoji_cat->id) ? $emoji_cat->id : 0;
+        $emoji_items = ItemToCategory::where('category_id', $emoji_cat_id)->get();
+        $emoji_item_ids = [];
+        if(!empty($emoji_items)){
+            foreach ($emoji_items as $emoji_item){
+                $emoji_item_ids[] = $emoji_item->item_id;
+            }
+        }
+
+        $query = "SELECT id, name, thumb, thumb_bg_color, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed,
+                   MATCH(name, tag) AGAINST('+".$request->q."*' IN BOOLEAN MODE) as score
+                   FROM items
+                   WHERE
+                   status = 1
+                   AND
+                   id NOT IN ( '" . implode( "','" , $emoji_item_ids ) . "' )
+                   AND
+                   MATCH(name, tag)
+                   AGAINST('+".$request->q."*' IN BOOLEAN MODE) > 0 ORDER BY score DESC";
+
+        return $items = DB::select($query);
+    }
+
     public function saveSearchKeyword(Request $request){
         $data = [];
         $name = strtolower($request->q);
 
-        $keyword = SearchKeyword::select('id', 'count')->where('name', $name)->first();
-
-        $category = Category::select('id')->where('type', 'emoji')->first();
-        $category_id = !empty($category->id) ? $category->id : 0;
-        $item = Item::select('id')
-                      ->where('tag','LIKE','%'.$request->q.'%')
-                      ->where('category_id', '!=', $category_id)->first();
+        $items = $this->getSearchItems($request);
 
         $data['is_item_found'] = 1;
-        if(empty($item->id))
+        if(empty($items)){
             $data['is_item_found'] = 0;
+        }
+
+        $keyword = SearchKeyword::select('id', 'count')->where('name', $name)->first();
 
         if(!empty($keyword->id)){
             $data['count'] = $keyword->count + 1;
