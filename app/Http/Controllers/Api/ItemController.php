@@ -382,7 +382,7 @@ class ItemController extends Controller
                     'is_premium' => $item->is_premium,
                     'is_animated' => $item->is_animated,
                     'telegram_url' => $telegram_url,
-                    'total_stickers' => count($stickers),
+                    'total_stickers' => !empty($stickers) ? count($stickers) : 0,
                     'stickers' => $stickers
                 ];
             }
@@ -401,16 +401,17 @@ class ItemController extends Controller
             }
         }
 
-        $query = "SELECT id, name, thumb, thumb_bg_color, stickers, code, author, is_premium, is_animated, telegram_name, is_telegram_set_completed,
-                   MATCH(name, tag) AGAINST('+".$request->q."*' IN BOOLEAN MODE) as score
-                   FROM items
+        $query = "SELECT `id`, `name`, `thumb`, `thumb_bg_color`, `stickers`, `code`, `author`, `is_premium`, `is_animated`, `telegram_name`, `is_telegram_set_completed`,
+                   MATCH(`name`, `tag`) AGAINST('".$request->q."*' IN BOOLEAN MODE) as `score`
+                   FROM `items`
                    WHERE
-                   status = 1
+                   `status` = 1
                    AND
                    id NOT IN ( '" . implode( "','" , $emoji_item_ids ) . "' )
                    AND
-                   MATCH(name, tag)
-                   AGAINST('+".$request->q."*' IN BOOLEAN MODE) > 0 ORDER BY score DESC";
+                   (MATCH(`name`, `tag`)
+                   AGAINST('".$request->q."*' IN BOOLEAN MODE) > 0)
+                   ORDER BY `score` DESC";
 
         return $items = DB::select($query);
     }
