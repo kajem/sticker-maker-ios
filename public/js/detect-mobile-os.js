@@ -29,8 +29,11 @@ function getMobileOperatingSystem() {
     let stickerMakerIOSStoreURL = 'https://apps.apple.com/us/app/id1505991796';
     let os = getMobileOperatingSystem();
     let stickerMakerStoreURL = stickerMakerIOSStoreURL;
-    if(os === 'Android'){
+    if(os != 'Android'){
         stickerMakerStoreURL = stickerMakerANDROIDStoreURL;
     }
-    document.getElementsByClassName("gotoStickerMakerAppStore").href = stickerMakerStoreURL;
+    var links =  document.getElementsByClassName("gotoStickerMakerAppStore");
+    for(let i = 0; i < links.length; i++){
+        links[i].href = stickerMakerStoreURL;
+    }
 };
