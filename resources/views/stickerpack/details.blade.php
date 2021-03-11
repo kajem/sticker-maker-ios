@@ -36,7 +36,7 @@
                 @endif
                 <div class="text-center mt-3 mb-5">
                     {{-- <a  href="/get-pack/{{$pack->code}}">Get Stickers</a> --}}
-                    <a target="_blank" href="https://apps.apple.com/us/app/id1505991796">Get Stickers</a>
+                    <a id="gotoAppStore" target="_blank" href="https://apps.apple.com/us/app/id1505991796">Get Stickers</a>
                 </div>
             @else
                 <h2>No packs found.</h2>
@@ -44,4 +44,5 @@
         </div>
     </div>
 @endsection
+<script type="text/javascript" src="/js/detect-mobile-os.js"></script>
 <script type="text/javascript" src="/js/protect-right-click-and-drag.js"></script>
