@@ -5,29 +5,32 @@
  * @returns {String}
  */
 function getMobileOperatingSystem() {
-    var androidStoreURL = 'https://play.google.com/store/apps/developer?id=Brain+Craft+Limited';
-    var iosStoreURL = 'https://apps.apple.com/us/app/id1505991796';
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
         // Windows Phone must come first because its UA also contains "Android"
       if (/windows phone/i.test(userAgent)) {
-          return iosStoreURL;
+          return "Windows";
       }
 
       if (/android/i.test(userAgent)) {
-        return androidStoreURL;
+        return "Android";
       }
 
       // iOS detection from: http://stackoverflow.com/a/9039885/177710
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return iosStoreURL;
+        return "iPhone";
       }
 
-      return iosStoreURL;
+      return "Unknown";
   }
 
   window.onload = function() {
-    var appStoreURL = getMobileOperatingSystem();
-    console.log("appStoreURL", appStoreURL);
-    document.getElementById("gotoAppStore").href = appStoreURL;
+    let stickerMakerANDROIDStoreURL = 'https://play.google.com/store/apps/developer?id=Brain+Craft+Limited';
+    let stickerMakerIOSStoreURL = 'https://apps.apple.com/us/app/id1505991796';
+    let os = getMobileOperatingSystem();
+    let stickerMakerStoreURL = stickerMakerIOSStoreURL;
+    if(os === 'Android'){
+        stickerMakerStoreURL = stickerMakerANDROIDStoreURL;
+    }
+    document.getElementsByClassName("gotoStickerMakerAppStore").href = stickerMakerStoreURL;
 };
