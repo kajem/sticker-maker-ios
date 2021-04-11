@@ -94,9 +94,9 @@
                                                 <input type="file"
                                                        class="form-control @error('thumb') is-invalid @enderror"
                                                        onchange="readURL(this, '#imgThumb');"
-                                                       id="thumb" name="thumb" accept="image/png">
+                                                       id="thumb" name="thumb" accept="image/png,image/webp">
                                                 <small id="thumbHelpBlock" class="form-text text-muted">
-                                                    Only png image accepted.
+                                                    Only png, webp image accepted.
                                                 </small>
                                                 @error('thumb')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -125,7 +125,7 @@
                                     <div class="col-sm-10">
                                         <input type="file"
                                                class="form-control @error('stickers') is-invalid @enderror"
-                                               id="stickers" name="stickers[]" accept="image/png" multiple>
+                                               id="stickers" name="stickers[]" accept="image/png,image/webp" multiple>
                                             @error('stickers')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
