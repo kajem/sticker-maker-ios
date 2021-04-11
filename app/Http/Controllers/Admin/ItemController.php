@@ -81,7 +81,7 @@ class ItemController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'thumb' => 'mimes:png'
+            'thumb' => 'mimes:png,webp'
         ];
 
         if(!empty(trim($request->input('slug')))){
