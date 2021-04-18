@@ -6,7 +6,7 @@
 </a>
 {{-- <p class="download-now-text mt-4">Coming soon!</p> --}}
 <div class="mt-3">
-    <a target="_blank" href="https://play.google.com/store/apps/developer?id=Brain+Craft+Limited" class="d-inline-block">
+    <a target="_blank" href="https://play.google.com/store/apps/details?id=com.braincraftapps.droid.stickermaker" class="d-inline-block">
         <img width="170" src="/images/google-play.png" alt="Google Play Button">
     </a>
 </div>

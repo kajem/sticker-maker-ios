@@ -25,7 +25,7 @@ function getMobileOperatingSystem() {
   }
 
   window.onload = function() {
-    let stickerMakerANDROIDStoreURL = 'https://play.google.com/store/apps/developer?id=Brain+Craft+Limited';
+    let stickerMakerANDROIDStoreURL = 'https://play.google.com/store/apps/details?id=com.braincraftapps.droid.stickermaker';
     let stickerMakerIOSStoreURL = 'https://apps.apple.com/us/app/id1505991796';
     let os = getMobileOperatingSystem();
     let stickerMakerStoreURL = stickerMakerIOSStoreURL;
