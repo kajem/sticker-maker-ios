@@ -45,4 +45,3 @@
     </div>
 @endsection
 <script type="text/javascript" src="/js/protect-right-click-and-drag.js"></script>
-<script type="text/javascript" src="/js/detect-mobile-os.js?11032021srss"></script>
