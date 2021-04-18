@@ -7,7 +7,7 @@
                     <div class="app-links">
                         <ul class="p-0 list-unstyled links first-part">
                             <li>
-                                <a target="_blank" href="https://apps.apple.com/us/app/id1505991796">
+                                <a class="gotoStickerMakerAppStore" target="_blank" href="https://apps.apple.com/us/app/id1505991796">
                                     Sticker Maker
                                 </a>
                             </li>

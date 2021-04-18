@@ -57,7 +57,11 @@
                                                         <div class="col-sm-2">
                                                             <i class="fas fa-sort pt-3 pr-3 d-none arrow-up-down"></i>
                                                             <a href="/pack/braincraft/{{$item->code}}" target="_blank">
-                                                                <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
+                                                                <?php
+                                                                    $thumb = !empty($item->thumb) ? explode("/", $item->thumb) : '';
+                                                                    $thumb = is_array($thumb) && count($thumb) > 1 ? end($thumb) : '';
+                                                                ?>
+                                                                <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$thumb}}" alt="{{$item->name}}"/>
                                                             </a>
                                                         </div>
                                                         <div class="col-sm-4">
@@ -114,7 +118,11 @@
                                                     <div class="col-sm-2">
                                                         <i class="fas fa-sort pt-3 pr-3"></i>
                                                         <a href="/pack/braincraft/{{$item->code}}" target="_blank">
-                                                            <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$item->code}}.png" alt="{{$item->name}}"/>
+                                                            <?php
+                                                            $thumb = !empty($item->thumb) ? explode("/", $item->thumb) : '';
+                                                            $thumb = is_array($thumb) && count($thumb) > 1 ? end($thumb) : '';
+                                                        ?>
+                                                            <img width="45" src="{{config('app.asset_base_url')}}items/{{$item->code}}/200__{{$thumb}}" alt="{{$item->name}}"/>
                                                         </a>
                                                     </div>
                                                     <div class="col-sm-4">
