@@ -19,8 +19,8 @@ class ApiAuth
             return $this->errorOutput();
         }
 
-        $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7'];
-        $passwords = ['54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO'];
+        $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7', 'nocropRigE2sa4KJ8hzUOx5GlELitZjmod5ILd'];
+        $passwords = ['54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO', 'lXtSxVsKmpQ&MjFzn!$9a#JUcrhpk&hlsw%J5gTtycKmLAUMOcwS2GykpHLIO!wZ'];
 
         $username_index = array_search($request->header('UserName'), $usernames);
         if($username_index === false)
