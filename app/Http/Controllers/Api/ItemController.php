@@ -255,6 +255,39 @@ class ItemController extends Controller
 
         return $this->successOutput($data);
     }
+    //This method returns all items of special types of category like emoji, nocrop
+    public function getSpecialCategoryItems(Request $request, $type){
+        $key = urldecode(url()->full());
+        if(Redis::exists($key)){
+            $redis_data = unserialize(Redis::get($key));
+            if($request->version > 0 && $request->version == $redis_data['version']){
+                unset($redis_data['items']);
+            }
+            return $this->successOutput($redis_data);
+        }
+
+        $category = Category::where('type', $type)->first();
+        if(empty($category))
+            return $this->errorOutput('Category not found.');
+
+
+        $data = [
+            'id'    => $category->id,
+            'name'  => $category->name,
+            'version'  => $category->version,
+            'number_of_sticker' =>  $category->stickers,
+            'number_of_item' => $category->items,
+            'items' => $this->getItemsByCategory($request, $category->id)
+        ];
+
+        Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
+
+        if($request->version > 0 && $request->version == $category->version){
+            unset($data['items']);
+        }
+
+        return $this->successOutput($data);
+    }
 
     public function getStickersByItemId($code){
         $key = urldecode(url()->full());
