@@ -272,6 +272,7 @@ class ItemController extends Controller
 
 
         $data = [
+            'asset_base_url' => config('app.asset_base_url'),
             'id'    => $category->id,
             'name'  => $category->name,
             'version'  => $category->version,
