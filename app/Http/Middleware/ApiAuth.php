@@ -19,8 +19,16 @@ class ApiAuth
             return $this->errorOutput();
         }
 
-        $usernames = ['7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7', 'nocropRigE2sa4KJ8hzUOx5GlELitZjmod5ILd'];
-        $passwords = ['54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO', 'lXtSxVsKmpQ&MjFzn!$9a#JUcrhpk&hlsw%J5gTtycKmLAUMOcwS2GykpHLIO!wZ'];
+        $usernames = [
+            '7liAmLyJLU05u4Dfy9CYKpXWqXaFtMD6EU6d2uGfgB2qi7',
+            'nocropRigE2sa4KJ8hzUOx5GlELitZjmod5ILd',
+            'photoCollageHwW3EZ5FRhBZdUVWv5z6'
+    ];
+        $passwords = [
+            '54jdKKFG8u9JwACVbLbHk5GsT8h5nckaMGeQEntV8zRdFIRxYHeIO',
+            'lXtSxVsKmpQ&MjFzn!$9a#JUcrhpk&hlsw%J5gTtycKmLAUMOcwS2GykpHLIO!wZ',
+            '*8xa,J#&,fy35^p.yKU<3&5r)X>Q,zw&@tq}+X?Y2&>A[@n<[{]n^cDwp((8:A_{'
+        ];
 
         $username_index = array_search($request->header('UserName'), $usernames);
         if($username_index === false)
