@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.total_sticker', 'items.code');
+        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.total_sticker', 'items.code', 'items.status');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
         $items = $items->where('item_to_categories.category_id', $id);
         $items = $items->orderBy('item_to_categories.sort', 'asc');
@@ -211,6 +211,7 @@ class CategoryController extends Controller
         $items = $items->select('items.total_sticker');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
         $items = $items->where('item_to_categories.category_id', $category_id);
+        $items = $items->where('items.status', 1);
         $items = $items->get();
 
         $sticker_count = 0;

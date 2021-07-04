@@ -44,7 +44,8 @@
                                 <div class="col-sm-2 font-weight-bold">Thumb</div>
                                 <div class="col-sm-4 font-weight-bold">Name</div>
                                 <div class="col-sm-2 font-weight-bold text-center">Code</div>
-                                <div class="col-sm-2 font-weight-bold text-center">Total Sticker</div>
+                                <div class="col-sm-1 font-weight-bold text-center p-0">Total Sticker</div>
+                                <div class="col-sm-1 font-weight-bold text-center p-0">Status</div>
                                 <div class="col-sm-2 font-weight-bold text-center">Action</div>
                             </div>
                             <div id="allItems">
@@ -73,8 +74,11 @@
                                                         <div class="col-sm-2 pt-3 text-center">
                                                             {{$item->code}}
                                                         </div>
-                                                        <div class="col-sm-2 pt-3 text-center">
+                                                        <div class="col-sm-1 pt-3 text-center">
                                                             {{$item->total_sticker}}
+                                                        </div>
+                                                        <div class="col-sm-1 pt-3 text-center p-0">
+                                                            {{$item->status ? 'Active' : 'Inactive'}}
                                                         </div>
                                                         <div class="col-sm-2 pt-3 text-right">
                                                             <a href="javascript:void(0)" data-item-id="{{$item->id}}"
@@ -105,7 +109,8 @@
                                 <div class="col-sm-2 font-weight-bold"><span class="pl-3">Thumb</span></div>
                                 <div class="col-sm-4 font-weight-bold">Name</div>
                                 <div class="col-sm-2 font-weight-bold text-center">Code</div>
-                                <div class="col-sm-2 font-weight-bold text-center">Total Sticker</div>
+                                <div class="col-sm-1 font-weight-bold text-center p-0">Total Sticker</div>
+                                <div class="col-sm-1 font-weight-bold text-center p-0">Status</div>
                                 <div class="col-sm-2 font-weight-bold text-right">Action</div>
                             </div>
                             <ul class="sort_item list-group" id="sortable">
@@ -134,8 +139,11 @@
                                                     <div class="col-sm-2 pt-3 text-center">
                                                         {{$item->code}}
                                                     </div>
-                                                    <div class="col-sm-2 pt-3 text-center">
+                                                    <div class="col-sm-1 pt-3 text-center">
                                                         {{$item->total_sticker}}
+                                                    </div>
+                                                    <div class="col-sm-1 pt-3 text-center p-0">
+                                                        {{$item->status ? 'Active' : 'Inactive'}}
                                                     </div>
                                                     <div class="col-sm-2 pt-3 text-right">
                                                         <a href="javascript:void(0)" data-item-id="{{$item->id}}" data-item-name="{{$item->name}}"

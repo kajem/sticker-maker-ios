@@ -138,6 +138,7 @@ class ItemController extends Controller
         }
 
         if(!empty($request->input('id'))){
+            $this->updateTotalItemAndStickerCountInCategory($item_id);
             return redirect()->back()->with('success', 'Item has been updated successfully.');
         }else{
             $this->sendSlackNotification($request->get('name'), $code);
@@ -269,6 +270,10 @@ class ItemController extends Controller
         ];
         Item::where('id', $item_id)->update($update_item);
 
+        $this->updateTotalItemAndStickerCountInCategory($item_id);
+    }
+
+    private function updateTotalItemAndStickerCountInCategory($item_id){
         $item_to_category = ItemToCategory::select('category_id')->where('item_id', $item_id)->get();
         if(!$item_to_category->isEmpty()){
             $categoryController = new CategoryController();
