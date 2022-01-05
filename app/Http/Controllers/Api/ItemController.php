@@ -319,7 +319,8 @@ class ItemController extends Controller
             'is_animated' => $item->is_animated,
             'telegram_url' => $telegram_url,
             'total_stickers' => count($stickers),
-            'stickers' => $stickers
+            'stickers' => $stickers,
+            'updated_at' => strtotime($item->updated_at)
         ];
 
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
