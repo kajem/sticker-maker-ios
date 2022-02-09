@@ -174,6 +174,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="version" class="col-sm-2 col-form-label">Version</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control @error('version') is-invalid @enderror"
+                                               id="version" name="version"
+                                               value="{{!empty($item->version) ? $item->version : old('version')}}">
+                                        @error('version')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="status" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="status" id="status" class="form-control">
