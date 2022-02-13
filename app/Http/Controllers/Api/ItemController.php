@@ -152,7 +152,7 @@ class ItemController extends Controller
     private function getItemsByCategory(Request $request, $category_id, $item_limit = 0){
 
         $items = Item::query();
-        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.thumb_bg_color', 'items.stickers', 'items.code', 'items.author', 'items.telegram_name', 'items.is_telegram_set_completed', 'items.is_premium', 'items.is_animated');
+        $items = $items->select('items.id', 'items.name', 'items.thumb', 'items.thumb_bg_color', 'items.stickers', 'items.code', 'items.author', 'items.telegram_name', 'items.is_telegram_set_completed', 'items.is_premium', 'items.is_animated', 'items.version');
         $items = $items->join('item_to_categories', 'item_to_categories.item_id', '=', 'items.id');
         $items = $items->where('item_to_categories.category_id', $category_id);
         $items = $items->where('items.status', 1);
@@ -184,7 +184,8 @@ class ItemController extends Controller
                     'is_animated' => $item->is_animated,
                     'telegram_url' => $telegram_url,
                     'total_stickers' => count($stickers),
-                    'stickers' => $stickers
+                    'version' => $item->version,
+                    'stickers' => $stickers,
                 ];
             }
         }
@@ -319,7 +320,9 @@ class ItemController extends Controller
             'is_animated' => $item->is_animated,
             'telegram_url' => $telegram_url,
             'total_stickers' => count($stickers),
-            'stickers' => $stickers
+            'version' => $item->version,
+            'stickers' => $stickers,
+            'updated_at' => strtotime($item->updated_at)
         ];
 
         Redis::setEx($key, $this->redis_ttl, serialize($data)); //Writing to Redis
@@ -417,6 +420,7 @@ class ItemController extends Controller
                     'is_animated' => $item->is_animated,
                     'telegram_url' => $telegram_url,
                     'total_stickers' => !empty($stickers) ? count($stickers) : 0,
+                    'version' => $item->version,
                     'stickers' => $stickers
                 ];
             }
@@ -435,7 +439,7 @@ class ItemController extends Controller
             }
         }
 
-        $query = "SELECT `id`, `name`, `thumb`, `thumb_bg_color`, `stickers`, `code`, `author`, `is_premium`, `is_animated`, `telegram_name`, `is_telegram_set_completed`,
+        $query = "SELECT `id`, `name`, `thumb`, `thumb_bg_color`, `stickers`, `code`, `author`, `is_premium`, `is_animated`, `telegram_name`, `is_telegram_set_completed`, `version`,
                    MATCH(`name`, `tag`) AGAINST('".$request->q."*' IN BOOLEAN MODE) as `score`
                    FROM `items`
                    WHERE
