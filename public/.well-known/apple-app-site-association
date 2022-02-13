@@ -1,0 +1,23 @@
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": ["QA5HCG2XW6.BrainCraft.StickerMakerUI"],
+             "components": [
+               {
+                  "/": "/get-pack/*",
+		  "?": { "code": "??????" },
+                  "comment": "Matches any URL whose path starts with /get-pack/. Matches any URL whose path starts with /get-pack/ and which has a query item with name 'code' and a value of exactly 6 characters"
+               }
+             ]
+           },
+	   {
+             "appID": "QA5HCG2XW6.BrainCraft.StickerMakerUI",
+             "paths": [ "/get-pack/*" ]
+           }
+       ]
+   },
+   "webcredentials": {
+      "apps": ["QA5HCG2XW6.BrainCraft.StickerMakerUI"]
+   }
+}

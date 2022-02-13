@@ -1,0 +1,830 @@
+body{
+    font-family: Nunito, sans-serif;
+    font-size: 16px;
+}
+a:hover{
+    text-decoration: none;
+}
+.mt-150{
+    margin-top: 150px;
+}
+.envelop i{
+    font-size: 200px;
+    color: #fff;
+}
+#sticker-packs .card{
+    width: 171px;
+    display: inline-block;
+    margin: 0 5px 10px 5px;
+    border-radius: 10px;
+}
+.mt--2{
+    margin-top: -2px;
+}
+.word-wrap-break{
+    word-wrap: break-word;
+}
+#sticker-packs .card .image{
+    overflow: hidden;
+}
+#sticker-packs .card{
+    overflow: hidden;
+    position: relative;
+}
+#sticker-packs .card-body{
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+#sticker-packs .card:hover img {
+    transform: scale(.85); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+#sticker-packs a{
+    color: #333;
+}
+#sticker-packs a:hover{
+    color: #555;
+}
+#sticker-packs .badge-warning{
+    background: rgba(255,237,74, 0.6);
+    position: absolute;
+    right: 50px;
+    top: 0px;
+}
+input[type="submit"]{
+    font-size: 20px;
+}
+#top-bar, #hero-area, #contact-us, #awesome-features{
+    background: #00b129;
+}
+/*START: How to use sticker maker*/
+ul.pagination{
+    display: block;
+}
+ul.pagination li{
+    display: inline-block;
+}
+input.btn-sm{
+    padding: .12rem .5rem;
+}
+.main-content{
+    margin-bottom: 40px;
+}
+.main-content img, img.banner{
+    max-width: 100%;
+    width: auto;
+    max-height: 400px;
+}
+#how-to-use-sm .card{
+    overflow: hidden;
+}
+#how-to-use-sm .card img{
+    will-change: opacity;
+    -webkit-transition: opacity .3s ease-in;
+    transition: opacity .3s ease-in;
+}
+#how-to-use-sm .card img:hover{
+    opacity: 0.84;
+}
+#how-to-use-sm .card a.btn.btn-primary{
+    -webkit-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+}
+#how-to-use-sm .card .card-title a{
+    -webkit-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+}
+.card-img-top{
+    border-radius: 0;
+}
+.jcarousel img{
+    max-height: 250px !important;
+    width: auto;
+    margin: 0 auto;
+}
+figure.image.image_resized.image-style-align-left {
+    margin-right: 35px;
+}
+figure.image.image_resized.image-style-align-right {
+    margin-left: 30px;
+}
+/*END: How to use sticker maker*/
+/*START: Contact us*/
+#contact-us .btn-primary {
+    color: #101010;
+    background-color: #ffd011;
+    border-color: #fff;
+}
+#contact-us .btn-primary:hover{
+    background-color: #e5bb0f;
+}
+#contact-us .text{
+    font-size: 30px;
+}
+#contact-us .text a{
+    color: #fff;
+}
+#contact-us .text a:hover{
+    text-decoration: underline;
+}
+/*END: Contact us*/
+
+/*START: Cookie policy*/
+#cookie-policy{
+    background: #0779BF;
+    position: fixed;
+    width: 100%;
+    color: #fff;
+    bottom: 0;
+    border-radius: 10px 10px 0px 0px;
+    border-top: 1px solid #fff;
+}
+/*END: Cookie policy*/
+
+/*START: Header Nav*/
+.navbar-expand-lg .navbar-collapse{
+    display: block !important;
+}
+.navbar-nav{
+    display: block;
+}
+.navbar ul li.nav-item{
+    display: inline-block;
+}
+.navbar ul li.nav-item a.nav-link{
+    color: #fff;
+    font-weight: bold;
+}
+.navbar ul li.nav-item a.nav-link:hover{
+    color: #ddd;
+}
+.navbar ul li.nav-item.active a.nav-link{
+    color: #ddd;
+}
+/*END: Header Nav*/
+video {
+    margin-left: 19px;
+    margin-top: 19px;
+    width: 261px;
+    height: 571px;
+    border-radius: 22px;
+}
+video:focus{
+    outline: none;
+}
+#hero-area .social-icons{
+    padding: 0px 0 0 60px;
+}
+.title h2{
+    text-shadow: 2px 4px 3px rgba(0,0,0,.3);
+    margin: 0 15px;
+}
+section#hero-area h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 900;
+    font-size: 2.2rem;
+}
+.video-frame{
+    background: url('/images/iphone_frame.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 607px;
+    width: 300px;
+    margin-top: 44px;
+}
+p.download-now-text {
+    color: #101010;
+    font-size: 24px;
+    line-height: 1.475;
+    cursor: auto;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+.download-now.card {
+    border-radius: 1rem;
+    background: #ffd011;
+    border: 5px solid #fff;
+    border-radius: 15px;
+    min-width: 325px;
+}
+.yellow-bg-download .download-now.card{
+    background: #00b129;
+}
+.yellow-bg-download p.download-now-text{
+    color: #fff;
+}
+#how-to-make .number-circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    background: #00b129;
+    color: #fff;
+    text-align: center;
+    font: 32px Nunito,sans-serif;
+    line-height: 1.6em;
+    font-weight: 700;;
+}
+#how-to-make .text-block{
+    margin-bottom: 20px;
+    margin-left: 15px;
+    width: 85%;
+}
+#awesome-features{
+    color: #fff;
+}
+#awesome-features img.amazing-feature{
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+#awesome-features h3{
+    color: #efefef;
+}
+#awesome-features p{
+    padding: 0px 15px;
+    text-align: center;
+}
+h2.title {
+    color: #151515;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: .3rem;
+    letter-spacing: .4rem;
+    cursor: auto;
+    font-weight: 800;
+}
+#pack-details div.image{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 148px;
+    height: 148px;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    position: relative;
+}
+#pack-details .container{
+    text-align: center;
+}
+.water-mark{
+    position: absolute;
+    left: 19px;
+    top: 69px;
+    font-size: 12px;
+    color: #333;
+}
+#pack-details img{
+    max-width: 138px;
+    max-height: 138px;
+}
+#pack-details a{
+    font-size: 18px;
+    text-decoration: underline;
+}
+.clear-both{
+    clear: both;
+}
+/*START: Site Map*/
+#sitemap ul li{
+    line-height: 1.8;
+}
+#sitemap ul li a:hover{
+    text-decoration: underline;
+}
+/*END: Site Map*/
+
+/*START: How to use Sticker Maker*/
+ul li a:hover img{
+    opacity: 0.7;
+}
+.font-size-18{
+    font-size: 18px;
+}
+.follow-on-instagram .posts .post-body{
+    position: relative;
+    color: #d6d6d6;
+}
+.follow-on-instagram .hover-info{
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+}
+.follow-on-instagram .hover-info .content{
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    left: 50%;
+    margin-left: -37px;
+
+}
+.follow-on-instagram .posts .post-body:hover .hover-info{
+    display: block;
+}
+.follow-on-instagram .fa-video{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.ck-content iframe{
+    max-width: 100% !important;
+}
+/*END: How to use Sticker Maker*/
+
+#footer{
+    padding-top: 40px;
+    background: #323232;
+    color: #fff;
+    font-size: 16px;
+}
+#footer a{
+    color: #ccc;
+}
+#footer a:hover{
+    color: #fff;
+}
+#footer .social-icons li{
+    display: inline;
+}
+.social-icons a{
+    font-size: 20px;
+    color: #fff;
+    margin-right: 20px;
+}
+.get-app-links a img{
+    width: 140px;
+}
+.get-app-links p{
+    color: #ffd011;
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 10px !important;
+}
+.get-app-links p:first-child{
+    margin-top: 0 !important;
+}
+#footer .links a{
+    margin-bottom: 5px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+}
+#footer hr{
+    border-top: 1px solid #707070;
+}
+.app-links a{
+    display: inline-block;
+    margin-right: 10px;
+}
+.app-links a img{
+    border-radius: 10px;
+    width: 65px;
+    margin-bottom: 10px;
+}
+.copyright, .copyright a{
+    font-size: 13px !important;
+    text-decoration: none;
+}
+footer.app-layout-footer{
+    position: absolute;
+    width: 100%;
+    bottom:0;
+    text-align: center;
+}
+.sticker-bg-1{
+    background: #FF4500;
+}
+.sticker-bg-2{
+    background: #DC143C;
+}
+.sticker-bg-3{
+    background: #0000FF;
+}
+.sticker-bg-4{
+    background: #FF4500;
+}
+.sticker-bg-5{
+    background: #0049B7;
+}
+.sticker-bg-6{
+    background: #8600ec;
+}
+.sticker-bg-7{
+    background: #ec1c00;
+}
+.sticker-bg-8{
+    background: #ecec00;
+}
+.sticker-bg-9{
+    background: #0014ec;
+}
+.sticker-bg-10{
+    background: #ec3b00;
+}
+.sticker-bg-11{
+    background: #004bec;
+}
+.sticker-bg-12{
+    background: #00ecd4;
+}
+.sticker-bg-13{
+    background: #e0ec00;
+}
+.sticker-bg-14{
+    background: #008eec;
+}
+.sticker-bg-15{
+    background: #8600ec;
+}
+.sticker-bg-16{
+    background: #ec00a5;
+}
+.sticker-bg-17{
+    background: #ec004f;
+}
+.sticker-bg-18{
+    background: #d4ec00;
+}
+.sticker-bg-19{
+    background: #00ec23;
+}
+.sticker-bg-20{
+    background: #60f7b7;
+}
+.sticker-bg-21{
+    background: #b0b4f5;
+}
+/*STRAT: About us section*/
+.new-square-box-holder {
+    width: 100%;
+    padding: 0px 20%;
+    display: flex;
+    justify-content: space-between;
+}
+[data-aos^=fade][data-aos^=fade].aos-animate {
+    opacity: 1;
+    transform: translateZ(0);
+}
+[data-aos][data-aos][data-aos-duration="1200"], body[data-aos-duration="1200"] [data-aos] {
+    transition-duration: 1.2s;
+}
+.new-square-box-holder div.square-columns {
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #681FBB;
+}
+.new-square-box-holder div.new-square {
+    background: linear-gradient( #681FBB, #342dae);
+    width: 70%;
+    padding-top: 70%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 3px;
+}
+.new-square-box-holder .new-square-icon {
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 100%;
+    margin-top: -100%;
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+.new-square-box-holder .new-square-icon.apps-bg{
+    background-image: url('/images/about-us/apps.png');
+}
+.new-square-box-holder .new-square-icon.user{
+    background-image: url('/images/about-us/user.png');
+}
+.new-square-box-holder .new-square-icon.download{
+    background-image: url('/images/about-us/download.png');
+}
+.new-square-box-holder .new-square-icon.topchart{
+    background-image: url('/images/about-us/topchart.png');
+}
+/*END: About us section*/
+/*START: 404 page*/
+#page-404{
+    padding: 45px 0 70px 0;
+}
+#page-404 h1{
+    font-size: 150px;
+    color: #ffb334;
+}
+#page-404 h2{
+    color: #777;
+}
+#page-404 img{
+    margin-top: -28px;
+    width: 150px;
+}
+#page-404 a{
+    font-size: 18px;
+    text-transform: uppercase;
+}
+/*END: 404 page*/
+.show-on-pad{
+    display: none;
+}
+.hide-on-pad{
+    display: block;
+}
+.show-on-desktop{
+    display: block;
+}
+.hide-on-desktop{
+    display: none;
+}
+.mobile-nav-icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.mobile-menu-items ul li.nav-item{
+    border-top: 1px solid #ccc;
+}
+.mobile-menu-items ul li.nav-item:first-child{
+    border-top: 0px solid #ccc;
+}
+.mobile-menu-items ul li.nav-item a.nav-link{
+    font-size: 16px;
+    text-align: center;
+}
+.mobile-nav-icon button:focus{
+    outline: 0;
+}
+.right-sidebar .about .social-icons a{
+    color: #777;
+    border: 1px solid #ccc;
+    padding-top: 2px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.right-sidebar .about .social-icons a:hover{
+    color: #000;
+}
+.right-sidebar .widget-title{
+    margin-top: -30px;
+    margin-bottom: 10px;
+}
+.right-sidebar .widget-title span{
+    background-color: #f8fafc;
+    display: inline-block;
+    padding: 0 20px;
+}
+.post-social-share {
+    position: fixed;
+    top: 50%;
+    margin-left: -65px;
+    z-index: 999;
+    margin-top: -100px;
+}
+.post-social-share div{
+    margin-bottom: 12px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background-color: #fff;
+    --shadow-color: rgba(var(--service-color-rgb, 0,0,0), 0.18);
+    -webkit-box-shadow: -1px -1px 2px 0px rgba(0, 0, 0, 0.05), 1px 3px 4px -1px var(--shadow-color);
+    box-shadow: -1px -1px 2px 0px rgba(0, 0, 0, 0.05), 1px 3px 4px -1px var(--shadow-color);
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    cursor: pointer;
+}
+.post-social-share i{
+    font-size: 18px;
+}
+.post-social-share div:hover i{
+    opacity: 0.8;
+}
+.archives ul li{
+    line-height: 1.8;
+}
+/* Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+    .hide-on-desktop{
+        display: block;
+    }
+    .hide-on-pad{
+        display: block;
+    }
+}
+
+@media only screen and (min-device-width: 415px)
+and (max-device-width: 736px)
+and (orientation: landscape) {
+    .follow-on-instagram .col-sm-4.col-md-12.col-lg-4.col-xl-4{
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+    .search-box input[type="text"]{
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px)*/
+@media (max-width: 767.98px) {
+    .post-social-share{
+        position: relative;
+        margin-top: 0;
+        top: 0px;
+        text-align: center;
+        margin-left: 0;
+    }
+    .post-social-share span{
+        display: none !important;
+    }
+    .post-social-share div{
+        display: inline-block;
+    }
+    .hide-on-pad{
+        display: block;
+    }
+    .show-on-desktop{
+        display: none;
+    }
+    .hide-on-desktop{
+        display: block;
+    }
+    #how-to-use-sm form{
+        text-align: center;
+    }
+    #how-to-use-sm-details .recent-posts ul li{
+        text-align: left;
+    }
+    #sitemap .main-content{
+        text-align: center;
+    }
+    #sitemap .main-content h5{
+        margin-top: 40px;
+    }
+    #contact-us .text {
+        font-size: 18px;
+    }
+    #hero-area .col-sm-7 {
+         padding-right: 15px;
+    }
+    .new-square-box-holder{
+        padding: 0;
+    }
+    .new-square-box-holder div.square-columns{
+        display: block;
+    }
+    .new-square-box-holder div.new-square{
+        width: 100%;
+        padding-top: 100%;
+    }
+    #privacy-policy .main-content ul li{
+        text-align: left;
+    }
+    #about-us .container, #terms .container, #privacy-policy .container{
+        text-align: center;
+    }
+    #about-us img.icon{
+        margin-bottom: 10px;
+    }
+    #about-us img.icon.last{
+        margin-top: 40px;
+    }
+    #cookie-policy .text-right{
+        text-align: center !important;
+    }
+    #sticker-packs .badge-warning{
+        right: 28px;
+    }
+    h2.title{
+        line-height: 1.5;
+    }
+    #hero-area{
+        text-align: center;
+    }
+    #hero-area .social-icons{
+        padding-left: 0;
+    }
+    #hero-area .video-frame.float-right {
+        float: none !important;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    #hero-area video{
+        margin-left: 0px;
+    }
+    .download-now.card {
+        min-width: 100%;
+    }
+    #sticker-packs .card{
+        width: 130px;
+    }
+    section#awesome-features img.amazing-feature {
+        margin-top: 31px;
+    }
+    #how-to-make h3{
+        padding-left: 45px;
+    }
+    #how-to-make .number-circle{
+        margin-bottom: -40px;
+    }
+    #how-to-make p{
+        margin-top: 10px;
+        padding-left: 45px;
+    }
+    #contact-us input[name="from_email"]{
+        margin-top: 15px;
+    }
+    #contact-us .text-right{
+        text-align: center !important;
+    }
+    #footer .about-links, #footer .other-app-links, #footer .social-links, #footer .made-at-braincraft{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    #footer .other-app-links ul.first-part{
+        margin-bottom: 0;
+    }
+    #footer h5{
+        margin-bottom: 0;
+        padding-bottom: 10px !important;
+    }
+    #footer h5.about{
+        margin-top: 25px;
+    }
+    #footer .social-icons a{
+        margin: 0 10px;
+    }
+}
+
+/* Medium devices (tablets, less than 992px)*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    .show-on-desktop{
+        display: none;
+    }
+    .hide-on-desktop{
+        display: block;
+    }
+    .hide-on-pad{
+        display: none;
+    }
+    .show-on-pad{
+        display: block;
+    }
+    .post-social-share{
+        margin-left: -35px;
+    }
+    .search-box input[type="text"]{
+        max-width: 100% !important;
+    }
+    #top-bar .navbar ul li.nav-item a.nav-link{
+        padding-left: 8px;
+    }
+    #hero-area .col-sm-7{
+        padding-right: 40px;
+    }
+    .hide-on-pad{
+        display: none;
+    }
+    #how-to-make h3{
+        padding-left: 45px;
+    }
+    #how-to-make .number-circle{
+        margin-bottom: -40px;
+    }
+    #how-to-make p{
+        margin-top: 10px;
+        padding-left: 45px;
+    }
+    .search-box{
+        text-align: center;
+    }
+    .search-box input[type="submit"]{
+        margin-top: 10px;
+    }
+}
+
+/* Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199.98px) {
+
+}
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,6 +15,12 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     static $BASE_URL_API = 'http://sticker.local/api/';
+    static $PAGINATION_LIMIT = 10;
+
+    protected  function uploadFileToS3($file_path, $file_content){
+        //$compressed_png_content = $this->compressPNG($file->getPathName()); //Getting compressed png content
+        Storage::disk('s3')->put($file_path, $file_content, 'public');
+    }
 
     protected function errorOutput($message, $status = 400){
         $data = [
@@ -45,7 +52,18 @@ class Controller extends BaseController
             ],
             'query' => $checked,
             'http_errors' => false
-        ]);        
+        ]);
+        $obj = json_decode((string)$res->getBody());
+
+        return $obj;
+    }
+
+    function getDataFromURL($url){
+        $client = new Client(['base_uri' => $url]);
+
+        $res = $client->request('GET', '', [
+            'http_errors' => false
+        ]);
         $obj = json_decode((string)$res->getBody());
 
         return $obj;
@@ -64,6 +82,5 @@ class Controller extends BaseController
         }
         return $params;
     }
-
 
 }

@@ -7,24 +7,25 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
 use App\Item;
-use App\ItemSticker;
+use App\StaticValue;
+use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
 {
+
     public function index(){
-        $items = Item::all();
-        $sticker_arr = [];
-        foreach($items as $item){
-            $stickers = ItemSticker::where('item_id', $item->id)->get();
-            foreach($stickers as $sticker){
-                if(!empty($sticker->path))
-                    $sticker_arr[] = $sticker->path;
-            }
-        }
+        $home_sticker_packages = StaticValue::select('value')->where('name', 'website_home_page_packages')->first();
+        $items = Item::select('name', 'slug', 'code', 'thumb', 'thumb_bg_color', 'author', 'total_sticker')
+                     ->whereIn('id', explode(",", $home_sticker_packages->value))
+                     ->where('status', 1)
+                     ->orderByRaw(DB::raw("FIELD(id, $home_sticker_packages->value)"))
+                     ->get();
+        //dd($home_sticker_packages->value);
         $data = [
-            'stickers' => $sticker_arr
+            'asset_base_url' => config('app.asset_base_url'),
+            'items' => $items
         ];
-        return view('home')->with($data);
+        return view('welcome')->with($data);
     }
 
     public function getSticker($code, $name){

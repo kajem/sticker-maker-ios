@@ -16,7 +16,13 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->text('text')->nullable();
+            $table->string('thumb')->nullable();
+            $table->string('thumb_v')->nullable();
+            $table->smallInteger('items')->default(0);
+            $table->smallInteger('stickers')->default(0);
             $table->integer('sort');
+            $table->integer('sort2')->default(0);
             $table->string('type');
             $table->boolean('status');
             $table->integer('created_by');

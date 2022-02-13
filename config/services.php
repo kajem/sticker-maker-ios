@@ -34,4 +34,17 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'redis' => [
+        'host' => env('REDIS_HOST', '127.0.0.1'),
+        'password' => env('REDIS_PASSWORD', ''),
+        'port' => env('REDIS_PORT', '6379'),
+        'ttl' => env('REDIS_TTL', '79200'),
+    ],
+
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'user_name' => env('TELEGRAM_USER_NAME'),
+        'user_id' => env('TELEGRAM_USER_ID'),
+        'set_base_url' => env('TELEGRAM_SET_BASE_URL'),
+    ],
 ];
