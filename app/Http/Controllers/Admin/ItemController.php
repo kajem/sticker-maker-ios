@@ -113,6 +113,7 @@ class ItemController extends Controller
         }
         else
         {
+            unset($data['version']);
             $code = $this->uniqueCode();
             $extension = $request->file('thumb')->getClientOriginalExtension();
             $thumb_name = $code.'.'.$extension;
