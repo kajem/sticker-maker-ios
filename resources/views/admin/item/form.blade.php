@@ -178,7 +178,7 @@
                                     <div class="col-sm-10">
                                         <input type="number" class="form-control @error('version') is-invalid @enderror"
                                                id="version" name="version"
-                                               value="{{!empty($item->version) ? $item->version + 1 : old('version')}}">
+                                               value="{{!empty($item->version) ? $item->version + 1 : 1}}">
                                         @error('version')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
