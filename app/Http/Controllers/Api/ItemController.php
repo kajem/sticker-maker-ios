@@ -438,20 +438,33 @@ class ItemController extends Controller
                 $emoji_item_ids[] = $emoji_item->item_id;
             }
         }
+        $query = "
+            SELECT
+                `id`,
+                `name`,
+                `thumb`,
+                `thumb_bg_color`,
+                `stickers`,
+                `code`,
+                `author`,
+                `is_premium`,
+                `is_animated`,
+                `telegram_name`,
+                `is_telegram_set_completed`,
+                `version`,
+                MATCH(`name`, `tag`) AGAINST(? IN BOOLEAN MODE) as `score`
+            FROM
+                `items`
+            WHERE
+                `status` = 1
+            AND
+                id NOT IN ( '" . implode("','", $emoji_item_ids) .
+            "' )
+            AND
+                ( MATCH( `name`, `tag` ) AGAINST( ? IN BOOLEAN MODE ) > 0 )
+            ORDER BY `score` DESC";
 
-        $query = "SELECT `id`, `name`, `thumb`, `thumb_bg_color`, `stickers`, `code`, `author`, `is_premium`, `is_animated`, `telegram_name`, `is_telegram_set_completed`, `version`,
-                   MATCH(`name`, `tag`) AGAINST('".$request->q."*' IN BOOLEAN MODE) as `score`
-                   FROM `items`
-                   WHERE
-                   `status` = 1
-                   AND
-                   id NOT IN ( '" . implode( "','" , $emoji_item_ids ) . "' )
-                   AND
-                   (MATCH(`name`, `tag`)
-                   AGAINST('".$request->q."*' IN BOOLEAN MODE) > 0)
-                   ORDER BY `score` DESC";
-
-        return $items = DB::select($query);
+        return $items = DB::select($query, [$request->q, $request->q]);
     }
 
     public function saveSearchKeyword(Request $request){
